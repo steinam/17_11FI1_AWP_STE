@@ -1554,7 +1554,7 @@ hierdurch nichts.*
 
 [Karl]» Interessant, gibt es eine vergleichbare Operation in Subversion?
 
-[Lars] » *Nein, gibt es nicht, denn das ist eines der Vorteile von dezentralen Systemen. Wir haben alles lokal verfügbar. Durch ein fetch holen wir uns nur, was wir nicht sowieso schon haben. Wir haben bereits über das* **objects** *-Verzeichnis gesprochen, du erinnerst dich? Im* **objects** *-Verzeichnis speichert Git alle Objekte, also Commits, Trees, Blobs und Tags als binär-Daten. 
+[Lars] » *Nein, gibt es nicht, denn das ist eines der Vorteile von dezentralen Systemen. Wir haben alles lokal verfügbar. Durch ein fetch holen wir uns nur, was wir nicht sowieso schon haben. Wir haben bereits über das* **objects** - Verzeichnis gesprochen, du erinnerst dich? Im  **objects** -Verzeichnis speichert Git alle Objekte, also Commits, Trees, Blobs und Tags als binär-Daten. *
 
 [Lars]» Wenn Du ein fetch machst, dann holt sich Git alle Objekte, die im Remote-Repository verfügbar sind aber noch nicht bei dir lokal. Nichts weiter, die Objekte liegen dann nur in deinem* **objects** *-Verzeichnis und du kannst sie jederzeit verwenden. Aber erst, wenn du sie brauchst, nicht vorher.*
 
@@ -1733,7 +1733,7 @@ Update machen möchten.*
 
 [Lars]» *Wir haben diese Option als Standard konfiguriert. Am besten machen wir das bei dir genauso. Dann sparst du dir, ständig diese Option mit anzugeben.*
 
-.. code-block:: 
+.. code-block:: bash 
 
   git config --global branch.autosetuprebase always <b>(1)</b>
   #for existing branches
@@ -1962,7 +1962,7 @@ und dann den HEAD-Zeiger des Branches neu zu setzen.*
 eine wichtige Einschränkung.
 Bevor wir uns um unser echtes Remote-Repository kümmern machen wir vielleicht einen kleinen Ausflug und erzeugen uns ein weiteres Remote-Repository als Entwickler-Repository.*
 
-.. coe-block:: bash
+.. code-block:: bash
 
   mkdir dev-remote
   cd dev-remote
@@ -2062,7 +2062,7 @@ oberste Commit in einem Branch, zum angegebenen Commit.*
 
 [Lars]» *Ja, versuch es bitte.*
 
-.. code-bloc:: bash
+[Lars].. code-block:: bash
 
   git push test-remote
   To ../testremote.git
@@ -2305,946 +2305,625 @@ packt die zur Seite gelegten Commits dann einfach wieder oben auf.
   committing file 10
 
   
-» *Genau, Git zeigt dir an, was passieren wird. Für einen Squash sind
+[Lars]» *Genau, Git zeigt dir an, was passieren wird. Für einen Squash sind
 wir bereits fertig. Wir könnten jetzt aber auch die Commit-Messages noch
 beliebig ergänzen und ändern, indem wir einfach beispielsweise eine
 weitere Zeile hinzufügen.*
 
-git log -n 1
+.. code-block:: bash
 
-Commit: bca4d8a021ef805d1403479ba31bd770eeafb9a3
+  git log -n 1
+  Commit: bca4d8a021ef805d1403479ba31bd770eeafb9a3
+  Author: dilgerm <martin@effectivetrainings.de>
+  Date: (27 minutes ago) 2014-01-17 17:17:18 +0100
+  Subject: committing file 9
+  committing file 10
+  
+  Eine neue Zeile 3
 
-Author: dilgerm <martin@effectivetrainings.de>
+[Karl]» Wow, das ist wirklich praktisch, kann ich den zweiten Fall versuchen?
 
-Date: (27 minutes ago) 2014-01-17 17:17:18 +0100
+[Lars]» *Ja klar, leg los, wir möchten jetzt die Commits “file 5″, “file 4″ und “file 3″ zusammenfassen.*
 
-Subject: committing file 9
+.. admonition:: Übung
 
-committing file 10
+  Fassen Sie 3 beliebige Commits in Ihrer Historie zusammen.
 
-Eine neue Zeile 3
+.. code-block:: bash
 
-» Wow, das ist wirklich praktisch, kann ich den zweiten Fall versuchen?
+  git rebase -i HEAD~10
+  pick 696c994 committing file 1
+  pick b1e3c66 committing file 2
+  pick fcb8147 committing file 3
+  pick 2c8772a committing file 4
+  pick 976bd5a committing file 5
+  pick c772573 committing file 6
+  pick c3dd9d3 committing file 7
+  pick fe2164f committing file 8
+  pick bca4d8a committing file 9
 
-» *Ja klar, leg los, wir möchten jetzt die Commits “file 5″, “file 4″
-und “file 3″ zusammenfassen.*
+[Karl]» Ja, ich sehs schon, das muss ich nur ändern in folgendes.
 
-Übung
+.. code-block:: bash
 
-Fassen Sie 3 beliebige Commits in Ihrer Historie zusammen.
+  git rebase -i HEAD~10
+  pick 696c994 committing file 1
+  pick b1e3c66 committing file 2
+  pick fcb8147 committing file 3
+  f 2c8772a committing file 4
+  f 976bd5a committing file 5
+  pick c772573 committing file 6
+  pick c3dd9d3 committing file 7
+  pick fe2164f committing file 8
+  pick bca4d8a committing file 9
 
-git rebase -i HEAD~10
+[Lars]» *Genau, Karl, sehr gut. Der Commit “file 3″ muss erhalten bleiben, die anderen beiden sollen einfach zusammenschmelzen.*
 
-pick 696c994 committing file 1
 
-pick b1e3c66 committing file 2
+.. code-block:: bash
 
-pick fcb8147 committing file 3
+  git log --oneline
+  eb76c89 committing file 9
+  7d3b543 committing file 8
+  15e4590 committing file 7
+  bbfeb8d committing file 6
+  3656b4d committing file 3 <b>(1)</b>
+  b1e3c66 committing file 2
+  696c994 committing file 1
 
-pick 2c8772a committing file 4
+  1. Die Commits “file 4″ und “file 5″ sind im Commit `file 3` aufgegangen.
 
-pick 976bd5a committing file 5
+[Lars]» *Ok, Karl, zuletzt wollen wir noch die Commit-Message von Commit “file 2″ ändern und nur diese. Welche Option wäre hierfür die richtige?*
 
-pick c772573 committing file 6
+.. admonition:: Übung
 
-pick c3dd9d3 committing file 7
+  Welche Interactive Rebase Option erlaubt das Ändern einer Commit Message wobei der Commit vollständig erhalten bleibt?
 
-pick fe2164f committing file 8
+  .. code-block:: bash
 
-pick bca4d8a committing file 9
+    git rebase -i HEAD~7
+    pick 696c994 committing file 1
+    pick b1e3c66 committing file 2
+    pick 3656b4d committing file 3
+    pick bbfeb8d committing file 6
+    pick 15e4590 committing file 7
+    pick 7d3b543 committing file 8
+    pick eb76c89 committing file 9
 
-» Ja, ich sehs schon, das muss ich nur ändern in folgendes.
 
-git rebase -i HEAD~10
+[Karl]» Ich glaube, das muss ich jetzt ändern in folgendes.
 
-pick 696c994 committing file 1
+.. code-block:: bash
 
-pick b1e3c66 committing file 2
+  git rebase -i HEAD~7
+  pick 696c994 committing file 1
+  r b1e3c66 committing file 2
+  pick 3656b4d committing file 3
+  pick bbfeb8d committing file 6
+  pick 15e4590 committing file 7
+  pick 7d3b543 committing file 8
+  pick eb76c89 committing file 9
 
-pick fcb8147 committing file 3
 
-f 2c8772a committing file 4
+[Lars]» *Genau, Karl. Du hast es verstanden,* **r** *ist die richtige Wahl für* **reword**\ *. Damit änderst Du nur die Commit-Message, der Commit bleibt erhalten.*
 
-f 976bd5a committing file 5
+[Karl]» Aha, es öffnet sich wieder der zweite Editor, wie bei Squash.
 
-pick c772573 committing file 6
+[Lars]» *Genau, das Prinzip ist dasselbe. Hier kannst du jetzt die Message beliebig ändern.*
 
-pick c3dd9d3 committing file 7
+.. code-block:: bash
+
+  git log --oneline
+  85df518 committing file 9
+  f0e3d46 committing file 8
+  1608f8e committing file 7
+  2dcb0f3 committing file 6
+  7ef9186 committing file 3
+  cedf325 committing file 2 - changed by Karl in interactive rebase
+  696c994 committing file 1
+  6e5a1d7 committing file 5
+  0d01e62 committing file 4
+  22ea185 committing file 3
+  8b46f14 committing file 2
+  932e981 committing file 1
+
+.. Caution::  
+
+  Achten Sie darauf, dass sogar beim Ändern der Commit-Message sich der Hash-Wert des Commits vollständig verändert.   
+
+[Karl]» Wow, Lars, ich bin begeistert. **Interactive Rebase** ist eine wirklich tolle Sache.
+
+[Lars]» *Ja, für mich das wichtigste Tool, dass ich täglich sehr oft verwende. Mein typischer Workflow ist der, pass auf.*
+
+.. code-block:: bash
+
+  #hack,hack,hack
+  #Stand ist gut, also commit
+  git add .
+  git commit -m "First draft"
+  #hack, hack, hack
+  #Stand ist wieder gut
+  git add .
+  git commit -m "egal"
+  git rebase -i HEAD~2 <b>(1)</b>
+  #hack, hack, hack
+  #Idee war gut, aber nicht brauchbar, also zurück zum letzten Stand
+  git checkout -f <b>(2)</b>
+
+  1. Sehr oft fasst Lars einfach die letzten beiden Commits zusammen
+  2. git checkout -f geht zurück zum letzten Commit, also dem letzten stabilen Stand.
 
-pick fe2164f committing file 8
-
-pick bca4d8a committing file 9
-
-» *Genau, Karl, sehr gut. Der Commit “file 3″ muss erhalten bleiben, die
-anderen beiden sollen einfach zusammenschmelzen.*
-
-git log --oneline
-
-eb76c89 committing file 9
-
-7d3b543 committing file 8
-
-15e4590 committing file 7
-
-bbfeb8d committing file 6
-
-3656b4d committing file 3 <b>(1)</b>
-
-b1e3c66 committing file 2
-
-696c994 committing file 1
-
-1. Die Commits “file 4″ und “file 5″ sind im Commit “file 3″
-       aufgegangen.
-
-» *Ok, Karl, zuletzt wollen wir noch die Commit-Message von Commit “file
-2″ ändern und nur diese. Welche Option wäre hierfür die richtige?*
-
-Übung
-
-Welche Interactive Rebase Option erlaubt das Ändern einer Commit Message
-wobei der Commit vollständig erhalten bleibt?
-
-git rebase -i HEAD~7
-
-pick 696c994 committing file 1
-
-pick b1e3c66 committing file 2
-
-pick 3656b4d committing file 3
-
-pick bbfeb8d committing file 6
-
-pick 15e4590 committing file 7
-
-pick 7d3b543 committing file 8
-
-pick eb76c89 committing file 9
-
-» Ich glaube, das muss ich jetzt ändern in folgendes.
-
-git rebase -i HEAD~7
-
-pick 696c994 committing file 1
-
-r b1e3c66 committing file 2
-
-pick 3656b4d committing file 3
-
-pick bbfeb8d committing file 6
-
-pick 15e4590 committing file 7
-
-pick 7d3b543 committing file 8
-
-pick eb76c89 committing file 9
-
-» *Genau, Karl. Du hast es verstanden,* **r** *ist die richtige Wahl
-für* **reword**\ *. Damit änderst Du nur die Commit-Message, der Commit
-bleibt erhalten.*
-
-» Aha, es öffnet sich wieder der zweite Editor, wie bei Squash.
-
-» *Genau, das Prinzip ist dasselbe. Hier kannst du jetzt die Message
-beliebig ändern.*
-
-git log --oneline
-
-85df518 committing file 9
-
-f0e3d46 committing file 8
-
-1608f8e committing file 7
-
-2dcb0f3 committing file 6
-
-7ef9186 committing file 3
-
-cedf325 committing file 2 - changed by Karl in interactive rebase
-
-696c994 committing file 1
-
-6e5a1d7 committing file 5
-
-0d01e62 committing file 4
-
-22ea185 committing file 3
-
-8b46f14 committing file 2
-
-932e981 committing file 1
-
-+-----------+----------------------------------------------------------------------------------------------------------------------+
-| Caution   | Achten Sie darauf, dass sogar beim Ändern der Commit-Message sich der Hash-Wert des Commits vollständig verändert.   |
-+-----------+----------------------------------------------------------------------------------------------------------------------+
-
-» Wow, Lars, ich bin begeistert. **Interactive Rebase** ist eine
-wirklich tolle Sache.
-
-» *Ja, für mich das wichtigste Tool, dass ich täglich sehr oft verwende.
-Mein typischer Workflow ist der, pass auf.*
-
-#hack,hack,hack
-
-#Stand ist gut, also commit
-
-git add .
-
-git commit -m "First draft"
-
-#hack, hack, hack
-
-#Stand ist wieder gut
-
-git add .
-
-git commit -m "egal"
-
-git rebase -i HEAD~2 <b>(1)</b>
-
-#hack, hack, hack
-
-#Idee war gut, aber nicht brauchbar, also zurück zum letzten Stand
-
-git checkout -f <b>(2)</b>
-
-1. Sehr oft fasst Lars einfach die letzten beiden Commits zusammen
-
-2. git checkout -f geht zurück zum letzten Commit, also dem letzten
-       stabilen Stand.
 
 Cherry-Pick
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
-» *Ein weiteres wichtiges Tool was ich wirklich sehr oft verwende ist*
-**cherry-pick**\ *.*
+[Lars]» *Ein weiteres wichtiges Tool was ich wirklich sehr oft verwende ist* **cherry-pick** *.*
 
-» Cherry-Pick? Klingt interessant.
+[Karl]» Cherry-Pick? Klingt interessant.
 
-» *Ja, mit Cherry-Pick hast du die Möglichkeit, dir von beliebigen
-Branches einzelne Commits auf deinen aktuellen Branch zu holen. Stell
-dir vor du arbeitest an einem Feature, und auf dem Master wurde ein
-Bugfix gemacht, den du jetzt gut brauchen könntest. Du willst dir aber
-jetzt nicht den ganzen master in deinen Feature-Branch mergen, weil du
-weißt, dass gerade ein Feature zurückgeführt wurde, das in Konflikt mit
-deinem steht. Das Auflösen dieser Merge-Konflikte willst du später
-machen, jetzt willst du erst mal dein Feature fertig bekommen. Das ist
-der perfekte Use-Case für Cherry-Pick, weil du dir damit nur den einen
-Commit holen kannst, der den Fix enthält, die anderen holst du dir
-später mit dem regulären Merge.*
+[Lars]» *Ja, mit Cherry-Pick hast du die Möglichkeit, dir von beliebigen Branches einzelne Commits auf deinen aktuellen Branch zu holen. Stell dir vor du arbeitest an einem Feature, und auf dem Master wurde ein Bugfix gemacht, den du jetzt gut brauchen könntest. Du willst dir aber jetzt nicht den ganzen master in deinen Feature-Branch mergen, weil du weißt, dass gerade ein Feature zurückgeführt wurde, das in Konflikt mit
+deinem steht. Das Auflösen dieser Merge-Konflikte willst du später machen, jetzt willst du erst mal dein Feature fertig bekommen. Das ist der perfekte Use-Case für Cherry-Pick, weil du dir damit nur den einen Commit holen kannst, der den Fix enthält, die anderen holst du dir später mit dem regulären Merge.*
 
-» Aber führt das dann nicht zu Merge-Konflikten beim nächsten Merge?
+[Karl]» Aber führt das dann nicht zu Merge-Konflikten beim nächsten Merge?
 
-» *Wir versuchen das einfach mal, oder? Ich würde vorschlagen, du ziehst
-einen neuen Feature-Branch, ein Feature schaffen wir heute noch.
-Anschließend machst du ein update auf deinem master in der Hoffnung,
-dass einige neue Commits kommen. Und dann machen wir einfach ein
-Cherry-Pick einzelner Commits damit Du ein Gefühl dafür bekommst.*
+[Lars]» *Wir versuchen das einfach mal, oder? Ich würde vorschlagen, du ziehst einen neuen Feature-Branch, ein Feature schaffen wir heute noch. Anschließend machst du ein update auf deinem master in der Hoffnung, dass einige neue Commits kommen. Und dann machen wir einfach ein Cherry-Pick einzelner Commits damit Du ein Gefühl dafür bekommst.*
 
-» Klingt gut.
+.. admonition:: Übung
 
-Übung
+  -  Erzeugen Sie einen neuen Feature Branch (Erzeugen und Switch auf den Branch in einem Kommando)
+  -  Erzeugen Sie 5 Commits auf dem master
+  -  Holen Sie sich den 2. Commit vom master und nur diesen auf Ihren Feature-Branch
 
--  Erzeugen Sie einen neuen Feature Branch (Erzeugen und Switch auf den
-       Branch in einem Kommando)
+  .. code-block:: bash
 
--  Erzeugen Sie 5 Commits auf dem master
+    git checkout -b feature-4911
+    Switched to a new branch 'feature-4911'
+    #zurück zum master
+    git checkout master
+    Switched to branch 'master'
+    #erzeuge commits
+    makeCommits 5
+    [master e4fbace] committing file 1
+    1 file changed, 1 insertion(+)
+    [master 678af97] committing file 2
+    1 file changed, 1 insertion(+)
+    [master ae3003b] committing file 3
+    1 file changed, 1 insertion(+)
+    [master fab0445] committing file 4
+    1 file changed, 1 insertion(+)
+    [master 3753cdc] committing file 5
+    1 file changed, 1 insertion(+)
+    #wieder zum Feature Branch
+    git checkout feature-4911
+    Switched to branch 'feature-4911'
+    #Was ist auf dem master passiert?
+    git log --oneline master
+    3753cdc committing file 5
+    fab0445 committing file 4 
+    ae3003b committing file 3
+    678af97 committing file 2
+    e4fbace committing file 1
+    [...]
 
--  Holen Sie sich den 2. Commit vom master und nur diesen auf Ihren
-       Feature-Branch
+[Lars]» *Ok, Karl, wir haben jetzt genau das Szenario für einen Cherry-Pick bei dir. Wir möchten gerne den Commit* **678af97** *(“committing file 2″) auf unserem Feature-Branch haben aber nicht die ganzen anderen Commits. Kriegst du das hin mit* **cherry-pick**\ *?*
 
-git checkout -b feature-4911
+[Karl]» Ich denke schon.
 
-Switched to a new branch 'feature-4911'
+.. code-block:: bash
 
-#zurück zum master
+  git cherry-pick 678af97
+  [feature-4911 2621a70] committing file 2
+  1 file changed, 1 insertion(+)
+  #log
+  git log --oneline
+  2621a70 committing file 2 <b>(1)</b>
 
-git checkout master
+  1. Der Commit ist da, hat aber natürlich einen komplett anderen Hash-Wert
 
-Switched to branch 'master'
+[Lars]» *Das geht auch mit mehreren Commits, hol dir jetzt mal bitte die Commits* **ae3003b** *(“committing file 3″) und* **fab0445** *(“comitting file 4″) auf deinen Feature-Branch.*
 
-#erzeuge commits
+.. admonition:: Übung
 
-makeCommits 5
+  Holen Sie die beiden Commits **ae3003b** (“committing file 3″) und **fab0445** (“comitting file 4″) mit nur einem Cherry-Pick auf Ihren Feature-Branch.
 
-[master e4fbace] committing file 1
+  .. code-block:: bash
+  
+    git cherry-pick ae3003b fab0445
+    [feature-4911 b685085] committing file 3
+    1 file changed, 1 insertion(+)
+    [feature-4911 6c5474b] committing file 4
+    1 file changed, 1 insertion(+)
+    #log
+    git log --oneline
+    6c5474b committing file 4
+    b685085 committing file 3
+    [...]
 
-1 file changed, 1 insertion(+)
-
-[master 678af97] committing file 2
-
-1 file changed, 1 insertion(+)
-
-[master ae3003b] committing file 3
-
-1 file changed, 1 insertion(+)
-
-[master fab0445] committing file 4
-
-1 file changed, 1 insertion(+)
-
-[master 3753cdc] committing file 5
-
-1 file changed, 1 insertion(+)
-
-#wieder zum Feature Branch
-
-git checkout feature-4911
-
-Switched to branch 'feature-4911'
-
-#Was ist auf dem master passiert?
-
-git log --oneline master
-
-3753cdc committing file 5
-
-fab0445 committing file 4
-
-ae3003b committing file 3
-
-678af97 committing file 2
-
-e4fbace committing file 1
-
-[...]
-
-» *Ok, Karl, wir haben jetzt genau das Szenario für einen Cherry-Pick
-bei dir. Wir möchten gerne den Commit* **678af97** *(“committing file
-2″) auf unserem Feature-Branch haben aber nicht die ganzen anderen
-Commits. Kriegst du das hin mit* **cherry-pick**\ *?*
-
-» Ich denke schon.
-
-git cherry-pick 678af97
-
-[feature-4911 2621a70] committing file 2
-
-1 file changed, 1 insertion(+)
-
-#log
-
-git log --oneline
-
-2621a70 committing file 2 <b>(1)</b>
-
-1. Der Commit ist da, hat aber natürlich einen komplett anderen
-       Hash-Wert
-
-» *Das geht auch mit mehreren Commits, hol dir jetzt mal bitte die
-Commits* **ae3003b** *(“committing file 3″) und* **fab0445**
-*(“comitting file 4″) auf deinen Feature-Branch.*
-
-Übung
-
-Holen Sie die beiden Commits **ae3003b** (“committing file 3″) und
-**fab0445** (“comitting file 4″) mit nur einem Cherry-Pick auf Ihren
-Feature-Branch.
-
-git cherry-pick ae3003b fab0445
-
-[feature-4911 b685085] committing file 3
-
-1 file changed, 1 insertion(+)
-
-[feature-4911 6c5474b] committing file 4
-
-1 file changed, 1 insertion(+)
-
-#log
-
-git log --oneline
-
-6c5474b committing file 4
-
-b685085 committing file 3
-
-[...]
-
-» *Karl, es ist übrigens interessant was passiert, wenn jetzt nochmal
+[Lars]» *Karl, es ist übrigens interessant was passiert, wenn jetzt nochmal
 den ersten Cherry-Pick durchführst. Kannst du mir erklären, was
 passieren müsste?*
 
-Übung
+.. admonition:: Übung
 
-Was müsste passieren, wenn Sie den ersten Cherry-Pick erneut ausführen?
+  Was müsste passieren, wenn Sie den ersten Cherry-Pick erneut ausführen?
 
-<code class="git language-git">git cherry-pick 678af97
+  .. code-block:: bash
 
-# On branch feature-4911
+    git cherry-pick 678af97
+    # On branch feature-4911
+    # You are currently cherry-picking.
+    # (all conflicts fixed: run "git commit")
+    #
+    nothing to commit, working directory clean
+    
+    The previous cherry-pick is now empty, possibly due to conflict resolution.
 
-# You are currently cherry-picking.
+    If you wish to commit it anyway, use:
 
-# (all conflicts fixed: run "git commit")
+[Karl]» Aha, das ist interessant. Lars, ich versuche dir das mal zu erklären und du korrigierst mich, wenn ich falsche liege, in Ordnung?
 
-#
+Ich glaube, dadurch, dass wir zuerst den cherry-pick auf den Commit 678af97 gemacht haben, und anschließend auf die beiden Commits ae3003b und fab0445 bekommt der Commit 678af97 beim erneuten Cherry-Pick wieder einen anderen Hash-Wert.
 
-nothing to commit, working directory clean
+[Lars]» *Perfekt, Karl, genauso ist es. Der Hash-Wert basiert unter anderem auf dem Parent-Commit. Wir haben jetzt zweimal den gleichen Commit mit jeweils einem anderen Parent. Der Commit muss also nach dem Cherry-Pick einen anderen Hash-Wert bekommen. Da Git aber Änderungen trackt und nicht Commits versuchst du jetzt quasi einen leeren Commit zu machen, weil alle Änderungen aus diesem Commit bereits vorhanden sind. Git ist so klug und fragt wenigstens nach. In den meisten Fällen willst du keine leeren Commits haben und machst dann einfach* **git reset** *.*
 
-The previous cherry-pick is now empty, possibly due to conflict
-resolution.
+[Karl]» Ok, das macht Sinn, so langsam glaube ich wirklich, dass Git total einfach ist, wenn man versteht wie es gedacht ist.
 
-If you wish to commit it anyway, use:
+[Lars]» *Genauso ist es. Die Architektur ist wirklich durchdacht und wenn wir ehrlich sind, Linus Torvalds ist nicht unbedingt bekannt dafür, schlechte Tools zu entwickeln.*
 
-| » Aha, das ist interessant. Lars, ich versuche dir das mal zu erklären
-  und du korrigierst mich, wenn ich falsche liege, in Ordnung?
-| Ich glaube, dadurch, dass wir zuerst den cherry-pick auf den Commit
-  678af97 gemacht haben, und anschließend auf die beiden Commits ae3003b
-  und fab0445 bekommt der Commit 678af97 beim erneuten Cherry-Pick
-  wieder einen anderen Hash-Wert.
+[Karl]» Interessant, was ich mich jetzt noch frage ist, was passiert wenn bei einem Cherry-Pick ein Merge-Konflikt auftritt?
 
-» *Perfekt, Karl, genauso ist es. Der Hash-Wert basiert unter anderem
-auf dem Parent-Commit. Wir haben jetzt zweimal den gleichen Commit mit
-jeweils einem anderen Parent. Der Commit muss also nach dem Cherry-Pick
-einen anderen Hash-Wert bekommen. Da Git aber Änderungen trackt und
-nicht Commits versuchst du jetzt quasi einen leeren Commit zu machen,
-weil alle Änderungen aus diesem Commit bereits vorhanden sind. Git ist
-so klug und fragt wenigstens nach. In den meisten Fällen willst du keine
-leeren Commits haben und machst dann einfach* **git reset**\ *.*
+[Lars]» *Gute Frage! Das probieren wir einfach aus.*
 
-» Ok, das macht Sinn, so langsam glaube ich wirklich, dass Git total
-einfach ist, wenn man versteht wie es gedacht ist.
+.. admonition:: Übung
 
-» *Genauso ist es. Die Architektur ist wirklich durchdacht und wenn wir
-ehrlich sind, Linus Torvalds ist nicht unbedingt bekannt dafür,
-schlechte Tools zu entwickeln.*
+  Bereiten Sie die Datei “file5.txt” auf dem Feature-Branch so vor, dass es einen Merge-Konflikt mit den Änderungen auf dem master gibt.
 
-» Ach, Git ist von Linux Torvalds entwickelt?
+.. code-block:: bash
 
-» *Ja, so ist es.*
+  git log --oneline master
+  3753cdc committing file 5
+  [...]
+  #cherry pick
+  git cherry-pick 3753cdc
+  error: could not apply 3753cdc... committing file 5
+  hint: after resolving the conflicts, mark the corrected paths
+  hint: with 'git add <paths>' or 'git rm <paths>'
+  hint: and commit the result with 'git commit'
+  #merge
+  git mergetool
+  #add
+  git add file5.txt
+  git commit -m "cherry picking"
+  [feature-4911 9882a14] cherry picking
+  1 file changed, 1 insertion(+)
 
-» Interessant, was ich mich jetzt noch frage ist, was passiert wenn bei
-einem Cherry-Pick ein Merge-Konflikt auftritt?
 
-» *Gute Frage! Das probieren wir einfach aus.*
+[Lars]» *Ok Karl, du hast den Merge-Konflikt aufgelöst. Soweit so gut. Das wird uns aber später noch Probleme machen sobald wir das Update gegen den master machen.*
 
-Übung
+[Karl]» Ach ja?
 
-Bereiten Sie die Datei “file5.txt” auf dem Feature-Branch so vor, dass
-es einen Merge-Konflikt mit den Änderungen auf dem master gibt.
+[Lars]» *Ja, du kannst dir schonmal überlegen warum.*
 
-git log --oneline master
+.. admonition:: Übung
 
-3753cdc committing file 5
+  Was würde passieren, wenn jetzt ein Rebase gegen den master gemacht wird?
 
-[...]
+[Lars]» *Cherry-Pick ist ein gutes Tool, sollte aber nur in Ausnahmefällen verwendet werden. Das Problem haben wir vorher schon erkannt. Wir erzeugen für jeden Cherry-Pick einen neuen Commit mit neuem Hash-Wert. Damit machen wir uns das Leben manchmal unnötig schwer.*
 
-#cherry pick
+[Karl]» Kannst Du mir hierfür ein Beispiel sagen?
 
-git cherry-pick 3753cdc
-
-error: could not apply 3753cdc... committing file 5
-
-hint: after resolving the conflicts, mark the corrected paths
-
-hint: with 'git add <paths>' or 'git rm <paths>'
-
-hint: and commit the result with 'git commit'
-
-#merge
-
-git mergetool
-
-#add
-
-git add file5.txt
-
-git commit -m "cherry picking"
-
-[feature-4911 9882a14] cherry picking
-
-1 file changed, 1 insertion(+)
-
-» *Ok Karl, du hast den Merge-Konflikt aufgelöst. Soweit so gut. Das
-wird uns aber später noch Probleme machen sobald wir das Update gegen
-den master machen.*
-
-» Ach ja?
-
-» *Ja, du kannst dir schonmal überlegen warum.*
-
-Übung
-
-Was würde passieren, wenn jetzt ein Rebase gegen den master gemacht
-wird?
-
-» *Cherry-Pick ist ein gutes Tool, sollte aber nur in Ausnahmefällen
-verwendet werden. Das Problem haben wir vorher schon erkannt. Wir
-erzeugen für jeden Cherry-Pick einen neuen Commit mit neuem Hash-Wert.
-Damit machen wir uns das Leben manchmal unnötig schwer.*
-
-» Kannst Du mir hierfür ein Beispiel sagen?
-
-» *Klar, oft interessiert dich beispielsweise, in welchen Commits sich
-dein Feature-Branch vom master unterscheidet. Das Tool der Wahl hierfür
-ist* **cherry**\ *.*
+[Lars]» *Klar, oft interessiert dich beispielsweise, in welchen Commits sich dein Feature-Branch vom master unterscheidet. Das Tool der Wahl hierfür ist* **cherry** *.*
 
 » Cherry wie Cherry-Pick?
 
 Cherry
 ''''''
 
-» *Nein, einfach nur cherry. Die Anwendung ist ganz einfach, du bist
-noch auf deinem Feature-Branch?*
+[Lars]» *Nein, einfach nur cherry. Die Anwendung ist ganz einfach, du bist noch auf deinem Feature-Branch?*
 
-» Ja.
+[Lars]» *Ok, dann mach einfach mal folgendes.*
 
-» *Ok, dann mach einfach mal folgendes.*
+.. code-block:: bash
 
-git cherry master
+  git cherry master
+  - 2621a700381577e930e2633a9c06b997018ec832
+  - b6850850fc163738732236496653f7e2946621d7
+  - 6c5474bafa098ddf7d8f1244ef57cc2a1df6a766
+  + 2e2f7da17c173a95787cb1c0a5f38d6fb223c030
+  + 2c597887ffd990ee27543f33f17da26d55c5cf65
 
-- 2621a700381577e930e2633a9c06b997018ec832
+[Lars]» *Du siehst hier Commits, von denen Git weiß, dass sie nur auf deinem Feature-Branch sind an dem vorangestellten “+”, Commits deren Änderungen bereits auf dem master aber in einem anderen Commit enthalten sind erkennst du an einem vorangestellten “-“.*
 
-- b6850850fc163738732236496653f7e2946621d7
+[Lars]*Betrachten wir die Commits nochmal ein wenig genauer.*
 
-- 6c5474bafa098ddf7d8f1244ef57cc2a1df6a766
+.. code-block:: bash
 
-+ 2e2f7da17c173a95787cb1c0a5f38d6fb223c030
+  git log 2621a700381577e930e2633a9c06b997018ec832 -n 1
+  Commit: 2621a700381577e930e2633a9c06b997018ec832
+  Author: dilgerm <martin@effectivetrainings.de>
+  Date: (43 minutes ago) 2014-01-18 07:43:49 +0100
+  Subject: committing file 2
 
-+ 2c597887ffd990ee27543f33f17da26d55c5cf65
-
-| » *Du siehst hier Commits, von denen Git weiß, dass sie nur auf deinem
-  Feature-Branch sind an dem vorangestellten “+”, Commits deren
-  Änderungen bereits auf dem master aber in einem anderen Commit
-  enthalten sind erkennst du an einem vorangestellten “-“.*
-| *Betrachten wir die Commits nochmal ein wenig genauer.*
-
-git log 2621a700381577e930e2633a9c06b997018ec832 -n 1
-
-Commit: 2621a700381577e930e2633a9c06b997018ec832
-
-Author: dilgerm <martin@effectivetrainings.de>
-
-Date: (43 minutes ago) 2014-01-18 07:43:49 +0100
-
-Subject: committing file 2
-
-» *Der Commit* **2621a70** *entspricht dem Commit* **678af97** *vom
-master, das vorangestellte “-” ist also richtig.*
+[Lars]» *Der Commit* **2621a70** *entspricht dem Commit* **678af97** *vom master, das vorangestellte “-” ist also richtig.*
 
 Welcher Branch hat welchen Commit
 '''''''''''''''''''''''''''''''''
 
-» *Ein echtes Problem haben wir dann, wenn wir herausfinden möchten, auf
-welchem Branch welche Commits verfügbar sind. Commits werden nunmal
-durch ihre Hash-Werte identifizert.*
+[Lars]» *Ein echtes Problem haben wir dann, wenn wir herausfinden möchten, auf welchem Branch welche Commits verfügbar sind. Commits werden nunmal durch ihre Hash-Werte identifizert.*
 
-git branch --contains 678af975b23f
+.. code-block:: bash
 
-master
+  git branch --contains 678af975b23f
+  master
 
-» *Siehst du, eigentlich würde ich hier gerne sehen, dass der Commit
-sowohl auf dem master als auch auf meinem Feature-Branch ist. Das
-funktioniert aber leider nicht, das sich die Hash-Werte unterscheiden.*
+[Lars]» *Siehst du, eigentlich würde ich hier gerne sehen, dass der Commit sowohl auf dem master als auch auf meinem Feature-Branch ist. Das funktioniert aber leider nicht, das sich die Hash-Werte unterscheiden.*
+
 
 Konflikte
 '''''''''
 
-» *Karl, wir hatten vorher einen Konflikt provoziert.*
+[Lars]» *Karl, wir hatten vorher einen Konflikt provoziert.*
 
-» Ja, du meintest, da würden wir in Probleme laufen, sobald wir ein
-Update gegen den master machen.
+[Karl]» Ja, du meintest, da würden wir in Probleme laufen, sobald wir ein Update gegen den master machen.
 
-» *Ich hab dir schon erklärt, dass wir updates mit Rebase machen. In
+[Lars]» *Ich hab dir schon erklärt, dass wir updates mit Rebase machen. In
 diesem Fall möchten wir aber den master in den Feature-Branch mergen.*
 
-+-------+----------------------------------------------------------------------------------------------------------------+
-| Tip   | Updates vom eigenen Branch werden mit Rebase gemacht. Updates gegen andere Branches grundsätzlich mit Merge.   |
-+-------+----------------------------------------------------------------------------------------------------------------+
+.. Tip::  
 
-» *Merge doch einfach mal den master in deinen Feature-Branch.*
+  Updates vom eigenen Branch werden mit Rebase gemacht. Updates gegen andere Branches grundsätzlich mit Merge.  
 
-git merge master
+[Lars]» *Merge doch einfach mal den master in deinen Feature-Branch.*
 
-Auto-merging file5.txt
+.. code-block:: bash
 
-CONFLICT (content): Merge conflict in file5.txt
+  git merge master
+  Auto-merging file5.txt
+  CONFLICT (content): Merge conflict in file5.txt
+  Automatic merge failed; fix conflicts and then commit the result.
 
-Automatic merge failed; fix conflicts and then commit the result.
+[Karl]» Tatsächlich haben wir den gleichen Konflikt nochmal?
 
-» Tatsächlich haben wir den gleichen Konflikt nochmal?
+[Lars]» *Ja, das Problem ist dass wir Git nicht genügend Hilfestellung bieten können um zu erkennen, dass wir diesen Konflikt bereits gelöst haben. Durch den cherry-pick und den Merge-Konflikt haben wir einen völlig neuen Commit erzeugt. Git kann keine Verbindung zwischen diesen beiden Commits herstellen. Es bleibt also leider nichts anderes übrig, als den Merge-Konflikt nochmals zu lösen.*
 
-» *Ja, das Problem ist dass wir Git nicht genügend Hilfestellung bieten
-können um zu erkennen, dass wir diesen Konflikt bereits gelöst haben.
-Durch den cherry-pick und den Merge-Konflikt haben wir einen völlig
-neuen Commit erzeugt. Git kann keine Verbindung zwischen diesen beiden
-Commits herstellen. Es bleibt also leider nichts anderes übrig, als den
-Merge-Konflikt nochmals zu lösen.*
+.. Tip:: 
 
-+-------+------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Tip   | Merge-Konflikte bei Cherry-Pick ziehen fast immer Konflikte und Probleme nach sich, in diesem Fall sollte ein Merge wenn möglich bevorzugt werden.   |
-+-------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+  Merge-Konflikte bei Cherry-Pick ziehen fast immer Konflikte und Probleme nach sich, in diesem Fall sollte ein Merge wenn möglich bevorzugt werden.   
+
+
+
+.. index:: Hooks
 
 Hooks
-~~~~~~~~~~~
+~~~~~
 
-» *Warte Karl, bevor du wieder nach Hause fährst, sollten wir uns
-unbedingt noch kurz über* **Hooks** *unterhalten. Hooks kennst du
-vielleicht sogar aus Subversion, da gibt es sie auch. Hooks sind
-Shell-Skripte, die an bestimmten Zeitpunkten von Git automatisch
-ausgeführt werden. Beispielsweise wenn du einen Commit machst, nachdem
-du erfolgreich gemerged hast oder wenn du deine Änderungen in das*
-**Remote-Repository** *veröffentlichst.*
+[Lars]» *Warte Karl, bevor du wieder nach Hause fährst, sollten wir uns unbedingt noch kurz über* **Hooks** *unterhalten. Hooks kennst du vielleicht sogar aus Subversion, da gibt es sie auch. Hooks sind Shell-Skripte, die an bestimmten Zeitpunkten von Git automatisch ausgeführt werden. Beispielsweise wenn du einen Commit machst, nachdem du erfolgreich gemerged hast oder wenn du deine Änderungen in das* **Remote-Repository** *veröffentlichst.*
 
-» Interessant, ja ich weiß, dass es so etwas in Subversion auch gibt.
-Welche Hooks habe ich denn bei Git genau zur Verfügung?
+[Karl]» Interessant, ja ich weiß, dass es so etwas in Subversion auch gibt. Welche Hooks habe ich denn bei Git genau zur Verfügung?
 
-» *Das siehst du ganz einfach in deinem* **.git**\ *-Verzeichnis.*
+[Lars]» *Das siehst du ganz einfach in deinem* **.git**\ *-Verzeichnis.*
 
-ls .git/hooks/
+.. code-block:: bash
 
-applypatch-msg.sample <b>(1)</b>
+  ls .git/hooks/
+  applypatch-msg.sample <b>(1)</b>
+  post-update.sample <b>(2)</b>
+  pre-commit.sample <b>(3)</b>
+  pre-rebase.sample <b>(4)</b>
+  update.sample <b>(5)</b>
+  commit-msg.sample <b>(6)</b>
+  pre-applypatch.sample <b>(7)</b>
+  pre-push.sample <b>(8)</b>
+  prepare-commit-msg.sample <b>(9)</b>
 
-post-update.sample <b>(2)</b>
+  1. Skript wird ausgeführt wenn ein Patch eingespielt wird.
+  2. Skript wird ausgeführt, nachdem ein Update (fetch) erfolgreich durchgeführt wurde.
+  3. Skript wird ausgeführt, bevor bei einem Commit die Objekte ins **objects** Verzeichnis geschrieben werden.
+  4. Skript wird ausgeführt, bevor ein **rebase** gemacht wird.
+  5. Skript wird ausgeführt, wenn ein Update (**fetch**) durchgeführt wird.
+  6. Skript wird ausgeführt, wenn ein Commit gemacht wird und direkt bevor die Commit-Message geschrieben wird.
+  7. Skript wird ausgeführt, direkt bevor ein **Patch** eingespielt wird
+  8. Skript wird ausgeführt, direkt bevor ein **Push** die Daten in ein Remote-Repository schreibt
+  9. Skript wird ausgeführt, wenn die Commit-Message geparsed wird.
 
-pre-commit.sample <b>(3)</b>
+[Karl]» Mir fallen sofort einige Use-Cases ein, die uns das Leben erleichtern können. Habt ihr denn aktuell bereits Hooks im Einsatz?
 
-pre-rebase.sample <b>(4)</b>
+[Lars]» *Nur teilweise. Leider arbeiten nicht alle Entwickler im Team auf der Konsole. Wir haben die Wahl der Tools bewusst nicht begrenzt.* **Hooks** *werden leider nicht von allen Tools gleichermaßen unterstützt. Ehrlich gesagt, ist die Unterstützung in den meisten Tools sogar ziemlich schlecht. Eclipse zum Beispiel unterstützt sie derzeit überhaupt nicht. Es macht also keinen Sinn, sich darauf zu verlassen.*
 
-update.sample <b>(5)</b>
-
-commit-msg.sample <b>(6)</b>
-
-pre-applypatch.sample <b>(7)</b>
-
-pre-push.sample <b>(8)</b>
-
-prepare-commit-msg.sample <b>(9)</b>
-
-1. Skript wird ausgeführt wenn ein Patch eingespielt wird.
-
-2. Skript wird ausgeführt, nachdem ein Update (fetch) erfolgreich
-       durchgeführt wurde.
-
-3. Skript wird ausgeführt, bevor bei einem Commit die Objekte ins
-       **objects** Verzeichnis geschrieben werden.
-
-4. Skript wird ausgeführt, bevor ein **rebase** gemacht wird.
-
-5. Skript wird ausgeführt, wenn ein Update (**fetch**) durchgeführt
-       wird.
-
-6. Skript wird ausgeführt, wenn ein Commit gemacht wird und direkt bevor
-       die Commit-Message geschrieben wird.
-
-7. Skript wird ausgeführt, direkt bevor ein **Patch** eingespielt wird
-
-8. Skript wird ausgeführt, direkt bevor ein **Push** die Daten in ein
-       Remote-Repository schreibt
-
-9. Skript wird ausgeführt, wenn die Commit-Message geparsed wird.
-
-» Mir fallen sofort einige Use-Cases ein, die uns das Leben erleichtern
-können. Habt ihr denn aktuell bereits Hooks im Einsatz?
-
-» *Nur teilweise. Leider arbeiten nicht alle Entwickler im Team auf der
-Konsole. Wir haben die Wahl der Tools bewusst nicht begrenzt.* **Hooks**
-*werden leider nicht von allen Tools gleichermaßen unterstützt. Ehrlich
-gesagt, ist die Unterstützung in den meisten Tools sogar ziemlich
-schlecht. Eclipse zum Beispiel unterstützt sie derzeit überhaupt nicht.
-Es macht also keinen Sinn, sich darauf zu verlassen.*
-
-» Aber Lars, du zum Beispiel, du arbeitest auf der Konsole. Mit welchen
-Hooks arbeitest du?
+[Karl]» Aber Lars, du zum Beispiel, du arbeitest auf der Konsole. Mit welchen Hooks arbeitest du?
 
 Task-Nummer in jeder Commit-Message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-» *Ich habe einige Hooks im Einsatz. Der praktischste kümmert sich
-darum, dass in jeder Commit-Message die Task-Nummer steht, für den
-dieser Commit gemacht wurde.*
-
-» Oh ja, sehr praktisch, kannst du mir erklären, wie das funktioniert?
-Das würde mich tatsächlich sehr interessieren.
-
-» *Natürlich, eine einfache Commit-Message könnte beispielsweise so
-aussehen.*
-
-#Feature
-
-echo "Besseres File-Name Handling" >> file-handling.txt
-
-#add
-
-git add file-handling.txt
-
-#Commit
-
-git commit -m "Correct handling of Uploaded File names."
-
-[master 68c2a3c] Correct handling of Uploaded File names.
-
-1 file changed, 2 insertions(+)
-
-create mode 100644 file-handling.txt
-
-#log
-
-git log --oneline -n1
-
-68c2a3c Correct handling of Uploaded File names.
-
-» *Stell dir vor, du siehst nur diesen Commit und die Commit-Message in
-der Historie und möchtest wissen, wieso wir diese Änderung überhaupt
-gemacht haben. Es ist relativ schwer, das ohne Kontext nachzuvollziehen.
-Was wir eigentlich brauchen, ist die Task-Nummer in Jira, richtig? Was
-ich persönlich gerne hätte wäre eine Commit-Message, die so aussieht:*
-
-68c2a3c [4711] Correct handling of Uploaded File names.
-
-» *Es ist natürlich relativ umständlich, für jeden Commit die
-Task-Nummer mit aufzunehmen. Es wird viel zu oft vergessen und ich bin
-ein Fan davon, so wenig manuelle Tasks wie möglich in der täglichen
-Arbeit auszuführen. Mit* **Hooks** *lässt sich das relativ einfach
-automatisieren. Wir gehen davon aus, dass unsere Branches die jeweils
-passende Bezeichnung haben, etwas wie “fb-4711-beschreibung”. Das
-heisst, wir können für jeden Commit die Task-Nummer aus dem jeweils
-ausgecheckten Branch extrahieren.*
-
-Übung
-
-Können Sie aus der Liste der Hooks erschliessen, welcher Hook geeignet
-ist, um die Commit-Message anzupassen, bevor der Commit in der Historie
-landet?
-
-| applypatch-msg.sample
-| post-update.sample
-| pre-commit.sample
-| pre-rebase.sample
-| update.sample
-| commit-msg.sample
-| pre-applypatch.sample
-| pre-push.sample
-| prepare-commit-msg.sample
-
-» *Der passenden Hook ist* **prepare-commit-msg**\ *, da dieser
-ausgeführt wird genau bevor die Commit-Message in den Commit aufgenommen
-wird. Wir haben also die Möglichkeit, die Message nochmal anzupassen.
-Ich habe mir hierfür ein kleines Shell-Skript geschrieben.*
-
-#!/bin/sh
-
-#author Martin Dilger - EffectiveTrainings.de
-
-#get the original commit msg
-
-orig\_msg=$(cat $1) <b>(1)</b>
-
-#expects branchnames in the form fb\_task-4711\_some\_description
-
-branchName=$(git rev-parse --abbrev-ref HEAD) <b>(2)</b>
-
-#branches may start with fb\_task and then have "-1234"
-
-regexpForBranches='^fb-[0-9]-' <b>(3)</b>
-
-branchMatches=$(echo $branchName \| grep -E $regexpForBranches)
-<b>(4)</b>
-
-if [ "$branchMatches" ] ;
-
-then
-
-echo "matched branch";
-
-#split branchname by underscore and take the second chunk
-
-task=$(echo $branchName \| cut -f 2 -d '-') <b>(5)</b>
-
-#prepend task name to original msg
-
-msg="[$task] - $orig\_msg" <b>(6)</b>
-
-echo "$msg" > "$1" <b>(7)</b>
-
-else
-
-echo "[ATTENTION] - branch name does not match, no task number in branch
-but committing"; <b>(8)</b>
-
-fi
-
-1. Lade die Original-Commit-Message (funktioniert nur wenn der Befehl
-       “git commit -m *Commit Message*\ “) verwendet wird.
-
-2. Lade den aktuellen Namen des ausgecheckten Branches
-
-3. Definiere eine passende Regular-Expression für Branch-Namen. Für
-       unseren Fall gilt fb-<Task-Nummer>-<Beschreibung>
-
-4. Prüfe ob der aktuelle Branch-Name dem Schema entspricht und ob die
-       Task-Nummer extrahiert werden kann
-
-5. Extrahiere Task-Nummer aus Branch-Namen
-
-6. Erzeuge neue Commit-Message in der Form *[4711] Original Message*
-
-7. Überschreibe den ersten Parameter, so dass Git die neue
-       Commit-Message verwendet
-
-8. Gib eine Meldung aus, wenn der Name des Branches nicht dem Schema
-       entspricht und die Task-Nummer nicht extrahiert werden kann.
-
-» *Du musst das Skript gar nicht im einzelnen verstehen. Um es zu
-verwenden kopierst du es einfach in die Datei*
-**prepare-commit-msg.sample** *im .git/hooks-Verzeichnis deines
-Git-Repositories. Um das Skript zu aktivieren benennst du es dann noch
-von* **prepare-commit-msg.sample** *in* **prepare-commit-msg** *um. Git
-ignoriert alle Skripte, die auf* **.sample** *enden.*
-
-Übung
-
-Entfernen Sie zunächst alles aus der Datei
-**.git/hooks/prepare-commit-msg.sample**.
-
-Kopieren Sie das Skript in die nun leere Datei
-
-Benennen Sie die Datei von **prepare-commit-msg.sample** in
-**prepare-commit-msg**
-
-Erzeugen Sie einen neuen Branch mit dem Namen “fb-0815-new-feature”
-
-Machen Sie einen Commit mit der Message “New Feature”
-
-Prüfen Sie die Commit-Message, sie sollte “[0815] New Feature” lauten.
-
-vi .git/hooks/prepare-commit-msg.sample
-
-#Datei leeren und Skript einfügen
-
-mv .git/hooks/prepare-commit-msg.sample .git/hooks/prepare-commit-msg
-
-#erzeuge Branch
-
-git checkout -b fb-0815-new-feature
-
-Switched to a new branch 'fb-0815-new-feature'
-
-#Feature
-
-echo "new Feature" >> new-feature.txt
-
-git add new-feature.txt
-
-git commit -m "New Feature"
-
-matched branch <b>(1)</b>
-
-[fb-0815-new-feature ed3e17a] [0815] - New Feature <b>(2)</b>
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 new-feature.txt
-
-#log
-
-git log --oneline -n 1
-
-ed3e17a [0815] - New Feature
-
-1. Name des Branches konnte erfolgreich geparsed werden
-
-2. Die neue Commit-Message
-
-» *Karl, ich glaube, damit hast du alle Tools die du brauchst um hier
-bei uns produktiv zu arbeiten. Das war wirklich ein sehr produktiver
-Tag, ich habe viel erklärt und du hoffentlich viel gelernt.*
-
-» Ja klar, Lars. Das war wirklich Klasse.
+[Lars]» *Ich habe einige Hooks im Einsatz. Der praktischste kümmert sich darum, dass in jeder Commit-Message die Task-Nummer steht, für den dieser Commit gemacht wurde.*
+
+[Karl]» Oh ja, sehr praktisch, kannst du mir erklären, wie das funktioniert? Das würde mich tatsächlich sehr interessieren.
+
+[Lars]» *Natürlich, eine einfache Commit-Message könnte beispielsweise so aussehen.*
+
+.. code-block:: bash
+
+  #Feature
+  echo "Besseres File-Name Handling" >> file-handling.txt
+  #add
+  git add file-handling.txt
+  #Commit
+  git commit -m "Correct handling of Uploaded File names."
+  [master 68c2a3c] Correct handling of Uploaded File names.
+  1 file changed, 2 insertions(+)
+  create mode 100644 file-handling.txt
+  #log
+  git log --oneline -n1
+  68c2a3c Correct handling of Uploaded File names.
+
+[Lars]» *Stell dir vor, du siehst nur diesen Commit und die Commit-Message in der Historie und möchtest wissen, wieso wir diese Änderung überhaupt gemacht haben. Es ist relativ schwer, das ohne Kontext nachzuvollziehen. Was wir eigentlich brauchen, ist die Task-Nummer in Jira, richtig? Was ich persönlich gerne hätte wäre eine Commit-Message, die so aussieht:*
+
+.. code-block::bash
+
+  68c2a3c [4711] Correct handling of Uploaded File names.
+
+[Lars]» *Es ist natürlich relativ umständlich, für jeden Commit die Task-Nummer mit aufzunehmen. Es wird viel zu oft vergessen und ich bin ein Fan davon, so wenig manuelle Tasks wie möglich in der täglichen Arbeit auszuführen. Mit* **Hooks** *lässt sich das relativ einfach automatisieren. Wir gehen davon aus, dass unsere Branches die jeweils passende Bezeichnung haben, etwas wie “fb-4711-beschreibung”. Das heisst, wir können für jeden Commit die Task-Nummer aus dem jeweils ausgecheckten Branch extrahieren.*
+
+.. admonition:: Übung
+
+  Können Sie aus der Liste der Hooks erschliessen, welcher Hook geeignet ist, um die Commit-Message anzupassen, bevor der Commit in der Historie landet?
+
+  | applypatch-msg.sample
+  | post-update.sample
+  | pre-commit.sample
+  | pre-rebase.sample
+  | update.sample
+  | commit-msg.sample
+  | pre-applypatch.sample
+  | pre-push.sample
+  | prepare-commit-msg.sample
+
+
+[Lars]» *Der passenden Hook ist* **prepare-commit-msg** *, da dieser ausgeführt wird genau bevor die Commit-Message in den Commit aufgenommen wird. Wir haben also die Möglichkeit, die Message nochmal anzupassen. Ich habe mir hierfür ein kleines Shell-Skript geschrieben.*
+
+.. code-block:: bash
+
+  #!/bin/sh
+  #author Martin Dilger - EffectiveTrainings.de
+  #get the original commit msg
+  orig_msg=$(cat $1) <b>(1)</b>
+  #expects branchnames in the form fb_task-4711_some_description
+  branchName=$(git rev-parse --abbrev-ref HEAD) <b>(2)</b>
+  #branches may start with fb\_task and then have "-1234"
+  regexpForBranches='^fb-[0-9]-' <b>(3)</b>
+  branchMatches=$(echo $branchName \| grep -E $regexpForBranches)<b>(4)</b>
+  if [ "$branchMatches" ] ;
+    then
+      echo "matched branch";
+      #split branchname by underscore and take the second chunk
+      task=$(echo $branchName \| cut -f 2 -d '-') <b>(5)</b>
+      #prepend task name to original msg
+      msg="[$task] - $orig\_msg" <b>(6)</b>
+      echo "$msg" > "$1" <b>(7)</b>
+  else
+    echo "[ATTENTION] - branch name does not match, no task number in branch but committing"; <b>(8)</b>
+  fi
+
+  1. Lade die Original-Commit-Message (funktioniert nur wenn der Befehl `git commit -m *Commit Message* `) verwendet wird.
+  2. Lade den aktuellen Namen des ausgecheckten Branches
+  3. Definiere eine passende Regular-Expression für Branch-Namen. Für unseren Fall gilt 
+     fb-<Task-Nummer>-<Beschreibung>
+  4. Prüfe ob der aktuelle Branch-Name dem Schema entspricht und ob die Task-Nummer extrahiert werden kann
+  5. Extrahiere Task-Nummer aus Branch-Namen
+  6. Erzeuge neue Commit-Message in der Form *[4711] Original Message*
+  7. Überschreibe den ersten Parameter, so dass Git die neue Commit-Message verwendet
+  8. Gib eine Meldung aus, wenn der Name des Branches nicht dem Schema entspricht und die Task-Nummer nicht extrahiert werden kann.
+
+[Lars]» *Du musst das Skript gar nicht im einzelnen verstehen. Um es zu verwenden kopierst du es einfach in die Datei* **prepare-commit-msg.sample** *im .git/hooks-Verzeichnis deines Git-Repositories. Um das Skript zu aktivieren benennst du es dann noch von* **prepare-commit-msg.sample** *in* **prepare-commit-msg** *um. Git ignoriert alle Skripte, die auf* **.sample** *enden.*
+
+.. admonition::Übung
+
+  - Entfernen Sie zunächst alles aus der Datei **.git/hooks/prepare-commit-msg.sample**.
+  - Kopieren Sie das Skript in die nun leere Datei
+  - Benennen Sie die Datei von **prepare-commit-msg.sample** in **prepare-commit-msg**
+  - Erzeugen Sie einen neuen Branch mit dem Namen "fb-0815-new-feature"
+  - Machen Sie einen Commit mit der Message “New Feature”
+  - Prüfen Sie die Commit-Message, sie sollte “[0815] New Feature” lauten.
+
+.. code-block:: bash
+
+  vi .git/hooks/prepare-commit-msg.sample
+  #Datei leeren und Skript einfügen
+  mv .git/hooks/prepare-commit-msg.sample .git/hooks/prepare-commit-msg
+  #erzeuge Branch
+
+  git checkout -b fb-0815-new-feature
+  Switched to a new branch 'fb-0815-new-feature'
+  #Feature
+  echo "new Feature" >> new-feature.txt
+  git add new-feature.txt
+  git commit -m "New Feature"
+  matched branch <b>(1)</b>
+  [fb-0815-new-feature ed3e17a] [0815] - New Feature <b>(2)</b>
+  1 file changed, 1 insertion(+)
+  create mode 100644 new-feature.txt
+  #log
+
+  git log --oneline -n 1
+  ed3e17a [0815] - New Feature
+
+  1. Name des Branches konnte erfolgreich geparsed werden
+  2. Die neue Commit-Message
+
+[Lars]» *Karl, ich glaube, damit hast du alle Tools die du brauchst um hier bei uns produktiv zu arbeiten. Das war wirklich ein sehr produktiver Tag, ich habe viel erklärt und du hoffentlich viel gelernt.*
+
+[Karl]» Ja klar, Lars. Das war wirklich Klasse.
 
 Daily Alias
-~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~
 
-» *Eins zeige ich dir vielleicht noch. Ich habe mir im Lauf der Zeit
-einige Git-Shortcuts zugelegt, mit denen ich noch produktiver bin.*
+[Lars]» *Eins zeige ich dir vielleicht noch. Ich habe mir im Lauf der Zeit einige Git-Shortcuts zugelegt, mit denen ich noch produktiver bin.*
 
-» Was ist denn ein Git-Shortcut?
+[Karl]» Was ist denn ein Git-Shortcut?
 
-» *Du kennst sie wahrscheinlich unter* **Alias**\ *. Je länger du mit
-Git arbeitest, desto öfter wirst du feststellen, dass du bestimmte
-Befehle immer und immer wieder ausführst. Beispielsweise das Wechseln
-zwischen verschiedenen Branches.*
+[Lars]» *Du kennst sie wahrscheinlich unter* **Alias**\ *. Je länger du mit Git arbeitest, desto öfter wirst du feststellen, dass du bestimmte Befehle immer und immer wieder ausführst. Beispielsweise das Wechseln zwischen verschiedenen Branches.*
 
-git checkout "mein\_branch"
+.. code-block:: bash
 
-» *Meistens macht es Sinn, für Befehle die du oft verwendest Shortcuts
-festzulegen. Dafür lässt sich ganz einfach ein* **Alias** *definieren.*
+  git checkout "mein_branch"
 
-git config alias.go "git checkout" <b>(1)</b>
+[Lars]» *Meistens macht es Sinn, für Befehle die du oft verwendest Shortcuts festzulegen. Dafür lässt sich ganz einfach ein* **Alias** *definieren.*
 
-1. **go** ist kürzer als **checkout**
+.. code-block:: bash
 
-#checkout fb-branch
+  git config alias.go "git checkout" <b>(1)</b>
 
-git checkout fb-0815-new-feature
+  1. **go** ist kürzer als **checkout**
+  #checkout fb-branch
+  git checkout fb-0815-new-feature
+  Switched to branch 'fb-0815-new-feature'
+  #git go
+  git go master
+  Switched to branch 'master'
 
-Switched to branch 'fb-0815-new-feature'
+[Karl]» Das ist interessant, wahrscheinlich sammeln sich da im Lauf der Zeit ziemlich viele Shortcuts an, oder?
 
-#git go
+[Lars]» *Manche Entwickler haben hunderte Shortcuts. Ich persönlich konzentriere mich auf einige wenige und arbeite wo immer möglich und produktiv mit den Standard-Befehlen.*
 
-git go master
+[Karl]» Welche Shortcuts hast du denn noch definiert?
 
-Switched to branch 'master'
+.. admonition:: Übung
 
-» Das ist interessant, wahrscheinlich sammeln sich da im Lauf der Zeit
-ziemlich viele Shortcuts an, oder?
+  Alle Shortcuts lassen sich anzeigen mit
 
-» *Manche Entwickler haben hunderte Shortcuts. Ich persönlich
-konzentriere mich auf einige wenige und arbeite wo immer möglich und
-produktiv mit den Standard-Befehlen.*
+  .. code-block:: bash
 
-» Welche Shortcuts hast du denn noch definiert?
+    git config --get-regexp alias
 
-Übung
+  Definieren Sie einen Alias *shortcuts* um Shortcuts anzuzeigen.
 
-Alle Shortcuts lassen sich anzeigen mit
+  .. code-block:: bash
 
-git config --get-regexp alias
+    git config alias.shortcuts "git config --get-regexp alias"
 
-Definieren Sie einen Alias *shortcuts* um Shortcuts anzuzeigen.
+    git shortcuts
+    alias.logtree log --graph --oneline --decorate --all <b>(1)</b>
+    alias.gc git commit <b>(2)</b>
+    alias.gcm git commit -m <b>(3)</b>
+    alias.st git status <b>(4)</b>
+    alias.clearfile git reset --hard -- <b>(5)</b>  
+    alias.sq git rebase -i HEAD~2 <b>(6)</b>
+    alias.msg git commit --amend <b>(7)</b>
+    alias.stage git commit -am <b>(8)</b>
+    alias.go checkout <b>(9)</b>
 
-git config alias.shortcuts "git config --get-regexp alias"
-
-git shortcuts
-
-alias.logtree log --graph --oneline --decorate --all <b>(1)</b>
-
-alias.gc git commit <b>(2)</b>
-
-alias.gcm git commit -m <b>(3)</b>
-
-alias.st git status <b>(4)</b>
-
-alias.clearfile git reset --hard -- <b>(5)</b>
-
-alias.sq git rebase -i HEAD~2 <b>(6)</b>
-
-alias.msg git commit --amend <b>(7)</b>
-
-alias.stage git commit -am <b>(8)</b>
-
-alias.go checkout <b>(9)</b>
-
-1. Log mit Graph-Funktion
-
-2. Commit
-
-3. Commit mit Message
-
-4. Status
-
-5. File zurücksetzen
-
-6. Die obersten beiden Commits zusammenfassen
-
-7. Commit-Message neu schreiben
-
-8. Alles hinzufügen und Committen
-
-9. Branches wechseln
+  1. Log mit Graph-Funktion
+  2. Commit
+  3. Commit mit Message
+  4. Status
+  5. File zurücksetzen
+  6. Die obersten beiden Commits zusammenfassen
+  7. Commit-Message neu schreiben
+  8. Alles hinzufügen und Committen
+  9. Branches wechseln
 
 Git-Extras
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^
 
 » *Es gibt ein interessantes Projekt* `*Git
 Extras* <https://github.com/visionmedia/git-extras>`__\ *, das einige
@@ -3254,31 +2933,19 @@ können.*
 Tag 1 endet
 ~~~~~~~~~~~~~~~~~
 
-| » *Nachdem wir heute die Grundlagen besprochen haben werden wir uns
-  morgen mit einigen fortgeschrittenen Themen beschäftigen. Wir müssen
-  uns unbedingt noch über die verschiedenen Branching-Modelle
-  unterhalten. Außerdem würde ich dir gerne zeigen, mit welchen Tools
-  wir hier arbeiten. Viele kennst du wahrscheinlich sowieso schon.*
-| *Aber ich denke, für heute ist es wirklich genug. Ich sehe, du hast
-  dir sehr viele Notizen gemacht, das finde ich gut. Wir haben ein Wiki
-  für unser Team, vielleicht kannst du ja das eine oder andere ins Wiki
-  übertragen.*
+[Lars]» *Nachdem wir heute die Grundlagen besprochen haben werden wir uns morgen mit einigen fortgeschrittenen Themen beschäftigen. Wir müssen uns unbedingt noch über die verschiedenen Branching-Modelle unterhalten. Außerdem würde ich dir gerne zeigen, mit welchen Tools wir hier arbeiten. Viele kennst du wahrscheinlich sowieso schon.*
+[Lars]*Aber ich denke, für heute ist es wirklich genug. Ich sehe, du hast dir sehr viele Notizen gemacht, das finde ich gut. Wir haben ein Wiki für unser Team, vielleicht kannst du ja das eine oder andere ins Wiki übertragen.*
 
-» Das ist ein hervorragende Idee, ich werde die Zugfahrt zurück nach
-München heute nutzen, um die Notizen nochmal zusammenzufassen. Wars das
-dann für heute?
+[Karl]» Das ist ein hervorragende Idee, ich werde die Zugfahrt zurück nach München heute nutzen, um die Notizen nochmal zusammenzufassen. Wars das dann für heute?
 
-» *Ja Karl, wir sehen uns morgen, komm gut nach Hause.*
+[Lars]» *Ja Karl, wir sehen uns morgen, komm gut nach Hause.*
 
 Karl macht sich also auf den Heimweg nach München und freut sich bereits
 auf seine Familie. Der Tag war anstrengend doch äusserst lehrreich. Karl
 hatte heute morgen noch keine Ahnung von Git. Jetzt kennt er bereits die
 wichtigsten Befehle.
 
-| Er nutzt die Zeit im Zug um seine Notizen neu zu strukturieren.
-| Er verwendet hierfür die Technik des
-  `*Sketchnoting* <http://de.wikipedia.org/wiki/Sketchnotes>`__ und
-  erstellt folgendes Diagramm.
+Er nutzt die Zeit im Zug um seine Notizen neu zu strukturieren. Er verwendet hierfür die Technik des `*Sketchnoting* <http://de.wikipedia.org/wiki/Sketchnotes>`__ und erstellt folgendes Diagramm.
 
 |image13|
 
@@ -3305,12 +2972,11 @@ Er weiß jetzt, wie man
 Für einen Tag ist das bereits eine ganze Menge. Karl ist aber schon sehr
 gespannt auf den nächsten Tag im Team.
 
-Übung
+.. admonition:: Übung
 
-| Betrachten Sie alle Befehle, die Karl am ersten Tag gelernt hat.
-| Verstehen Sie grundsätzlich, wozu jeder dieser Befehle verwendet
-  werden kann?
-| Könnten Sie jeden dieser Befehle anwenden?
+  - Betrachten Sie alle Befehle, die Karl am ersten Tag gelernt hat.
+  - Verstehen Sie grundsätzlich, wozu jeder dieser Befehle verwendet werden kann?
+  - Könnten Sie jeden dieser Befehle anwenden?
 
 Tag 2
 --------
