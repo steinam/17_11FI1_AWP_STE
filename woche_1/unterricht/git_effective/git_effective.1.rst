@@ -1,5 +1,177 @@
-Vorwort
--------
+Effective Trainings – Das Git Tutorial – Wie Ihnen ein kompetenter Kollege Git erklären würde
+=============================================================================================
+
+http://www.effectivetrainings.de/blog/2014/02/13/effective-trainings-das-git-tutorial-wie-ihnen-ein-kompetenter-kollege-git-erklaren-wurde/
+
+*16 Replies*
+
+|image0|\ Dieses Tutorial ist aktuell in Arbeit. Ich stelle es hier zur
+Verfügung, um Feedback zu bekommen. Wie kommen Sie mit der Art des
+Tutorials zurecht? Gibt es vielleicht Themen die Ihnen fehlen? Das
+Tutorial auf dieser Seite wird regelmässig aktualisiert. Tag 1 ist
+bereits auf
+`*amazon.de* <http://www.amazon.de/gp/product/B00HXURPHG/ref=as_li_qf_sp_asin_tl?ie=UTF8&camp=1638&creative=6742&creativeASIN=B00HXURPHG&linkCode=as2&tag=splitshadewor-21>`__
+erhältlich, ich freue mich natürlich, wenn Sie das Buch kaufen. Sollten
+Sie das Buch jetzt kaufen erhalten Sie alle zukünftigen Updates
+natürlich kostenfrei und automatisch.
+
+|image1|
+
+Daily GIT – Wie Ihnen ein kompetenter Kollege Git erklären würde.
+=================================================================
+
+Table of Contents
+
+-  *1. Über den Autor*
+
+-  *2. Vorwort*
+
+-  *3. Tag 1*
+
+   -  *3.1. Der Hintergrund*
+
+   -  *3.2. Git Basics*
+
+      -  *3.2.1. Klonen*
+
+      -  *3.2.2. .git/config*
+
+   -  *3.3. Daily Work*
+
+      -  *3.3.1. Log*
+
+         -  *One Liner*
+
+         -  *File-History*
+
+         -  *Author-Commits*
+
+         -  *Daily Standup*
+
+         -  *Vom Change zum Commit – Developer Workflow*
+
+   -  *3.4. Internals*
+
+   -  *3.5. Branches*
+
+      -  *3.5.1. Gib mir ein Ticket – ich starte*
+
+      -  *3.5.2. Branch nachträglich erstellen*
+
+      -  *3.5.3. Merge*
+
+      -  *3.5.4. Rebase*
+
+   -  *3.6. Remotes*
+
+      -  *3.6.1. Fetch*
+
+      -  *3.6.2. Pull*
+
+   -  *3.7. Push*
+
+   -  *3.8. All is Lost – Reflog*
+
+   -  *3.9. Best Practices*
+
+      -  *3.9.1. Interactive Rebase*
+
+      -  *3.9.2. Cherry-Pick*
+
+         -  *Cherry*
+
+         -  *Welcher Branch hat welchen Commit*
+
+         -  *Konflikte*
+
+   -  *3.10. Hooks*
+
+      -  *3.10.1. Task-Nummer in jeder Commit-Message*
+
+   -  *3.11. Daily Alias*
+
+      -  *3.11.1. Git-Extras*
+
+   -  *3.12. Tag 1 endet*
+
+-  *4. Tag 2*
+
+   -  *4.1. Git Branching Modelle*
+
+   -  *4.2. Git Flow*
+
+      -  *4.2.1. Das Arbeiten auf Feature Branches*
+
+         -  *Tags*
+
+      -  *4.2.2. Release it!*
+
+         -  *Annotierte Tags*
+
+      -  *4.2.3. Fehler gibt es immer – Bugfixes*
+
+      -  *4.2.4. Next-Features – wir denken bereits an morgen*
+
+      -  *4.2.5. Git Flow Tooling*
+
+   -  *4.3. Tag 2 endet*
+
+-  *5. Tag 3 – Die Migration nach Git*
+
+   -  *5.1. Eine erste Migration*
+
+   -  *5.2. Der bessere Weg*
+
+      -  *5.2.1. SVN / Git Tags*
+
+      -  *5.2.2. SVN / Git User Mapping*
+
+   -  *5.3. SVN Ignores*
+
+   -  *5.4. Links*
+
+-  *6. Fazit*
+
+-  *7. Appendix A*
+
+   -  *7.1. Branch Per Feature (BPF)*
+
+      -  *7.1.1. Unterschied zu Git-Flow*
+
+      -  *7.1.2. ReReRe-Cache*
+
+      -  *7.1.3. Shared ReReRe-Cache*
+
+      -  *7.1.4. BPF in Action*
+
+      -  *7.1.5. Die Reihenfolge*
+
+      -  *7.1.6. BPF Use Cases*
+
+**Das werden Sie täglich brauchen, nicht mehr, nicht weniger.**
+
+1. Über den Autor
+-----------------
+
+|image2|
+
+| Martin Dilger ist freiberuflicher Trainer und Consultant. Er betreut
+  Firmen beim Einsatz und der Umstellung auf Git.
+| Er bietet Schulungen für Entwickler, Operations und Entscheider mit
+  dem Ziel, jeden Tag ein kleines bisschen produktiver zu werden.
+
+| Martin Dilger ist regelmäßiger Autor im Java Magazin und dem Java
+  Spektrum und schreibt regelmäßig zu aktuellen Themen im `*Effective
+  Trainings Blog* <http://www.effectivetrainings.de/blog>`__.
+| Er ist außerdem Sprecher auf Konferenzen und besucht regelmäßig Firmen
+  und hält Vorträge zu aktuellen Themen rund um Agilität,
+  Webentwicklung, Enterprise Java und Softwarequalität.
+
+In seinem “anderen” Leben lebt Martin Dilger mit seiner Familie in
+München, ist liebender Ehemann und Vater und passionierter Jogger.
+
+2. Vorwort
+----------
 
 | Git ist die wahrscheinlich wichtigste Neuerung im Bereich
   Softwareentwicklung der letzten 10 Jahre (Stand 2013). Es gibt bereits
@@ -35,10 +207,10 @@ umzugehen indem man damit arbeitet.
   Entwickler in der täglichen Arbeit betreffen.
 | Für theoretische Abhandlungen gibt es bereits genügend andere Bücher.
 
-Tag 1
+3. Tag 1
 --------
 
-Der Hintergrund
+3.1. Der Hintergrund
 ~~~~~~~~~~~~~~~~~~~~
 
 Karl ist Freiberufler, Consultant und Softwareentwickler aus
@@ -67,9 +239,9 @@ Versionskontrollsystem `*Git* <http://www.git-scm.org/>`__.
 Einer der Vorteile die ein dezentrales System mit sich bringt ist
 *Offline-Fähigkeit*.
 
-.. admonition:: Tip
-
-  Ein bekannter Scherz unter GIT-Nutzern ist, dass die Offline-Fähigkeit von Git nur in der Theorie gegeben ist, da man Git ohne Google nur schwer auf der Kommandozeile verwenden kann.   |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Ein bekannter Scherz unter GIT-Nutzern ist, dass die Offline-Fähigkeit von Git nur in der Theorie gegeben ist, da man Git ohne Google nur schwer auf der Kommandozeile verwenden kann.   |
++-------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 *Offline-Fähigkeit* wird oft gleichgesetzt mit der Möglichkeit ohne
 Netzwerk zu arbeiten. Im Fall von Karl ist dies korrekt und auch
@@ -83,7 +255,7 @@ verbunden. In zentralisierten Systemen wie *Subversion* benötigen im
 Gegensatz alle Operationen eine Verbindung zum zentralen
 Repository-Server.
 
-Git Basics
+3.2. Git Basics
 ~~~~~~~~~~~~~~~
 
 Karl kommt in Nürnberg an und freut sich, seine neuen Kollegen zu
@@ -118,7 +290,8 @@ Erfahrung nach? Sind die verschiedenen Git-Implementierungen kompatibel?
 
 » *Soweit ich weiß hatten wir bisher nie Probleme mit Git und
 verschiedenen Systemen. Unsere Windows-Entwickler arbeiten mit*
-`*Git-For-Windows* <https://git-for-windows.github.io/>`__\ *. 
+`*Msys-Git* <http://code.google.com/p/msysgit/>`__\ *. Die haben zwar
+nur Versionen mit Preview im Namen, laufen aber stabil.
 Die Linux-Entwickler arbeiten mit der normalen Git-Version oder
 teilweise auch mit EGit unter Eclipse. Alle arbeiten bisher problemlos
 zusammen.*
@@ -143,7 +316,7 @@ konvertiert.*
 direkt an zu arbeiten und klären weitere Fragen dann, wenn sie
 auftauchen?
 
-Klonen
+3.2.1. Klonen
 ^^^^^^^^^^^^^
 
 Karl möchte natürlich schnellstmöglich mit der Arbeit starten. Bevor er
@@ -172,27 +345,25 @@ Branches und allem was jemals in diesem Repository geschehen ist.
 | Das Test-Repository ist eine Spielwiese auf der neue Enwickler sich
   zunächst mit Git vertraut machen können.
 
-.. code-block:: bash
+git clone ssh://karl@repository-server.intern.com/repos/test-projekt.git
+mein-test-projekt.git
 
-  git clone ssh://karl@repository-server.intern.com/repos/test-projekt.git mein-test-projekt.git
+Cloning into 'git-ws-repos-local'...
 
-  Cloning into 'git-ws-repos-local'...
+done.
 
-  done.
-
-  Checking connectivity... done
+Checking connectivity... done
 
 Im Team ist der Zugriff auf das Repository über SSH gesteuert. Über SSH
 lassen sich problemlos Zugriffsrechte auf Maschinenebene und notfalls
 auch auf Repository-Ebene über Unix-File-Permissions steuern.
 
-.. admonition:: Tip
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Für kleine Teams mit einfachen Zugriffsrechten ist dies eine passende Lösung. Für komplexere Teams mit vielen unterschiedlichen Rollen und Rechten sollte hierfür ein System wie Stash oder Gitosis verwendet werden.   |
++-------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-  Für kleine Teams mit einfachen Zugriffsrechten ist dies eine passende Lösung. Für komplexere Teams mit vielen unterschiedlichen Rollen und Rechten sollte hierfür ein System wie Stash oder Gitosis verwendet werden.   |
-
-
-.git/config
-^^^^^^^^^^^
+3.2.2. .git/config
+^^^^^^^^^^^^^^^^^^
 
 Mit der Klon-Operation hat sich Karl das komplette Repository zu sich
 lokal auf den Rechner geholt.
@@ -205,23 +376,34 @@ einen Blick in das .git-Verzeichnis zu werfen.*
 » *Ja genau, in diesem Verzeichnis ist das eigentliche Repository zu
 finden. Schau dir das mal an.*
 
-.. code-block:: bash
+HEAD <b>(1)</b>
 
-  HEAD <b>(1)</b>
-  branches <b>(2)</b>
-  config <b>(3)</b>
-  hooks/<b>(4)</b>
-  index<b>(5)</b>
-  objects/<b>(6)</b>
-  ref<b>(7)</b>
+branches <b>(2)</b>
 
-  1. Referenz auf den obersten Commit, auf dem das Repository aktuell steht.
-  2. Deprecated, wurde früher zum Speichern von Branches verwendet
-  3. Konfiguration für dieses Git-Repository
-  4. Hooks
-  5. Git-Index Binary
-  6. Objekt-Datenbank
-  7. Referenzen auf Branches
+config <b>(3)</b>
+
+hooks/<b>(4)</b>
+
+index<b>(5)</b>
+
+objects/<b>(6)</b>
+
+ref<b>(7)</b>
+
+1. Referenz auf den obersten Commit, auf dem das Repository aktuell
+       steht.
+
+2. Deprecated, wurde früher zum Speichern von Branches verwendet
+
+3. Konfiguration für dieses Git-Repository
+
+4. Hooks
+
+5. Git-Index Binary
+
+6. Objekt-Datenbank
+
+7. Referenzen auf Branches
 
 » *Es würde jetzt nichts bringen, wenn ich dir das alles erkläre. Mit
 den meisten dieser Dateien und Verzeichnisse wirst du in den nächsten
@@ -229,105 +411,114 @@ Tagen sowieso in Berührung kommen. Die wichtigste Datei, die du dir
 vielleicht gleich mal anschauen solltest ist die .git/config Datei. In
 dieser Datei befindet sich die Konfiguration für dein Repository.*
 
-.. code-block:: bash
+[core] <b>(1)</b>
 
-  [core] <b>(1)</b>
-    repositoryformatversion = 0
-    filemode = true
-    bare = false
-    logallrefupdates = true
-    ignorecase = true
-    precomposeunicode = false
-  [remote "origin"] <b>(2)</b>
-    url = ssh://karl@repository-server.intern.com/repos/test-projekt.git
-    fetch = +refs/heads/\*:refs/remotes/origin/\*
-  [branch "master"] <b>(3)</b>  
-    remote = origin
-    merge = refs/heads/master
+repositoryformatversion = 0
 
-  1. Core-Konfiguration, für Entwickler meist uninteressant
-  2. Remotes – hier ist konfiguriert, dass unter dem Namen “origin” ein
-     Repository mit der hinterlegten url zu finden ist.
-  3. Branch Tracking Information – hier ist hinterlegt, dass sich der
-     Branch “master” automatisch mit dem Remote-Repository “origin”
-     verbinden soll.
+filemode = true
+
+bare = false
+
+logallrefupdates = true
+
+ignorecase = true
+
+precomposeunicode = false
+
+[remote "origin"] <b>(2)</b>
+
+url = ssh://karl@repository-server.intern.com/repos/test-projekt.git
+
+fetch = +refs/heads/\*:refs/remotes/origin/\*
+
+[branch "master"] <b>(3)</b>
+
+remote = origin
+
+merge = refs/heads/master
+
+1. Core-Konfiguration, für Entwickler meist uninteressant
+
+2. Remotes – hier ist konfiguriert, dass unter dem Namen “origin” ein
+       Repository mit der hinterlegten url zu finden ist.
+
+3. Branch Tracking Information – hier ist hinterlegt, dass sich der
+       Branch “master” automatisch mit dem Remote-Repository “origin”
+       verbinden soll.
 
 » *Zugegeben, Karl, für Deine tägliche Arbeit wirst du die Informationen
 hier selten brauchen. Aber glaub mir, es ist gerade auch für Entwickler
 enorm wichtig zu verstehen wie Git tatsächlich funktioniert. Und das
 beispielsweise “origin”, was du sehr oft sehen wirst nichts anderes als
 ein Name für ein Repository hinter einer URL ist. Man könnte das
-Repository auch `Karl_Remote` nennen.*
+Repository auch “Karl\_Remote” nennen.*
 
 » *Das Einzige was du zwingend konfigurieren musst ist dein Name und
 deine E-Mailadresse, damit Git weiß, wen es als Autor in den Commit
 schreiben soll.*
 
-.. code-block:: bash
+git config user.name "Karl"
 
-  git config user.name "Karl"
-  git config user.email "Karl@effectivetrainings.de"
+git config user.email "Karl@effectivetrainings.de"
 
-
-.. epigraph::
-
-  -- Lars
-
-   » *Diese Konfiguration landet übrigens auch in der .git/config. Schau dir das nochmal an!*.
-
-
-» Lars: *Diese Konfiguration landet übrigens auch in der .git/config. Schau
+» *Diese Konfiguration landet übrigens auch in der .git/config. Schau
 dir das nochmal an!*.
 
-.. code-block:: bash
+[user]
 
-  [user]
-    name = Karl
-    email = karl@effectivetrainings.de
+name = Karl
 
-Daily Work
+email = karl@effectivetrainings.de
+
+3.3. Daily Work
 ~~~~~~~~~~~~~~~
 
 | Karl möchte natürlich schnellstmöglich seinen ersten Commit machen. Da
-  wir uns im Test-Repository befinden ist das auch kein Problem. Zunächst verschafft sich Karl einen Überblick über das Repository.
+  wir uns im Test-Repository befinden ist das auch kein Problem.
+| Zunächst verschafft sich Karl einen Überblick über das Repository.
 
-.. code-block:: bash
+git status
 
-  git status
-  On branch master
-  nothing to commit, working directory clean
+# On branch master
+
+nothing to commit, working directory clean
 
 | Wir sehen hier bereits wichtige Informationen.
 | Initial befinden wir uns auf dem Branch *master*, der automatisch
   angelegt wurde. Der *master*-Branch ist vergleichbar mit dem
   Subversion-Trunk.
 
-.. warning:: 
-
-  master ist nur ein Name und der master-Branch ein Branch wie jeder andere. Der Name *master* ist nur Konvention und hat ansonsten keine Bedeutung.
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Caution   | master ist nur ein Name und der master-Branch ein Branch wie jeder andere. Der Name *master* ist nur Konvention und hat ansonsten keine Bedeutung.   |
++-----------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 Weiterhin sehen wir, dass wir derzeit keine lokalen Änderungen in
 unserem Repository haben. Der Stand des lokalen Repositories entspricht
 also dem des entfernten Repository.
 
-Log
+3.3.1. Log
 ^^^^^^^^^^
 
 Eine Übersicht über die bisher im Repository gemachten Commits bekommt
 Karl mit Hilfe von *git log*.
 
-.. code-block:: bash
+git log
 
-  git log
-  Commit: cea024d4f4af1080b2a4d52f8477c6dc6647cdef <b>(1)</b>
-  Author: dilgerm <martin@effectivetrainings.de> <b>(2)</b>
-  Date: (54 minutes ago) 2014-01-15 09:34:09 +0100 <b>(3)</b>
-  Subject: initial commit <b>(4)</b>
+Commit: cea024d4f4af1080b2a4d52f8477c6dc6647cdef <b>(1)</b>
 
-  1. Der Hash-Wert des Commits
-  2. Der Autor
-  3. Datum und Uhrzeit des Commits
-  4. Die Commit-Message
+Author: dilgerm &lt;martin@effectivetrainings.de&gt; <b>(2)</b>
+
+Date: (54 minutes ago) 2014-01-15 09:34:09 +0100 <b>(3)</b>
+
+Subject: initial commit <b>(4)</b>
+
+1. Der Hash-Wert des Commits
+
+2. Der Autor
+
+3. Datum und Uhrzeit des Commits
+
+4. Die Commit-Message
 
 | Je nach Bedarf ist dies aber bereits zu viel Information. In 90% der
   Fälle möchte Karl nicht alle Information sehen, sondern beispielsweise
@@ -340,57 +531,50 @@ Karl mit Hilfe von *git log*.
 One Liner
 '''''''''
 
-.. code-block:: bash
+git log --oneline <b>(1)</b>
 
-  git log --oneline <b>(1)</b>
-  cea024d initial commit
+cea024d initial commit
 
-  1. Zeigt einen abgekürzten Hash-Wert und nur die Commit-Message.
+1. Zeigt einen abgekürzten Hash-Wert und nur die Commit-Message.
 
 File-History
 ''''''''''''
 
-.. code-block:: bash
+git log --oneline README <b>(1)</b>
 
-  git log --oneline README <b>(1)</b>
-  cea024d initial commit
+cea024d initial commit
 
-  1. Zeigt nur die Commits, die die Datei README betreffen.
+1. Zeigt nur die Commits, die die Datei README betreffen.
 
-  git log --oneline -- README<b>(1)</b>
+git log --oneline -- README<b>(1)</b>
 
-  cea024d initial commit
+cea024d initial commit
 
-  1. Zeigt nur die Commits, die die Datei README betreffen, funktioniert
+1. Zeigt nur die Commits, die die Datei README betreffen, funktioniert
        auch wenn die Datei README nicht mehr vorhanden ist.
 
-.. Tip:: 
-
-  Der *–* Operator dient als Trennung bei vielen Git-Kommandos und trennt die Kommandoparameter von den betroffenen Dateinamen.   
-
++-------+---------------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Der *–* Operator dient als Trennung bei vielen Git-Kommandos und trennt die Kommandoparameter von den betroffenen Dateinamen.   |
++-------+---------------------------------------------------------------------------------------------------------------------------------+
 
 Author-Commits
 ''''''''''''''
 
-.. code-block:: bash
+git log --author=dilgerm -- README<b>(1)</b>
 
-  git log --author=dilgerm -- README<b>(1)</b
-  cea024d initial commit
+cea024d initial commit
 
-  1. Zeigt nur die Commits, die vom Autor *dilgerm* sind.
-
+1. Zeigt nur die Commits, die vom Autor *dilgerm* sind.
 
 Daily Standup
 '''''''''''''
 
+git log --oneline --since '1 day ago' --no-merges --author $(git config
+--get user.name) <b>(1)</b>
 
-.. code-block:: bash
-
-  git log --oneline --since '1 day ago' --no-merges --author $(git config --get user.name) <b>(1)</b>
-
-  1. Zeigt alle Commits des Autors und des letzten Tages ohne Merges.
-     (Beispiel von `*https://coderwall.com/p/vyl8zg)* <https://coderwall.com/p/vyl8zg)>`__
-
+1. Zeigt alle Commits des Autors und des letzten Tages ohne Merges.
+       (Beispiel von
+       `*https://coderwall.com/p/vyl8zg)* <https://coderwall.com/p/vyl8zg)>`__
 
 Vom Change zum Commit – Developer Workflow
 ''''''''''''''''''''''''''''''''''''''''''
@@ -398,75 +582,86 @@ Vom Change zum Commit – Developer Workflow
 Höchste Zeit, dass sich Karl ein wenig intensiver mit der Arbeitsweise
 mit Git vertraut macht.
 
+echo 'Karl was here' &gt;&gt; Karl.txt <b>(1)</b>
 
-.. code-block:: bash
+git status <b>(2)</b>
 
-  echo 'Karl was here' >> Karl.txt <b>(1)</b>
-  git status <b>(2)</b>
-  # On branch master
-  # Untracked files:
-  # (use "git add <file>..." to include in what will be committed)
-  #
-  # Karl.txt <b>(3)</b>
+# On branch master
 
-  1. Erzeuge eine neue Datei mit Inhalt und Entwicklernamen.
-  2. Überprüfe den Status des Repositories
-  3. Status zeigt an, dass eine neue (“untracked”) Datei vorhanden ist.
+# Untracked files:
+
+# (use "git add &lt;file&gt;..." to include in what will be committed)
+
+#
+
+# Karl.txt <b>(3)</b>
+
+1. Erzeuge eine neue Datei mit Inhalt und Entwicklernamen.
+
+2. Überprüfe den Status des Repositories
+
+3. Status zeigt an, dass eine neue (“untracked”) Datei vorhanden ist.
 
 | Die Datei *Karl.txt* ist Git bisher nicht bekannt.
 | Das ändern wir, indem wir sie zum Index hinzufügen.
 
+git add Karl.txt <b>(1)</b>
 
-.. code-block:: bash
+git status
 
-  git add Karl.txt <b>(1)</b>
-  git status
-  On branch master
-  # Changes to be committed:
-  # (use "git reset HEAD <file>..." to unstage)
-  #
-  # new file: Karl.txt <b>(2)</b>
-  #
+On branch master
 
-  1. Karl macht Git mit der Datei Karl.txt bekannt.
-  2. Karl sieht nun nicht mehr untracked-files sondern *Changes to be
-     Committed*. Die Datei Karl.txt ist also für den nächsten Commit
-     vorgemerkt.
+# Changes to be committed:
+
+# (use "git reset HEAD &lt;file&gt;..." to unstage)
+
+#
+
+# new file: Karl.txt <b>(2)</b>
+
+#
+
+1. Karl macht Git mit der Datei Karl.txt bekannt.
+
+2. Karl sieht nun nicht mehr untracked-files sondern *Changes to be
+       Committed*. Die Datei Karl.txt ist also für den nächsten Commit
+       vorgemerkt.
 
 Karl kann jetzt endlich seinen ersten Commit machen.
 
+git commit -m "Karls first Commit" <b>(1)</b>
 
+[master 85f37a2] Karls first Commit <b>(2)</b>
 
-.. code-block:: bash
+1 file changed, 1 insertion(+) <b>(3)</b>
 
-  git commit -m "Karls first Commit" <b>(1)</b>
-  [master 85f37a2] Karls first Commit <b>(2)</b>
-  1 file changed, 1 insertion(+) <b>(3)</b>
-  create mode 100644 Karl.txt
+create mode 100644 Karl.txt
 
-  1. Schreibt alle vorgemerkten Änderungen in das Git Repository (Commit)
-  2. Zusammenfassung des Commits
-  3. Statistik des Commits
+1. Schreibt alle vorgemerkten Änderungen in das Git Repository (Commit)
 
+2. Zusammenfassung des Commits
 
+3. Statistik des Commits
 
-.. code-block:: bash
+git log --oneline
 
-  git log --oneline
-  85f37a2 Karls first Commit
-  cea024d initial commit
+85f37a2 Karls first Commit
+
+cea024d initial commit
 
 Zuletzt sorgt ein *git status* nochmal für Sicherheit.
 
+git status
 
-.. code-block:: bash
+# On branch master
 
-  git status
-  # On branch master
-  # Your branch is ahead of 'origin/master' by 1 commit.
-  # (use "git push" to publish your local commits)
-  #
-  nothing to commit, working directory clean
+# Your branch is ahead of 'origin/master' by 1 commit.
+
+# (use "git push" to publish your local commits)
+
+#
+
+nothing to commit, working directory clean
 
 | Karl sieht, dass nach dem Commit das Working-Directory wieder sauber
   ist. Git erkennt sogar, dass unser lokaler Branch einen Commit weiter
@@ -475,28 +670,21 @@ Zuletzt sorgt ein *git status* nochmal für Sicherheit.
   *Tracking* der Branches richtig initialisiert ist. Ein Branch kann
   jederzeit mit einem beliebigen Remote-Branch verbunden werden.
 
+git branch -u origin/master <b>(1)</b>
 
-.. code-block:: bash
-
-  git branch -u origin/master <b>(1)</b>
-
-  1. Verbindet den aktuell ausgecheckten Branch mit dem origin/master
-     Branch. Funktioniert leider erst ab Git 1.8.x
+1. Verbindet den aktuell ausgecheckten Branch mit dem origin/master
+       Branch. Funktioniert leider erst ab Git 1.8.x
 
 Für ältere Git-Versionen (1.7.x) war noch dies notwendig.
 
+git branch --set-upstream master origin/master
 
-.. code-block:: bash
+Karl kann sich auch den Vergleich mit dem Remote-Tracking-Branch
+explizit anzeigen lassen.
 
-  git branch --set-upstream master origin/master
+git branch -v
 
-Karl kann sich auch den Vergleich mit dem Remote-Tracking-Branch explizit anzeigen lassen.
-
-
-.. code-block:: bash
-
-  git branch -v
-  * master 85f37a2 [ahead 1] Karls first Commit
+\* master 85f37a2 [ahead 1] Karls first Commit
 
 | Hiermit sieht Karl, auf welchem Commit der aktuelle Branch steht, um
   wieviele Commits der lokale Branch vom Tracking-Branch abweicht und
@@ -508,30 +696,36 @@ Der typische Entwickler-Flow sieht also folgendermaßen aus.
 
 |image3|
 
-| Diesen Flow durchläuft jeder Entwickler im Team jeden Tag dutzende Male.
-| Je länger ein Entwickler mit Git arbeitet, desto kleiner und feingranularer werden üblicherweise   
-  die Commits im Repository.
+| Diesen Flow durchläuft jeder Entwickler im Team jeden Tag dutzende
+  Male.
+| Je länger ein Entwickler mit Git arbeitet, desto kleiner und
+  feingranularer werden üblicherweise die Commits im Repository.
 
-.. admonition:: **Übung**
+Übung
 
-  - Erzeugen Sie genauso wie Karl in einem Repository Ihrer Wahl eine neue Datei <IhrName>.txt
-  - Schreiben Sie beliebigen Inhalt in diese Datei.
-  - Überprüfen Sie, wie sich das Repository verändert mit Hilfe von *git status* und *git log*.
-  - Committen Sie Ihre Änderung.
-  - Überprüfen Sie Ihren Commit erneut mit Hilfe von *git log*.
-  - Überprüfen Sie mit Hilfe von *git status* dass keine weiteren Änderungen mehr in Ihrem   
-    Repository vorhanden sind.
+Erzeugen Sie genauso wie Karl in einem Repository Ihrer Wahl eine neue
+Datei <IhrName>.txt
 
+Schreiben Sie beliebigen Inhalt in diese Datei.
 
+Überprüfen Sie, wie sich das Repository verändert mit Hilfe von *git
+status* und *git log*.
 
-Internals
+Committen Sie Ihre Änderung.
+
+Überprüfen Sie Ihren Commit erneut mit Hilfe von *git log*.
+
+Überprüfen Sie mit Hilfe von *git status* dass keine weiteren Änderungen
+mehr in Ihrem Repository vorhanden sind.
+
+3.4. Internals
 ~~~~~~~~~~~~~~
 
 Karl scheint zufrieden.
 
-» [Karl] Das ist ja ganz einfach!
+» Das ist ja ganz einfach!
 
-» [Lars] *Ja das ist es. Aber es ist trotzdem auch wichtig, dass Du verstehst,
+» *Ja das ist es. Aber es ist trotzdem auch wichtig, dass Du verstehst,
 was genau jetzt passiert ist. Git ist nicht immer einfach, aber immer
 logisch.
 Bevor wir weitermachen, würde ich gerne mit dir über einige Dinge
@@ -539,14 +733,14 @@ sprechen, die jetzt im Repository passiert sind. Je genauer du
 verstehst, wie Git arbeitet, desto leichter wirst Du dir später tun,
 wenn die ersten Probleme auftreten.*
 
-» [Karl] Liebend gern, Lars. Was muss ich wissen?
+» Liebend gern, Lars. Was muss ich wissen?
 
-» [Lars] *Am besten du wirfst einen Blick in dein .git-Verzeichnis. Und hier
+» *Am besten du wirfst einen Blick in dein .git-Verzeichnis. Und hier
 speziell in das /objects-Verzeichis.*
 
-» [Karl] Ah ja, objects klingt gut, ist Git denn objektorientiert programmiert?
+» Ah ja, objects klingt gut, ist Git denn objektorientiert programmiert?
 
-| » [Lars] *Nein, das hat nichts mit den Objekten einer Programmiersprache zu
+| » *Nein, das hat nichts mit den Objekten einer Programmiersprache zu
   tun. Vielleicht ist dieses Verzeichnis auch einfach nur unglücklich
   benannt.
   Alle Objekte, die du in Git speicherst, also primär Dateien und
@@ -558,18 +752,18 @@ speziell in das /objects-Verzeichis.*
 
 |image4|
 
-» [Karl] Wow, das sieht aber kompliziert aus.
+» Wow, das sieht aber kompliziert aus.
 
-| [Lars] » *Ja stimmt, wenn man nicht weiß, was das ist könnte man denken, Git
+| » *Ja stimmt, wenn man nicht weiß, was das ist könnte man denken, Git
   ist total kompliziert oder? Dabei wirst du sehen, dass Git
   grundsätzlich kinderleicht zu verstehen ist, weil das Prinzip dahinter
   so einfach ist.*
 | *Du siehst also viele seltsame Verzeichnisse, die nur aus jeweils zwei
   Zeichen bestehen, beispielsweise 05, richtig?*
 
-» [Karl] Ja genau!
+» Ja genau!
 
-| » [Lars] *Wir hatten schon darüber gesprochen, dass Git sehr unterschiedlich
+| » *Wir hatten schon darüber gesprochen, dass Git sehr unterschiedlich
   ist zu beispielsweise dem zentralen System Subversion.*
 | *In Subversion synchronisieren sich alle Entwickler über das zentrale
   Repository. Deswegen ist es einfach eine Revision zu verwalten. Die
@@ -577,123 +771,135 @@ speziell in das /objects-Verzeichis.*
   ein Entwickler einen Commit macht. Was meinst du, würde das in Git
   auch funktionieren?*
 
-| » [Karl] Hm, gute Frage, da alle Commits zunächst lokal sind müsste die
+| » Hm, gute Frage, da alle Commits zunächst lokal sind müsste die
   Revision lokal hochgezählt werden. Wenn ich jetzt aber an einem neuen
   Feature arbeite und Du gleichzeitig an einem anderen, dann würde bei
   uns beiden die Revision lokal hochgezählt werden. Probleme hätten wir
   erst, wenn wir versuchen würden unsere Arbeit
 | zusammenzubringen, richtig? Welche Revision würde dann gewinnen?
 
-» [Lars] *Sehr gut aufgepasst, Karl. Wir arbeiten dezentral, wir können also
+» *Sehr gut aufgepasst, Karl. Wir arbeiten dezentral, wir können also
 unmöglich eine globale Revision verwalten. Git muss sogar sicherstellen,
 dass die Revisions weltweit funktionieren, egal wieviele Entwickler an
 einem Projekt arbeiten.*
 
-» [Karl] Das hat was mit diesen Hash-Werten zu tun, die wir hier sehen, oder?
+» Das hat was mit diesen Hash-Werten zu tun, die wir hier sehen, oder?
 
-» [Lars] *Perfekt! Genau, Git arbeitet anders. Git berechnet den
+» *Perfekt! Genau, Git arbeitet anders. Git berechnet den
 SHA-1-Hash-Wert über die Inhalte aller am Commit beteiligter Dateien
 jedesmal neu wenn wir committen.*
 
-» [Karl] Ja, das könnte funktionieren. Wenn wir beide aus Versehen die gleiche
+» Ja, das könnte funktionieren. Wenn wir beide aus Versehen die gleiche
 Änderung machen, ich bei mir und Du bei dir am PC, dann hätten diese
 beiden Commits also den gleichen Hash-Wert und somit die gleiche
 “Revision” in Git?
 
-» [Lars] *Genau Karl, das kann man so sehen. Die Revision in Git ist der
+» *Genau Karl, das kann man so sehen. Die Revision in Git ist der
 Hash-Wert des Commits. Das ist aber noch nicht alles. Ich zeig dir mal
 was.*
 
-.. code-block:: bash
+git hash-object Karl.txt
 
-  git hash-object Karl.txt
-  058f0f82590adfebbd4d4fc2c55ede64771390d3
+058f0f82590adfebbd4d4fc2c55ede64771390d3
 
-» [Lars] *Mit Hilfe von git hash-object lässt sich der SHA-1 Hash eines
-Objektes berechnen. Vergleiche doch diesen Wert mal mit den Verzeichnissen in deinem objects-Verzeichnis.*
+» *Mit Hilfe von git hash-object lässt sich der SHA-1 Hash eines
+Objektes berechnen. Vergleiche doch diesen Wert mal mit den
+Verzeichnissen in deinem
+objects-Verzeichnis.*
 
-» [Karl] Warte mal, ich sehe ein Verzeichnis “05” und eine Datei `8f0f82590adfebbd4d4fc2c55ede64771390d3`. Das kann kein Zufall sein.
+» Warte mal, ich sehe ein Verzeichnis “05” und eine Datei
+“8f0f82590adfebbd4d4fc2c55ede64771390d3″. Das kann kein Zufall sein.
 Kann es sein, dass Git den Hash-Wert meiner Datei berechnet hat, die
 ersten zwei Zeichen des Hash-Wertes als Verzeichnis nimmt und den
 restlichen Hash-Wert als Dateinamen?
 
-» [Lars] *Genau Karl, so ist es. Git verwendet die ersten beiden Zeichen als
+» *Genau Karl, so ist es. Git verwendet die ersten beiden Zeichen als
 Verzeichnisnamen um Betriebssystem-Beschränkungen zu umgehen. Es können
 nunmal nicht unendlich viele Dateien in einem Verzeichnis gespeichert
 werden. Den Rest des Hash-Wertes verwendet Git als Dateinamen. Kannst Du
 dir vorstellen, was Git genau speichert?*
 
-» [Karl] Ich nehme an, einfach meine Textdatei?
+» Ich nehme an, einfach meine Textdatei?
 
-» [Lars] *Nicht ganz, versuch doch mal die Datei zu öffnen*
+» *Nicht ganz, versuch doch mal die Datei zu öffnen*
 
-.. code-block:: bash
+cat .git/objects/05/8f0f82590adfebbd4d4fc2c55ede64771390d3
 
-  cat .git/objects/05/8f0f82590adfebbd4d4fc2c55ede64771390d3
-  xK??OR04a?N,?Q(O,V?H-J?O6?
+xK??OR04a?N,?Q(O,V?H-J?O6?
 
-» [Karl] Hm, sieht binär aus?
+» Hm, sieht binär aus?
 
-» [Lars] *Genau, Git speichert die Dateien nicht im Rohformat sondern packt
+» *Genau, Git speichert die Dateien nicht im Rohformat sondern packt
 alles nochmal sehr effizient mit Hilfe von ZLib zusammen. Die Dateien
-liegen also binär vor und Git entpackt die Dateien nur wenn notwendig.*
+liegen also binär vor und
+Git entpackt die Dateien nur wenn notwendig.*
 
-» [Karl] Ok, verstanden. Aber eine Frage hätte ich dann doch noch?
+» Ok, verstanden. Aber eine Frage hätte ich dann doch noch?
 
-» [Lars] *Und die wäre?*
+» *Und die wäre?*
 
-» [Karl] Wenn ich mir den Commit mit *git log* anschaue.
+» Wenn ich mir den Commit mit *git log* anschaue.
 
-.. code-block:: bash
+git log
 
-  git log
-  Commit: ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
-  Author: Karl <karl@effectivetrainings.de>
-  Date: (33 minutes ago) 2014-01-15 13:55:37 +0100
-  Subject: Karls first Commit
+Commit: ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
 
-» [Karl] Der Hash-Wert des Commits ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e stimmt doch nicht überein mit dem Hashwert 058f0f82590adfebbd4d4fc2c55ede64771390d3 meiner Datei?
+Author: Karl &lt;karl@effectivetrainings.de&gt;
 
-» [Lars] *Sehr gut beobachtet! Wir haben uns bisher nur den Hash-Wert deiner Textdatei angesehen. Ich habe aber vorhin schon erwähnt, dass Git 4 Arten von Objekten kennt. Erinnerst Du dich noch?*
+Date: (33 minutes ago) 2014-01-15 13:55:37 +0100
 
-» [Kar] Ja, Commits, Trees, Blobs und Tags?
+Subject: Karls first Commit
 
-» [Lars] *Korrekt, wir haben uns jetzt deinen ersten Blob angeschaut. Das siehst du auch, wenn du dir den Typen der Datei anschaust.*
+» Der Hash-Wert des Commits ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
+stimmt doch nicht überein mit dem Hashwert
+058f0f82590adfebbd4d4fc2c55ede64771390d3 meiner Datei?
 
-.. code-block:: bash
+» *Sehr gut beobachtet! Wir haben uns bisher nur den Hash-Wert deiner
+Textdatei angesehen. Ich habe aber vorhin schon erwähnt, dass Git 4
+Arten von Objekten kennt. Erinnerst Du dich noch?*
 
-  git cat-file -t 058f0f82590adfebbd4d4fc2c55ede64771390d3
-  blob
+» Ja, Commits, Trees, Blobs und Tags?
 
-» [Lars] *Jede Datei die mit Git gespeichert wird landet als Blob in der
+» *Korrekt, wir haben uns jetzt deinen ersten Blob angeschaut. Das
+siehst du auch, wenn du dir den Typen der Datei anschaust.*
+
+git cat-file -t 058f0f82590adfebbd4d4fc2c55ede64771390d3
+
+blob
+
+» *Jede Datei die mit Git gespeichert wird landet als Blob in der
 Objektdatenbank. Was ist jetzt ein Tree? Du kannst dir das einfach als
 Repräsentation eines Verzeichnisses vorstellen. Du siehst den Tree
 sogar, indem du den Hash-Wert des Commits mit cat-file -p betrachtest.
 Das* **p** *steht für “pretty”. Das Kommando* **git cat-file** *ist ein
 sogenanntes* **Plumbing-Kommando**\ *.*
 
-.. warning::
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Caution   | Kommands in Git sind nach dem **Composite-Pattern** aufgebaut. Sie sind unterteilt in sogenannte **Plumbing oder Low-Level-** und **Porcellain-Kommandos**. In den meisten Fällen arbeiten Entwickler nur mit dem “guten Porzellan”. Es macht aber Sinn, sich durchaus auch mit den Low-Level Operationen wie **cat-file** zu beschäftigen.   |
++-----------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-  Kommands in Git sind nach dem **Composite-Pattern** aufgebaut. Sie sind unterteilt in sogenannte **Plumbing oder Low-Level-** und **Porcellain-Kommandos**. In den meisten Fällen arbeiten Entwickler nur mit dem “guten Porzellan”. Es macht aber Sinn, sich durchaus auch mit den Low-Level Operationen wie **cat-file** zu beschäftigen.   
+git cat-file -p ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
 
-.. code-block:: bash
+tree 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
 
-  git cat-file -p ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
-  tree 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
-  parent cea024d4f4af1080b2a4d52f8477c6dc6647cdef
-  author Karl <karl@effectivetrainings.de> 1389790537 +0100
-  committer Karl <karl@effectivetrainings.de> 1389790766 +0100
-  Karls first Commit
+parent cea024d4f4af1080b2a4d52f8477c6dc6647cdef
 
-» [Lars] *Hier siehst du den Tree. Den können wir uns jetzt nochmal genauer betrachten.*
+author Karl &lt;karl@effectivetrainings.de&gt; 1389790537 +0100
 
-.. code-block:: bash
+committer Karl &lt;karl@effectivetrainings.de&gt; 1389790766 +0100
 
-    git cat-file -p 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
-    100644 blob 058f0f82590adfebbd4d4fc2c55ede64771390d3 Karl.txt
-    100644 blob 304360caba487e6f7b707b5aa96774f85bf17b77 README
+Karls first Commit
 
-| » [Lars] *Siehst du? Der Tree referenziert also die beiden Blobs, genauso wie
+» *Hier siehst du den Tree. Den können wir uns jetzt nochmal genauer
+betrachten.*
+
+git cat-file -p 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
+
+100644 blob 058f0f82590adfebbd4d4fc2c55ede64771390d3 Karl.txt
+
+100644 blob 304360caba487e6f7b707b5aa96774f85bf17b77 README
+
+| » *Siehst du? Der Tree referenziert also die beiden Blobs, genauso wie
   das Verzeichnis die beiden Dateien referenziert. So einfach ist das.
   Ein Commit referenziert immer einen* **Tree**\ *, ein Tree
   referenziert immer einen oder mehrere* **Blobs** *oder auch weitere*
@@ -702,16 +908,19 @@ sogenanntes* **Plumbing-Kommando**\ *.*
   **cat-file -p** *den Commit selbst angeschaut. Eine Sache hierbei war
   interessant und ist dir vielleicht entgangen.*
 
-.. code-block:: bash
+git cat-file -p ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
 
-  git cat-file -p ff3e2ea55c4cda9ebdb9f87d5b7e1dfa26b6393e
-  tree 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
-  parent cea024d4f4af1080b2a4d52f8477c6dc6647cdef
-  author Karl <karl@effectivetrainings.de> 1389790537 +0100
-  committer Karl <karl@effectivetrainings.de> 1389790766 +0100
-  Karls first Commit
+tree 64c4b2cbdcbc14b6b14e04f1e787c21bfc8fc802
 
-| » [Lars] *Der Commit referenziert seinen Parent-Commit. Commits in Git
+parent cea024d4f4af1080b2a4d52f8477c6dc6647cdef
+
+author Karl &lt;karl@effectivetrainings.de&gt; 1389790537 +0100
+
+committer Karl &lt;karl@effectivetrainings.de&gt; 1389790766 +0100
+
+Karls first Commit
+
+| » *Der Commit referenziert seinen Parent-Commit. Commits in Git
   schweben nicht irgendwie im luftleeren Raum sondern sind miteinander
   über eine Parent-Child Hierarchie verbunden. Jeder Commit hat entweder
   keinen, genau einen oder beliebig viele Parent-Commits.*
@@ -724,11 +933,11 @@ sogenanntes* **Plumbing-Kommando**\ *.*
   zusammengeführt wurden. In den meisten Fällen also zwei, das erkläre
   ich dir aber, wenn wir dazu kommen. In Ordnung?*
 
-» [Karl] Ja, in Ordnung. Mir ist zwar noch nicht ganz klar, wozu ich diese
+» Ja, in Ordnung. Mir ist zwar noch nicht ganz klar, wozu ich diese
 ganzen Informationen brauche, aber ich denke, das wird mir später klar.
 
-Branches
-~~~~~~~~
+3.5. Branches
+~~~~~~~~~~~~~
 
 | Karl hat von Lars bereits einen sehr guten Überblick über die
   grundsätzliche Arbeitsweise mit Git erhalten.
@@ -737,68 +946,84 @@ Branches
 | Der erste Schritt besteht nun darin, sich das Projekt-Repository
   auszuchecken.
 
-.. admonition:: Übung
+Übung
 
-  - Klonen Sie sich das Repository unter `*https://github.com/dilgerma/effective-git-workshop* <https://github.com/dilgerma/effective-git-workshop>`__ in ein Verzeichnis *Projekt.git*
+Klonen Sie sich das Repository unter
+`*https://github.com/dilgerma/effective-git-workshop* <https://github.com/dilgerma/effective-git-workshop>`__
+in ein Verzeichnis *Projekt.git*
 
-  - git clone https://github.com/dilgerma/effective-git-workshop Project.git
+git clone https://github.com/dilgerma/effective-git-workshop Project.git
 
-Gib mir ein Ticket – ich starte
+3.5.1. Gib mir ein Ticket – ich starte
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Karl möchte am liebsten sofort loslegen. Lars muss ihn ein wenig
 bremsen.
 
-» [Lars] *Karl, wir arbeiten nicht direkt auf dem master branch. Der master ist
-der aktuelle[Lars]Entwicklungsstand, es sollten aber nur fertige Features
+» *Karl, wir arbeiten nicht direkt auf dem master branch. Der master ist
+der aktuelle Entwicklungsstand, es sollten aber nur fertige Features
 zurückgeführt werden. Der master sollte zumindest stabil sein.*
 
-» [Karl] Ok, verstanden. Das bedeutet, dass wir auf eigenen Feature-Branches
+» Ok, verstanden. Das bedeutet, dass wir auf eigenen Feature-Branches
 arbeiten? Ist das nicht ganz schön kompliziert?
 
-» [Lars] *Nur solange du mit Subversion arbeitest. Nein, Scherz beiseite. Das
+» *Nur solange du mit Subversion arbeitest. Nein, Scherz beiseite. Das
 Arbeiten mit Branches ist quasi* **DAS** *Feature von Git. Branches sind
 so schnell und leichtgewichtig, dass es wirklich Spaß macht damit zu
 arbeiten.*
 
-» [Karl] Mit Branches zu arbeiten macht Spaß? Wow, das hör ich tatsächlich
+» Mit Branches zu arbeiten macht Spaß? Wow, das hör ich tatsächlich
 wirklich zum ersten Mal.
 
-| » [Lars] *Ich zeige dir mal, wie Branches funktionieren. Es wird nämlich
+| » *Ich zeige dir mal, wie Branches funktionieren. Es wird nämlich
   schnell klar, wieso Branches in Git so einfach sind, wenn man weiß wie
   sie funktionieren.*
 | *Am besten wäre es, du wirfst einen Blick in das .git/refs
   Verzeichnis.*
 
-.. code-block:: bash
+#alle Verzeichnisse
 
-  #alle Verzeichnisse
-  ls .git/refs
-  heads<b>(1)</b>
-  remotes<b>(2)</b>
-  tags
+ls .git/refs
 
-  #alle Branch-Dateien
-  ls .git/refs/heads/
-  master <b>(3)</b>
+heads<b>(1)</b>
 
-  #Enthalten jeweils Hash-Wert eines Commits
-  cat .git/refs/heads/master
-  ad261f23894095de696ffd43a0d01af1e7249a02 <b>(4)</b>
-  #Zeige obersten Commit im aktuellen Branch
-  git log --oneline
-  ad261f2 Initial commit <b>(5)</b>
+remotes<b>(2)</b>
 
-  1. Hier sind Branches konfiguriert
-  2. Hier sind Remote-Repositories konfiguriert
-  3. Für jeden Branch befindet sich hier eine eigene Datei
-  4. In der Datei steht jeweils nur ein Hashwert
-  5. Der Hash-Wert des obersten Commits des aktuell ausgecheckten Branches
-     entspricht dem Hash-Wert in refs/heads/<branchname>
+tags
 
-» [Karl] Das verstehe ich nicht, warum brauch ich einen Hash-Wert in einer Datei?
+#alle Branch-Dateien
 
-| » [Lars] *Es ist ganz einfach. Git braucht irgendeine Art Mapping, um Branch
+ls .git/refs/heads/
+
+master <b>(3)</b>
+
+#Enthalten jeweils Hash-Wert eines Commits
+
+cat .git/refs/heads/master
+
+ad261f23894095de696ffd43a0d01af1e7249a02 <b>(4)</b>
+
+#Zeige obersten Commit im aktuellen Branch
+
+git log --oneline
+
+ad261f2 Initial commit <b>(5)</b>
+
+1. Hier sind Branches konfiguriert
+
+2. Hier sind Remote-Repositories konfiguriert
+
+3. Für jeden Branch befindet sich hier eine eigene Datei
+
+4. In der Datei steht jeweils nur ein Hashwert
+
+5. Der Hash-Wert des obersten Commits des aktuell ausgecheckten Branches
+       entspricht dem Hash-Wert in refs/heads/<branchname>
+
+» Das verstehe ich nicht, warum brauch ich einen Hash-Wert in einer
+Datei?
+
+| » *Es ist ganz einfach. Git braucht irgendeine Art Mapping, um Branch
   und Commit zusammenzubringen. Wir referenzieren den master-Branch als
   master und nicht als ad261f2. Git arbeitet fast komplett File-basiert.
   Das Mapping besteht also darin, dass wir eine Datei master haben, in
@@ -806,8 +1031,7 @@ wirklich zum ersten Mal.
   weiß git, dass der Branch master exisitiert (weil die Datei vorhanden
   ist) und der oberste Commit im Branch master den Hash-Wert ad261f2 hat
   (weil dieser Hash-Wert in der Datei steht).*
-
-| [Lars]*Erzeugen wir uns doch einfach einen Feature-Branch. Ich habe dir
+| *Erzeugen wir uns doch einfach einen Feature-Branch. Ich habe dir
   gestern bereits ein sehr einfaches Ticket herausgesucht, an dem du
   heute arbeiten kannst. Branches haben bei uns immer eine feste
   Bezeichnung. Normalerweise arbeiten wir mit*
@@ -815,432 +1039,641 @@ wirklich zum ersten Mal.
   aber für den Anfang ist es glaube ich besser, wenn wir das erst ein
   paar Mal manuell machen, als Fingerübung quasi.*
 
-.. code-block:: bash
+git branch feature-4711 <b>(1)</b>
 
-  git branch feature-4711 <b>(1)</b>
-  git branch <b>(2)</b>
-  feature-4711
-  * master <b>(3)</b>
+git branch <b>(2)</b>
 
-  1. git branch <branch-name> erzeugt einen neuen Branch
-  2. git branch ohne Parameter zeigt die lokal verfügbaren Branches
-  3. Der * zeigt den aktuell ausgecheckten Branch an.
+feature-4711
 
-[Karl] » Lars, kannst du mir sagen, wie ich jetzt auf meinen neuen Branch wechseln kann?
+\* master <b>(3)</b>
 
-[Lars] » *Klar, das geht mit checkout. Du checkst dir quasi einen Branch aus.*
+1. git branch <branch-name> erzeugt einen neuen Branch
 
-.. code-block:: bash
+2. git branch ohne Parameter zeigt die lokal verfügbaren Branches
 
-  #wechsel auf branch feature-4711  
-  git checkout feature-4711
-  #Wechsel und neu erzeugen eines Branches
-  git checkout -b feature-4711
+3. Der \* zeigt den aktuell ausgecheckten Branch an.
 
-.. Tip:: 
+» Lars, kannst du mir sagen, wie ich jetzt auf meinen neuen Branch
+wechseln kann?
 
-  Checkout hat je nach Kontext und Parametern ganz unterschiedliche Bedeutungen. Weitere Bedeutungen werden später noch erläutert.   |
+» *Klar, das geht mit checkout. Du checkst dir quasi einen Branch aus.*
 
-.. admonition:: Übung
+#wechsel auf branch feature-4711
 
-  - Was hat sich durch das Erzeugen des Branches im `.git/refs/heads`-Verzeichnis verändert?
-  - Erzeugen Sie den Branch *feature-4711* vom master.
-  - Editieren Sie die README-Datei auf dem Branch feature-4711.
-  - Committen Sie Ihre Änderung.
+git checkout feature-4711
 
+#Wechsel und neu erzeugen eines Branches
+
+git checkout -b feature-4711
+
++-------+------------------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Checkout hat je nach Kontext und Parametern ganz unterschiedliche Bedeutungen. Weitere Bedeutungen werden später noch erläutert.   |
++-------+------------------------------------------------------------------------------------------------------------------------------------+
+
+Übung
+
+Was hat sich durch das Erzeugen des Branches im
+.git/refs/heads-Verzeichnis verändert?
+
+| Erzeugen Sie den Branch *feature-4711* vom master.
+| Editieren Sie die README-Datei auf dem Branch feature-4711.
+| Committen Sie Ihre Änderung.
 
 Wie hat sich das .git/refs/heads-Verzeichnis verändert?
 
-.. code-block:: bash
+#Eine neue Datei ist entstanden
 
-  #Eine neue Datei ist entstanden
-  ls .git/refs/heads/
-  feature-4711
-  master
-  #Da wir den Branch vom master branch gezogen haben stehen sowohl master als auch feature-4711 aktuell auf dem gleichen Commit.
-  cat .git/refs/heads/master
-  ad261f23894095de696ffd43a0d01af1e7249a02
+ls .git/refs/heads/
 
-  cat .git/refs/heads/feature-4711
-  ad261f23894095de696ffd43a0d01af1e7249a02
+feature-4711
 
-  #Branch Wechsel mit checkout
-  git checkout feature-4711
+master
 
-  #editiere readme und commit.
-  git commit -m "Adjusted Readme"
-  [feature-4711 bebc4db] Adjusted Readme
-  1 file changed, 2 insertions(+)
+#Da wir den Branch vom master branch gezogen haben stehen sowohl master
+als auch feature-4711 aktuell auf dem gleichen Commit.
 
-  #Die Dateien unterscheiden sich, weil der Feature-Branch einen Commit weiter
+cat .git/refs/heads/master
 
-  cat .git/refs/heads/master
-  ad261f23894095de696ffd43a0d01af1e7249a02
+ad261f23894095de696ffd43a0d01af1e7249a02
 
-  cat .git/refs/heads/feature-4711
-  bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0
+cat .git/refs/heads/feature-4711
 
-[Karl] » Das ist interessant. Wie weiß denn Git, welchen Branch ich aktuell ausgecheckt habe?
+ad261f23894095de696ffd43a0d01af1e7249a02
 
-[Lars] » *Gute Frage, dazu wirst Du am besten einen Blick in dein .git-Verzeichnis.*
+#Branch Wechsel mit checkout
 
-.. code-block:: bash
+git checkout feature-4711
 
-  git log HEAD <b>(1)</b>
-  Commit: bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0
-  Author: dilgerm <martin@effectivetrainings.de>
-  Date: (37 minutes ago) 2014-01-15 16:57:42 +0100
-  Subject: Adjusted Readme
+#editiere readme und commit.
 
-  #Welcher Branch aktuell ausgecheckt ist steht in der Datei HEAD
+git commit -m "Adjusted Readme"
 
-  cat .git/HEAD
-  ref: refs/heads/feature-4711
+[feature-4711 bebc4db] Adjusted Readme
 
-  1. HEAD ist nur eine andere Bezeichnung für den aktuell obersten Commit
-     in der Historie
+1 file changed, 2 insertions(+)
 
-[Lars] » *Um zu wissen, auf welchem Commit mein Repository aktuell steht
-schreibt Git jedesmal, wenn ich den Branch wechsel den Pfad der Branch-Datei aus
-`refs/heads` in die Datei HEAD in meinem .git-Verzeichnis. Um zu wissen auf welchem Branch wir uns aktuell befinden macht Git intern etwa folgendes.*
+#Die Dateien unterscheiden sich, weil der Feature-Branch einen Commit
+weiter
 
-.. code-block:: bash
+cat .git/refs/heads/master
 
-  Pfad = Lade Dateipfad aus .git/HEAD
-  Commit-Hash = Lese Datei aus Pfad
-  Branch-Name = Lese Dateinamen aus Pfad
-  Setze obersten Commit im Repository auf Commit-Hash
+ad261f23894095de696ffd43a0d01af1e7249a02
 
+cat .git/refs/heads/feature-4711
 
+bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0
 
-Branch nachträglich erstellen
+» Das ist interessant. Wie weiß denn Git, welchen Branch ich aktuell
+ausgecheckt habe?
+
+» *Gute Frage, dazu wirst Du am besten einen Blick in dein
+.git-Verzeichnis.*
+
+git log HEAD <b>(1)</b>
+
+Commit: bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0
+
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+Date: (37 minutes ago) 2014-01-15 16:57:42 +0100
+
+Subject: Adjusted Readme
+
+#Welcher Branch aktuell ausgecheckt ist steht in der Datei HEAD
+
+cat .git/HEAD
+
+ref: refs/heads/feature-4711
+
+1. HEAD ist nur eine andere Bezeichnung für den aktuell obersten Commit
+       in der Historie
+
+» *Um zu wissen, auf welchem Commit mein Repository aktuell steht
+schreibt Git jedesmal, wenn ich den Branch wechsel den Pfad der
+Branch-Datei aus
+refs/heads in die Datei HEAD in meinem .git-Verzeichnis. Um zu wissen
+auf welchem Branch wir uns aktuell befinden macht Git intern etwa
+folgendes.*
+
+Pfad = Lade Dateipfad aus .git/HEAD
+
+Commit-Hash = Lese Datei aus Pfad
+
+Branch-Name = Lese Dateinamen aus Pfad
+
+Setze obersten Commit im Repository auf Commit-Hash
+
+3.5.2. Branch nachträglich erstellen
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-[Lars] » *Karl, du wirst sehen, du wirst dich sehr schnell an das Arbeiten mit
+» *Karl, du wirst sehen, du wirst dich sehr schnell an das Arbeiten mit
 Branches gewöhnen. Spätestens in 3 Wochen wirst du dich fragen, wie du
 jemals ohne Arbeiten konntest.*
 
-[Karl] » Ich werde dich in ein paar Wochen nochmal darauf ansprechen.
+» Ich werde dich in ein paar Wochen nochmal darauf ansprechen.
 
-[Lars] » *Im Eifer des Gefechts passiert es übrigens jedem mal, dass er die Umsetzung einer Story aus Versehen auf dem* **master** *startet. Da das relativ oft passiert, auch mir zum Beispiel noch, zeige ich dir noch schnell, wie du das ganz einfach lösen kannst.*
-*Nehmen wir für diesen Fall an, du willst von deinem aktuellen Branch auf einen weiteren Branch wechseln. Stell dir einfach vor, du arbeitest mit zwei anderen Kollegen an diesem Feature und möchtest etwas ausprobieren. Dazu möchtest Du gerne einen eigenen Branch erzeugen, auf dem du lokal bei dir arbeiten kannst. Leider hast Du bereits zwei Commits auf dem aktuellen Feature-Branch gemacht, von denen du nicht sicher bist, ob du sie behalten möchtest.*
-*Das ist sehr einfach zu lösen indem du vom aktuellen Branch einen weiteren Branch `feature-4711-experiment` ziehst und dann den Branch `feature-4711` um die beiden fraglichen Commits zurücksetzt.*
+| » *Im Eifer des Gefechts passiert es übrigens jedem mal, dass er die
+  Umsetzung einer Story aus Versehen auf dem* **master** *startet. Da
+  das relativ oft passiert, auch mir zum Beispiel noch, zeige ich dir
+  noch schnell, wie du das ganz einfach lösen kannst.*
+| *Nehmen wir für diesen Fall an, du willst von deinem aktuellen Branch
+  auf einen weiteren Branch wechseln. Stell dir einfach vor, du
+  arbeitest mit zwei anderen Kollegen an diesem Feature und möchtest
+  etwas ausprobieren. Dazu möchtest Du gerne einen eigenen Branch
+  erzeugen, auf dem du lokal bei dir arbeiten kannst. Leider hast Du
+  bereits zwei Commits auf dem aktuellen Feature-Branch gemacht, von
+  denen du nicht sicher bist, ob du sie behalten möchtest.*
+| *Das ist sehr einfach zu lösen indem du vom aktuellen Branch einen
+  weiteren Branch “feature-4711-experiment” ziehst und dann den Branch
+  “feature-4711″ um die beiden fraglichen Commits zurücksetzt.*
 
-[Karl] » Du sagst immer, dass das alles ganz einfach ist. Für mich klingt das ganz schön kompliziert.
+» Du sagst immer, dass das alles ganz einfach ist. Für mich klingt das
+ganz schön kompliziert.
 
-[Lars] » *Keine Sorge, das sind nur die ganzen Begriffe, du wirst dich sehr schnell daran gewöhnen.*
-[Lars] *Erzeuge doch bitte mal die zwei Commits deines Experimentes auf dem aktuellen Branch.*
+| » *Keine Sorge, das sind nur die ganzen Begriffe, du wirst dich sehr
+  schnell daran gewöhnen.*
+| *Erzeuge doch bitte mal die zwei Commits deines Experimentes auf dem
+  aktuellen Branch.*
 
-.. code-block:: bash
+git branch
 
-  git branch
-  * feature-4711
-  [...]
-  #erster commit
-  echo "Karls erster Commit" >> Karls-experiment.txt
-  git add Karls-experiment.txt
-  git commit -m "erster experiment commit"
-  [feature-4711 5f5a42d] erster experiment commit
-  1 file changed, 1 insertion(+)
-  create mode 100644 Karls-experiment.txt
+\* feature-4711
 
-  #zweiter commit
-  echo "Karls zweiter Commit" >> Karls-experiment.txt
-  git add Karls-experiment.txt
-  git commit -m "zweiter experiment commit"
-  [feature-4711 a1dbcc2] zweiter experiment commit
-  
-  1 file changed, 1 insertion(+)
-  
-  #log
-  git log
-  Commit: a1dbcc20f620573097866445302991d877e76232
-  Author: dilgerm <martin@effectivetrainings.de>
-  Date: (63 seconds ago) 2014-01-21 18:02:57 +0100
-  Subject: zweiter experiment commit
-  Commit: 5f5a42da684db9c5fa4f50c390bd2c78946c8238
-  Author: dilgerm <martin@effectivetrainings.de>
-  Date: (2 minutes ago) 2014-01-21 18:01:44 +0100
-  Subject: erster experiment commit
-  [...]
+[...]
 
-[Lars] » *Sehr gut Karl. Jetzt möchtest Du diese beiden Commits aber nicht auf
-deinem aktuellen Branch, sondern auf dem Branch `feature-4711-experiment` haben, weil du dir nicht sicher bist, ob deine Idee für die Umsetzung in die richtige Richtung geht.*
+#erster commit
 
-.. code-block:: bash
+echo "Karls erster Commit" &gt;&gt; Karls-experiment.txt
 
-  git checkout -b "feature-4711-experiment"
-  Switched to a new branch 'feature-4711-experiment'
-  git branch
-  feature-4711
-  * feature-4711-experiment
-  [...]
+git add Karls-experiment.txt
 
-  #log
-  git log
-  Commit: a1dbcc20f620573097866445302991d877e76232
-  Author: dilgerm <martin@effectivetrainings.de>
-  Date: (4 minutes ago) 2014-01-21 18:02:57 +0100
-  Subject: zweiter experiment commit
-  Commit: 5f5a42da684db9c5fa4f50c390bd2c78946c8238
-  Author: dilgerm <martin@effectivetrainings.de>
-  Date: (5 minutes ago) 2014-01-21 18:01:44 +0100
-  Subject: erster experiment commit
-  [...]
+git commit -m "erster experiment commit"
 
-[Lars]» *Die Branches sind identisch und beide haben die zwei Commits des Experimentes. Jetzt wechselst du einfach zurück auf deinen “feature-4711″-Branch und setzt den Branch mit Hilfe von* **reset** *um die zwei Commits zurück, die du dort nicht haben möchtest. Am besten du machst einfach was ich dir sage, ich werde dir* **reset** *später noch genauer erklären.*
+[feature-4711 5f5a42d] erster experiment commit
 
+1 file changed, 1 insertion(+)
 
-.. code-block:: bash
+create mode 100644 Karls-experiment.txt
 
-  git checkout feature-4711
-  #branch um zwei commits zurücksetzen
-  git reset --hard HEAD~2
-  HEAD is now at bebc4db Adjusted Readme
+#zweiter commit
 
-[Lars]» *Damit hast du genau die Situation, die du wolltest. Die beiden Commits des Experimentes sind auf dem richtigen Branch und der Feature-4711-Branch sieht so aus als wäre nie etwas passiert. Ich weiß, das ging alles ein wenig schnell, stell dir für jetzt einfach vor,* **git reset** *ist eine Möglichkeit, jeden beliebigen Branch auf einen Commit deiner Wahl zu setzen. Beispielsweise den Commit, der “vor zwei Commits” gemacht wurde.*
+echo "Karls zweiter Commit" &gt;&gt; Karls-experiment.txt
 
-Merge
+git add Karls-experiment.txt
+
+git commit -m "zweiter experiment commit"
+
+[feature-4711 a1dbcc2] zweiter experiment commit
+
+1 file changed, 1 insertion(+)
+
+#log
+
+git log
+
+Commit: a1dbcc20f620573097866445302991d877e76232
+
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+Date: (63 seconds ago) 2014-01-21 18:02:57 +0100
+
+Subject: zweiter experiment commit
+
+Commit: 5f5a42da684db9c5fa4f50c390bd2c78946c8238
+
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+Date: (2 minutes ago) 2014-01-21 18:01:44 +0100
+
+Subject: erster experiment commit
+
+[...]
+
+» *Sehr gut Karl. Jetzt möchtest Du diese beiden Commits aber nicht auf
+deinem aktuellen Branch, sondern auf dem Branch
+“feature-4711-experiment” haben, weil du dir nicht sicher bist, ob deine
+Idee für die Umsetzung in die richtige Richtung geht.*
+
+git checkout -b "feature-4711-experiment"
+
+Switched to a new branch 'feature-4711-experiment'
+
+git branch
+
+feature-4711
+
+\* feature-4711-experiment
+
+[...]
+
+#log
+
+git log
+
+Commit: a1dbcc20f620573097866445302991d877e76232
+
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+Date: (4 minutes ago) 2014-01-21 18:02:57 +0100
+
+Subject: zweiter experiment commit
+
+Commit: 5f5a42da684db9c5fa4f50c390bd2c78946c8238
+
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+Date: (5 minutes ago) 2014-01-21 18:01:44 +0100
+
+Subject: erster experiment commit
+
+[...]
+
+» *Die Branches sind identisch und beide haben die zwei Commits des
+Experimentes. Jetzt wechselst du einfach zurück auf deinen
+“feature-4711″-Branch und setzt den Branch mit Hilfe von* **reset** *um
+die zwei Commits zurück, die du dort nicht haben möchtest. Am besten du
+machst einfach was ich dir sage, ich werde dir* **reset** *später noch
+genauer erklären.*
+
+git checkout feature-4711
+
+#branch um zwei commits zurücksetzen
+
+git reset --hard HEAD~2
+
+HEAD is now at bebc4db Adjusted Readme
+
+» *Damit hast du genau die Situation, die du wolltest. Die beiden
+Commits des Experimentes sind auf dem richtigen Branch und der
+Feature-4711-Branch sieht so aus als wäre nie etwas passiert. Ich weiß,
+das ging alles ein wenig schnell, stell dir für jetzt einfach vor,*
+**git reset** *ist eine Möglichkeit, jeden beliebigen Branch auf einen
+Commit deiner Wahl zu setzen. Beispielsweise den Commit, der “vor zwei
+Commits” gemacht wurde.*
+
+3.5.3. Merge
 ^^^^^^^^^^^^
 
-[Karl] » Interessant, so langsam glaube ich bekomme ich ein ungefähres Bild und eine Idee, wie das mit Git tatsächlich gedacht ist.
+» Interessant, so langsam glaube ich bekomme ich ein ungefähres Bild und
+eine Idee, wie das mit Git tatsächlich gedacht ist.
 
-[Lars] » *Ok, machen wir weiter und gehen zurück auf den “feature-4711″-Branch. Auf dem haben wir jetzt eine Änderung gemacht. Irgendwann ist der Zeitpunkt gekommen, diese Änderung wieder auf den master zurückzubringen. Wann dieser Zeitpunkt gekommen ist, darüber lässt sich streiten. Es gibt Teams, die eine frühestmögliche Integration neuer Features zurück in den master bevorzugen. Wir gehören auch dazu, allerdings möchten wir nur Features zurückführen, die tatsächlich abgeschlossen sind.*
+» *Ja, es ist wunderschön, nicht wahr?*
 
-*Andere Teams arbeiten direkt auf dem master. Der Vorteil ist, dass jeder Entwickler spätestens beim Update sofort sieht, ob zwei Features miteinander in Konflikt stehen. Der Nachteil ist klar, der master-Branch ist nicht mehr stabil, da auch halbfertige Features zurückgeführt werden.*
+» Soweit bin ich noch nicht. (**grins**)
 
-*Wir bevorzugen allerdings einen stabilen master und nehmen dafür auch in Kauf, dass wir Merge-Konflikte erst etwas später bemerken und auflösen.*
+| » *Ok, machen wir weiter und gehen zurück auf den
+  “feature-4711″-Branch. Auf dem haben wir jetzt eine Änderung gemacht.
+  Irgendwann ist der Zeitpunkt gekommen, diese Änderung wieder auf den
+  master zurückzubringen. Wann dieser Zeitpunkt gekommen ist, darüber
+  lässt sich streiten. Es gibt Teams, die eine frühestmögliche
+  Integration neuer Features zurück in den master bevorzugen. Wir
+  gehören auch dazu, allerdings möchten wir nur Features zurückführen,
+  die tatsächlich abgeschlossen sind.*
+| *Andere Teams arbeiten direkt auf dem master. Der Vorteil ist, dass
+  jeder Entwickler spätestens beim Update sofort sieht, ob zwei Features
+  miteinander in Konflikt stehen. Der Nachteil ist klar, der
+  master-Branch ist nicht mehr stabil, da auch halbfertige Features
+  zurückgeführt werden.*
+| *Wir bevorzugen allerdings einen stabilen master und nehmen dafür auch
+  in Kauf, dass wir Merge-Konflikte erst etwas später bemerken und
+  auflösen.*
 
-[Karl] » Ich denke, das befürworte ich. Frühe Integration ist immer gut, aber stabile Branches sind wichtiger. Vor allem könnt ihr dann auch Features zurückhalten, wenn diese beispielsweise bereits implementiert sind, aber erst später den Kunden zur Verfügung gestellt werden sollen. Ich habe hierfür früher immer Feature-Flags einbauen müssen.
+» Ich denke, das befürworte ich. Frühe Integration ist immer gut, aber
+stabile Branches sind wichtiger. Vor allem könnt ihr dann auch Features
+zurückhalten, wenn diese beispielsweise bereits implementiert sind, aber
+erst später den Kunden zur Verfügung gestellt werden sollen. Ich habe
+hierfür früher immer Feature-Flags einbauen müssen.
 
-[Lars] » *Ja, Feature-Flags sind eine Alternative und haben auch ihre Daseinsberechtigung. Ich persönlich habe aber schon lange keine mehr verwendet.* *Genug geredet, was müssen wir tun um den Branch zurückzuführen?*
+| » *Ja, Feature-Flags sind eine Alternative und haben auch ihre
+  Daseinsberechtigung. Ich persönlich habe aber schon lange keine mehr
+  verwendet.*
+| *Genug geredet, was müssen wir tun um den Branch zurückzuführen?*
 
-[Karl ]» Lass mich raten, die Operation nennt sich *Merge*?
+» Lass mich raten, die Operation nennt sich *Merge*?
 
-[Lars] » *Das ist korrekt. Zunächst wechseln wir zurück auf den master.
+» *Das ist korrekt. Zunächst wechseln wir zurück auf den master.
 Um das Ganze ein wenig interessanter zu machen provozieren wir einen
 Merge-Konflikt.*
 
-.. code-block:: bash
+git checkout master
 
-  git checkout master
-  #edit README.md
-  git merge feature-4711
-  Auto-merging README.md
-  CONFLICT (content): Merge conflict in README.md
-  Automatic merge failed; fix conflicts and then commit the result.
+#edit README.md
 
-[Lars] » *Wir haben den ersten Konflikt in unserem Repository.*
-[Lars] » *Am besten du schaust dir mal den aktuellen Stand deines Repositories
+git merge feature-4711
+
+Auto-merging README.md
+
+CONFLICT (content): Merge conflict in README.md
+
+Automatic merge failed; fix conflicts and then commit the result.
+
+» *Wir haben den ersten Konflikt in unserem Repository.*
+
+» Interessant, welches Merge-Tool verwenden wir im Team?
+
+» *Da gibt es keine Vorgabe, ich denke die meisten verwenden KDiff,
+einige aber auch die Entwicklungsumgebung direkt.*
+
+» Ok, ich überlege mir das noch.
+
+» *Am besten du schaust dir mal den aktuellen Stand deines Repositories
 an.*
 
-.. code-block:: bash
+git status
 
-  git status
-  # On branch master
-  # Your branch is ahead of 'origin/master' by 1 commit.
-  # (use "git push" to publish your local commits)
-  #
-  # You have unmerged paths. <b>(1)</b>
-  # (fix conflicts and run "git commit")
-  #
-  # Unmerged paths: 
-  # (use "git add <file>..." to mark resolution)
-  #
-  # both modified: README.md <b>(2)</b>
-  #
+# On branch master
 
-  1. Git zeigt einen Konflikt an
-  2. Git benennt die Dateien, die Konflikte enthalten.
+# Your branch is ahead of 'origin/master' by 1 commit.
 
-[Karl]» Kann ich mir anschauen, was den Konflikt verursacht hat?
+# (use "git push" to publish your local commits)
 
-[Lars] » *Natürlich, dazu gibt es wie fast immer in Git mehrere Möglichkeiten.
+#
+
+# You have unmerged paths. <b>(1)</b>
+
+# (fix conflicts and run "git commit")
+
+#
+
+# Unmerged paths:
+
+# (use "git add &lt;file&gt;..." to mark resolution)
+
+#
+
+# both modified: README.md <b>(2)</b>
+
+#
+
+1. Git zeigt einen Konflikt an
+
+2. Git benennt die Dateien, die Konflikte enthalten.
+
+» Kann ich mir anschauen, was den Konflikt verursacht hat?
+
+» *Natürlich, dazu gibt es wie fast immer in Git mehrere Möglichkeiten.
 Eine einfache Möglichkeit ist diff.
 Diff zeigt dir ohne weitere Parameter die Änderungen zwischen deinem
 Workspace und dem Repository an. Tritt ein Merge-Konflikt auf
 schreibt Git beide Änderungen in die betroffenen Dateien getrennt mit
 “=======”.*
 
-.. code-block:: bash
+git diff
 
-  git diff
-  diff --cc README.md
-  index da95ff7,c3eb4a8..0000000
-  --- a/README.md
-  +++ b/README.md
-  @@@ -1,3 -1,4 +1,9 @@@
-  effective-git-workshop
-  ======================
-  ++<<<<<<< ours <b>(1)</b>
+diff --cc README.md
 
-  +Das ist eine Änderung, die einen Konflikt verursachen sollte.
+index da95ff7,c3eb4a8..0000000
 
-  ++||||||| base
+--- a/README.md
 
-  ++======= <b>(2)</b>
-  +
-  + Simple Effective Git Workshop Tutorial
-  ++>>>>>>> theirs <b>(3)</b>
++++ b/README.md
 
-  1. Änderung auf dem aktuellen Branch
-  2. Trenner zwischen beiden Konflikten
-  3. Änderung auf dem Branch der gemerged werden soll
+@@@ -1,3 -1,4 +1,9 @@@
 
-[Lars] » *Die Anzeige mit Diff ist aber wirklich schwer zu lesen. Eine weitere
+effective-git-workshop
+
+======================
+
+++&lt;&lt;&lt;&lt;&lt;&lt;&lt; ours <b>(1)</b>
+
++Das ist eine Änderung, die einen Konflikt verursachen sollte.
+
+++\|\|\|\|\|\|\| base
+
+++======= <b>(2)</b>
+
++
+
++ Simple Effective Git Workshop Tutorial
+
+++&gt;&gt;&gt;&gt;&gt;&gt;&gt; theirs <b>(3)</b>
+
+1. Änderung auf dem aktuellen Branch
+
+2. Trenner zwischen beiden Konflikten
+
+3. Änderung auf dem Branch der gemerged werden soll
+
+» *Die Anzeige mit Diff ist aber wirklich schwer zu lesen. Eine weitere
 Möglichkeit ist die Anzeige im Mergetool.
 Du kannst das Mergen starten indem du git merge-tool aufrufst.*
 
-.. code-block:: bash
+git mergetool
 
-  git mergetool
-  
-  'git mergetool' will now attempt to use one of the following tools:
+'git mergetool' will now attempt to use one of the following tools:
 
-  opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse
-  ecmerge p4merge araxis bc3 codecompare emerge vimdiff <b>(1)</b>
+opendiff kdiff3 tkdiff xxdiff meld tortoisemerge gvimdiff diffuse
+ecmerge p4merge araxis bc3 codecompare emerge vimdiff <b>(1)</b>
 
-  Merging:
+Merging:
 
-  README.md <b>(2)</b>
-  Normal merge conflict for 'README.md': <b>(3)</b>
-  {local}: modified file
-  {remote}: modified file
+README.md <b>(2)</b>
 
-  1. Mögliche Tools, Git prüft nicht, ob diese Tools tatsächlich alle
-     installiert sind.
-  2. Die Datei die den Merge-Konflikt verursacht hat
-  3. Art des Merge-Konfliktes. In diesem Fall wurde die Datei auf beiden
-     Branches editiert. Andere Möglichkeiten wären beispielsweise das
-     Löschen der Datei.
+Normal merge conflict for 'README.md': <b>(3)</b>
+
+{local}: modified file
+
+{remote}: modified file
+
+1. Mögliche Tools, Git prüft nicht, ob diese Tools tatsächlich alle
+       installiert sind.
+
+2. Die Datei die den Merge-Konflikt verursacht hat
+
+3. Art des Merge-Konfliktes. In diesem Fall wurde die Datei auf beiden
+       Branches editiert. Andere Möglichkeiten wären beispielsweise das
+       Löschen der Datei.
 
 |image5|
 
-[Karl] » *Ok, wir haben den Konflikt gelöst, wir müssen das aber unbedingt noch
+» *Ok, wir haben den Konflikt gelöst, wir müssen das aber unbedingt noch
 Committen. Das wird gerne vergessen.
 Am besten wir prüfen vorher nochmal schnell den Status des
 Repositories.*
 
-.. code-block:: bash
+git status
 
-  git status
-  # On branch master
-  # Your branch is ahead of 'origin/master' by 1 commit.
-  # (use "git push" to publish your local commits)
-  #
-  # All conflicts fixed but you are still merging. <b>(1)</b>
-  # (use "git commit" to conclude merge)
-  #
+# On branch master
 
-  # Changes to be committed:  
-  #
-  # modified: README.md
-  #
+# Your branch is ahead of 'origin/master' by 1 commit.
 
-  1. Git erkennt, dass wir den Merge-Konflikt aufgelöst haben und weiß,
-     dass wir bisher vergessen haben, diese Änderung zu committen.
+# (use "git push" to publish your local commits)
 
+#
 
+# All conflicts fixed but you are still merging. <b>(1)</b>
 
-.. admonition:: Übung
+# (use "git commit" to conclude merge)
 
-  - Wechseln Sie auf den master-Branch.
-  - Editieren Sie die Datei README.md, so dass ein Merge Konflikt mit der Änderung auf feature-4711 entsteht.
-  - Führen Sie den Branch zurück und lösen Sie den Merge-Konflikt.
-  - Welche Besonderheit erkennen Sie in der Historie?
+#
 
-  .. code-block:: bash
-  
-    git checkout master
-    echo "Das ist eine Änderung, die einen Konflikt verursachen sollte."
-    >> README.md  
-    git merge feature-4711
-    Auto-merging README.md
-    CONFLICT (content): Merge conflict in README.md
-    Automatic merge failed; fix conflicts and then commit the result.
+# Changes to be committed:
 
-[Lars] » *Karl, wenn Du dir jetzt mal die Historie auf dem master betrachtest
+#
+
+# modified: README.md
+
+#
+
+1. Git erkennt, dass wir den Merge-Konflikt aufgelöst haben und weiß,
+       dass wir bisher vergessen haben, diese Änderung zu committen.
+
+Übung
+
+Wechseln Sie auf den master-Branch.
+
+Editieren Sie die Datei README.md, so dass ein Merge Konflikt mit der
+Änderung auf feature-4711 entsteht.
+
+Führen Sie den Branch zurück und lösen Sie den Merge-Konflikt.
+
+Welche Besonderheit erkennen Sie in der Historie?
+
+git checkout master
+
+echo "Das ist eine Änderung, die einen Konflikt verursachen sollte."
+&gt;&gt; README.md
+
+git merge feature-4711
+
+Auto-merging README.md
+
+CONFLICT (content): Merge conflict in README.md
+
+Automatic merge failed; fix conflicts and then commit the result.
+
+» *Karl, wenn Du dir jetzt mal die Historie auf dem master betrachtest
 siehst du eine kleine Besonderheit. Sehr einfach siehst Du das zum
 Beispiel mit folgendem Kommando.*
 
-.. code-block:: bash
+git log --graph
 
-  git log --graph
-  * Commit: bb2d3b275870e891a76b73d2597efc0a10fa373d <b>(1)</b>
-  |\ Author: dilgerm <martin@effectivetrainings.de>
-  | | Date: (67 seconds ago) 2014-01-16 16:51:54 +0100
-  | | Subject: merged fb-4711
-  | |
-  | |
-  | * Commit: bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0 <b>(2)</b>
-  | | Author: dilgerm <martin@effectivetrainings.de>
-  | | Date: (24 hours ago) 2014-01-15 16:57:42 +0100
-  | | Subject: Adjusted Readme
-  | |
-  | |
-  * | Commit: 817e46017f4094a4f33fc1f5dd423257a20a7c99 <b>(3)</b>
-  |/ Author: dilgerm <martin@effectivetrainings.de>
-  | Date: (23 hours ago) 2014-01-15 18:06:18 +0100
-  | Subject: Konflikt
-  |
-  * Commit: ad261f23894095de696ffd43a0d01af1e7249a02
-  Author: Martin Dilger <martin.dilger@googlemail.com>
-  Date: (25 hours ago) 2014-01-15 06:56:25 -0800
-  Subject: Initial commit
+\* Commit: bb2d3b275870e891a76b73d2597efc0a10fa373d <b>(1)</b>
 
-  1. Der entstandene Merge-Commit, der zwei Parents hat
-  2. Der Commit, den Karl auf dem Feature-Branch gemacht hat
-  3. Der Commit auf dem master, der den Konflikt verursacht hat.
-  
-[Lars] » *Ein Merge-Commit entsteht immer dann, wenn wir zwei oder mehr Branches zusammenführen und kein sogenannter Fast-Forward-Merge möglich ist.*
+\|\\ Author: dilgerm &lt;martin@effectivetrainings.de&gt;
 
-[Karl] » Was bitte ist ein Fast-Forward-Merge?
+\| \| Date: (67 seconds ago) 2014-01-16 16:51:54 +0100
 
-[Lars] » *Ein Fast-Forward-Merge, beispielsweise vom Feature-Branch auf den master, ist dann möglich, wenn auf dem master nichts passiert ist seit wir den Branch gezogen haben. Der komplette master-Branch ist also bereits in unserem Feature-Branch enthalten. In diesem Fall ändert Git
-beim Merge auf den master einfach den Inhalt der Datei* **master** *in* **/refs/heads** *auf den Hash-Wert des obersten Commits unseres Feature-Branches. Es kann kein Konflikt auftreten und es muss auch kein* **Merge-Commit** *erzeugt werden. Damit ist der Merge bereits abgeschlossen und der Branch vollständig zurückgeführt. Das ist der einfachste Fall eines Merges.*
+\| \| Subject: merged fb-4711
 
+\| \|
 
-[Karl]» Hm, Lars, ich bin mir nicht sicher, ob ich das richtig verstehe.
+\| \|
+
+\| \* Commit: bebc4dbc18cb05d7fd2df59db7cf249bc793dbf0 <b>(2)</b>
+
+\| \| Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+\| \| Date: (24 hours ago) 2014-01-15 16:57:42 +0100
+
+\| \| Subject: Adjusted Readme
+
+\| \|
+
+\| \|
+
+\* \| Commit: 817e46017f4094a4f33fc1f5dd423257a20a7c99 <b>(3)</b>
+
+\|/ Author: dilgerm &lt;martin@effectivetrainings.de&gt;
+
+\| Date: (23 hours ago) 2014-01-15 18:06:18 +0100
+
+\| Subject: Konflikt
+
+\|
+
+\* Commit: ad261f23894095de696ffd43a0d01af1e7249a02
+
+Author: Martin Dilger &lt;martin.dilger@googlemail.com&gt;
+
+Date: (25 hours ago) 2014-01-15 06:56:25 -0800
+
+Subject: Initial commit
+
+1. Der entstandene Merge-Commit, der zwei Parents hat
+
+2. Der Commit, den Karl auf dem Feature-Branch gemacht hat
+
+3. Der Commit auf dem master, der den Konflikt verursacht hat.
+
+» *Ein Merge-Commit entsteht immer dann, wenn wir zwei oder mehr
+Branches zusammenführen und kein sogenannter Fast-Forward-Merge möglich
+ist.*
+
+» Was bitte ist ein Fast-Forward-Merge?
+
+» *Ein Fast-Forward-Merge, beispielsweise vom Feature-Branch auf den
+master, ist dann möglich, wenn auf dem master nichts passiert ist seit
+wir den Branch gezogen haben. Der komplette master-Branch ist also
+bereits in unserem Feature-Branch enthalten. In diesem Fall ändert Git
+beim Merge auf den master einfach den Inhalt der Datei* **master** *in*
+**/refs/heads** *auf den Hash-Wert des obersten Commits unseres
+Feature-Branches. Es kann kein Konflikt auftreten und es muss auch kein*
+**Merge-Commit** *erzeugt werden. Damit ist der Merge bereits
+abgeschlossen und der Branch vollständig zurückgeführt. Das ist der
+einfachste Fall eines Merges.*
+
+» Hm, Lars, ich bin mir nicht sicher, ob ich das richtig verstehe.
 Können wir das kurz am Whiteboard durchsprechen?
 
-[Lars] » *Gute Idee, wir verwenden das sowieso viel zu selten.*
-[Lars] *Also pass auf. Nehmen wir einfach mal an, wir hätten den Merge noch nicht gemacht. Das sah ja ungefähr so aus, richtig?*
+| » *Gute Idee, wir verwenden das sowieso viel zu selten.*
+| *Also pass auf. Nehmen wir einfach mal an, wir hätten den Merge noch
+  nicht gemacht.
+  Das sah ja ungefähr so aus, richtig?*
 
 |image6|
 
-[Lars] » *Jetzt nehmen wir weiterhin an, wir hätten keinen Commit auf dem master gemacht und hätten folglich auch keinen Merge-Konflikt beim Merge gehabt.*
-
-[Lars] *Alles was Git jetzt machen muss ist den Branch-Zeiger auf den neuesten Commit in meinem Branch zu setzen. Damit sind alle Commits aus dem Branch auch auf dem master verfügbar.*
+| » *Jetzt nehmen wir weiterhin an, wir hätten keinen Commit auf dem
+  master gemacht und hätten folglich auch keinen Merge-Konflikt beim
+  Merge gehabt.*
+| *Alles was Git jetzt machen muss ist den Branch-Zeiger auf den
+  neuesten Commit in meinem Branch zu setzen. Damit sind alle Commits
+  aus dem Branch auch auf dem master verfügbar.*
 
 |image7|
 
-Rebase
-^^^^^^
+3.5.4. Rebase
+^^^^^^^^^^^^^
 
-[Karl]» Danke, Lars, ich glaube, Merges hab ich verstanden. Es ist wirklich
+» Danke, Lars, ich glaube, Merges hab ich verstanden. Es ist wirklich
 einfacher als gedacht.
 
+» *Ja, nicht wahr?*
 
-[Karl]» Ich habe aber auch gelesen, dass es in Git mehrere Möglichkeiten gibt,
+» Ich habe aber auch gelesen, dass es in Git mehrere Möglichkeiten gibt,
 Branches zu zusammenzubringen. Was war das? Rebase?
 
-[Lars] » *Ah, davon hast Du also auch bereits gehört. Es scheint schwierig, die Konzepte zu vestehen, vor allem da auf den ersten Blick Merge und Rebase ein recht ähnliches Ziel verfolgen – das Zusammenbringen von mindestens zwei Branches.*
+| » *Ah, davon hast Du also auch bereits gehört.
+  Es scheint schwierig, die Konzepte zu vestehen, vor allem da auf den
+  ersten Blick Merge und Rebase ein recht ähnliches Ziel verfolgen – das
+  Zusammenbringen von mindestens zwei Branches.*
+| *Die scheinbare Komplexität liegt aber definitiv auch an den
+  kryptischen Bescheibungen, die für Rebase im Web zu finden sind.*
 
-[Lars]*Die scheinbare Komplexität liegt aber definitiv auch an den kryptischen Bescheibungen, die für Rebase im Web zu finden sind.*
+**Forward-port local commits to the updated upstream head** aus Git
+Rebase MAN Page
 
-- **Forward-port local commits to the updated upstream head** aus Git Rebase MAN Page
-- **Rebase is recreating your work of one branch onto another.** von www.fiveminutes.eu
+**Rebase is recreating your work of one branch onto another.** von
+www.fiveminutes.eu
 
-[Lars] » *Meine einfache Erklärung für Rebase ist diese: "Hätte ich meinen Branch doch nicht gestern sondern heute gezogen".*
-*Karl, nehmen wir an, Ich erzeuge einen neuen Feature-Branch vom master weg und arbeite auf diesem. Währenddessen arbeitest Du auf dem master weiter und machst einige wichtige Änderungen, die die Performance der Anwendung ernorm verbessern.*
+| » *Meine einfache Erklärung für Rebase ist diese:
+  “Hätte ich meinen Branch doch nicht gestern sondern heute gezogen”.*
+| *Karl, nehmen wir an, Ich erzeuge einen neuen Feature-Branch vom
+  master weg und arbeite auf diesem. Währenddessen arbeitest Du auf dem
+  master weiter und machst einige wichtige Änderungen, die die
+  Performance der Anwendung ernorm verbessern.*
 
 |image8|
 
-[Lars] » *Am nächsten Morgen denke ich mir, dass die Änderungen von dir wirklich praktisch wären. Eine Möglichkeit wäre zu mergen. Eigentlich denke ich mir aber – “Hätte ich den Feature Branch doch nicht schon gestern gezogen sondern erst heute“.* *In diesem Fällen ist ein Rebase das Tool der Wahl.*
+| » *Am nächsten Morgen denke ich mir, dass die Änderungen von dir
+  wirklich praktisch wären. Eine Möglichkeit wäre zu mergen. Eigentlich
+  denke ich mir aber – “Hätte ich den Feature Branch doch nicht schon
+  gestern gezogen sondern erst heute“.*
+| *In diesem Fällen ist ein Rebase das Tool der Wahl.*
 
 |image9|
 
-[Lars]» *Wenn ich ein* **Rebase** *auf meinen Feature-Branch gegen den master
+» *Wenn ich ein* **Rebase** *auf meinen Feature-Branch gegen den master
 mache, dann nimmt Git meine beiden orangen Commits zur Seite und holt
 die Commits vom master auf meinen Feature-Branch. Die beiden Branches
 sehen also kurzzeitig gleich aus.
@@ -1251,251 +1684,365 @@ dem Rebase.*
 
 |image10|
 
-[Lars]» *Zugegeben, das war alles sehr theoretisch, höchste Zeit dass wir wieder zurück an deinen Schreibtisch gehen und das Ganze mal praktisch ausprobieren.* *Ich habe noch einen weiteren Task, den wir zusammen bearbeiten können, das Feature-4811.*
+| » *Zugegeben, das war alles sehr theoretisch, höchste Zeit dass wir
+  wieder zurück an deinen Schreibtisch gehen und das Ganze mal praktisch
+  ausprobieren.*
+| *Ich habe noch einen weiteren Task, den wir zusammen bearbeiten
+  können, das Feature-4811.*
 
-.. admonition:: Übung
+Übung
 
-  -  Sie sollen das Feature 4811 implementieren.
-  -  Erzeugen Sie einen neuen Feature-Branch *feature-4811*
-  -  Erzeugen Sie eine neue Datei feature-4811.txt auf dem Branch mit beliebigem Inhalt.
-  -  Erzeugen Sie einen Commit mit der Message *feature-4811 – done*
-  -  Gehen Sie zurück auf den master
-  -  Erzeugen Sie eine Datei master.txt mit beliebigem Inhalt
-  -  Erzeugen Sie auch hier einen Commit
-  -  Gehen Sie zurück auf Ihren Branch und führen Sie die beiden Branches zusammen
+-  Sie sollen das Feature 4811 implementieren.
 
-[Lars]» *Ok, legen wir los. Zunächst würde ich vorschlagen, wir erzeugen einen neuen Feature-Branch.*
+-  Erzeugen Sie einen neuen Feature-Branch *feature-4811*
 
-.. code-block:: bash
+-  Erzeugen Sie eine neue Datei feature-4811.txt auf dem Branch mit
+       beliebigem Inhalt.
 
-  git checkout -b feature-4811
-  Switched to a new branch 'feature-4811'
+-  Erzeugen Sie einen Commit mit der Message *feature-4811 – done*
 
+-  Gehen Sie zurück auf den master
 
-[Lars] » *Dann implementieren wir das Feature. Keine Angst, es ist ganz einfach.*
+-  Erzeugen Sie eine Datei master.txt mit beliebigem Inhalt
 
-.. code-block:: bash
+-  Erzeugen Sie auch hier einen Commit
 
-  echo 'done' >> feature-4811.txt
-  git add feature-4811.txt
-  git commit -m "feature-4811 - done"
-  [feature-4811 a499d61] feature-4811 - done
-  1 file changed, 1 insertion(+)
-  create mode 100644 feature-4811.txt
+-  Gehen Sie zurück auf Ihren Branch und führen Sie die beiden Branches
+       zusammen
 
+» *Ok, legen wir los. Zunächst würde ich vorschlagen, wir erzeugen einen
+neuen Feature-Branch.*
 
-[Lars] » *Anschließend gehen wir zurück auf den master. Denk dran, was wir machen möchten ist ein Update vom Feature-Branch gegen den Master. Um das machen zu können müssen wir auf dem master einige Commits machen.*
+git checkout -b feature-4811
 
-.. Important::   
+Switched to a new branch 'feature-4811'
 
-  Oft brauchen wir Commits um experimentieren zu können. Ein einfaches Skript ist beispielsweise folgendes und kann mit “git makeCommits <Anzahl Commits>” verwendet werden. Legen Sie dieses Skript am besten irgendwo in Ihrem Pfad ab und nennen es “git-makeCommits”. Git sucht im Pfad nach Skripten die dem Muster “git-<Skriptname>” folgen. All diese Skripte können dann automatisch “git <skriptName>” aufgerufen werden und sehen wie native Git-Kommandos aus. Für das **makeCommits**-Skript wäre der Aufruf also beispielsweise “git makeCommits 4″.   |
+» *Dann implementieren wir das Feature. Keine Angst, es ist ganz
+einfach.*
 
-  .. code-block:: bash
-  
-    #!/bin/bash
-    for ((i=1;i<=$1;i++))
-      do
-        echo "commit $i" >> file$i.txt
-        git add file$i.txt
+echo 'done' &gt;&gt; feature-4811.txt
 
-        git commit -am "committing file $i"
+git add feature-4811.txt
 
-      done
+git commit -m "feature-4811 - done"
 
-[Lars]» *Wir wechseln also zurück auf den Master.*
+[feature-4811 a499d61] feature-4811 - done
 
-.. code-block:: bash
+1 file changed, 1 insertion(+)
 
-  git checkout master
-  Switched to branch 'master'
-  makeCommits 5
-  [master 47bbeff] committing file 1
-  1 file changed, 1 insertion(+)
-  create mode 100644 file1.txt
-  [master 4242232] committing file 2
-  1 file changed, 1 insertion(+)
-  create mode 100644 file2.txt
-  [master 7c31a49] committing file 3
-  1 file changed, 1 insertion(+)
-  create mode 100644 file3.txt
-  [master f6137c2] committing file 4
-  1 file changed, 1 insertion(+)
-  create mode 100644 file4.txt
-  [master af4c0d0] committing file 5
-  1 file changed, 1 insertion(+)
-  create mode 100644 file5.txt
-  #show log
-  git log --oneline
-  af4c0d0 committing file 5
-  f6137c2 committing file 4
-  7c31a49 committing file 3
-  4242232 committing file 2
-  47bbeff committing file 1
-  bb2d3b2 merged fb-4711
-  817e460 Konflikt
-  bebc4db Adjusted Readme
-  ad261f2 Initial commit
+create mode 100644 feature-4811.txt
 
-[Lars] » *Wir haben jetzt zwei Möglichkeiten, die beiden Branches zusammenzubringen.
+» *Anschließend gehen wir zurück auf den master. Denk dran, was wir
+machen möchten ist ein Update vom Feature-Branch gegen den Master. Um
+das machen zu können müssen wir auf dem master einige Commits machen.*
+
++-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Important   | Oft brauchen wir Commits um experimentieren zu können. Ein einfaches Skript ist beispielsweise folgendes und kann mit “git makeCommits <Anzahl Commits>” verwendet werden. Legen Sie dieses Skript am besten irgendwo in Ihrem Pfad ab und nennen es “git-makeCommits”. Git sucht im Pfad nach Skripten die dem Muster “git-<Skriptname>” folgen. All diese Skripte können dann automatisch “git <skriptName>” aufgerufen werden und sehen wie native Git-Kommandos aus. Für das **makeCommits**-Skript wäre der Aufruf also beispielsweise “git makeCommits 4″.   |
++-------------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+#!/bin/bash
+
+for ((i=1;i&lt;=$1;i++))
+
+do
+
+echo "commit $i" &gt;&gt; file$i.txt
+
+git add file$i.txt
+
+git commit -am "committing file $i"
+
+done
+
+» *Wir wechseln also zurück auf den Master.*
+
+git checkout master
+
+Switched to branch 'master'
+
+makeCommits 5
+
+[master 47bbeff] committing file 1
+
+1 file changed, 1 insertion(+)
+
+create mode 100644 file1.txt
+
+[master 4242232] committing file 2
+
+1 file changed, 1 insertion(+)
+
+create mode 100644 file2.txt
+
+[master 7c31a49] committing file 3
+
+1 file changed, 1 insertion(+)
+
+create mode 100644 file3.txt
+
+[master f6137c2] committing file 4
+
+1 file changed, 1 insertion(+)
+
+create mode 100644 file4.txt
+
+[master af4c0d0] committing file 5
+
+1 file changed, 1 insertion(+)
+
+create mode 100644 file5.txt
+
+#show log
+
+git log --oneline
+
+af4c0d0 committing file 5
+
+f6137c2 committing file 4
+
+7c31a49 committing file 3
+
+4242232 committing file 2
+
+47bbeff committing file 1
+
+bb2d3b2 merged fb-4711
+
+817e460 Konflikt
+
+bebc4db Adjusted Readme
+
+ad261f2 Initial commit
+
+» *Wir haben jetzt zwei Möglichkeiten, die beiden Branches
+zusammenzubringen.
 Ein Merge würde so aussehen.*
 
-.. code-block:: bash
+git checkout feature-4811
 
-  git checkout feature-4811
-  Switched to branch 'feature-4811'
-  git merge master
+Switched to branch 'feature-4811'
 
-  Merge made by the 'recursive' strategy.
-  file1.txt \| 1 +
-  file2.txt \| 1 +
-  file3.txt \| 1 +
-  file4.txt \| 1 +
-  file5.txt \| 1 +
+git merge master
 
-  5 files changed, 5 insertions(+)
-  create mode 100644 file1.txt
-  create mode 100644 file2.txt
-  create mode 100644 file3.txt
-  create mode 100644 file4.txt
-  create mode 100644 file5.txt
+Merge made by the 'recursive' strategy.
 
-[Lars] » *Das Problem ist, wieder ist ein Merge-Commit entstanden. Wenn wir jedesmal einen Merge-Commit erzeugen, wenn wir ein Update gegen den master-Branch machen ist unsere Historie bald nicht mehr zu lesen.*
+file1.txt \| 1 +
 
-.. code-block:: bash
+file2.txt \| 1 +
 
-  git cat-file -p HEAD
-  tree 6e82111762c37110f5c8a979164624c9a17c5ea7
-  parent a499d6178cd0115fe92aaa169f708578fe0e10db <b>(1)</b>
-  parent af4c0d0f1bccb91fa59eae43a5323299ad47a776 <b>(2)</b>
-  author dilgerm <martin@effectivetrainings.de> 1389898629 +0100
-  committer dilgerm <martin@effectivetrainings.de> 1389898629 +0100
-  Merge branch 'master' into feature-4811
+file3.txt \| 1 +
 
-  1. MASTER Branch
-  2. FEATURE-Branch
+file4.txt \| 1 +
 
-[Lars] » *Um die Historie sauber zu halten machen wir hier im Team alle Updates auf unseren Branches von entfernten Repositories grundsätzlich über Rebase und nicht über Merges.*
+file5.txt \| 1 +
 
-.. Tip::   
+5 files changed, 5 insertions(+)
 
-  Als Faustregel gilt: Updates auf dem Branch auf dem ich gerade arbeite mache ich über Rebase, alles andere über Merge.   
+create mode 100644 file1.txt
 
-[Lars] » *Am besten, wir gehen nochmal einen Schritt zurück und tun so, als ob
+create mode 100644 file2.txt
+
+create mode 100644 file3.txt
+
+create mode 100644 file4.txt
+
+create mode 100644 file5.txt
+
+» *Das Problem ist, wieder ist ein Merge-Commit entstanden. Wenn wir
+jedesmal einen Merge-Commit erzeugen, wenn wir ein Update gegen den
+master-Branch machen ist unsere Historie bald nicht mehr zu lesen.*
+
+git cat-file -p HEAD
+
+tree 6e82111762c37110f5c8a979164624c9a17c5ea7
+
+parent a499d6178cd0115fe92aaa169f708578fe0e10db <b>(1)</b>
+
+parent af4c0d0f1bccb91fa59eae43a5323299ad47a776 <b>(2)</b>
+
+author dilgerm &lt;martin@effectivetrainings.de&gt; 1389898629 +0100
+
+committer dilgerm &lt;martin@effectivetrainings.de&gt; 1389898629 +0100
+
+Merge branch 'master' into feature-4811
+
+1. MASTER Branch
+
+2. FEATURE-Branch
+
+» *Um die Historie sauber zu halten machen wir hier im Team alle Updates
+auf unseren Branches von entfernten Repositories grundsätzlich über
+Rebase und nicht über Merges.*
+
++-------+--------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Als Faustregel gilt: Updates auf dem Branch auf dem ich gerade arbeite mache ich über Rebase, alles andere über Merge.   |
++-------+--------------------------------------------------------------------------------------------------------------------------+
+
+» *Am besten, wir gehen nochmal einen Schritt zurück und tun so, als ob
 wir den Merge nicht schon gemacht hätten.*
 
-.. Tip::   
++-------+---------------------------------------------------------------------------+
+| Tip   | Git erlaubt es, beliebig weit in der Zeit zurückzureisen mit **reset**.   |
++-------+---------------------------------------------------------------------------+
 
-  Git erlaubt es, beliebig weit in der Zeit zurückzureisen mit **reset**.
+git log --oneline
 
+1e2f263 Merge branch 'master' into feature-4811 <b>(1)</b>
 
-.. code-block:: bash
+af4c0d0 committing file 5 <b>(2)</b>
 
-  git log --oneline
-  1e2f263 Merge branch 'master' into feature-4811 <b>(1)</b>
-  af4c0d0 committing file 5 <b>(2)</b>
-  f6137c2 committing file 4
-  7c31a49 committing file 3
-  4242232 committing file 2
-  47bbeff committing file 1
-  a499d61 feature-4811 - done <b>(3)</b>
-  bb2d3b2 merged fb-4711
-  817e460 Konflikt
-  bebc4db Adjusted Readme
-  ad261f2 Initial commit
+f6137c2 committing file 4
 
-  #reset merge commit
-  git reset --hard HEAD~1 <b>(4)</b>
-  HEAD is now at a499d61 feature-4811 - done
-  #log
-  git log --oneline
-  a499d61 feature-4811 - done <b>(5)</b>
-  bb2d3b2 merged fb-4711
-  817e460 Konflikt
-  bebc4db Adjusted Readme
-  ad261f2 Initial commit
+7c31a49 committing file 3
 
-  1. Der Merge-Commit vereint die beiden Branches
-  2. Der oberste Commit vom master, der gemerged wurde
-  3. Der oberste Commit auf dem Feature Branch ist viel weiter unten.
-  4. Wir setzen den Commit-Zeiger des Branches einen Commit (HEAD~1) vom
+4242232 committing file 2
+
+47bbeff committing file 1
+
+a499d61 feature-4811 - done <b>(3)</b>
+
+bb2d3b2 merged fb-4711
+
+817e460 Konflikt
+
+bebc4db Adjusted Readme
+
+ad261f2 Initial commit
+
+#reset merge commit
+
+git reset --hard HEAD~1 <b>(4)</b>
+
+HEAD is now at a499d61 feature-4811 - done
+
+#log
+
+git log --oneline
+
+a499d61 feature-4811 - done <b>(5)</b>
+
+bb2d3b2 merged fb-4711
+
+817e460 Konflikt
+
+bebc4db Adjusted Readme
+
+ad261f2 Initial commit
+
+1. Der Merge-Commit vereint die beiden Branches
+
+2. Der oberste Commit vom master, der gemerged wurde
+
+3. Der oberste Commit auf dem Feature Branch ist viel weiter unten.
+
+4. Wir setzen den Commit-Zeiger des Branches einen Commit (HEAD~1) vom
        obersten Commit zurück.
-  5. Der Merge ist Rückgängig gemacht.
 
-[Lars]» *Karl, nochmal, mit Reset beschäftigen wir uns später. Wir haben das
+5. Der Merge ist Rückgängig gemacht.
+
+» *Karl, nochmal, mit Reset beschäftigen wir uns später. Wir haben das
 Update vom master auf dem Feature-Branch jetzt rückgängig gemacht.*
 
-[Karl]» Ja, unglaublich wie einfach das ging.
+» Ja, unglaublich wie einfach das ging.
 
-[Lars]» *Das kannst du so allerdings nur machen, wenn deine Arbeit noch nicht
+» *Das kannst du so allerdings nur machen, wenn deine Arbeit noch nicht
 auf ein zentrales Repository gepusht wurde.*
 
-.. Tip::   
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| Tip   | Grundsätzlich gilt – Sie dürfen nur Ihre eigene Geschichte verändern, nicht die von anderen. Sobald Sie einen Commit veröffentlicht haben sollten Sie nicht mehr unbedacht mit **reset** oder **rebase** arbeiten.   |
++-------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-  Grundsätzlich gilt – Sie dürfen nur Ihre eigene Geschichte verändern, nicht die von anderen. Sobald Sie einen Commit veröffentlicht haben sollten Sie nicht mehr unbedacht mit **reset** oder **rebase** arbeiten.   
+| » *Solange du lokal arbeitest kannst du aber fast alles machen.*
+| *Ok, jetzt versuchen wir das Update mit rebase.*
 
-[Lars]» *Solange du lokal arbeitest kannst du aber fast alles machen.* *Ok, jetzt versuchen wir das Update mit rebase.*
+git rebase master
 
-.. code-block:: bash
+First, rewinding head to replay your work on top of it...
 
-  git rebase master
-  First, rewinding head to replay your work on top of it...
-  Applying: feature-4811 - done
+Applying: feature-4811 - done
 
-[Lars]» *Karl, schau dir das an, hier siehst du genau, was ein rebase
+» *Karl, schau dir das an, hier siehst du genau, was ein rebase
 eigentlich macht.
 Zunächst sagt git “rewinding HEAD”. Das bedeutet, Git setzt den Zeiger
 auf den obersten Commit des Branches, gegen den der Rebase gemacht wird.
 In diesem Fall der master.
 Soweit verstanden?*
 
-[Kar]» Ja, ich denke, das ist klar.
+» Ja, ich denke, das ist klar.
 
-[Lars]» *Die beiden Branches sind dann also für einen ganz kurzen Moment
+» *Die beiden Branches sind dann also für einen ganz kurzen Moment
 identisch. Dann sagt Git “Applying: <Commit>”. Die Commits, die du also
 auf dem Feature-Branch gemacht hast werden auf den neuen Stand vom
 master wieder aufgespielt.*
 
-[Karl]» Ziemlich genial.
+» Ziemlich genial.
 
-[Lars]» *Ja nicht wahr? Am besten, wir schauen uns kurz an, was genau jetzt passiert ist.*
+» *Ja nicht wahr? Am besten, wir schauen uns kurz an, was genau jetzt
+passiert ist.*
 
-.. code-block:: bash
+git log --oneline
 
-  git log --oneline
-  f1aa978 feature-4811 - done
-  af4c0d0 committing file 5
-  f6137c2 committing file 4
-  7c31a49 committing file 3
-  4242232 committing file 2
-  47bbeff committing file 1
-  bb2d3b2 merged fb-4711
-  817e460 Konflikt
-  bebc4db Adjusted Readme
-  ad261f2 Initial commit
+f1aa978 feature-4811 - done
 
-[Lars]» *Siehst du? Wir haben eine saubere Historie. Es gibt aber ein Problem.
+af4c0d0 committing file 5
+
+f6137c2 committing file 4
+
+7c31a49 committing file 3
+
+4242232 committing file 2
+
+47bbeff committing file 1
+
+bb2d3b2 merged fb-4711
+
+817e460 Konflikt
+
+bebc4db Adjusted Readme
+
+ad261f2 Initial commit
+
+» *Siehst du? Wir haben eine saubere Historie. Es gibt aber ein Problem.
 Fällt dir etwas auf?*
 
-[Karl]» Nein, für mich sieht das ziemlich gut aus.
+» Nein, für mich sieht das ziemlich gut aus.
 
-[Lars]» *Wirf einen Blick auf den Hash-Wert des Commits “feature-4811″, und
+» *Wirf einen Blick auf den Hash-Wert des Commits “feature-4811″, und
 vergleiche den mit dem Hash-Wert den der Commit zuvor hatte.*
 
-[Karl]» Die unterscheiden sich?
+» Die unterscheiden sich?
 
-[Lars]» *Genau, vorher hatte der Commit den Hash-Wert* **a499d61** *, jetzt
-hat der den Wert* **f1aa978** *. Durch den Rebase verändert sich alles.*
+» *Genau, vorher hatte der Commit den Hash-Wert* **a499d61**\ *, jetzt
+hat der den Wert* **f1aa978**\ *. Durch den Rebase verändert sich
+alles.*
 
-[Karl]» Ist das ein Problem?
+» Ist das ein Problem?
 
-[Lars]» *Das kommt darauf an, Karl. Stell dir vor, der Commit wäre bereits veröffentlicht, und ein anderer Entwickler im Team hat bereits ein Update gemacht. Stell dir weiterhin vor, du machst jetzt bei dir lokal ein rebase gegen einen anderen Branch. Der Hash-Wert des Commit verändert sich hierdurch. Jetzt habt ihr zwei Commits mit identischem Inhalt aber unterschiedlichen Hash-Werten. Git würde versuchen, diese beiden Commits zu mergen. Es könnte funktionieren, muss aber nicht. Dies ist meiner Erfahrung nach die größte Fehlerquelle bei der Arbeit mit Git. Ein rebase an der falschen Stelle kann zu den kuriosesten Fehlern führen und glaub mir, ich habe schon Entwickler weinen sehen, weil Sie nicht mehr weiter wussten.*
+| » *Das kommt darauf an, Karl. Stell dir vor, der Commit wäre bereits
+  veröffentlicht, und ein anderer Entwickler im Team hat bereits ein
+  Update gemacht. Stell dir weiterhin vor, du machst jetzt bei dir lokal
+  ein rebase gegen einen anderen Branch. Der Hash-Wert des Commit
+  verändert sich hierdurch. Jetzt habt ihr zwei Commits mit identischem
+  Inhalt aber unterschiedlichen Hash-Werten. Git würde versuchen, diese
+  beiden Commits zu mergen. Es könnte funktionieren, muss aber nicht.
+  Dies ist meiner Erfahrung nach die größte Fehlerquelle bei der Arbeit
+  mit Git. Ein rebase an der falschen Stelle kann zu den kuriosesten
+  Fehlern führen und glaub mir, ich habe schon Entwickler weinen sehen,
+  weil Sie nicht mehr weiter wussten.*
+| *Hinzukommt, dass alles in Git sehr einfach wieder rückgängig gemacht
+  werden kann. Das hast du vorher bereits an dem Merge gesehen. Das gilt
+  für alles bis auf Rebase. Ein Rebase ist nicht mehr ohne weiteres
+  Rückgängig zu machen, da du die commits veränderst. Wir haben hier im
+  Team festgelegt, dass rebase die Strategie der Wahl ist, wenn es um
+  Updates von entfernten Repositories geht. Aber bitte immer mit
+  Bedacht. Falls Du dir nicht sicher bist, frag lieber einen Entwickler,
+  denn die haben genau dasselbe wie Du durchgemacht.*
 
-[Lars] *Hinzukommt, dass alles in Git sehr einfach wieder rückgängig gemacht werden kann. Das hast du vorher bereits an dem Merge gesehen. Das gilt für alles bis auf Rebase. Ein Rebase ist nicht mehr ohne Weiteres rückgängig zu machen, da du die commits veränderst. Wir haben hier im Team festgelegt, dass rebase die Strategie der Wahl ist, wenn es um Updates von entfernten Repositories geht. Aber bitte immer mit Bedacht. Falls Du dir nicht sicher bist, frag lieber einen Entwickler, denn die haben genau dasselbe wie Du durchgemacht.*
+» *Wo wir gerade beim Thema update von entfernten Repositories sind.
+Vielleicht zeig ich dir einfach mal kurz, was alles möglich ist.*
 
-[Lars]» *Wo wir gerade beim Thema update von entfernten Repositories sind. Vielleicht zeig ich dir einfach mal kurz, was alles möglich ist.*
-
-Remotes
-~~~~~~~
+3.6. Remotes
+~~~~~~~~~~~~
 
 » *Wir hatten ja bereits kurz über Remote-Repositories gesprochen. Du
 erinnerst dich an die config-Datei in deinem .git-Verzeichnis?*
@@ -1542,7 +2089,7 @@ machst du einfach folgendes.*
 
 #bsp: git remote add backup ../backup.git
 
-git remote add <Name> <URL>
+git remote add &lt;Name&gt; &lt;URL&gt;
 
 » Ok, soweit verstanden. Kannst du mir auch erklären, was das bedeutet?
 
@@ -1559,7 +2106,7 @@ vom Repository “origin” updaten.*
 gesprochen, mit denen Du mit entfernten Repositories kommunizieren
 kannst.*
 
-Fetch
+3.6.1. Fetch
 ^^^^^^^^^^^^
 
 » *Ein Fetch ist die einfachste Remote-Operation in Git. Es bedeutet
@@ -1622,7 +2169,7 @@ Unpacking objects: 100% (3/3), done.
 
 From https://github.com/dilgerma/effective-git-workshop
 
-ad261f2..b93516d master -> origin/master <b>(2)</b>
+ad261f2..b93516d master -&gt; origin/master <b>(2)</b>
 
 1. Git zählt die Objekte, die remote- aber noch nicht lokal verfügbar
        sind.
@@ -1696,7 +2243,7 @@ machen möchte?
   Operationen für ein Update gegen das entfernte Repository ziemlicher
   Overhead ist. Deswegen gibt es das* **pull**\ *-Kommando.*
 
-Pull
+3.6.2. Pull
 ^^^^^^^^^^^
 
 | » *Das* **pull**\ *-Kommando verwenden wir generell, um Updates von
@@ -1711,7 +2258,7 @@ git pull origin master <b>(1)</b>
 
 From https://github.com/dilgerma/effective-git-workshop
 
-\* branch master -> FETCH\_HEAD
+\* branch master -&gt; FETCH\_HEAD
 
 Already up-to-date.
 
@@ -2008,7 +2555,7 @@ Wir haben jetzt schon zwei Features fertig implementiert. Karl, höchste
 Zeit, dass Du deine Sachen auch den anderen Entwicklern zur Verfügung
 stellst. Die Operation hierfür ist* **push**\ *.*
 
-Push
+3.7. Push
 ~~~~~~~~~
 
 » *Bevor wir lange reden, würde ich vorschlagen, du pushst Deine Commits
@@ -2028,7 +2575,7 @@ Total 21 (delta 6), reused 0 (delta 0)
 
 To https://github.com/dilgerma/effective-git-workshop
 
-b93516d..6e5a1d7 master -> master
+b93516d..6e5a1d7 master -&gt; master
 
 » *Ab jetzt stehen deine Commits allen Entwicklern zur Verfügung.
 Es gibt aber einige Besonderheiten zu beachen beim Push. Zunächst
@@ -2164,7 +2711,7 @@ Total 28 (delta 7), reused 0 (delta 0)
 
 remote: error: refusing to update checked out branch: refs/heads/master
 
-! [remote rejected] master -> master (branch is currently checked
+! [remote rejected] master -&gt; master (branch is currently checked
 out)
 
 1. Achtung, diesmal ohne –bare
@@ -2217,7 +2764,7 @@ Total 28 (delta 7), reused 0 (delta 0)
 
 To ../testremote.git
 
-\* [new branch] master -> master
+\* [new branch] master -&gt; master
 
 » *Soweit so gut und nichts neues, richtig?*
 
@@ -2291,7 +2838,7 @@ git push test-remote
 
 To ../testremote.git
 
-! [rejected] master -> master (non-fast-forward)
+! [rejected] master -&gt; master (non-fast-forward)
 
 error: failed to push some refs to '../testremote.git'
 
@@ -2311,7 +2858,7 @@ Total 0 (delta 0), reused 0 (delta 0)
 
 To ../testremote.git
 
-+ 6e5a1d7...8b46f14 master -> master (forced update)
++ 6e5a1d7...8b46f14 master -&gt; master (forced update)
 
 » *Ein* **forced-push** *mit der Option* **-f** *überschreibt den
 Commit-Zeiger im Remote-Repository ohne Rücksicht. Es gibt nur ganz
@@ -2333,7 +2880,7 @@ jetzt auch das Remote-Repository überschrieben. Auf den ersten Blick
 gibt es keine Möglichkeit mehr, die fehlenden 3 Commits wieder
 zurückzubekommen, richtig?*
 
-All is Lost – Reflog
+3.8. All is Lost – Reflog
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 » *Keine Sorge Karl, Git hat ein Sicherheitsnetz genau für diese Fälle.
@@ -2427,7 +2974,7 @@ Total 9 (delta 2), reused 0 (delta 0)
 
 To ../testremote.git
 
-8b46f14..6e5a1d7 master -> master
+8b46f14..6e5a1d7 master -&gt; master
 
 » Wow, das ist Klasse, ich kann mir gut vorstellen, dass dieser Tipp
 schon oft für zu Seufzern der Erleichterung geführt hat.
@@ -2436,7 +2983,7 @@ schon oft für zu Seufzern der Erleichterung geführt hat.
 braucht es nicht jeden Tag, aber wenn man es braucht ist man jedesmal
 heilfroh, dass es da ist.*
 
-Best Practices
+3.9. Best Practices
 ~~~~~~~~~~~~~~~~~~~
 
 » *In Ordnung Karl, bist du noch aufnahmefähig?*
@@ -2450,7 +2997,7 @@ einfach im Lauf der Zeit herauskristallisiert haben.*
 
 » Super, ich bin ganz Ohr.
 
-Interactive Rebase
+3.9.1. Interactive Rebase
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Du hast schon gesehen, dass Git dir wirklich viele Möglichkeiten
@@ -2655,7 +3202,7 @@ git log -n 1
 
 Commit: bca4d8a021ef805d1403479ba31bd770eeafb9a3
 
-Author: dilgerm <martin@effectivetrainings.de>
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
 
 Date: (27 minutes ago) 2014-01-17 17:17:18 +0100
 
@@ -2854,7 +3401,7 @@ git checkout -f <b>(2)</b>
 2. git checkout -f geht zurück zum letzten Commit, also dem letzten
        stabilen Stand.
 
-Cherry-Pick
+3.9.2. Cherry-Pick
 ^^^^^^^^^^^^^^^^^^
 
 » *Ein weiteres wichtiges Tool was ich wirklich sehr oft verwende ist*
@@ -3078,7 +3625,7 @@ error: could not apply 3753cdc... committing file 5
 
 hint: after resolving the conflicts, mark the corrected paths
 
-hint: with 'git add <paths>' or 'git rm <paths>'
+hint: with 'git add &lt;paths&gt;' or 'git rm &lt;paths&gt;'
 
 hint: and commit the result with 'git commit'
 
@@ -3154,7 +3701,7 @@ git log 2621a700381577e930e2633a9c06b997018ec832 -n 1
 
 Commit: 2621a700381577e930e2633a9c06b997018ec832
 
-Author: dilgerm <martin@effectivetrainings.de>
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
 
 Date: (43 minutes ago) 2014-01-18 07:43:49 +0100
 
@@ -3216,7 +3763,7 @@ Merge-Konflikt nochmals zu lösen.*
 | Tip   | Merge-Konflikte bei Cherry-Pick ziehen fast immer Konflikte und Probleme nach sich, in diesem Fall sollte ein Merge wenn möglich bevorzugt werden.   |
 +-------+------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-Hooks
+3.10. Hooks
 ~~~~~~~~~~~
 
 » *Warte Karl, bevor du wieder nach Hause fährst, sollten wir uns
@@ -3288,7 +3835,7 @@ Es macht also keinen Sinn, sich darauf zu verlassen.*
 » Aber Lars, du zum Beispiel, du arbeitest auf der Konsole. Mit welchen
 Hooks arbeitest du?
 
-Task-Nummer in jeder Commit-Message
+3.10.1. Task-Nummer in jeder Commit-Message
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Ich habe einige Hooks im Einsatz. Der praktischste kümmert sich
@@ -3303,7 +3850,7 @@ aussehen.*
 
 #Feature
 
-echo "Besseres File-Name Handling" >> file-handling.txt
+echo "Besseres File-Name Handling" &gt;&gt; file-handling.txt
 
 #add
 
@@ -3396,7 +3943,7 @@ task=$(echo $branchName \| cut -f 2 -d '-') <b>(5)</b>
 
 msg="[$task] - $orig\_msg" <b>(6)</b>
 
-echo "$msg" > "$1" <b>(7)</b>
+echo "$msg" &gt; "$1" <b>(7)</b>
 
 else
 
@@ -3463,7 +4010,7 @@ Switched to a new branch 'fb-0815-new-feature'
 
 #Feature
 
-echo "new Feature" >> new-feature.txt
+echo "new Feature" &gt;&gt; new-feature.txt
 
 git add new-feature.txt
 
@@ -3493,7 +4040,7 @@ Tag, ich habe viel erklärt und du hoffentlich viel gelernt.*
 
 » Ja klar, Lars. Das war wirklich Klasse.
 
-Daily Alias
+3.11. Daily Alias
 ~~~~~~~~~~~~~~~~~
 
 » *Eins zeige ich dir vielleicht noch. Ich habe mir im Lauf der Zeit
@@ -3584,7 +4131,7 @@ alias.go checkout <b>(9)</b>
 
 9. Branches wechseln
 
-Git-Extras
+3.11.1. Git-Extras
 ^^^^^^^^^^^^^^^^^^
 
 » *Es gibt ein interessantes Projekt* `*Git
@@ -3592,7 +4139,7 @@ Extras* <https://github.com/visionmedia/git-extras>`__\ *, das einige
 Alias-Definitionen mitbringt, die tagtäglich sehr hilfreich sein
 können.*
 
-Tag 1 endet
+3.12. Tag 1 endet
 ~~~~~~~~~~~~~~~~~
 
 | » *Nachdem wir heute die Grundlagen besprochen haben werden wir uns
@@ -3635,9 +4182,11 @@ Er weiß jetzt, wie man
 
 -  die Historie linearisieren kann (**git rebase**)
 
--  mit entfernten Repositories kommuniziert (**git remote, git push, git fetch, git pull**)
+-  mit entfernten Repositories kommuniziert (**git remote, git push, git
+       fetch, git pull**)
 
--  einzelne Commits zwischen Branches austauschen kann (**git cherry-pick**)
+-  einzelne Commits zwischen Branches austauschen kann (**git
+       cherry-pick**)
 
 -  verlorene Commits wiederfindet (**git reflog**)
 
@@ -3653,7 +4202,7 @@ gespannt auf den nächsten Tag im Team.
   werden kann?
 | Könnten Sie jeden dieser Befehle anwenden?
 
-Tag 2
+4. Tag 2
 --------
 
 Karl hat einen entspannten Abend mit seiner Familie verbracht und
@@ -3680,7 +4229,7 @@ erklären, was sich dahinter verbirgt.
 
 » *Kein Problem, denn genau das erkläre ich dir jetzt.*
 
-Git Branching Modelle
+4.1. Git Branching Modelle
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 » *Zunächst stellt stellt sich jeder Entwickler normalerweise die Frage,
@@ -3770,7 +4319,7 @@ in der Subversion-Welt eigentlich kein standardisiertes Modell. Die
 meisten Entwickler wissen einfach intuitiv, was getan werden muss um das
 Release auszurollen.
 
-Git Flow
+4.2. Git Flow
 ~~~~~~~~~~~~~
 
 Im Jahr 2010 wurde die Idee des bis heute wahrscheinlich am meisten in
@@ -3802,7 +4351,7 @@ nichts anderes als* **“Einmal richtig nachdenken, aufschreiben und dann
 machen”**\ *. Das Modell macht Sinn und sorgt für produktives und
 strukturiertes arbeiten.*
 
-Das Arbeiten auf Feature Branches
+4.2.1. Das Arbeiten auf Feature Branches
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Ich hatte dir schon erklärt, dass wir alle neuen Features auf
@@ -4092,7 +4641,7 @@ git show fb-4711 <b>(1)</b>
 
 Commit: 730eac42835edcce3a431cca4dafc0ad275994c5 <b>(2)</b>
 
-Author: Markus <Markus@effectivetrainings.de>
+Author: Markus &lt;Markus@effectivetrainings.de&gt;
 
 Date: (20 hours ago) 2014-02-08 17:18:24 +0100
 
@@ -4164,7 +4713,7 @@ zu sehen, wann das Feature zurückgeführt wurde.*
 
 git push --tags origin master
 
-\* [new tag] fb-4711 -> fb-4711
+\* [new tag] fb-4711 -&gt; fb-4711
 
 » *Es ist wichtig zu verstehen, dass wir hier nur mit einem
 leichtgewichtigen Tag arbeiten. Diese Art von Tag bietet im Gegensatz zu
@@ -4203,7 +4752,7 @@ git push --tags origin master
 » *Genau, sehr gut Karl. Damit schauen wir uns an, wie wir* **Releases**
 *machen.*
 
-Release it!
+4.2.2. Release it!
 ^^^^^^^^^^^^^^^^^^
 
 » *Releases werden bei uns auf einem eigenen Branch vorbereitet. Wenn es
@@ -4314,7 +4863,7 @@ Total 3 (delta 1), reused 0 (delta 0)
 
 To ../Projekt.git
 
-\* [new tag] release-1.0 -> release-1.0
+\* [new tag] release-1.0 -&gt; release-1.0
 
 1. Erstellung des annotierten Tags – git tag -a -m <message> <tag name>
 
@@ -4349,13 +4898,13 @@ git show release-1.0 <b>(1)</b>
 
 tag release-1.0 <b>(2)</b>
 
-Tagger: Markus <Markus@effectivetrainings.de> <b>(3)</b>
+Tagger: Markus &lt;Markus@effectivetrainings.de&gt; <b>(3)</b>
 
 release-1.0
 
 Commit: 8708402f583612dea23cef5d8d32711da93a26cb <b>(4)</b>
 
-Author: Markus <Markus@effectivetrainings.de>
+Author: Markus &lt;Markus@effectivetrainings.de&gt;
 
 Date: (13 minutes ago) 2014-02-09 15:09:54 +0100
 
@@ -4369,7 +4918,7 @@ Subject: bugfix 4711
 
 4. Commit auf den sich der Tag referenziert.
 
-Fehler gibt es immer – Bugfixes
+4.2.3. Fehler gibt es immer – Bugfixes
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » Für mich klingt das alles ziemlich logisch.
@@ -4430,9 +4979,9 @@ Total 4 (delta 1), reused 0 (delta 0)
 
 To https://github.com/dilgerma/effective-git-workshop
 
-8708402..eeef873 release-1.0 -> release-1.0
+8708402..eeef873 release-1.0 -&gt; release-1.0
 
-\* [new tag] fix-0815 -> fix-0815
+\* [new tag] fix-0815 -&gt; fix-0815
 
 Übung
 
@@ -4457,7 +5006,7 @@ git cherry-pick fix-0815 <b>(1)</b>
 
 1. Cherry-Pick funktioniert auch direkt mit Tag-Referenzen.
 
-Next-Features – wir denken bereits an morgen
+4.2.4. Next-Features – wir denken bereits an morgen
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Eine Sache fehlt noch. Manchmal gibt es Features, die “vorsorglich”
@@ -4530,7 +5079,7 @@ wenn nötig neu gezogen werden.*
   beschlossen, dass wir einheitlich arbeiten möchten, deswegen verwenden
   wir Git-Flow manuell.*
 
-Git Flow Tooling
+4.2.5. Git Flow Tooling
 ^^^^^^^^^^^^^^^^^^^^^^^
 
 | » *Das Tooling haben wir nicht selbst entwickelt, sondern es ist*
@@ -4658,7 +5207,7 @@ release
 | *Am besten, du machst einen Commit und wir simulieren, dass wir damit
   das Feature abgeschlossen haben.*
 
-echo "working with git flow is so easy" >> feature.txt
+echo "working with git flow is so easy" &gt;&gt; feature.txt
 
 git add feature.txt
 
@@ -4728,7 +5277,7 @@ git log
 
 Commit: 61c0b63830ddefaee7cdf7c7c224b7ba171f69da
 
-Author: dilgerm <martin@effectivetrainings.de>
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
 
 Date: (5 minutes ago) 2014-02-13 18:11:50 +0100
 
@@ -4736,7 +5285,7 @@ Subject: 4711 - finished
 
 Commit: acafbbce40cdc602b74879135a1ac8e8e239532c
 
-Author: dilgerm <martin@effectivetrainings.de>
+Author: dilgerm &lt;martin@effectivetrainings.de&gt;
 
 Date: (10 minutes ago) 2014-02-13 18:05:54 +0100
 
@@ -4752,7 +5301,7 @@ Schliessen Sie das Feature mit Hilfe von Git-Flow ab.
 
 git flow feature start 4911
 
-echo "feature-4911 - finished" >> 4911.txt
+echo "feature-4911 - finished" &gt;&gt; 4911.txt
 
 git add 4911.txt
 
@@ -4805,7 +5354,7 @@ Hilfe von Git-Flow an.*
 
 git flow
 
-usage: git flow <subcommand>
+usage: git flow &lt;subcommand&gt;
 
 Available subcommands are:
 
@@ -4821,7 +5370,7 @@ support Manage your support branches.
 
 version Shows version information.
 
-Try 'git flow <subcommand> help' for details.
+Try 'git flow &lt;subcommand&gt; help' for details.
 
 » Ok, ich vergesse immer, die Hilfe zu verwenden. Git-Flow bietet also
 separate Kommandos für die einzelnen Branch-Typen?
@@ -4835,7 +5384,7 @@ No release branches exist.
 
 You can start a new release branch:
 
-git flow release start <name> [<base>]
+git flow release start &lt;name&gt; [&lt;base&gt;]
 
 Übung
 
@@ -5008,7 +5557,7 @@ Summary of actions:
 
 git flow
 
-usage: git flow <subcommand>
+usage: git flow &lt;subcommand&gt;
 
 Available subcommands are:
 
@@ -5024,7 +5573,7 @@ support Manage your support branches.
 
 version Shows version information.
 
-Try 'git flow <subcommand> help' for details.
+Try 'git flow &lt;subcommand&gt; help' for details.
 
 » Da der Bug kritisch zu sein schein würde ich auf das *Hotfix*-Kommando
 tippen, richtig?
@@ -5037,7 +5586,7 @@ No hotfix branches exist.
 
 You can start a new hotfix branch:
 
-git flow hotfix start <version> [<base>]
+git flow hotfix start &lt;version&gt; [&lt;base&gt;]
 
 » Habt ihr eine Versionierungstrategie für Hotfix-Branches?
 
@@ -5085,7 +5634,7 @@ release
 
 » Auf diesem Hotfix-Branch lösen wir das Problem.
 
-echo "hotfix" >> hotfix.txt
+echo "hotfix" &gt;&gt; hotfix.txt
 
 git add hotfix.txt
 
@@ -5158,7 +5707,7 @@ No support branches exist.
 
 You can start a new support branch:
 
-git flow support start <name> <base>
+git flow support start &lt;name&gt; &lt;base&gt;
 
 » Kann ich das einfach mal schnell ausprobieren?
 
@@ -5192,7 +5741,7 @@ angegeben habe.
 deine Version normalerweise für immer Supporten, oder zumindest die
 einfache Möglichkeit haben, die Version nochmals zu bauen.*
 
-Tag 2 endet
+4.3. Tag 2 endet
 ~~~~~~~~~~~~~~~~
 
 » *Genug für heute, Karl. Ich hoffe du hast einiges zum Thema Workflows
@@ -5224,7 +5773,7 @@ von Subversion nach* **Git** *migrieren.*
 
 » Danke Lars, bis morgen!
 
-Tag 3 – Die Migration nach Git
+5. Tag 3 – Die Migration nach Git
 ---------------------------------
 
 | Karl hat sich die ganze Rückfahrt nach München Gedanken über Git-Flow
@@ -5449,7 +5998,7 @@ des Repositories macht, deswegen spielen wir jetzt verschiedene
 Szenarien durch. Im ersten Schritt klonen wir uns
 das Repository so wie es ist, ohne jegliche Einstellungen.*
 
-Eine erste Migration
+5.1. Eine erste Migration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Übung
@@ -5533,7 +6082,7 @@ git log -n 3
 Commit: c4c4b8f6bf29619b508e04b76ef358266d62bc7c
 
 Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+&lt;martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21&gt;
 
 Date: (29 minutes ago) 2014-06-21 15:05:22 +0000
 
@@ -5545,7 +6094,7 @@ e7ff270f-ff10-540e-3a92-2a19eadc0c21
 Commit: 6fa61a2a746e5e9523970654ee434a5189232ff4
 
 Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+&lt;martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21&gt;
 
 Date: (30 minutes ago) 2014-06-21 15:05:16 +0000
 
@@ -5557,7 +6106,7 @@ e7ff270f-ff10-540e-3a92-2a19eadc0c21
 Commit: e27e81137830a32df78801e7d2fe85ced6cf002c
 
 Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+&lt;martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21&gt;
 
 Date: (30 minutes ago) 2014-06-21 15:05:10 +0000
 
@@ -5570,7 +6119,7 @@ e7ff270f-ff10-540e-3a92-2a19eadc0c21
 Autor.*
 
 martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+&lt;martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21&gt;
 
 » *Git-SVN berechnet für jedes Subversion Repository eine eindeutige
 UUID. Da Git eine Kombination aus Benutzername und E-Mailadresse
@@ -5614,7 +6163,7 @@ Subversion-Verzeichnis “/branches” auf einen Git-Branch, korrekt?*
 
 » Naja, das wäre schön, aber ist das so ohne weiteres möglich?
 
-Der bessere Weg
+5.2. Der bessere Weg
 ~~~~~~~~~~~~~~~~~~~~
 
 » *Glücklicherweise ja, denn wir haben eine wichtige Option beim Klonen
@@ -5716,7 +6265,7 @@ trunk
 | auch die Subversion-Tags wurden in eigene Git-Branches überführt. Das
   ist doch eigentlich nicht, was wir wollen, oder?
 
-SVN / Git Tags
+5.2.1. SVN / Git Tags
 ^^^^^^^^^^^^^^^^^^^^^
 
 » *Du hast völlig Recht, wir sind auch noch lange nicht fertig. Wir
@@ -5767,7 +6316,7 @@ git log -n 1 release-v1
 Commit: cc79ad67b3947d027b06166076939dd9823194d4
 
 Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+&lt;martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21&gt;
 
 Date: (76 minutes ago) 2014-06-21 14:47:20 +0000
 
@@ -5798,7 +6347,7 @@ TAG\_NAME=${BRANCH#\*/}
 BODY="$(git log -1 --format=format:%B $REF)"
 
 echo "ref=$REF parent=$(git rev-parse $REF^) tagname=$TAG\_NAME
-body=$BODY" >&amp;2
+body=$BODY" &gt;&amp;2
 
 git tag -a -m "$BODY" $TAG\_NAME $REF^ &amp;&amp;\\
 
@@ -5879,7 +6428,7 @@ Tag-Namen aus* **$TAG\_NAME**\ *.*
 » Toll, Lars. Ich bin ehrlich beeindruckt. Das ist relativ simpel, wenn
 man sich einmal die Mühe macht, sich genauer einzulesen.
 
-SVN / Git User Mapping
+5.2.2. SVN / Git User Mapping
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Genau, es ist so wie fast immer in Git, wenn man sich die Mühe macht
@@ -5897,10 +6446,10 @@ werfen am Ende die Duplikate raus.*
 |       | erwartet die Übergabe eine Domain, die in den Benutzer übernommen wird (z.B. myName@<domain>).                                                                                       |
 +-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
-# svn-user-map.sh <url> <filename>
+# svn-user-map.sh &lt;url&gt; &lt;filename&gt;
 
 svn log $1 \| sed -ne "s/^r[^\|]\*\| \\([^ ]\*\\) \|.\*$/\\1 = \\1
-<\\10>/p" \| sort -u > $2
+&lt;\\10&gt;/p" \| sort -u &gt; $2
 
 » *Der Skriptaufruf sieht also so aus.*
 
@@ -5909,14 +6458,14 @@ usermap.map
 
 Was hierbei entsteht ist eine Datei usermap.map mit folgendem Inhalt.
 
-martin.d@gmail.com = martin.d@gmail.com <martin.d@gmail.com>
+martin.d@gmail.com = martin.d@gmail.com &lt;martin.d@gmail.com&gt;
 
 » *Für jeden User, der jemals etwas in diesem Projekt committed hat
 entsteht eine Zeile in der Usermap. Der nächste Schritt besteht jetzt
 darin, das Repository zu klonen.*
 
-# <authors-file> <prefix> <svn url> <git repository
-directory name>
+# &lt;authors-file&gt; &lt;prefix&gt; &lt;svn url&gt; &lt;git repository
+directory name&gt;
 
 git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
 https://git-subversion-migration.googlecode.com/svn svn.git
@@ -5939,8 +6488,8 @@ manuell anpassen, damit die Migration durchgeführt werden kann.*
 » *Wir fügen einfach diese Zeile* **(no author) = no author <unknown>**
 *in die Datei ein. Damit sollte für die Migration alles fertig sein.*
 
-# <authors-file> <prefix> <svn url> <git repository
-directory name>
+# &lt;authors-file&gt; &lt;prefix&gt; &lt;svn url&gt; &lt;git repository
+directory name&gt;
 
 git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
 https://git-subversion-migration.googlecode.com/svn svn.git
@@ -6002,7 +6551,7 @@ git log -n 2
 
 Commit: c8d7cbdd124f2376b74248408358eea6a86f99f9
 
-Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
+Author: martin.dilger@gmail.com &lt;martin.dilger@gmail.com&gt;
 
 Date: (69 minutes ago) 2014-06-22 09:09:39 +0000
 
@@ -6013,7 +6562,7 @@ e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
 Commit: e5a240072483638676d88d43d585b205c8ec432a
 
-Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
+Author: martin.dilger@gmail.com &lt;martin.dilger@gmail.com&gt;
 
 Date: (19 hours ago) 2014-06-21 15:05:22 +0000
 
@@ -6025,7 +6574,7 @@ e7ff270f-ff10-540e-3a92-2a19eadc0c21
 » Das Usermapping scheint geklappt zu haben, das ist schonmal gut. Damit
 sind wir eigentlich fertig, oder?
 
-SVN Ignores
+5.3. SVN Ignores
 ~~~~~~~~~~~~~~~~
 
 » *Noch nicht ganz, ein wichtiger Schritt fehlt noch, denn wir müssen
@@ -6046,7 +6595,7 @@ letzten Schritt noch die SVN-Ignores
 in eine .gitignore-Datei überführen. Natürlich bietet Git-SVN hierfür
 bereits ein passendes Tool.*
 
-git svn show-ignore >> .gitignore
+git svn show-ignore &gt;&gt; .gitignore
 
 less .gitignore
 
@@ -6080,7 +6629,7 @@ beispielsweise:
 | `*http://primefaces.googlecode.com/svn/primefaces/* <http://primefaces.googlecode.com/svn/primefaces/>`__
 | `*http://jmockit.googlecode.com/svn/* <http://jmockit.googlecode.com/svn/>`__
 
-Links
+5.4. Links
 ~~~~~~~~~~
 
 | `*Migrating to Git –
@@ -6088,7 +6637,7 @@ Links
 | `*Subversion to Git
   Tags* <http://stackoverflow.com/questions/2244252/importing-svn-branches-and-tags-on-git-svn>`__
 
-Fazit
+6. Fazit
 --------
 
 Karl ist mittlerweile ein wichtiger Bestandteil des Teams und sogar
@@ -6121,10 +6670,10 @@ Ich hoffe, die Art und Weise wie dieses Buch geschrieben ist hat dazu
 beigetragen, dass Sie ein Verständnis dafür entwickeln konnten, wie Git
 arbeitet und wie die Arbeit mit Git gedacht ist.
 
-Appendix A
+7. Appendix A
 -------------
 
-Branch Per Feature (BPF)
+7.1. Branch Per Feature (BPF)
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Das folgende Gespräch haben Lars und Karl in der Kaffeepause nach der
@@ -6140,7 +6689,7 @@ Artikel* <http://www.effectivetrainings.de/blog/2013/12/26/enterprise-git-enterp
 
 » Was fehlt dir denn bei Git-Flow?
 
-Unterschied zu Git-Flow
+7.1.1. Unterschied zu Git-Flow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Das Modell nennt sich BPF, was für “Branch per Feature” steht und
@@ -6351,7 +6900,7 @@ git checkout -b "fb-4711"
 
 Switched to a new branch 'fb-4711'
 
-echo "feature 4711 - Implementierung" >> feature.txt
+echo "feature 4711 - Implementierung" &gt;&gt; feature.txt
 
 git add feature.txt
 
@@ -6376,7 +6925,7 @@ git checkout -b "fb-4811"
 
 Switched to a new branch 'fb-4811'
 
-echo "feature 4811 - Implementierung" >> feature.txt
+echo "feature 4811 - Implementierung" &gt;&gt; feature.txt
 
 git add feature.txt
 
@@ -6400,7 +6949,7 @@ git checkout -b "fb-4911"
 
 Switched to a new branch 'fb-4911'
 
-echo "feature 4911 - Implementierung" >> feature-4911.txt
+echo "feature 4911 - Implementierung" &gt;&gt; feature-4911.txt
 
 git add feature-4911.txt
 
@@ -6448,7 +6997,7 @@ zuerst gemerged wird.
 » *Prinzipiell ja, das werden wir aber gleich sehen. Wir fangen zunächst
 an mit* **4711**\ *, mergen dann* **4811** *und zuletzt* **4911**\ *.*
 
-ReReRe-Cache
+7.1.2. ReReRe-Cache
 ^^^^^^^^^^^^^^^^^^^
 
 » Ich glaube ich sehe schon das Problem. Wir erzeugen den **qa**-Branch
@@ -6541,7 +7090,7 @@ less .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/preimage
 
 working with git flow is so easy
 
-<<<<<<<
+&lt;&lt;&lt;&lt;&lt;&lt;&lt;
 
 feature 4711 - Implementierung
 
@@ -6549,7 +7098,7 @@ feature 4711 - Implementierung
 
 feature 4811 - Implementierung
 
->>>>>>>
+&gt;&gt;&gt;&gt;&gt;&gt;&gt;
 
 » *Du siehst Karl, in der Datei* **preimage** *hat Git den
 Merge-Konflitk abgelegt, so wie er ist bevor du ihn aufgelöst hast.
@@ -6705,7 +7254,7 @@ modified: feature.txt
 » Ja das Prinzip habe ich verstanden. Ist denn dieser **ReReRe-Cache**
 im ganzen Team verfügbar?
 
-Shared ReReRe-Cache
+7.1.3. Shared ReReRe-Cache
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 » *Leider nein,* **ReReRe** *ist zunächst nur als eine lokale
@@ -6803,7 +7352,7 @@ Total 5 (delta 0), reused 0 (delta 0)
 
 To ../../../rerere-cache/
 
-\* [new branch] master -> master
+\* [new branch] master -&gt; master
 
 » *Die Idee ist ganz einfach. Alles was Git braucht, um mit* **ReReRe**
 *zu arbeiten ist der Inhalt des* **rr-cache** *Verzeichnisses. Wir
@@ -6862,13 +7411,13 @@ Unpacking objects: 100% (5/5), done.
 
 From ../../../rerere-cache
 
-\* [new branch] master -> origin/master
+\* [new branch] master -&gt; origin/master
 
 git pull --rebase origin master
 
 From ../../../rerere-cache
 
-\* branch master -> FETCH\_HEAD
+\* branch master -&gt; FETCH\_HEAD
 
 Current branch HEAD is up to date.
 
@@ -6927,7 +7476,7 @@ so einfach sein kann. Hast du das bereits ausprobiert?
 keinen Grund, warum das nicht funktionieren sollte. Am besten wir
 spielen das* **BPF**\ *-Szenario einfach mal komplett durch.*
 
-BPF in Action
+7.1.4. BPF in Action
 ^^^^^^^^^^^^^^^^^^^^
 
 » *Ok, wir haben aktuell zwei Repositories, mit denen wir arbeiten
@@ -6964,7 +7513,7 @@ git commit -m "Feature in Konflikt mit 4711 und 4811"
 
 From ../../../rerere-cache
 
-\* branch master -> FETCH\_HEAD
+\* branch master -&gt; FETCH\_HEAD
 
 Current branch master is up to date.
 
@@ -7017,7 +7566,7 @@ git commit -m "merged features"
 
 From ../../../rerere-cache
 
-\* branch master -> FETCH\_HEAD
+\* branch master -&gt; FETCH\_HEAD
 
 Current branch master is up to date.
 
@@ -7081,7 +7630,7 @@ Recorded resolution for 'feature.txt'.
 
 From ../../../rerere-cache
 
-\* branch master -> FETCH\_HEAD
+\* branch master -&gt; FETCH\_HEAD
 
 Current branch master is up to date.
 
@@ -7107,7 +7656,7 @@ Total 5 (delta 1), reused 0 (delta 0)
 
 To ../../../rerere-cache/
 
-5383293..ef6a683 master -> master
+5383293..ef6a683 master -&gt; master
 
 [qa 6d66c4f] merged features
 
@@ -7149,9 +7698,9 @@ Unpacking objects: 100% (11/11), done.
 
 From /Users/martindilger/development/git/playground/git-flow-example
 
-\* [new branch] fb-5011 -> origin/fb-5011 <b>(1)</b>
+\* [new branch] fb-5011 -&gt; origin/fb-5011 <b>(1)</b>
 
-f0150b9..6d66c4f qa -> origin/qa
+f0150b9..6d66c4f qa -&gt; origin/qa
 
 1. Feature 5011 ist verfügbar
 
@@ -7201,7 +7750,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 » Sehr schön, Lars. Siehst du, es hat funktioniert! Der Merge-Konflikt
 wurde auch im zweiten Repository automatisch gelöst!
 
-Die Reihenfolge
+7.1.5. Die Reihenfolge
 ^^^^^^^^^^^^^^^^^^^^^^
 
 » *Es kann jedoch noch zu Problemen kommen. Du hast mich vorhin gefragt,
@@ -7274,7 +7823,7 @@ nur selten entfernt werden. Es kann also durchaus passieren, dass
 plötzlich beim Erzeugen des **qa-Branches** Merge-Konflikte auftreten,
 das sollte allerdings nicht allzu oft vorkommen.
 
-BPF Use Cases
+7.1.6. BPF Use Cases
 ^^^^^^^^^^^^^^^^^^^^
 
 » Ok, technisch ist mir jetzt schon klar, wofür wir BPF verwenden
@@ -7315,7 +7864,22 @@ git push origin qa
 
 `*git* <http://www.effectivetrainings.de/blog/category/git/>`__ on .
 
+Effective Trainings & Consulting - Martin Dilger
+------------------------------------------------
 
+Hat Ihnen dieser Blog-Eintrag gefallen? Ich stelle in diesem Blog
+Informationen über Tools, Frameworks und Werkzeuge zur Verfügung, die
+mich produktiver machen. Vielleicht kann ich auch Ihnen helfen,
+produktiver zu werden.
+
+Ich unterstütze Sie als freier Mitarbeiter bei der Entwicklung von
+Software-Projekten, Agiler Arbeit sowie Schulungen / Fortbildungen.
+
+`*Kontaktieren Sie
+mich* <http://www.effectivetrainings.de/contakt.php>`__.
+
+Jeden Tag ein bisschen produktiver - ab heute
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. |image0| image:: media/image1.png
    :width: 2.83333in

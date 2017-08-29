@@ -16,3 +16,51 @@
 [NotebookApp | INFO] Saving file at /Untitled.ipynb
 [NotebookApp | INFO] Saving file at /Git_und SWEntwivklung.ipynb
 [NotebookApp | INFO] Saving file at /Git_und_SWEntwivklung.ipynb
+[NotebookApp | WARNING] Notebook git_effective/source/git_effective.ipynb is not trusted
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image1.png (127.0.0.1) 1.17ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image3.png (127.0.0.1) 1.25ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image2.jpeg (127.0.0.1) 1.29ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image4.png (127.0.0.1) 1.56ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image5.png (127.0.0.1) 1.63ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image6.png (127.0.0.1) 1.29ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image7.png (127.0.0.1) 1.24ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image10.png (127.0.0.1) 1.46ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image9.png (127.0.0.1) 1.44ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image8.png (127.0.0.1) 1.52ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image11.png (127.0.0.1) 1.31ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image12.png (127.0.0.1) 1.12ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image13.png (127.0.0.1) 0.87ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image14.jpeg (127.0.0.1) 1.71ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image16.jpeg (127.0.0.1) 1.63ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image15.jpeg (127.0.0.1) 1.72ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image17.jpeg (127.0.0.1) 1.19ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image18.jpeg (127.0.0.1) 1.00ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image19.png (127.0.0.1) 0.90ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image20.jpeg (127.0.0.1) 1.15ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image23.jpeg (127.0.0.1) 1.15ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image22.jpeg (127.0.0.1) 1.07ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image21.jpeg (127.0.0.1) 1.06ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image24.jpeg (127.0.0.1) 0.98ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image25.jpeg (127.0.0.1) 1.00ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image26.jpeg (127.0.0.1) 1.03ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image30.jpeg (127.0.0.1) 1.14ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image27.jpeg (127.0.0.1) 2.34ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image28.jpeg (127.0.0.1) 2.15ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image29.jpeg (127.0.0.1) 0.96ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image31.jpeg (127.0.0.1) 0.90ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image32.jpeg (127.0.0.1) 0.99ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image33.png (127.0.0.1) 1.15ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image34.jpeg (127.0.0.1) 1.05ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image38.jpeg (127.0.0.1) 0.98ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image39.jpeg (127.0.0.1) 0.97ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image37.jpeg (127.0.0.1) 1.16ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image36.jpeg (127.0.0.1) 1.49ms
+[NotebookApp | INFO] 302 GET /notebooks/git_effective/source/media/image35.jpeg (127.0.0.1) 1.46ms
+[NotebookApp | INFO] Kernel started: f6f21a5c-b137-4228-a8fe-e5c9ea0e1a5b
+[NotebookApp | INFO] Adapting to protocol v5.1 for kernel f6f21a5c-b137-4228-a8fe-e5c9ea0e1a5b
+[NotebookApp | INFO] Saving file at /git_effective/source/git_effective.ipynb
+[NotebookApp | INFO] interrupted
+[NotebookApp | CRITICAL] received signal 2, stopping
+[NotebookApp | INFO] Shutting down kernels
+[NotebookApp | INFO] Kernel shutdown: f6f21a5c-b137-4228-a8fe-e5c9ea0e1a5b
+[NotebookApp | INFO] Kernel shutdown: f86eef51-9875-47a7-9e59-54055b2f6a5f

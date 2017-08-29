@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 #
-# git_effective documentation build configuration file, created by
-# sphinx-quickstart on Mon Aug 28 22:37:21 2017.
+# git_versionsverwaltung documentation build configuration file, created by
+# sphinx-quickstart on Tue Aug 29 11:41:37 2017.
 #
 # This file is execfile()d with the current directory set to its
 # containing dir.
@@ -32,8 +32,7 @@
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = ['sphinx.ext.todo',
-    'sphinx.ext.ifconfig',
-    'sphinx.ext.githubpages']
+    'sphinx.ext.ifconfig']
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -48,9 +47,9 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = 'git_effective'
-copyright = '2017, st'
-author = 'st'
+project = 'git_versionsverwaltung'
+copyright = '2017, STE'
+author = 'STE'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -85,7 +84,7 @@ todo_include_todos = True
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'sphinxdoc'
+html_theme = 'alabaster'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -103,21 +102,21 @@ html_static_path = ['_static']
 #
 # This is required for the alabaster theme
 # refs: http://alabaster.readthedocs.io/en/latest/installation.html#sidebars
-#html_sidebars = {
-#    '**': [
-#        'about.html',
-#        'navigation.html',
-#        'relations.html',  # needs 'show_related': True theme option to display
-#        'searchbox.html',
-#        'donate.html',
-#    ]
-#}
+html_sidebars = {
+    '**': [
+        'about.html',
+        'navigation.html',
+        'relations.html',  # needs 'show_related': True theme option to display
+        'searchbox.html',
+        'donate.html',
+    ]
+}
 
 
 # -- Options for HTMLHelp output ------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'git_effectivedoc'
+htmlhelp_basename = 'git_versionsverwaltungdoc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -144,8 +143,8 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, 'git_effective.tex', 'git\\_effective Documentation',
-     'st', 'manual'),
+    (master_doc, 'git_versionsverwaltung.tex', 'git\\_versionsverwaltung Documentation',
+     'STE', 'manual'),
 ]
 
 
@@ -154,7 +153,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    (master_doc, 'git_effective', 'git_effective Documentation',
+    (master_doc, 'git_versionsverwaltung', 'git_versionsverwaltung Documentation',
      [author], 1)
 ]
 
@@ -165,8 +164,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, 'git_effective', 'git_effective Documentation',
-     author, 'git_effective', 'One line description of project.',
+    (master_doc, 'git_versionsverwaltung', 'git_versionsverwaltung Documentation',
+     author, 'git_versionsverwaltung', 'One line description of project.',
      'Miscellaneous'),
 ]
 
