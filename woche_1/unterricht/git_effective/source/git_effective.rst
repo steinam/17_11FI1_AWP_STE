@@ -1497,290 +1497,220 @@ hat der den Wert* **f1aa978** *. Durch den Rebase verändert sich alles.*
 Remotes
 ~~~~~~~
 
-» *Wir hatten ja bereits kurz über Remote-Repositories gesprochen. Du
-erinnerst dich an die config-Datei in deinem .git-Verzeichnis?*
+[Lars] » *Wir hatten ja bereits kurz über Remote-Repositories gesprochen. Du erinnerst dich an die config-Datei in deinem .git-Verzeichnis?*
 
-» Ja klar.
+.. code-block:: bash
 
-[remote "origin"]
+  [remote "origin"]
+  url = https://github.com/dilgerma/effective-git-workshop
+  fetch = +refs/heads/\*:refs/remotes/origin/\*
 
-url = https://github.com/dilgerma/effective-git-workshop
-
-fetch = +refs/heads/\*:refs/remotes/origin/\*
-
-» Ich versuch das mal zu erklären, dann sehen wir auch gleich, ob ich es
+[Karl]» Ich versuch das mal zu erklären, dann sehen wir auch gleich, ob ich es
 verstanden habe.
 
-» Ein Remote-Repository kann irgendein Repository sein, das nicht mein
-aktuelles ist, richtig?
+[Karl]» Ein Remote-Repository kann irgendein Repository sein, das nicht mein aktuelles ist, richtig?
 
-» *Ja, das ist korrekt.*
+[Lars] » *Ja, das ist korrekt.*
 
-» Das Repository kann also auch auf dem gleichen Rechner und nur in
-einem anderen Verzeichnis sein?
+[Karl]» Das Repository kann also auch auf dem gleichen Rechner und nur in einem anderen Verzeichnis sein?
 
-» *Genau.*
+[Lars] » *Genau.*
 
-» Jedes Repository hat einen festgelegten Namen. In diesem Fall
-“origin”. Origin ist ein beliebiger Name, der aber meistens für das
-Haupt-Repository verwendet wird, richtig?
+[Karl] » Jedes Repository hat einen festgelegten Namen. In diesem Fall “origin”. Origin ist ein beliebiger Name, der aber meistens für das Haupt-Repository verwendet wird, richtig?
 
-» *Genau, du hast es verstanden.*
+[Lars]» *Genau, du hast es verstanden.*
 
-» Jedes Repository kann aber nur ein Remote-Repository haben?
+[Karl]» Jedes Repository kann aber nur ein Remote-Repository haben?
 
-» *Nein, überhaupt nicht. Git gibt hier überhaupt keine Einschränkungen
-vor. Stell dir vor, du hast dein Remote namens “origin”. Das ist das
-Entwickler-Repository. Hier findet die Entwicklung statt. Es ist jetzt
-durchaus möglich, ein weiteres Repository “release” zu definieren, in
-das nur gespusht wird, wenn wir ein Release machen. Das ist nur ein
-Beispiel, wir machen das hier nicht so, weil für diesen Use-Case
-Branches verwendet werden, aber möglich ist alles.*
+[Lars]» *Nein, überhaupt nicht. Git gibt hier überhaupt keine Einschränkungen vor. Stell dir vor, du hast dein Remote namens “origin”. Das ist das Entwickler-Repository. Hier findet die Entwicklung statt. Es ist jetzt durchaus möglich, ein weiteres Repository “release” zu definieren, in das nur gespusht wird, wenn wir ein Release machen. Das ist nur ein Beispiel, wir machen das hier nicht so, weil für diesen Use-Case Branches verwendet werden, aber möglich ist alles.*
 
-» *Um dein Repository mit einem weiteren Remote-Repository zu verbinden
+[Lars]» *Um dein Repository mit einem weiteren Remote-Repository zu verbinden
 machst du einfach folgendes.*
 
-#bsp: git remote add backup ../backup.git
+.. code-block:: bash 
 
-git remote add <Name> <URL>
+  #bsp: git remote add backup ../backup.git
+  git remote add <Name> <URL>
 
-» Ok, soweit verstanden. Kannst du mir auch erklären, was das bedeutet?
+[Karl]» Ok, soweit verstanden. Kannst du mir auch erklären, was das bedeutet?
 
-fetch = +refs/heads/\*:refs/remotes/origin/\*
+.. code-block:: bash
 
-» *Klar, das ist die sogenannte* **Refspec**\ *. Die Refspec definiert,
-wie genau die Repositories miteinander kommunizieren. Diese Refspec gibt
-nur an, dass wir Updates für alles lokalen Branches unter /refs/heads
-vom Repository “origin” updaten.*
+  fetch = +refs/heads/*:refs/remotes/origin/*
 
-» Und was bedeutet **fetch**?
 
-» *Gute Frage! Wir haben noch gar nicht über die verschiedenen Befehle
-gesprochen, mit denen Du mit entfernten Repositories kommunizieren
-kannst.*
+[Lars] » *Klar, das ist die sogenannte* **Refspec** *. Die Refspec definiert, wie genau die Repositories miteinander kommunizieren. Diese Refspec gibt nur an, dass wir Updates für alles lokalen Branches unter /refs/heads vom Repository “origin” updaten.*
+
+
+[Karl] » Und was bedeutet **fetch**?
+
+[Lars] » *Gute Frage! Wir haben noch gar nicht über die verschiedenen Befehle gesprochen, mit denen Du mit entfernten Repositories kommunizieren kannst.*
 
 Fetch
-^^^^^^^^^^^^
+^^^^^
 
-» *Ein Fetch ist die einfachste Remote-Operation in Git. Es bedeutet
-eigentlich nichts anderes, als das wir uns vorsorglich schonmal alle
-Änderungen aus dem Remote-Repository holen, um später damit arbeiten zu
-können. An unserer Working-Copy und am ausgecheckten Branch ändert sich
+» *Ein Fetch ist die einfachste Remote-Operation in Git. Es bedeutet eigentlich nichts anderes, als das wir uns vorsorglich schonmal alle Änderungen aus dem Remote-Repository holen, um später damit arbeiten zu können. An unserer Working-Copy und am ausgecheckten Branch ändert sich
 hierdurch nichts.*
 
-» Interessant, gibt es eine vergleichbare Operation in Subversion?
+[Karl]» Interessant, gibt es eine vergleichbare Operation in Subversion?
 
-» *Nein, gibt es nicht, denn das ist eines der Vorteile von dezentralen
-Systemen. Wir haben alles lokal verfügbar. Durch ein fetch holen wir uns
-nur, was wir nicht sowieso schon haben. Wir haben bereits über das*
-**objects**\ *-Verzeichnis gesprochen, du erinnerst dich? Im*
-**objects**\ *-Verzeichnis speichert Git alle Objekte, also Commits,
-Trees, Blobs und Tags als binär-Daten. Wenn Du ein fetch machst, dann
-holt sich Git alle Objekte, die im Remote-Repository verfügbar sind aber
-noch nicht bei dir lokal. Nichts weiter, die Objekte liegen dann nur in
-deinem* **objects**\ *-Verzeichnis und du kannst sie jederzeit
-verwenden. Aber erst, wenn du sie brauchst, nicht vorher.*
+[Lars] » *Nein, gibt es nicht, denn das ist eines der Vorteile von dezentralen Systemen. Wir haben alles lokal verfügbar. Durch ein fetch holen wir uns nur, was wir nicht sowieso schon haben. Wir haben bereits über das* **objects** *-Verzeichnis gesprochen, du erinnerst dich? Im* **objects** *-Verzeichnis speichert Git alle Objekte, also Commits, Trees, Blobs und Tags als binär-Daten. 
 
-» *Ein guter Use-Case für einen* **Fetch** *bei mir ist immer
-Freitagabend. Ich arbeite öfter mal am Wochenende. Oft stecke ich aber
-Freitagsabends kurz vor dem Wochenende noch mitten in einer Story, die
-ich umsetzen möchte. Da wir für Entwickler keine Möglichkeit anbieten,
-sich per VPN einzuwählen mache ich grundsätzlich, bevor ich ins
-Wochenende gehe nochmal ein* **fetch** *gegen das Remote-Repository. So
-habe ich alle Änderungen lokal am Rechner verfügbar, die bis zu diesem
-Zeitpunkt eingecheckt waren.*
+[Lars]» Wenn Du ein fetch machst, dann holt sich Git alle Objekte, die im Remote-Repository verfügbar sind aber noch nicht bei dir lokal. Nichts weiter, die Objekte liegen dann nur in deinem* **objects** *-Verzeichnis und du kannst sie jederzeit verwenden. Aber erst, wenn du sie brauchst, nicht vorher.*
 
-» *Überprüfen wir doch mal, ob sich in der Zwischenzeit etwas im
-Remote-Repository getan hat. Da wir bereits einige Stunden hier sind,
-sollten die ersten Commits bereits gemacht worden sein.*
+[Lars] » *Ein guter Use-Case für einen* **Fetch** *bei mir ist immer Freitagabend. Ich arbeite öfter mal am Wochenende. Oft stecke ich aber Freitagsabends kurz vor dem Wochenende noch mitten in einer Story, die ich umsetzen möchte. Da wir für Entwickler keine Möglichkeit anbieten, sich per VPN einzuwählen mache ich grundsätzlich, bevor ich ins Wochenende gehe nochmal ein* **fetch** *gegen das Remote-Repository. So habe ich alle Änderungen lokal am Rechner verfügbar, die bis zu diesem Zeitpunkt eingecheckt waren.*
 
-Übung
+[Lars] » *Überprüfen wir doch mal, ob sich in der Zwischenzeit etwas im Remote-Repository getan hat. Da wir bereits einige Stunden hier sind, sollten die ersten Commits bereits gemacht worden sein.*
 
-Simulieren Sie einen Commit auf dem entfernten Repository.
+.. admonition:: Übung
 
--  Klonen sie sich das Remote-Repository erneut in ein anderes
-       Verzeichnis
+  Simulieren Sie einen Commit auf dem entfernten Repository.
 
--  Erstellen Sie eine neue Datei remote.txt mit dem Inhalt “remote
-       commit” auf dem master
+  -  Klonen sie sich das Remote-Repository erneut in ein anderes Verzeichnis
+  -  Erstellen Sie eine neue Datei remote.txt mit dem Inhalt “remote
+     commit” auf dem master
+  -  Committen Sie diese Datei
+  -  Pushen Sie diese Datei mit “git push origin master”
 
--  Committen Sie diese Datei
+[Lars] » *Karl, der nächste Schritt besteht nun darin, das Update zu machen.*
 
--  Pushen Sie diese Datei mit “git push origin master”
+.. code-block:: bash
 
-» *Karl, der nächste Schritt besteht nun darin, das Update zu machen.*
+  git fetch origin
+  remote: Counting objects: 4, done.
 
-git fetch origin
+  remote: Compressing objects: 100% (2/2), done.
+  remote: Total 3 (delta 0), reused 3 (delta 0) <b>(1)</b>
+  Unpacking objects: 100% (3/3), done.
 
-remote: Counting objects: 4, done.
+  From https://github.com/dilgerma/effective-git-workshop
+  ad261f2..b93516d master -> origin/master <b>(2)</b>
 
-remote: Compressing objects: 100% (2/2), done.
-
-remote: Total 3 (delta 0), reused 3 (delta 0) <b>(1)</b>
-
-Unpacking objects: 100% (3/3), done.
-
-From https://github.com/dilgerma/effective-git-workshop
-
-ad261f2..b93516d master -> origin/master <b>(2)</b>
-
-1. Git zählt die Objekte, die remote- aber noch nicht lokal verfügbar
-       sind.
-
-2. Git zeigt an, welcher Branch von welchem Commit (ad261f2) auf welchen
+  1. Git zählt die Objekte, die remote- aber noch nicht lokal verfügbar
+     sind.
+  2. Git zeigt an, welcher Branch von welchem Commit (ad261f2) auf welchen
        Commit (b93516d) upgedatet werden würde.
 
-» *Karl, Frage – kannst du mir sagen, wieso Git genau 3 Objekte geladen
-hat?*
+[Lars]» *Karl, Frage – kannst du mir sagen, wieso Git genau 3 Objekte geladen hat?*
 
-+-------------+--------------------------------------------------------------+
-| Important   | Können Sie erklären, wieso genau 3 Objekte geladen wurden?   |
-+-------------+--------------------------------------------------------------+
 
-» Ha, das ist einfach. Im Remote-Repository war ein neuer Commit
+.. Important::  
+  
+  Können Sie erklären, wieso genau 3 Objekte geladen wurden?   |
+
+[Karl]» Ha, das ist einfach. Im Remote-Repository war ein neuer Commit
 richtig? Du hast mir heute morgen erklärt, dass ein **Commit** immer aus
 mindestens 3 Teilen besten. Der **Commit** selbst, der **Tree** für das
 Verzeichnis und der **Blob** für die Datei. Also 3 Objekte.
 
-» *Perfekt, du hast es wirklich verstanden. Der Remote-Commit hat den
-Hash-Wert* **b93516d**\ *. Schau doch mal in dein objects-Verzeichnis.*
+[Lars]» *Perfekt, du hast es wirklich verstanden. Der Remote-Commit hat den
+Hash-Wert* **b93516d** *. Schau doch mal in dein objects-Verzeichnis.*
 
-cd .git/objects
+.. code-block:: bash
 
-cd b9
+  cd .git/objects
+  cd b9
+  ls
+  3516dc1b3bda32ced75dd9c0883735e4b7ea64
 
-ls
+[Lars]» *Du siehst, der Commit ist lokal vorhanden. Mach nochmal ein* **log** *, damit wir sehen, ob sich etwas geändert hat.*
 
-3516dc1b3bda32ced75dd9c0883735e4b7ea64
+.. code-block:: bash
 
-» *Du siehst, der Commit ist lokal vorhanden. Mach nochmal ein*
-**log**\ *, damit wir sehen, ob sich etwas geändert hat.*
+  git checkout master
+  git log --oneline -n 1
+  af4c0d0 committing file 5
 
-git checkout master
+[Lars]» *Du siehst, der oberste Commit auf dem master ist nach wie vor* **af4c0d0** *.* *Lokal hat sich also nichts geändert. Willst du die Änderungen in deinem Workspace haben musst du sie aktiv mergen.*
 
-git log --oneline -n 1
+.. code-block:: bash
 
-af4c0d0 committing file 5
+  git merge origin/master
+  Merge made by the 'recursive' strategy.
+  remote.txt \| 1 +
+  1 file changed, 1 insertion(+)
+  create mode 100644 remote.txt
+  #log
+  git log --oneline -n 1
+  bea3c24 Merge remote-tracking branch 'origin/master'
 
-| » *Du siehst, der oberste Commit auf dem master ist nach wie vor*
-  **af4c0d0**\ *.*
-| *Lokal hat sich also nichts geändert. Willst du die Änderungen in
-  deinem Workspace haben musst du sie aktiv mergen.*
+[Karl]» *Ein Update besteht also immer aus einer* **fetch** *und einer* **merge** *-Operation.*
+[Karl]» Das heißt, ich muss jedesmal fetchen und mergen, wenn ich ein Update machen möchte?
 
-git merge origin/master
+[Lars]» *Das wäre ziemlich kompliziert, oder? Zunächst hatten wir ja definiert, dass wir Updates nicht mit* **merge** *sondern mit* **rebase** *machen, in Ordnung?*
 
-Merge made by the 'recursive' strategy.
-
-remote.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 remote.txt
-
-#log
-
-git log --oneline -n 1
-
-bea3c24 Merge remote-tracking branch 'origin/master'
-
-» *Ein Update besteht also immer aus einer* **fetch** *und einer*
-**merge**\ *-Operation.*
-
-» Das heißt, ich muss jedesmal fetchen und mergen, wenn ich ein Update
-machen möchte?
-
-| » *Das wäre ziemlich kompliziert, oder? Zunächst hatten wir ja
-  definiert, dass wir Updates nicht mit* **merge** *sondern mit*
-  **rebase** *machen, in Ordnung?*
-| *Und die Entwickler von Git wissen natürlich auch, dass zwei
-  Operationen für ein Update gegen das entfernte Repository ziemlicher
-  Overhead ist. Deswegen gibt es das* **pull**\ *-Kommando.*
+*Und die Entwickler von Git wissen natürlich auch, dass zwei Operationen für ein Update gegen das entfernte Repository ziemlicher Overhead ist. Deswegen gibt es das* **pull** *-Kommando.*
 
 Pull
-^^^^^^^^^^^
+^^^^
 
-| » *Das* **pull**\ *-Kommando verwenden wir generell, um Updates von
-  einem entfernten Repository zu machen.
-  Die Syntax ist identisch mit allen Git Remote Operationen.*
-| *Ein* **pull** *kombiniert* **fetch** *und* **merge** *und macht
-  intern nichts anderes als erst ein* **fetch** *gegen das
-  Remote-Repository auszuführen und anschließend einen* **merge** *in
-  den aktuell ausgecheckten Branch zu machen.*
+[Lars] » *Das* **pull** *-Kommando verwenden wir generell, um Updates von einem entfernten Repository zu machen. Die Syntax ist identisch mit allen Git Remote Operationen.*
 
-git pull origin master <b>(1)</b>
+[Lars] » *Ein* **pull** *kombiniert* **fetch** *und* **merge** *und macht intern nichts anderes als erst ein* **fetch** *gegen das Remote-Repository auszuführen und anschließend einen* **merge** *in den aktuell ausgecheckten Branch zu machen.*
 
-From https://github.com/dilgerma/effective-git-workshop
+.. code-block:: bash
 
-\* branch master -> FETCH\_HEAD
+  git pull origin master <b>(1)</b>
+  From https://github.com/dilgerma/effective-git-workshop
+  * branch master -> FETCH_HEAD
 
-Already up-to-date.
+  Already up-to-date.
+  git pull <Remote-Repository> <Branch>
 
-git pull <Remote-Repository> <Branch>
 
-» *Ist unser Branch als Tracking-Branch konfiguriert brauchen wir nur
-folgendes.*
+[Lars]» *Ist unser Branch als Tracking-Branch konfiguriert brauchen wir nur folgendes.*
 
-git pull
+.. code-block:: bash
 
-Already up-to-date.
+  git pull
+  Already up-to-date.
 
-» *Durch die Tracking-Branch Konfiguration ist die Angabe des
-Remote-Repositories und des Branches obsolet. Karl, du siehst verwirrt
-aus. Das wird dir aber nochmals klar, wenn du dir die config anschaust.*
+[Lars]» *Durch die Tracking-Branch Konfiguration ist die Angabe des Remote-Repositories und des Branches obsolet. Karl, du siehst verwirrt aus. Das wird dir aber nochmals klar, wenn du dir die config anschaust.*
 
-cat .git/config
+.. code-block:: bash
 
-[core]
+  cat .git/config
+  [core]
+    repositoryformatversion = 0
+    filemode = true
+    bare = false
+    logallrefupdates = true
+    ignorecase = true
+    precomposeunicode = false
+  
+  [remote "origin"]
+    url = https://github.com/dilgerma/effective-git-workshop
+    fetch = +refs/heads/\*:refs/remotes/origin/\*
+  
+    [branch "master"] <b>(1)</b>
+    remote = origin <b>(2)</b>
+    merge = refs/heads/master <b>(3)</b>
 
-repositoryformatversion = 0
+  1. Tracking Branch Information
+  2. Branch tracked welchen Remote?
+  3. Branch tracked welchen Branch?
 
-filemode = true
 
-bare = false
+.. admonition:: Übung
 
-logallrefupdates = true
+  Erinnern Sie sich noch, wie ein Branch als **Tracking-Branch** konfiguriert wird?
 
-ignorecase = true
+[Karl]» Aber du hast gesagt, wir verwenden **rebase** und nicht **merge** für updates?
 
-precomposeunicode = false
+[Lars]» *Korrekt, dazu kommen wir jetzt. Was du natürlich machen könntest wäre folgendes.*
 
-[remote "origin"]
+.. code-block:: bash
 
-url = https://github.com/dilgerma/effective-git-workshop
+  git rebase origin/master
 
-fetch = +refs/heads/\*:refs/remotes/origin/\*
-
-[branch "master"] <b>(1)</b>
-
-remote = origin <b>(2)</b>
-
-merge = refs/heads/master <b>(3)</b>
-
-1. Tracking Branch Information
-
-2. Branch tracked welchen Remote?
-
-3. Branch tracked welchen Branch?
-
-Übung
-
-Erinnern Sie sich noch, wie ein Branch als **Tracking-Branch**
-konfiguriert wird?
-
-» Aber du hast gesagt, wir verwenden **rebase** und nicht **merge** für
-updates?
-
-» *Korrekt, dazu kommen wir jetzt. Was du natürlich machen könntest wäre
-folgendes.*
-
-git rebase origin/master
-
-» *Damit würdest du deinen lokalen Branch gegen den master-Branch im
+[Lars]» *Damit würdest du deinen lokalen Branch gegen den master-Branch im
 Remote-Repository* **origin** *rebasen. Das Problem ist nur folgendes.*
 
-cat .git/refs/remotes/origin/master
+.. code-block:: bash
 
-b93516dc1b3bda32ced75dd9c0883735e4b7ea64
+  cat .git/refs/remotes/origin/master
+
+  b93516dc1b3bda32ced75dd9c0883735e4b7ea64
 
 » *Der* **rebase** *macht kein Update vorher. Wir würden also gegen
 unseren lokalen Stand rebasen, was nicht unbedingt der letzte Stand aus
@@ -1788,864 +1718,593 @@ dem Remote-Repository sein muss. Was fehlt ist ein* **fetch** *zuvor.
 Wir möchten aber nicht jedesmal ein fetch machen müssen, wenn wir ein
 Update machen möchten.*
 
-» Gibt es denn einer Alternative?
+[Karl]» Gibt es denn einer Alternative?
 
-» *Ja die gibt es, wir können auch für* **rebase** *das*
-**pull**\ *-Kommando verwenden.*
+[Lars]» *Ja die gibt es, wir können auch für* **rebase** *das* **pull** *-Kommando verwenden.*
 
-git pull --rebase origin master
+.. code-block:: bash
 
-» *Mit der Option* **–rebase** *macht der Pull statt* **fetch** *+*
-**merge** *ein* **fetch** *+* **rebase**\ *.*
+  git pull --rebase origin master
 
-» Aha, das klingt interessant, machen das alle im Team so?
+[Lars]» *Mit der Option* **–rebase** *macht der Pull statt* **fetch** *+* **merge** *ein* **fetch** *+* **rebase** *.*
 
-» *Wir haben diese Option als Standard konfiguriert. Am besten machen
-wir das bei dir genauso. Dann sparst du dir, ständig diese Option mit
-anzugeben.*
 
-git config --global branch.autosetuprebase always <b>(1)</b>
+[Karl]» Aha, das klingt interessant, machen das alle im Team so?
 
-#for existing branches
+[Lars]» *Wir haben diese Option als Standard konfiguriert. Am besten machen wir das bei dir genauso. Dann sparst du dir, ständig diese Option mit anzugeben.*
 
-git config branch.master.rebase true
+.. code-block:: 
 
-» *Damit ist ein Pull immer auch ein Rebase. Für Branches die bereits
-existieren müssen wir das automatische rebase manuell aktivieren. Alle
-Branches die du von jetzt an neu erzeugst sind bereits auf* **rebase**
-*umgestellt.*
+  git config --global branch.autosetuprebase always <b>(1)</b>
+  #for existing branches
+  git config branch.master.rebase true
 
-» Klasse, danke Lars.
+[Lars]» *Damit ist ein Pull immer auch ein Rebase. Für Branches die bereits existieren müssen wir das automatische rebase manuell aktivieren. Alle Branches die du von jetzt an neu erzeugst sind bereits auf* **rebase** *umgestellt.*
 
-» *Kein Problem, am besten du versuchst mal einen* **Rebase**\ *-Update
-gegen das Remote-Repository.*
+[Karl]» Klasse, danke Lars.
 
-git pull
+[Lars]» *Kein Problem, am besten du versuchst mal einen* **Rebase** *-Update gegen das Remote-Repository.*
 
-First, rewinding head to replay your work on top of it...
+.. code-block:: bash
 
-Applying: Adjusted Readme
+  git pull
+  First, rewinding head to replay your work on top of it...
+  Applying: Adjusted Readme
+  Applying: Konflikt
+  Using index info to reconstruct a base tree...
 
-Applying: Konflikt
+  M README.md
+  Falling back to patching base and 3-way merge...
 
-Using index info to reconstruct a base tree...
+  Auto-merging README.md
+  CONFLICT (content): Merge conflict in README.md
+  Failed to merge in the changes.
+  Patch failed at 0002 Konflikt
+  
+  The copy of the patch that failed is found in:
+  When you have resolved this problem, run "git rebase --continue".
+  If you prefer to skip this patch, run "git rebase --skip" instead.  
+  To check out the original branch and stop rebasing, run "git rebase
+  --abort".
 
-M README.md
+[Karl]» Ich habe einen Merge-Konflikt?
 
-Falling back to patching base and 3-way merge...
+[Lars]» *Ja, interessant oder? Kannst du dir erklären, wo der herkommt? Das ist übrigens genau die Stelle, wo sich die meisten Entwickler erstmal hilfesuchend umschauen und nicht weiter wissen.*
 
-Auto-merging README.md
-
-CONFLICT (content): Merge conflict in README.md
-
-Failed to merge in the changes.
-
-Patch failed at 0002 Konflikt
-
-The copy of the patch that failed is found in:
-
-When you have resolved this problem, run "git rebase --continue".
-
-If you prefer to skip this patch, run "git rebase --skip" instead.
-
-To check out the original branch and stop rebasing, run "git rebase
---abort".
-
-» Ich habe einen Merge-Konflikt?
-
-» *Ja, interessant oder? Kannst du dir erklären, wo der herkommt? Das
-ist übrigens genau die Stelle, wo sich die meisten Entwickler erstmal
-hilfesuchend umschauen und nicht weiter wissen.*
-
-» Tut mir leid, das verstehe ich nicht. Es sieht so aus, als wäre dies
+[Karl]» Tut mir leid, das verstehe ich nicht. Es sieht so aus, als wäre dies
 genau der gleiche Merge-Konflikt den wir bereits vorhin beim Merge auf
 den Feature-Branch gelöst haben?
 
-» *Sehr gut erkannt!*
+[Lars]» *Sehr gut erkannt!*
 
-» Aber den haben wir doch bereits aufgelöst?
+[Karl]» Aber den haben wir doch bereits aufgelöst?
 
-» *Richtig, aber erinnere dich, was wir gerade besprochen haben. Wir
+[Lars]» *Richtig, aber erinnere dich, was wir gerade besprochen haben. Wir
 funktioniert ein* **rebase** *intern?*
 
-» Ok, ich versuche das mal zu erklären. Du hast gesagt, Git nimmt meine
+[Karl]» Ok, ich versuche das mal zu erklären. Du hast gesagt, Git nimmt meine
 Commits, die ich auf dem Branch gemacht habe und legt sie beiseite.
 
-» *Ja genau*.
+[Lars]» *Ja genau*.
 
-| » Anschließend holt sich Git alle Commits aus dem entfernten
-  Repository und setzt den Branch-Zeiger für meinen aktuellen Branch in
-  **.git/refs/heads** auf den neuesten Commit des Branches im
-  Remote-Repository gegen den ich den Rebase mache.
-| Es werden also alle Commits Schritt für Schritt wieder hinzugefügt.
+[Karl]» Anschließend holt sich Git alle Commits aus dem entfernten Repository und setzt den Branch-Zeiger für meinen aktuellen Branch in **.git/refs/heads** auf den neuesten Commit des Branches im Remote-Repository gegen den ich den Rebase mache. Es werden also alle Commits Schritt für Schritt wieder hinzugefügt.
 
-» *Genau, du hast es fast. Mit dem* **rebase** *linearisieren wir die
-Historie. Die Merge-Commits verschwinden faktisch. Die Lösung des
-Merge-Konfliktes war aber in dem entsprechenden Merge-Commit. Dieser
-kann aber von* **rebase** *nicht verwendet werden. Da Git die Commits
-Schritt für Schritt wieder einspielt treten alle Konflikte erneut auf,
-die wir bereits aufgelöst haben.*
+[Lars]» *Genau, du hast es fast. Mit dem* **rebase** *linearisieren wir die
+Historie. Die Merge-Commits verschwinden faktisch. Die Lösung des Merge-Konfliktes war aber in dem entsprechenden Merge-Commit. Dieser kann aber von* **rebase** *nicht verwendet werden. Da Git die Commits Schritt für Schritt wieder einspielt treten alle Konflikte erneut auf, die wir bereits aufgelöst haben.*
 
-» Ist das etwa immer so?
+[Karl]» Ist das etwa immer so?
 
-» *Normalerweise ist das kein Problem. Vielleicht machen wir uns das
-Ganze nochmal klarer. Wir brechen den* **rebase** *am besten ab.*
+[Lars]» *Normalerweise ist das kein Problem. Vielleicht machen wir uns das Ganze nochmal klarer. Wir brechen den* **rebase** *am besten ab.*
 
-git rebase --abort
+.. code-block:: bash
 
-+-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Tip   | Mit **git rebase –abort** kann jeder Rebase abgebrochen werden, egal wieviel schon gemerged und verändert wurde. Nach dem **abort** ist der Status des Repository exakt wie vor dem Start des Rebase.   |
-+-------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+  git rebase --abort
 
-» *Wenn Du dir jetzt die Historie anschaust.*
+.. Tip:: 
+  
+  Mit **git rebase –abort** kann jeder Rebase abgebrochen werden, egal wieviel schon gemerged und verändert wurde. Nach dem **abort** ist der Status des Repository exakt wie vor dem Start des Rebase. 
+
+
+[Lars]» *Wenn Du dir jetzt die Historie anschaust.*
 
 |image11|
 
-» *Du siehst den Commit “Adjusted Readme” und den zugehörigen
+[Lars]» *Du siehst den Commit “Adjusted Readme” und den zugehörigen
 Merge-Commit “merged-fb-4711″?*
 
-» Ja.
+[Karl]» Ja.
 
-» *Du siehst auch, dass der Merge-Commit bisher nur lokal verfügbar ist?
-Wenn wir jetzt einen* **rebase** *machen wird Git zunächst alle Commits
-aus* **origin/master** *zu uns lokal holen. Anschließend wird es alle
-Commits, die bisher nur lokal verfügbar sind wieder neu hinzufügen.
-Unser Commit “Adjusted Readme” würde also auf den Commit “Remote Commit”
-gesetzt werden.
-Der Merge-Commit “merged-fb-4711″ verschwindet einfach.
-Da sich beim Rebase die Hash-Werte der beteiligten Commits ändern kann
-Git die Lösung des Merge-Konflikts nicht wiederverwenden, denn die gilt
-nur für die beiden Commits mit den alten Hash-Werten. Soweit klar?*
+[Lars]» *Du siehst auch, dass der Merge-Commit bisher nur lokal verfügbar ist? Wenn wir jetzt einen* **rebase** *machen wird Git zunächst alle Commits aus* **origin/master** *zu uns lokal holen. Anschließend wird es alle Commits, die bisher nur lokal verfügbar sind wieder neu hinzufügen. Unser Commit “Adjusted Readme” würde also auf den Commit “Remote Commit”
+gesetzt werden. Der Merge-Commit “merged-fb-4711″ verschwindet einfach. Da sich beim Rebase die Hash-Werte der beteiligten Commits ändern kann Git die Lösung des Merge-Konflikts nicht wiederverwenden, denn die gilt nur für die beiden Commits mit den alten Hash-Werten. Soweit klar?*
 
-» Ja, ich denke das habe ich verstanden.
+[Karl]» Ja, ich denke das habe ich verstanden.
 
-» *Sehr gut, es ist also zu erwarten, dass der Konflikt erneut auftritt
-und in diesem Fall müsstest Du den Konflikt erneut auflösen, was wir
-jetzt auch tun werden.*
+[Lars]» *Sehr gut, es ist also zu erwarten, dass der Konflikt erneut auftritt und in diesem Fall müsstest Du den Konflikt erneut auflösen, was wir jetzt auch tun werden.*
 
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Tip   | Würde Karl jetzt aber seine Änderungen pushen, könnte er den nächsten Rebase problemlos machen, da dann keine Commits ausschließlich lokal verfügbar sind und beim **rebase** keine Probleme auftreten.   |
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. Tip:: 
+  
+  Würde Karl jetzt aber seine Änderungen pushen, könnte er den nächsten Rebase problemlos machen, da dann keine Commits ausschließlich lokal verfügbar sind und beim **rebase** keine Probleme auftreten.   |
 
-Übung
+.. admonition:: Übung
 
--  Machen Sie ein Update gegen origin
+  -  Machen Sie ein Update gegen origin
+  -  Lösen Sie den Merge-Konflikt
+  -  Bringen Sie den rebase zu Ende.
 
--  Lösen Sie den Merge-Konflikt
+.. code-block:: bash
 
--  Bringen Sie den rebase zu Ende.
+  git pull
+  First, rewinding head to replay your work on top of it...
+  Applying: Adjusted Readme
+  Applying: Konflikt
+  Using index info to reconstruct a base tree...
+  M README.md
+  Falling back to patching base and 3-way merge...
+  Auto-merging README.md
+  CONFLICT (content): Merge conflict in README.md
+  Failed to merge in the changes.
+  Patch failed at 0002 Konflikt
+  #merge
+  git mergetool
 
-git pull
+[Lars]» *Ganz wichtig, Karl. Wir sind noch nicht fertig. Stell dir vor wir wandern jetzt in der Historie von unten nach oben. Wir sind jetzt genau an der Stelle, wo der Merge-Konflikt auftritt.*
 
-First, rewinding head to replay your work on top of it...
+.. code-block:: bash
 
-Applying: Adjusted Readme
+  git log --oneline
+  5b90802 Adjusted Readme
+  b93516d Remote Commit
+  ad261f2 Initial commit
 
-Applying: Konflikt
+» *Wir müssen Git jetzt explizit sagen, dass wir fertig sind und weiter machen möchten.*
 
-Using index info to reconstruct a base tree...
+.. code-block:: bash
 
-M README.md
+  git rebase --continue
+  Applying: Konflikt
+  Applying: committing file 1
+  Applying: committing file 2
+  Applying: committing file 3
+  Applying: committing file 4
+  Applying: committing file 5
 
-Falling back to patching base and 3-way merge...
-
-Auto-merging README.md
-
-CONFLICT (content): Merge conflict in README.md
-
-Failed to merge in the changes.
-
-Patch failed at 0002 Konflikt
-
-#merge
-
-git mergetool
-
-» *Ganz wichtig, Karl. Wir sind noch nicht fertig. Stell dir vor wir
-wandern jetzt in der Historie von unten nach oben. Wir sind jetzt genau
-an der Stelle, wo der Merge-Konflikt auftritt.*
-
-git log --oneline
-
-5b90802 Adjusted Readme
-
-b93516d Remote Commit
-
-ad261f2 Initial commit
-
-» *Wir müssen Git jetzt explizit sagen, dass wir fertig sind und weiter
-machen möchten.*
-
-git rebase --continue
-
-Applying: Konflikt
-
-Applying: committing file 1
-
-Applying: committing file 2
-
-Applying: committing file 3
-
-Applying: committing file 4
-
-Applying: committing file 5
-
-» *Das Update ist damit vollständig und die Historie sieht so aus.*
+[Lars]» *Das Update ist damit vollständig und die Historie sieht so aus.*
 
 |image12|
 
-» *Ich kann gut verstehen, wenn dir das alles noch ein wenig kompliziert
+[Lars]» *Ich kann gut verstehen, wenn dir das alles noch ein wenig kompliziert
 vorkommt, aber ich verspreche dir, das wird sich bessern. Für heute ist
 es nur wichtig, dass du das Prinzip verstehst.*
 
-» Das habe ich verstanden, ich werde mir das dann nochmal in Ruhe
-anschauen. Was ich mir merke ist auf jedenfall, wenn ich ein **rebase**
-gegen einen Branch mache, dann kann es passieren, dass Merge-Konflikte
-die schon gelöst sind erneut auftreten.
+[Karl]» Das habe ich verstanden, ich werde mir das dann nochmal in Ruhe anschauen. Was ich mir merke ist auf jedenfall, wenn ich ein **rebase** gegen einen Branch mache, dann kann es passieren, dass Merge-Konflikte die schon gelöst sind erneut auftreten.
 
-» *Genau, allerdings nur in seltenen Fällen.
-Wir haben jetzt schon zwei Features fertig implementiert. Karl, höchste
-Zeit, dass Du deine Sachen auch den anderen Entwicklern zur Verfügung
-stellst. Die Operation hierfür ist* **push**\ *.*
+[Lars]» *Genau, allerdings nur in seltenen Fällen.
+Wir haben jetzt schon zwei Features fertig implementiert. Karl, höchste Zeit, dass Du deine Sachen auch den anderen Entwicklern zur Verfügung stellst. Die Operation hierfür ist* **push** *.*
 
 Push
-~~~~~~~~~
+~~~~
 
-» *Bevor wir lange reden, würde ich vorschlagen, du pushst Deine Commits
-zunächst.*
+[Lars]» *Bevor wir lange reden, würde ich vorschlagen, du pushst Deine Commits zunächst.*
 
-git push origin master
+.. code-block:: bash
 
-Counting objects: 23, done.
+  git push origin master
+  Counting objects: 23, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (16/16), done.
+  Writing objects: 100% (21/21), 1.82 KiB | 0 bytes/s, done.
+  Total 21 (delta 6), reused 0 (delta 0)
+  To https://github.com/dilgerma/effective-git-workshop
+  b93516d..6e5a1d7 master -> master
 
-Delta compression using up to 4 threads.
+[Lars]» *Ab jetzt stehen deine Commits allen Entwicklern zur Verfügung.
+Es gibt aber einige Besonderheiten zu beachen beim Push. Zunächst stellt Git sicher, dass du nur pushen kannst, wenn Du zuvor ein Update gemacht hast. Ist dein Stand auf dem lokalen Branch älter als der auf dem Remote-Repository, wird Git den Push verbieten.*
 
-Compressing objects: 100% (16/16), done.
+[Karl]» Ok, das ist bei Subversion nicht anders, ich hätte eigentlich erwartet, dass Git damit umgehen kann.
 
-Writing objects: 100% (21/21), 1.82 KiB \| 0 bytes/s, done.
-
-Total 21 (delta 6), reused 0 (delta 0)
-
-To https://github.com/dilgerma/effective-git-workshop
-
-b93516d..6e5a1d7 master -> master
-
-» *Ab jetzt stehen deine Commits allen Entwicklern zur Verfügung.
-Es gibt aber einige Besonderheiten zu beachen beim Push. Zunächst
-stellt Git sicher, dass du nur pushen kannst, wenn Du zuvor ein Update
-gemacht hast. Ist dein Stand auf dem lokalen Branch älter als der auf
-dem Remote-Repository, wird Git den Push verbieten.*
-
-» Ok, das ist bei Subversion nicht anders, ich hätte eigentlich
-erwartet, dass Git damit umgehen kann.
-
-» *Nein, das kann es nicht. Stell dir das so vor. Der Branch, also
-beispielsweise der master im Remote-Repository zeigt auf einen
-bestimmten Commit, seinen HEAD.
-Dein lokaler Branch genauso. Ein* **push** *macht nichts anderes, als
-alle Objekte aus deinem objects-Verzeichnis auf den Server zu kopieren
+[Lars]» *Nein, das kann es nicht. Stell dir das so vor. Der Branch, also beispielsweise der master im Remote-Repository zeigt auf einen bestimmten Commit, seinen HEAD. Dein lokaler Branch genauso. Ein* **push** *macht nichts anderes, als alle Objekte aus deinem objects-Verzeichnis auf den Server zu kopieren
 und dann den HEAD-Zeiger des Branches neu zu setzen.*
 
-» Ok, soweit hatten wir das alles schon besprochen.
+[Karl]» Ok, soweit hatten wir das alles schon besprochen.
 
-» *Genau, wenn du aber einen* **push** *ausführst obwohl im
-Remote-Repository bereits neuere Commits da sind würdest du den
-HEAD-Zeiger überschreiben und die neuen Commits verschwinden einfach,
-weil diese in deiner lokalen Historie nicht vorkommen.*
+[Lars]» *Genau, wenn du aber einen* **push** *ausführst obwohl im Remote-Repository bereits neuere Commits da sind würdest du den HEAD-Zeiger überschreiben und die neuen Commits verschwinden einfach, weil diese in deiner lokalen Historie nicht vorkommen.*
 
-» Ach so, ja stimmt. Gut, das ist ja sogar gut das Git das nicht kann.
+[Karl]» Ach so, ja stimmt. Gut, das ist ja sogar gut das Git das nicht kann.
 
-» *Oh, Git kann das sehr wohl. Das nennt sich* **forced push**\ *.
-Vielleicht versuchen wir das einfach mal?*
+[Lars]» *Oh, Git kann das sehr wohl. Das nennt sich* **forced push** *. Vielleicht versuchen wir das einfach mal?*
 
-» Bis du sicher?
+[Karl]» Bis du sicher?
 
-» *Ja, keine Angst, wir verwenden ein Spielzeug-Repository hierfür. Das
-Szenario lässt sich ganz einfach bauen. Wir definieren uns lokal auf dem
-Rechner ein zweites Remote-Repository das den gleichen Stand wie unser
-Repository hat. Dann setzen wir bei uns den Commit-Zeiger einige Commits
-in die Vergangenheit und versuchen zu pushen.*
+[Lars]» *Ja, keine Angst, wir verwenden ein Spielzeug-Repository hierfür. Das Szenario lässt sich ganz einfach bauen. Wir definieren uns lokal auf dem Rechner ein zweites Remote-Repository das den gleichen Stand wie unser Repository hat. Dann setzen wir bei uns den Commit-Zeiger einige Commits in die Vergangenheit und versuchen zu pushen.*
 
-Übung
+.. admonition:: Übung
 
--  Erzeugen Sie lokal ein leeres Repository
+  -  Erzeugen Sie lokal ein leeres Repository
+  -  Deklarieren Sie dieses Repository als Remote in Ihrem Entwickler-Repository
+  -  Pushen Sie Ihren aktuellen Stand in dieses Repository
+  -  Setzen Sie Ihren Commit-Zeiger auf HEAD~3 (*git reset –hard*)
+  -  Versuchen Sie erneut zu pushen
+  -  Was geschieht?
 
--  Deklarieren Sie dieses Repository als Remote in Ihrem
-       Entwickler-Repository
+[Lars]» *Ok, Karl, versuchen wir das zusammen?*
 
--  Pushen Sie Ihren aktuellen Stand in dieses Repository
+.. code-block:: bash
 
--  Setzen Sie Ihren Commit-Zeiger auf HEAD~3 (*git reset –hard*)
+  mkdir testremote.git
+  cd testremote.git/
+  #init bare repository
+  git init --bare
+  Initialized empty Git repository in
+    /Users/martindilger/development/git/workshops/testremote.git/
 
--  Versuchen Sie erneut zu pushen
+  #print directory
+  ls
+  HEAD
+  branches
+  config
+  description
+  hooks
+  info
+  objects
+  refs
 
--  Was geschieht?
+.. Tip::
 
-» *Ok, Karl, versuchen wir das zusammen?*
+  Wichtig, Remote-Repositories sollten immer als Bare-Repository mit **–bare** deklariert werden.   |
 
-mkdir testremote.git
+[Karl]» Kannst du mir den Unterschied zwischen einem Bare- und einem normalem Repository erklären?
 
-cd testremote.git/
+[Lars]» *Besser du nennst sie Bare- und Entwickler-Repository. Ein Bare-Repository hat keine Working-Copy. Das haben wir auch gerade gesehen. Das was du in deinem Entwickler-Repository im .git-Verzeichnis findest liegt bei einem Bare-Repository direkt im Root-Verzeichnis. Es gibt also keine Möglichkeit, Dateien zu bearbeiten oder zu Committen. Das Bare-Repository ist einzig und allein da um darauf* **zu pushen** *oder davon zu* **pullen** *.*
 
-#init bare repository
+[Karl]» Interessant, können auch Entwickler-Repositories Remotes sein oder geht das sowieso nur mit Bare-Repositories?
 
-git init --bare
-
-Initialized empty Git repository in
-/Users/martindilger/development/git/workshops/testremote.git/
-
-#print directory
-
-ls
-
-HEAD
-
-branches
-
-config
-
-description
-
-hooks
-
-info
-
-objects
-
-refs
-
-+-------+---------------------------------------------------------------------------------------------------+
-| Tip   | Wichtig, Remote-Repositories sollten immer als Bare-Repository mit **–bare** deklariert werden.   |
-+-------+---------------------------------------------------------------------------------------------------+
-
-» Kannst du mir den Unterschied zwischen einem Bare- und einem normalem
-Repository erklären?
-
-» *Besser du nennst sie Bare- und Entwickler-Repository. Ein
-Bare-Repository hat keine Working-Copy. Das haben wir auch gerade
-gesehen. Das was du in deinem Entwickler-Repository im .git-Verzeichnis
-findest liegt bei einem Bare-Repository direkt im Root-Verzeichnis. Es
-gibt also keine Möglichkeit, Dateien zu bearbeiten oder zu Committen.
-Das Bare-Repository ist einzig und allein da um darauf* **zu pushen**
-*oder davon zu* **pullen**\ *.*
-
-» Interessant, können auch Entwickler-Repositories Remotes sein oder
-geht das sowieso nur mit Bare-Repositories?
-
-» *Gute Frage! Auch Entwickler-Repositories können Remotes sein. Das
-macht beispielsweise Sinn, wenn sich zwei Entwickler gegenseitig als
-Remote deklariert haben und sie direkt zusammenarbeiten. Es gibt aber
+[Lars]» *Gute Frage! Auch Entwickler-Repositories können Remotes sein. Das macht beispielsweise Sinn, wenn sich zwei Entwickler gegenseitig als Remote deklariert haben und sie direkt zusammenarbeiten. Es gibt aber
 eine wichtige Einschränkung.
-Bevor wir uns um unser echtes Remote-Repository kümmern machen wir
-vielleicht einen kleinen Ausflug und erzeugen uns ein weiteres
-Remote-Repository als Entwickler-Repository.*
+Bevor wir uns um unser echtes Remote-Repository kümmern machen wir vielleicht einen kleinen Ausflug und erzeugen uns ein weiteres Remote-Repository als Entwickler-Repository.*
 
-mkdir dev-remote
+.. coe-block:: bash
 
-cd dev-remote
+  mkdir dev-remote
+  cd dev-remote
+  git init <b>(1)</b>
+  #connect
+  git remote add dev-remote ../dev-remote/
+  git push dev-remote master
+  Counting objects: 28, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (20/20), done.
+  Writing objects: 100% (28/28), 2.34 KiB \| 0 bytes/s, done.
+  Total 28 (delta 7), reused 0 (delta 0)
+  remote: error: refusing to update checked out branch: refs/heads/master
+  ! [remote rejected] master -> master (branch is currently checked out)
 
-git init <b>(1)</b>
+  1. Achtung, diesmal ohne –bare
 
-#connect
+[Lars]» *Das Entwickler-Repository verweigert den Push auf den aktuell ausgecheckten Branch. Kannst du mir sagen warum?*
 
-git remote add dev-remote ../dev-remote/
-
-git push dev-remote master
-
-Counting objects: 28, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (20/20), done.
-
-Writing objects: 100% (28/28), 2.34 KiB \| 0 bytes/s, done.
-
-Total 28 (delta 7), reused 0 (delta 0)
-
-remote: error: refusing to update checked out branch: refs/heads/master
-
-! [remote rejected] master -> master (branch is currently checked
-out)
-
-1. Achtung, diesmal ohne –bare
-
-» *Das Entwickler-Repository verweigert den Push auf den aktuell
-ausgecheckten Branch. Kannst du mir sagen warum?*
-
-» Ich denke das Problem ist, dass der Entwickler wahrscheinlich gerade
+[Karl]» Ich denke das Problem ist, dass der Entwickler wahrscheinlich gerade
 auf diesem Branch arbeitet, oder?
 
-» *Ja, das geht schon in die richtige Richtung.*
+[Lars]» *Ja, das geht schon in die richtige Richtung.*
 
-» Würden wir jetzt auf den master pushen auf dem der Entwickler aktuell
-arbeitet, würden wir ihm seine bereits lokal gemachten Commits einfach
-überschreiben, weil wir den Commit-Zeiger einfach auf unseren obersten
-Commit setzen würden der aber bereits sehr alt sein kann, richtig?
+[Karl]» Würden wir jetzt auf den master pushen auf dem der Entwickler aktuell arbeitet, würden wir ihm seine bereits lokal gemachten Commits einfach überschreiben, weil wir den Commit-Zeiger einfach auf unseren obersten Commit setzen würden der aber bereits sehr alt sein kann, richtig?
 
-» *Perfekt, Karl. Ich hätte es selbst nicht besser erklären können.
-Genau aus diesem Grund brauchen wir Bare-Repositories als Remotes, weil
-für Bare-Repositories diese Einschränkung nicht gilt.*
+[Lars]» *Perfekt, Karl. Ich hätte es selbst nicht besser erklären können. Genau aus diesem Grund brauchen wir Bare-Repositories als Remotes, weil für Bare-Repositories diese Einschränkung nicht gilt.*
 
-» Danke, das klingt einleuchtend, wir wollten uns aber eigentlich mit
-**forced-pushes** beschäftigen, richtig?
+[Karl]» Danke, das klingt einleuchtend, wir wollten uns aber eigentlich mit **forced-pushes** beschäftigen, richtig?
 
-» *Ja genau, lass uns das Entwickler-Repository wieder aus der
-Remotes-Liste löschen und stattdessen das Bare-Repository deklarieren.*
+[Lars]» *Ja genau, lass uns das Entwickler-Repository wieder aus der Remotes-Liste löschen und stattdessen das Bare-Repository deklarieren.*
 
-#remove dev remote
 
-git remote rm dev-remote
+.. code-block:: bash
 
-#add bare remote
+  #remove dev remote
+  git remote rm dev-remote
+  #add bare remote
+  git remote add test-remote ../testremote.git
 
-git remote add test-remote ../testremote.git
+[Lars]» *Anschließend pushen wir unseren aktuellen Stand auf dieses Repository.*
 
-» *Anschließend pushen wir unseren aktuellen Stand auf dieses
-Repository.*
+.. code-block:: bash
 
-git push test-remote
+  git push test-remote
+  Counting objects: 28, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (20/20), done.
+  Writing objects: 100% (28/28), 2.34 KiB | 0 bytes/s, done.
+  Total 28 (delta 7), reused 0 (delta 0)
+  To ../testremote.git
+  * [new branch] master -> master
+  
+[Lars]» *Soweit so gut und nichts neues, richtig?*
 
-Counting objects: 28, done.
+[Karl]» Ja, das kenn ich bereits.
 
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (20/20), done.
-
-Writing objects: 100% (28/28), 2.34 KiB \| 0 bytes/s, done.
-
-Total 28 (delta 7), reused 0 (delta 0)
-
-To ../testremote.git
-
-\* [new branch] master -> master
-
-» *Soweit so gut und nichts neues, richtig?*
-
-» Ja, das kenn ich bereits.
-
-» *Was wir jetzt machen ist, wir gehen ein wenig zurück in die
+[Lars]» *Was wir jetzt machen ist, wir gehen ein wenig zurück in die
 Vergangenheit.*
 
-git log --oneline
+.. code-block:: bash
 
-6e5a1d7 committing file 5
-
-0d01e62 committing file 4
-
-22ea185 committing file 3
-
-8b46f14 committing file 2
-
-932e981 committing file 1
-
-4ef00cd Konflikt
-
-5b90802 Adjusted Readme
-
-b93516d Remote Commit
-
-ad261f2 Initial commit
-
-#reset
-
-git reset --hard HEAD~3
-
-HEAD is now at 8b46f14 committing file 2
-
-#log again
-
-git log --oneline
-
-8b46f14 committing file 2
-
-932e981 committing file 1
-
-4ef00cd Konflikt
-
-5b90802 Adjusted Readme
-
-b93516d Remote Commit
-
-ad261f2 Initial commit
+  git log --oneline
+  6e5a1d7 committing file 5
+  0d01e62 committing file 4
+  22ea185 committing file 3
+  8b46f14 committing file 2
+  932e981 committing file 1
+  4ef00cd Konflikt
+  5b90802 Adjusted Readme
+  b93516d Remote Commit
+  ad261f2 Initial commit
+  #reset
+  git reset --hard HEAD~3
+  HEAD is now at 8b46f14 committing file 2
+  #log again
+  git log --oneline
+  8b46f14 committing file 2
+  932e981 committing file 1
+  4ef00cd Konflikt
+  5b90802 Adjusted Readme
+  b93516d Remote Commit
+  ad261f2 Initial commit
 
 » *Mit Hilfe von* **git reset** *gehen wir vom HEAD, das ist der jeweils
 oberste Commit in einem Branch, zum angegebenen Commit.*
 
-+-----------+-----------------------------------------------------+
-| Caution   | **git reset** muss mit vorsicht verwendet werden.   |
-+-----------+-----------------------------------------------------+
+.. Caution::
 
-» *Karl, es gibt fast unzählige Varianten wie man für* **reset**
-*angeben kann, wohin man resetten möchte. Wir haben schon gesehen,*
-**HEAD~3** *geht vom obersten Commit 3 Commits zurück. Wir hätten das
-genauso gut als* **HEAD^^^** *schreiben können, oder aber wir hätten
-direkt mit dem Hash-Wert des Commits arbeiten können.*
+     **git reset** muss mit vorsicht verwendet werden.
 
-» Ok, das schlage ich dann in der
-`*Dokumentation* <https://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html>`__
-nochmal nach. Kann ich jetzt pushen?
 
-» *Ja, versuch es bitte.*
+[Lars]» *Karl, es gibt fast unzählige Varianten wie man für* **reset** *angeben kann, wohin man resetten möchte. Wir haben schon gesehen,* **HEAD~3** *geht vom obersten Commit 3 Commits zurück. Wir hätten das genauso gut als* **HEAD^^^** *schreiben können, oder aber wir hätten direkt mit dem Hash-Wert des Commits arbeiten können.*
 
-git push test-remote
+[Karl]» Ok, das schlage ich dann in der `*Dokumentation* <https://www.kernel.org/pub/software/scm/git/docs/git-rev-parse.html>`__ nochmal nach. Kann ich jetzt pushen?
 
-To ../testremote.git
 
-! [rejected] master -> master (non-fast-forward)
+[Lars]» *Ja, versuch es bitte.*
 
-error: failed to push some refs to '../testremote.git'
+.. code-bloc:: bash
 
-» *Genau, hier siehst du es sehr schön. Das ist ein sogenannter*
-**Non-Fast-Forward**\ *-Push. Das bedeutet nichts anderes als das auf
-dem Remote-Branch Commits liegen, die wir lokal noch nicht haben. Das
-macht auch Sinn, weil wir lokal mit* **reset** *einige Commits
-zurückgegangen sind. Wir simulieren damit praktisch, dass jemand Commits
-auf den Master gepusht hat, die wir bei uns noch nicht vorliegen haben.
-In diesem Fall ist ein Update notwendig. Oder in ganz, ganz seltenen
-Fällen ein* **forced-push**\ *. Ich zeige dir das jetzt nur, damit du es
-mal gesehen hast. Bitte immer vorher mit einem Kollegen absprechen.*
+  git push test-remote
+  To ../testremote.git
+  ! [rejected] master -> master (non-fast-forward)
+  error: failed to push some refs to '../testremote.git'
 
-git push -f test-remote master
+[Lars]» *Genau, hier siehst du es sehr schön. Das ist ein sogenannter* **Non-Fast-Forward** *-Push. Das bedeutet nichts anderes als das auf dem Remote-Branch Commits liegen, die wir lokal noch nicht haben. Das macht auch Sinn, weil wir lokal mit* **reset** *einige Commits zurückgegangen sind. Wir simulieren damit praktisch, dass jemand Commits auf den Master gepusht hat, die wir bei uns noch nicht vorliegen haben.
+In diesem Fall ist ein Update notwendig. Oder in ganz, ganz seltenen Fällen ein* **forced-push** *. Ich zeige dir das jetzt nur, damit du es mal gesehen hast. Bitte immer vorher mit einem Kollegen absprechen.*
 
-Total 0 (delta 0), reused 0 (delta 0)
+.. code-block:: bash
 
-To ../testremote.git
+  git push -f test-remote master
+  Total 0 (delta 0), reused 0 (delta 0)
+  To ../testremote.git
+  + 6e5a1d7...8b46f14 master -> master (forced update)
 
-+ 6e5a1d7...8b46f14 master -> master (forced update)
+[Lars]» *Ein* **forced-push** *mit der Option* **-f** *überschreibt den Commit-Zeiger im Remote-Repository ohne Rücksicht. Es gibt nur ganz wenige Fälle, in denen das Verhalten gewünscht ist.*
 
-» *Ein* **forced-push** *mit der Option* **-f** *überschreibt den
-Commit-Zeiger im Remote-Repository ohne Rücksicht. Es gibt nur ganz
-wenige Fälle, in denen das Verhalten gewünscht ist.*
+[Karl]» Ist das nicht ganz schön gefährlich?
 
-» Ist das nicht ganz schön gefährlich?
-
-» *Genau, das ist es. Bei uns sind in allen Remote-Repositories*
-**forced-pushes** *generell ausgeschaltet und werden nur bei Bedarf
-aktiviert. Per Default sind forced-pushes leider erlaubt und müssen
+[Lars]» *Genau, das ist es. Bei uns sind in allen Remote-Repositories* **forced-pushes** *generell ausgeschaltet und werden nur bei Bedarf aktiviert. Per Default sind forced-pushes leider erlaubt und müssen
 manuell deaktiviert werden.*
 
-git config receive.denyNonFastForwards true
+.. code-block:: bash
 
-» Aber haben wir jetzt nicht alle unsere Commits verloren?
+  git config receive.denyNonFastForwards true
 
-» *Erstmal ja, denn wir haben unser Repository lokal zurückgesetzt und
-jetzt auch das Remote-Repository überschrieben. Auf den ersten Blick
-gibt es keine Möglichkeit mehr, die fehlenden 3 Commits wieder
+[Karl]» Aber haben wir jetzt nicht alle unsere Commits verloren?
+
+[Lars]» *Erstmal ja, denn wir haben unser Repository lokal zurückgesetzt und jetzt auch das Remote-Repository überschrieben. Auf den ersten Blick gibt es keine Möglichkeit mehr, die fehlenden 3 Commits wieder
 zurückzubekommen, richtig?*
+
 
 All is Lost – Reflog
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-» *Keine Sorge Karl, Git hat ein Sicherheitsnetz genau für diese Fälle.
-Das sogenannte* **Reflog**\ *. Das Reflog ist quasi ein Logbuch über
-alle Aktionen, die du in deinem lokalen Repository durchgeführt hast.
+[Lars]» *Keine Sorge Karl, Git hat ein Sicherheitsnetz genau für diese Fälle. Das sogenannte* **Reflog**\ *. Das Reflog ist quasi ein Logbuch über alle Aktionen, die du in deinem lokalen Repository durchgeführt hast.
 Schau dir am besten mal dein Reflog an.*
 
-git reflog
 
-8b46f14 HEAD@{2}: reset: moving to HEAD~3 <b>(1)</b>
+.. code-block:: bash
 
-6e5a1d7 HEAD@{3}: rebase finished: returning to refs/heads/master
-<b>(2)</b>
+  git reflog
+  8b46f14 HEAD@{2}: reset: moving to HEAD~3 <b>(1)</b>
+  6e5a1d7 HEAD@{3}: rebase finished: returning to refs/heads/master<b>(2)</b>
+  6e5a1d7 HEAD@{4}: rebase: committing file 5
+  0d01e62 HEAD@{5}: rebase: committing file 4
+  22ea185 HEAD@{6}: rebase: committing file 3
+  8b46f14 HEAD@{7}: rebase: committing file 2
+  932e981 HEAD@{8}: rebase: committing file 1
+  4ef00cd HEAD@{9}: rebase: Konflikt
+  [....]
 
-6e5a1d7 HEAD@{4}: rebase: committing file 5
+  1. Dies ist der Stand nach dem **reset**
+  2. Dies war der Stand vor dem **reset**
 
-0d01e62 HEAD@{5}: rebase: committing file 4
-
-22ea185 HEAD@{6}: rebase: committing file 3
-
-8b46f14 HEAD@{7}: rebase: committing file 2
-
-932e981 HEAD@{8}: rebase: committing file 1
-
-4ef00cd HEAD@{9}: rebase: Konflikt
-
-[....]
-
-1. Dies ist der Stand nach dem **reset**
-
-2. Dies war der Stand vor dem **reset**
-
-» *Das Einzige was wir brauchen um unseren alten Stand wieder herstellen
-zu können sind die Hash-Werte der verlorenen Commits. Git löscht keine
-Daten. Nur weil die Commits nicht mehr in der Historie sind, sind sie
+[Lars]» *Das Einzige was wir brauchen um unseren alten Stand wieder herstellen zu können sind die Hash-Werte der verlorenen Commits. Git löscht keine Daten. Nur weil die Commits nicht mehr in der Historie sind, sind sie
 trotzdem noch eine ganze Weile verfügbar.*
 
-+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Caution   | Git führt regelmässig **Garbage Collections** durch. Commits die nicht verankert sind, also keine Parents haben sind nach einer Garbage-Collection tatsächlich unwiderbringlich verloren.   |
-+-----------+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+.. Caution:: 
 
-» *Karl, du siehst dass der Hash-Wert des Commits vor dem* **reset**
-*“6e5a1d7″ war. Den alten Stand wieder herzustellen ist jetzt ganz
-einfach.*
+  Git führt regelmässig **Garbage Collections** durch. Commits die nicht verankert sind, also keine Parents haben sind nach einer Garbage-Collection tatsächlich unwiderbringlich verloren.   |
 
-Übung
 
--  Stellen Sie den alten Stand im Repository wieder her.
+[Lars]» *Karl, du siehst dass der Hash-Wert des Commits vor dem* **reset** *`6e5a1d7` war. Den alten Stand wieder herzustellen ist jetzt ganz einfach.*
 
--  Bringen Sie das Remote-Repository wieder auf den alten Stand
 
-git reset --hard 6e5a1d7
+.. admonition:: Übung
 
-HEAD is now at 6e5a1d7 committing file 5
+  - Stellen Sie den alten Stand im Repository wieder her.
+  - Bringen Sie das Remote-Repository wieder auf den alten Stand
 
-#log
 
-git log --oneline
+  .. code-block:: bash
 
-6e5a1d7 committing file 5
+     git reset --hard 6e5a1d7
+    HEAD is now at 6e5a1d7 committing file 5
+    #log
+    git log --oneline
+    6e5a1d7 committing file 5
+    0d01e62 committing file 4
+    22ea185 committing file 3
+    8b46f14 committing file 2
+    932e981 committing file 1
+    4ef00cd Konflikt
+    5b90802 Adjusted Readme
+    b93516d Remote Commit
+    ad261f2 Initial commit
+    #recover remote
+    git push test-remote
+    Counting objects: 10, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (6/6), done.
+    Writing objects: 100% (9/9), 864 bytes | 0 bytes/s, done.
+    Total 9 (delta 2), reused 0 (delta 0)
+    To ../testremote.git
+    8b46f14..6e5a1d7 master -> master
 
-0d01e62 committing file 4
+[Karl]» Wow, das ist Klasse, ich kann mir gut vorstellen, dass dieser Tipp schon oft für zu Seufzern der Erleichterung geführt hat.
 
-22ea185 committing file 3
-
-8b46f14 committing file 2
-
-932e981 committing file 1
-
-4ef00cd Konflikt
-
-5b90802 Adjusted Readme
-
-b93516d Remote Commit
-
-ad261f2 Initial commit
-
-#recover remote
-
-git push test-remote
-
-Counting objects: 10, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (6/6), done.
-
-Writing objects: 100% (9/9), 864 bytes \| 0 bytes/s, done.
-
-Total 9 (delta 2), reused 0 (delta 0)
-
-To ../testremote.git
-
-8b46f14..6e5a1d7 master -> master
-
-» Wow, das ist Klasse, ich kann mir gut vorstellen, dass dieser Tipp
-schon oft für zu Seufzern der Erleichterung geführt hat.
-
-» *Ja, das Reflog als Recovery-Tool solltest Du dir wirklich merken. Man
-braucht es nicht jeden Tag, aber wenn man es braucht ist man jedesmal
-heilfroh, dass es da ist.*
+[Lars]» *Ja, das Reflog als Recovery-Tool solltest Du dir wirklich merken. Man braucht es nicht jeden Tag, aber wenn man es braucht ist man jedesmal heilfroh, dass es da ist.*
 
 Best Practices
-~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~
 
-» *In Ordnung Karl, bist du noch aufnahmefähig?*
+[Lars]» *In Ordnung Karl, bist du noch aufnahmefähig?*
 
-» Ja klar, ich finde das alles total interessant.
+[Karl]» Ja klar, ich finde das alles total interessant.
 
-» *Sehr gut, wir haben auch noch einiges vor. Bevor wir dazu kommen, wie
-wir hier im Team mit Branches arbeiten und wie wir unsere Releases
-machen würde ich dir gern noch einige Best-Practices zeigen, die sich
+[Lars]» *Sehr gut, wir haben auch noch einiges vor. Bevor wir dazu kommen, wie wir hier im Team mit Branches arbeiten und wie wir unsere Releases machen würde ich dir gern noch einige Best-Practices zeigen, die sich
 einfach im Lauf der Zeit herauskristallisiert haben.*
 
-» Super, ich bin ganz Ohr.
+[Karl]» Super, ich bin ganz Ohr.
 
 Interactive Rebase
-^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^
 
-» *Du hast schon gesehen, dass Git dir wirklich viele Möglichkeiten
-bietet, Commits lokal zu verändern.*
+[Lars]» *Du hast schon gesehen, dass Git dir wirklich viele Möglichkeiten bietet, Commits lokal zu verändern.*
 
-» Ja, das ist wirklich Klasse.
+[Karl]» Ja, das ist wirklich Klasse.
 
-» *Es geht sogar noch besser, denn jeder Entwickler hier bei uns im Team
-sollte das Ziel haben, eine möglichst saubere Historie zu hinterlassen.
-Wir wollen es allen so einfach wie möglich machen zu verstehen, was wann
-von wem und wieso implementiert wurde.*
+[Lars]» *Es geht sogar noch besser, denn jeder Entwickler hier bei uns im Team sollte das Ziel haben, eine möglichst saubere Historie zu hinterlassen. Wir wollen es allen so einfach wie möglich machen zu verstehen, was wann von wem und wieso implementiert wurde.*
 
-» Da ich bin voll und ganz bei dir, Lars.
+[Karl]» Da ich bin voll und ganz bei dir, Lars.
 
-» *Zumindest mir geht es aber oft so, dass ich meine Zwischenergebnisse
-gerne sichern möchte. Wozu haben wir schliesslich ein dezentrales
-System?*
+[Lars]» *Zumindest mir geht es aber oft so, dass ich meine Zwischenergebnisse gerne sichern möchte. Wozu haben wir schliesslich ein dezentrales System?*
 
-» Ok, ich verstehe. Das war etwas, was mich bei Subversion immer gestört
-hat. Ich hatte nie die Möglichkeit, einen Stand quasi einzufrieren ohne
-ihn gleich committen zu müssen.
+[Karl]» Ok, ich verstehe. Das war etwas, was mich bei Subversion immer gestört hat. Ich hatte nie die Möglichkeit, einen Stand quasi einzufrieren ohne ihn gleich committen zu müssen.
 
-» *Ha, siehst du! Genau das meine ich, mit Git kannst du lokal so viele
-Commits machen wie du möchtest. Dein lokales Repository gehört allein
-dir und niemand kann sehen, was du für Experimente machst.*
+[Lars]» *Ha, siehst du! Genau das meine ich, mit Git kannst du lokal so viele Commits machen wie du möchtest. Dein lokales Repository gehört allein dir und niemand kann sehen, was du für Experimente machst.*
 
-» Ja schon, aber das Problem ist, dass ich manchmal auch gerne einen
-unfertigen Stand einfrieren möchte, weil ich vielleicht gerne etwas
-ausprobieren möchte. Ich will aber nicht, dass dieser Stand dann später
-im Repository als Commit erscheint. Commits sollten ja immer
-funktionsfähig sein, oder?
+[Karl]» Ja schon, aber das Problem ist, dass ich manchmal auch gerne einen unfertigen Stand einfrieren möchte, weil ich vielleicht gerne etwas ausprobieren möchte. Ich will aber nicht, dass dieser Stand dann später im Repository als Commit erscheint. Commits sollten ja immer funktionsfähig sein, oder?
 
-» *Ja, da hast du vollkommen recht. Trotzdem sollst und darfst du lokal
-so viel committen wie du nur möchtest. Es gibt eine schöne Regel –*
-**Commit often, Polish later, Push once**\ *.*
+[Lars]» *Ja, da hast du vollkommen recht. Trotzdem sollst und darfst du lokal so viel committen wie du nur möchtest. Es gibt eine schöne Regel –* **Commit often, Polish later, Push once** *.*
 
-+-------+------------------------------------------+
-| Tip   | Commit often, Polish later, Push once.   |
-+-------+------------------------------------------+
 
-» Klingt interessant, kannst du das näher ausführen?
+.. Tip:: 
+  
+  Commit often, Polish later, Push once.
 
-» *Erinnerst du dich an das Skript, das wir vorhin verwendet haben um
-automatisch eine Menge von Commits zu erzeugen als wir über Rebase
-gesprochen haben? Das machen wir jetzt einfach nochmal. Erzeuge doch mal
-bitte so 10 Commits in deinem Repository mit beliebigem Inhalt.*
+[Karl]» Klingt interessant, kannst du das näher ausführen?
 
-git log --oneline
+[Lars]» *Erinnerst du dich an das Skript, das wir vorhin verwendet haben um automatisch eine Menge von Commits zu erzeugen als wir über Rebase gesprochen haben? Das machen wir jetzt einfach nochmal. Erzeuge doch mal bitte so 10 Commits in deinem Repository mit beliebigem Inhalt.*
 
-8104dbc committing file 10
+.. code-block:: bash
 
-66e8695 committing file 9
+  git log --oneline
+  8104dbc committing file 10
+  66e8695 committing file 9
+  fe2164f committing file 8 
+  c3dd9d3 committing file 7
+  c772573 committing file 6
+  976bd5a committing file 5
+  2c8772a committing file 4
+  fcb8147 committing file 3
+  b1e3c66 committing file 2
+  696c994 committing file 1
+  6e5a1d7 committing file 5
+  0d01e62 committing file 4
+  22ea185 committing file 3
+  8b46f14 committing file 2
+  932e981 committing file 1
 
-fe2164f committing file 8
+[Lars]» *Nehmen wir an, Commit “file 10″ und “file9″ sowie “file 5″, “file 4″ und “file 3″ sind nur Zwischenstände. Die würden wir also gerne zusammenfassen.*
 
-c3dd9d3 committing file 7
+[Lars]*Nehmen wir weiterhin an, Commit “file 2″ ist zwar in Ordnung, soll aber eigentlich im Nachhinein eine andere Commit-Message haben.*
+*Ok, wie würdest Du das mit Subversion machen?*
 
-c772573 committing file 6
+[Karl]» **Grins** Machst du Witze?
 
-976bd5a committing file 5
+[Lars]» *Ja.*
+[Lars]»*Das was wir jetzt machen werden machst du typischerweise kurz bevor du deinen Stand pushen möchtest.* **Commit often** *hast du bereits getan, jetzt sind wir quasi im* **Polish later** *-Schritt.*
+[Lars]»*Am besten wir machen es einfach der Reihe nach. Zunächst fassen wir die Commits “file 10″ und “file 9″, also die obersten beiden Commits zusammen. Das Tool was wir hierfür brauchen ist ein* **interactive rebase** *.*
 
-2c8772a committing file 4
+.. code-block:: bash
 
-fcb8147 committing file 3
+  git rebase -i HEAD~2 <b>(1)</b>
 
-b1e3c66 committing file 2
+[Lars]» *Die Notation* **HEAD~2** *kennst du schon. Damit geben wir an, dass wir die letzten beiden Commits bearbeiten möchten.*
+[Lars]*Ein* **interactive rebase** *ist quasi ein rebase eines Branches mit sich selbst. Wir haben vorhin darüber gesprochen, wie ein rebase funktioniert.*
 
-696c994 committing file 1
-
-6e5a1d7 committing file 5
-
-0d01e62 committing file 4
-
-22ea185 committing file 3
-
-8b46f14 committing file 2
-
-932e981 committing file 1
-
-| » *Nehmen wir an, Commit “file 10″ und “file9″ sowie “file 5″, “file
-  4″ und “file 3″ sind nur Zwischenstände. Die würden wir also gerne
-  zusammenfassen.*
-| *Nehmen wir weiterhin an, Commit “file 2″ ist zwar in Ordnung, soll
-  aber eigentlich im Nachhinein eine andere Commit-Message haben.*
-| *Ok, wie würdest Du das mit Subversion machen?*
-
-» **Grins** Machst du Witze?
-
-| » *Ja.*
-| *Das was wir jetzt machen werden machst du typischerweise kurz bevor
-  du deinen Stand pushen möchtest.* **Commit often** *hast du bereits
-  getan, jetzt sind wir quasi im* **Polish later**\ *-Schritt.*
-| *Am besten wir machen es einfach der Reihe nach. Zunächst fassen wir
-  die Commits “file 10″ und “file 9″, also die obersten beiden Commits
-  zusammen. Das Tool was wir hierfür brauchen ist ein* **interactive
-  rebase**\ *.*
-
-git rebase -i HEAD~2 <b>(1)</b>
-
-| » *Die Notation* **HEAD~2** *kennst du schon. Damit geben wir an, dass
-  wir die letzten beiden Commits bearbeiten möchten.*
-| *Ein* **interactive rebase** *ist quasi ein rebase eines Branches mit
-  sich selbst. Wir haben vorhin darüber gesprochen, wie ein rebase
-  funktioniert.*
-
-» Ja genau, Git legt die lokalen Commits zur Seite, macht ein Update und
+[Karl]» Ja genau, Git legt die lokalen Commits zur Seite, macht ein Update und
 packt die zur Seite gelegten Commits dann einfach wieder oben auf.
 
-» *Exakt, das funktioniert nicht nur mit entfernten Repositories,
-sondern auch mit dem Branch selbst. Du kannst quasi einen Rebase auf
-einem Branch gegen sich selbst machen.*
+[Lars]» *Exakt, das funktioniert nicht nur mit entfernten Repositories, sondern auch mit dem Branch selbst. Du kannst quasi einen Rebase auf einem Branch gegen sich selbst machen.*
 
-» Wow, klingt ziemlich abgefahren.
+[Karl]» Wow, klingt ziemlich abgefahren.
 
-| » *Ja vielleicht, ist aber eines der besten Tools, die Git zu bieten
-  hat.*
-| *Schau dir doch die Ausgabe des interactive rebase mal an.*
+[Lars]» *Ja vielleicht, ist aber eines der besten Tools, die Git zu bieten hat.*
+[Lars]»*Schau dir doch die Ausgabe des interactive rebase mal an.*
 
-pick 66e8695 committing file 9
+.. code-block:: bash
 
-pick 8104dbc committing file 10
+  pick 66e8695 committing file 9
+  pick 8104dbc committing file 10
+  # Rebase fe2164f..8104dbc onto fe2164f
+  #
+  # Commands:
+  # p, pick = use commit <b>(1)</b>
+  # r, reword = use commit, but edit the commit message <b>(2)</b>
+  # e, edit = use commit, but stop for amending <b>(3)</b>
+  # s, squash = use commit, but meld into previous commit <b>(4)</b>
+  # f, fixup = like "squash", but discard this commit's log message <b>(5)</b>
+  # x, exec = run command (the rest of the line) using shell <b>(6)</b>
 
-# Rebase fe2164f..8104dbc onto fe2164f
+  1. Behalte den Commit so wie er ist. → Default.
+  2. Commit soll erhalten bleiben, aber die Commit-Message kann verändert werden.
+  3. Git wird anhalten und bietet die Möglichkeit, Dateien in der Working-Copy zu editieren.
+  4. Bietet die Möglichkeit, zwei aufeinanderfolgende Commits zusammenzufassen. Die Commit-Message bei beiden 
+     bleibt erhalten.
+  5. Ähnlich wie Squash, jedoch bleibt nur die Commit-Message des letzten Commits erhalten.
+  6. Gibt erlaubt es, ein Skript auszuführen. Wird nur selten gebraucht.
 
-#
+[Lars]» *Du siehst, Git öffnet dir einen Editor und ganz oben stehen die beiden betroffenen Commits* **66e8695** *und* **8104dbc** *.*
+[Lars]»*Vor jedem Commit siehst du das Wort “pick” geschrieben. Solange dort “pick” steht, bleibt der Commit so erhalten wie er ist.*
+[Lars]»*Du siehst aber weiter unten die verschiedenen Optionen.*
 
-# Commands:
+[Karl]» Ich glaube ich verstehe, Git fordert uns quasi auf, festzulegen, was mit den Commits geschehen soll?
 
-# p, pick = use commit <b>(1)</b>
+[Lars]»» *Ja, das kann man so sehen. Wir möchten “file 10″ und “file 9″ zusammenfassen. Wie würdest Du das jetzt machen?*
 
-# r, reword = use commit, but edit the commit message <b>(2)</b>
+[Karl]» Ich würde im Editor folgendes ändern.
 
-# e, edit = use commit, but stop for amending <b>(3)</b>
+.. code-block:: bash
 
-# s, squash = use commit, but meld into previous commit <b>(4)</b>
+  pick 66e8695 committing file 9
+  s 8104dbc committing file 10
 
-# f, fixup = like "squash", but discard this commit's log message
-<b>(5)</b>
+[Lars]» *Perfekt, ich bin beeindruckt, Karl. Dadurch dass du für den Commit `file 10` die Option* **pick** *im Editor auf* **s** *änderst, wird Git diesen Commit durch den Rebase mit `file 9` verschmelzen. Da du dich für einen* **Squash** *entschieden hast, bleiben beide Commit-Messages erhalten.*
 
-# x, exec = run command (the rest of the line) using shell <b>(6)</b>
+[Karl]» Ich habe den rebase jetzt gestartet. Es geht nochmal ein Editor auf?
 
-1. Behalte den Commit so wie er ist. → Default.
+.. code-block:: bash
 
-2. Commit soll erhalten bleiben, aber die Commit-Message kann verändert
-       werden.
+  Rebasing (2/2)
+  # This is a combination of 2 commits.
+  # The first commit's message is:
+  committing file 9
+  # This is the 2nd commit message:
+  committing file 10
 
-3. Git wird anhalten und bietet die Möglichkeit, Dateien in der
-       Working-Copy zu editieren.
-
-4. Bietet die Möglichkeit, zwei aufeinanderfolgende Commits
-       zusammenzufassen. Die Commit-Message bei beiden bleibt erhalten.
-
-5. Ähnlich wie Squash, jedoch bleibt nur die Commit-Message des letzten
-       Commits erhalten.
-
-6. Gibt erlaubt es, ein Skript auszuführen. Wird nur selten gebraucht.
-
-| » *Du siehst, Git öffnet dir einen Editor und ganz oben stehen die
-  beiden betroffenen Commits* **66e8695** *und* **8104dbc**\ *.*
-| *Vor jedem Commit siehst du das Wort “pick” geschrieben. Solange dort
-  “pick” steht, bleibt der Commit so erhalten wie er ist.*
-| *Du siehst aber weiter unten die verschiedenen Optionen.*
-
-» Ich glaube ich verstehe, Git fordert uns quasi auf, festzulegen, was
-mit den Commits geschehen soll?
-
-» *Ja, das kann man so sehen. Wir möchten “file 10″ und “file 9″
-zusammenfassen. Wie würdest Du das jetzt machen?*
-
-» Ich würde im Editor folgendes ändern.
-
-pick 66e8695 committing file 9
-
-s 8104dbc committing file 10
-
-» *Perfekt, ich bin beeindruckt, Karl. Dadurch dass du für den Commit
-“file 10″ die Option* **pick** *im Editor auf* **s** *änderst, wird Git
-diesen Commit durch den Rebase mit “file 9″ verschmelzen. Da du dich für
-einen* **Squash** *entschieden hast, bleiben beide Commit-Messages
-erhalten.*
-
-» Ich habe den rebase jetzt gestartet. Es geht nochmal ein Editor auf?
-
-Rebasing (2/2)
-
-# This is a combination of 2 commits.
-
-# The first commit's message is:
-
-committing file 9
-
-# This is the 2nd commit message:
-
-committing file 10
-
+  
 » *Genau, Git zeigt dir an, was passieren wird. Für einen Squash sind
 wir bereits fertig. Wir könnten jetzt aber auch die Commit-Messages noch
 beliebig ergänzen und ändern, indem wir einfach beispielsweise eine
