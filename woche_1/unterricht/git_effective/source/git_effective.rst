@@ -2979,904 +2979,625 @@ gespannt auf den nächsten Tag im Team.
   - Könnten Sie jeden dieser Befehle anwenden?
 
 Tag 2
---------
+-----
 
-Karl hat einen entspannten Abend mit seiner Familie verbracht und
-befindet sich jetzt wieder auf dem Weg nach Nürnberg. Er nutzt die
-Fahrzeit um sich weiter mit Git vertraut zu machen. Er kann dank dem
-dezentralen System problemlos auch ohne Verbindung ins Büro *offline*
-arbeiten. Die Zeit verfliegt und somit steht Karl schon bald wieder
-rechtzeitig zum *Daily Scrum* im Büro und wird herzlich von seinen neuen
+Karl hat einen entspannten Abend mit seiner Familie verbracht und befindet sich jetzt wieder auf dem Weg nach Nürnberg. Er nutzt die
+Fahrzeit um sich weiter mit Git vertraut zu machen. Er kann dank dem dezentralen System problemlos auch ohne Verbindung ins Büro *offline*
+arbeiten. Die Zeit verfliegt und somit steht Karl schon bald wieder rechtzeitig zum *Daily Scrum* im Büro und wird herzlich von seinen neuen
 Teamkollegen begrüsst.
 
-» *Hallo Karl, schön dass du wieder da bist. Ich hoffe mit der Rückfahrt
+[Lars]» *Hallo Karl, schön dass du wieder da bist. Ich hoffe mit der Rückfahrt
 hat alles soweit geklappt?*
 
-» Hallo Lars, ja, alles problemlos. Was ist der Plan für heute?
+[Karl]» Hallo Lars, ja, alles problemlos. Was ist der Plan für heute?
 
-» *Wir werden uns heute zunächst mal mit unserem Branching Modell
-befassen.
-Hast du bereits von* `*Git
+[Lars]» *Wir werden uns heute zunächst mal mit unserem Branching Modell
+befassen. Hast du bereits von* `*Git
 Flow* <http://www.effectivetrainings.de/blog/2012/04/22/git-flow-einfaches-arbeiten-mit-dem-perfekten-git-workflow/>`__
 *gehört?*
 
-» Ja, Git Flow hab ich schon öfter gehört. Ich kann dir aber nicht
-erklären, was sich dahinter verbirgt.
+[Karl]» Ja, Git Flow hab ich schon öfter gehört. Ich kann dir aber nicht erklären, was sich dahinter verbirgt.
 
-» *Kein Problem, denn genau das erkläre ich dir jetzt.*
+[Lars]» *Kein Problem, denn genau das erkläre ich dir jetzt.*
 
 Git Branching Modelle
-~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~
 
-» *Zunächst stellt stellt sich jeder Entwickler normalerweise die Frage,
-wieso man überhaupt etwas wie ein Branching-Modell braucht. Wie habt ihr
+[Lars]» *Zunächst stellt stellt sich jeder Entwickler normalerweise die Frage, wieso man überhaupt etwas wie ein Branching-Modell braucht. Wie habt ihr
 denn bisher gearbeitet?*
 
-» Naja, in den Projekten in denen ich bisher gearbeitet habe war
-durchweg Subversion als Versionskontrollsystem im Einsatz. Über konkrete
-Branching-Modelle habe ich mir bisher ehrlich gesagt wenig Gedanken
-gemacht. Wir haben eigentlich immer direkt auf dem **trunk** entwickelt.
+[Karl]» Naja, in den Projekten in denen ich bisher gearbeitet habe war durchweg Subversion als Versionskontrollsystem im Einsatz. Über konkrete Branching-Modelle habe ich mir bisher ehrlich gesagt wenig Gedanken gemacht. Wir haben eigentlich immer direkt auf dem **trunk** entwickelt.
 
-» *Ja, das ist meistens so. Wie war denn dein Eindruck davon?*
+[Lars]» *Ja, das ist meistens so. Wie war denn dein Eindruck davon?*
 
-» Prinzipiell habe ich damit keine Probleme gehabt. Jeder Entwickler
-checkt seinen Stand ein, wenn er denkt, dass er eine Art Meilenstein in
-seinem aktuellen Feature erreicht hat. Das Schöne ist, man sieht sofort
-im Code, woran die Kollegen gerade arbeiten. Das nennt sich dann wohl
-auch *Continuous Integration*.
+[Karl]» Prinzipiell habe ich damit keine Probleme gehabt. Jeder Entwickler checkt seinen Stand ein, wenn er denkt, dass er eine Art Meilenstein in seinem aktuellen Feature erreicht hat. Das Schöne ist, man sieht sofort
+im Code, woran die Kollegen gerade arbeiten. Das nennt sich dann wohl auch *Continuous Integration*.
 
-» *Konflikte zwischen verschiedenen Features werden möglichst früh
-entdeckt und bereits aufgelöst. Das ist ein echter Vorteil. Hattet ihr
-Probleme mit der Stabilität des* **trunk**\ *?*
+[Lars]» *Konflikte zwischen verschiedenen Features werden möglichst früh entdeckt und bereits aufgelöst. Das ist ein echter Vorteil. Hattet ihr Probleme mit der Stabilität des* **trunk**\ *?*
 
-» Das ist die Kehrseite der Medaille. Da die Entwickler natürlich
-ständig auf dem *trunk* einchecken sind dort natürlich auch halbfertige
-Features, die zwar bauen aber nicht funktional abgeschlossen sind.
+[Karl]» Das ist die Kehrseite der Medaille. Da die Entwickler natürlich ständig auf dem *trunk* einchecken sind dort natürlich auch halbfertige Features, die zwar bauen aber nicht funktional abgeschlossen sind.
 
-» *Von welchem Branch habt ihr üblicherweise eure Releases gemacht?*
+[Lars]» *Von welchem Branch habt ihr üblicherweise eure Releases gemacht?*
 
-» Es gab bestimmte Zeitpunkte, an denen ein **Release Branch** gezogen
-wurde.
+[Karl]» Es gab bestimmte Zeitpunkte, an denen ein **Release Branch** gezogen wurde.
 
-» *Ok, jetzt kommen wir der Sache schon näher. Lass und das am
+[Lars]» *Ok, jetzt kommen wir der Sache schon näher. Lass und das am
 Whiteboard aufzeichnen.*
 
 |image14|
 
-» *So ähnlich sieht das üblicherweise in Projekten aus. Alle arbeiten
-auf dem trunk, irgendwann entscheidet jemand der die Befugnis hat, dass
-es an der Zeit für das nächste Release ist. Es wird ein Release-Branch
-gezogen, der alle Features beinhaltet, die bis zu diesem Zeitpunkt
-abgeschlossen und auf dem trunk eingecheckt sind.*
+[Lars]» *So ähnlich sieht das üblicherweise in Projekten aus. Alle arbeiten auf dem trunk, irgendwann entscheidet jemand der die Befugnis hat, dass es an der Zeit für das nächste Release ist. Es wird ein Release-Branch gezogen, der alle Features beinhaltet, die bis zu diesem Zeitpunkt abgeschlossen und auf dem trunk eingecheckt sind.*
 
-» Ja genau, ein Problem ist immer, den richtigen Zeitpunkt abzupassen.
-Normalerweise wird hierzu ein **Code-Freeze** ausgerufen. Es müssen alle
-eingecheckten Features fertig implementiert sein.
+[Karl]» Ja genau, ein Problem ist immer, den richtigen Zeitpunkt abzupassen. Normalerweise wird hierzu ein **Code-Freeze** ausgerufen. Es müssen alle eingecheckten Features fertig implementiert sein.
 
-» *Habt ihr dann auf dem Release-Branch die Features noch stabilisiert?*
+[Lars]» *Habt ihr dann auf dem Release-Branch die Features noch stabilisiert?*
 
-» Ja, üblicherweise wird die Version vom Release-Branch auf eine
-Testumgebung installiert, die zumindest ähnlich zur Produktionsumgebung
-ist. Dort wird sie dann von den Entwicklern und der QA-Abteilung
-verifiziert.
+[Karl]» Ja, üblicherweise wird die Version vom Release-Branch auf eine Testumgebung installiert, die zumindest ähnlich zur Produktionsumgebung ist. Dort wird sie dann von den Entwicklern und der QA-Abteilung verifiziert.
 
-» *Das ist das Standardvorgehen. Ich gehe davon aus, dass ihr Bugfixes
-und Stabilisierungen auf dem Release Branch sofort wieder zurück auf den
-trunk gemerged habt?*
+[Lars]» *Das ist das Standardvorgehen. Ich gehe davon aus, dass ihr Bugfixes und Stabilisierungen auf dem Release Branch sofort wieder zurück auf den trunk gemerged habt?*
 
-» Oh ja, das wurde oft vergessen, sollte aber natürlich gemacht werden.
-Der Release-Branch lebt genauso lange wie das Release. Sobald das
-nächste Release gemacht wird wird der Release Branch hierfür neu
-gezogen.
+[Karl]» Oh ja, das wurde oft vergessen, sollte aber natürlich gemacht werden. Der Release-Branch lebt genauso lange wie das Release. Sobald das nächste Release gemacht wird wird der Release Branch hierfür neu gezogen.
 
-» *Ok, lass uns das am Whiteboard ergänzen.*
+[Lars]» *Ok, lass uns das am Whiteboard ergänzen.*
 
 |image15|
 
-» *Wie war das bei euch, Karl? Wer hat sich beispielsweise darum
-gekümmert, dass Bugfixes auf den trunk zurückgemerged wurden?*
+[Lars]» *Wie war das bei euch, Karl? Wer hat sich beispielsweise darum gekümmert, dass Bugfixes auf den trunk zurückgemerged wurden?*
 
-» Naja, im idealfall kümmert sich der Entwickler darum, der den Fehler
-behoben hat, oder?
+[Karl]» Naja, im idealfall kümmert sich der Entwickler darum, der den Fehler behoben hat, oder?
 
-» *Im Idealfall, ja. Was ist beispielsweise, wenn beim Zurückmergen ein
-Konflikt auftritt? Den kann eigentlich nur der Entwickler selbst
-beheben.*
+[Lars]» *Im Idealfall, ja. Was ist beispielsweise, wenn beim Zurückmergen ein Konflikt auftritt? Den kann eigentlich nur der Entwickler selbst beheben.*
 
-» Ja, trotzdem gab es eigentlich in fast jedem Projekt jemanden,
-manchmal in einer eigenen Rolle **Release-Manager**, oft auch nur ein
-Entwickler, der eben zufällig dafür verantwortlich war.
+[Karl]» Ja, trotzdem gab es eigentlich in fast jedem Projekt jemanden, manchmal in einer eigenen Rolle **Release-Manager**, oft auch nur ein Entwickler, der eben zufällig dafür verantwortlich war.
 
-» *Es ist auf jedenfall ziemlich viel manueller Aufwand notwendig um
-Releases vorzubereiten, zu stabilisieren und zu finalisieren, richtig?*
+[Lars]» *Es ist auf jedenfall ziemlich viel manueller Aufwand notwendig um Releases vorzubereiten, zu stabilisieren und zu finalisieren, richtig?*
 
-» Ich glaube, das kann man so sagen, ja. Soweit ich weiß, gibt es hier
-in der Subversion-Welt eigentlich kein standardisiertes Modell. Die
-meisten Entwickler wissen einfach intuitiv, was getan werden muss um das
-Release auszurollen.
+[Karl]» Ich glaube, das kann man so sagen, ja. Soweit ich weiß, gibt es hier in der Subversion-Welt eigentlich kein standardisiertes Modell. Die meisten Entwickler wissen einfach intuitiv, was getan werden muss um das Release auszurollen.
 
 Git Flow
-~~~~~~~~~~~~~
+~~~~~~~~
 
-Im Jahr 2010 wurde die Idee des bis heute wahrscheinlich am meisten in
-Projekten eingesetzten Branching-Modells vorgestellt.
+Im Jahr 2010 wurde die Idee des bis heute wahrscheinlich am meisten in Projekten eingesetzten Branching-Modells vorgestellt.
 
 `**Git-Flow** <http://nvie.com/posts/a-successful-git-branching-model/>`__.
 
 Der Einsatz von Git-Flow garantiert:
 
--  Der master ist und bleibt stabil. Releases können jederzeit gemacht
-       werden.
+- Der master ist und bleibt stabil. Releases können jederzeit gemacht werden.
+- Features werden getrennt voneinander auf Feature-Branches entwickelt.
+- Es können beliebig viele Releases parallel gewartet werden.
+- Neue Features für das *übernächste* Release können isoliert entwickelt werden.
 
--  Features werden getrennt voneinander auf Feature-Branches entwickelt.
 
--  Es können beliebig viele Releases parallel gewartet werden.
+[Lars]» *Karl, jetzt haben wir prinzipiell über Software-Entwicklung und Releases gesprochen. Ich würde dir jetzt gerne zeigen, wie wir wirklich arbeiten.*
 
--  Neue Features für das *übernächste* Release können isoliert
-       entwickelt werden.
+[Karl]» Ja bitte, das würde mich sehr interessieren.
 
-» *Karl, jetzt haben wir prinzipiell über Software-Entwicklung und
-Releases gesprochen. Ich würde dir jetzt gerne zeigen, wie wir wirklich
-arbeiten.*
+[Lars]» *Ich sags dir lieber gleich, es ist keine Magie was wir tun. Wir arbeiten nach dem Git-Flow Modell. Wenn du mich fragst ist Git-Flow nichts anderes als* **"Einmal richtig nachdenken, aufschreiben und dann
+machen"** *. Das Modell macht Sinn und sorgt für produktives und strukturiertes Arbeiten.*
 
-» Ja bitte, das würde mich sehr interessieren.
 
-» *Ich sags dir lieber gleich, es ist keine Magie was wir tun. Wir
-arbeiten nach dem Git-Flow Modell. Wenn du mich fragst ist Git-Flow
-nichts anderes als* **“Einmal richtig nachdenken, aufschreiben und dann
-machen”**\ *. Das Modell macht Sinn und sorgt für produktives und
-strukturiertes arbeiten.*
 
 Das Arbeiten auf Feature Branches
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-» *Ich hatte dir schon erklärt, dass wir alle neuen Features auf
-Feature-Branches entwickeln. Vielleicht versuchen wir, unsere
-Projektstruktur kurz zu skizzieren. Das was in Subversion der trunk ist,
-ist in Git der master. Jedes Projekt hat einen* **master**\ *.*
+[Lars]» *Ich hatte dir schon erklärt, dass wir alle neuen Features auf Feature-Branches entwickeln. Vielleicht versuchen wir, unsere Projektstruktur kurz zu skizzieren. Das was in Subversion der trunk ist, ist in Git der master. Jedes Projekt hat einen* **master** *.*
 
 |image16|
 
-» *Für jedes Feature, das wir entwickeln ziehen wir einen neuen
-Feature-Branch vom master. Auf dem* **master** *selbst wird eigentlich
-nicht gearbeitet.*
+
+[Lars]» *Für jedes Feature, das wir entwickeln ziehen wir einen neuen Feature-Branch vom master. Auf dem* **master** *selbst wird eigentlich nicht gearbeitet.*
+
 
 |image17|
 
-git checkout -b "fb-4711-single-sign-on-customer-login"
+.. code-block:: bash
 
-Switched to a new branch 'fb-4711-single-sign-on-customer-login'
+  git checkout -b "fb-4711-single-sign-on-customer-login"
+  Switched to a new branch 'fb-4711-single-sign-on-customer-login'
 
-| » *Wir achten hierbei darauf, dass wir uns an ein einheitliches
-  Namensschema halten. Feature-Branches starten mit dem Kürzel “fb”.*
-| *Auf das Kürzel folgt grundsätzlich die Jira-Task Nummer, in diesem
-  Fall* **4711**\ *. Es sollte keine Aufgabe ohne zugeordnete
-  Jira-Tasknummer geben. Anschließend kommt eine kurze Beschreibung, so
-  dass man problemlos bereits am Namen des Feature-Branches erkennen
-  kann, woran dort gearbeitet wird.*
 
-» Die Features sind also komplett getrennt voneinander?
+[Lars]» *Wir achten hierbei darauf, dass wir uns an ein einheitliches Namensschema halten. Feature-Branches starten mit dem Kürzel "fb".*
 
-» *Genau, alle Features für ein bestimmtes Release starten vom Stand
-des* **master**\ *-Branches. Die Features sind unabhängig voneinander.
-Ein Feature wird erst dann zurückgeführt, wenn die Entwickler es für
-abgeschlossen erachten und das Zurückführen mit dem Team besprochen
-ist.*
+[Lars]*Auf das Kürzel folgt grundsätzlich die Jira-Task Nummer, in diesem Fall* **4711** *. Es sollte keine Aufgabe ohne zugeordnete Jira-Tasknummer geben. Anschließend kommt eine kurze Beschreibung, so dass man problemlos bereits am Namen des Feature-Branches erkennen kann, woran dort gearbeitet wird.*
 
-#branches
+[Karl]» Die Features sind also komplett getrennt voneinander?
 
-git branch
+[Lars]» *Genau, alle Features für ein bestimmtes Release starten vom Stand des* **master** *-Branches. Die Features sind unabhängig voneinander.
+Ein Feature wird erst dann zurückgeführt, wenn die Entwickler es für abgeschlossen erachten und das Zurückführen mit dem Team besprochen ist.*
 
-\* fb-4711-single-sign-on-customer-login
+.. code-block:: bash
 
-master
+  #branches
+  git branch
+  * fb-4711-single-sign-on-customer-login
+  master
+  #feature implementation
+  git makeCommits 3
+  [fb-4711-single-sign-on-customer-login 11a6e37] committing file 1
+  1 file changed, 1 insertion(+)
+  [fb-4711-single-sign-on-customer-login 9d2ee96] committing file 2
+  1 file changed, 1 insertion(+)
+  [fb-4711-single-sign-on-customer-login 730eac4] committing file 3
+  1 file changed, 1 insertion(+)
 
-#feature implementation
-
-git makeCommits 3
-
-[fb-4711-single-sign-on-customer-login 11a6e37] committing file 1
-
-1 file changed, 1 insertion(+)
-
-[fb-4711-single-sign-on-customer-login 9d2ee96] committing file 2
-
-1 file changed, 1 insertion(+)
-
-[fb-4711-single-sign-on-customer-login 730eac4] committing file 3
-
-1 file changed, 1 insertion(+)
-
-» Ok, das bedeutet, es kann sein, dass ein fertig umgesetztes Feature
+[Karl]» Ok, das bedeutet, es kann sein, dass ein fertig umgesetztes Feature
 eine ganze Weile auf einem Feature-Branch liegt, bevor es in den master
 zurückgeführt wird?
 
-» *Theoretisch ja, in der Praxis kommt das eher selten vor, da wir die
-meiste Zeit an Features arbeiten, auf die unsere Kunden warten. Die
-Entwickler haben also ein berechtigtes Interesse daran, dass ihre Arbeit
-möglichst schnell zurückgeführt und produktiv wird.*
+[Lars]» *Theoretisch ja, in der Praxis kommt das eher selten vor, da wir die meiste Zeit an Features arbeiten, auf die unsere Kunden warten. Die Entwickler haben also ein berechtigtes Interesse daran, dass ihre Arbeit möglichst schnell zurückgeführt und produktiv wird.*
 
-» Nehmen wir an, Felix hat ein Feature abgeschlossen und fährt
-anschließend in Urlaub, hat aber vergessen seinen Teamkollegen bescheid
-zu geben, dass dieses Feature fertig aber noch nicht zurückgeführt ist.
-Die Entwickler möchten das Feature einige Tage später zurückführen, sind
-sich aber nicht sicher, dass Felix alles abgeschlossen hat. Sie haben
-erfolglos versucht, Felix telefonisch zu erreichen. Woher wissen die
-Entwickler jetzt, ob das Feature fertig ist oder nicht?
+[Karl]» Nehmen wir an, Felix hat ein Feature abgeschlossen und fährt anschließend in Urlaub, hat aber vergessen seinen Teamkollegen bescheid zu geben, dass dieses Feature fertig aber noch nicht zurückgeführt ist. Die Entwickler möchten das Feature einige Tage später zurückführen, sind sich aber nicht sicher, dass Felix alles abgeschlossen hat. Sie haben erfolglos versucht, Felix telefonisch zu erreichen. Woher wissen die Entwickler jetzt, ob das Feature fertig ist oder nicht?
 
-» *Schönes Szenario! Das ist ein guter Punkt. Es wäre äusserst
-ineffizient, jedesmal die Anwendung zu starten und sich zu vergewissern,
-dass ein Feature tatsächlich abgeschlossen ist und funktioniert bevor es
-zurückgeführt wird. Zumal das bereits hoffentlich vom zuständigen
-Entwickler erledigt wurde.
-Wir verwenden hierfür Tags.*
+[Lars]» *Schönes Szenario! Das ist ein guter Punkt. Es wäre äusserst ineffizient, jedesmal die Anwendung zu starten und sich zu vergewissern, dass ein Feature tatsächlich abgeschlossen ist und funktioniert bevor es zurückgeführt wird. Zumal das bereits hoffentlich vom zuständigen Entwickler erledigt wurde. Wir verwenden hierfür Tags.*
 
-» Interessant, ich glaube wir haben noch gar nicht über Tags gesprochen,
-oder?
+[Karl]» Interessant, ich glaube wir haben noch gar nicht über Tags gesprochen, oder?
 
 Tags
 ''''
 
-» *Genau, dann wird es höchste Zeit. Tags sind ein wichtiges Werkzeug.
-Tags in Git funktionieren vom Konzept her genauso wie in jedem anderen
-Versionskontrollsystem. Was ist ein Tag? Ein Tag ist immer eine
-Möglichkeit, einen bestimmten Punkt in der Historie für später zu
+[Lars]» *Genau, dann wird es höchste Zeit. Tags sind ein wichtiges Werkzeug. Tags in Git funktionieren vom Konzept her genauso wie in jedem anderen Versionskontrollsystem. Was ist ein Tag? Ein Tag ist immer eine Möglichkeit, einen bestimmten Punkt in der Historie für später zu
 markieren um ihn leicht wieder auffindbar zu machen.*
 
-» Ich dachte bisher, Tags werden beispielsweise nur für Releases
-verwendet?
+[Karl]» Ich dachte bisher, Tags werden beispielsweise nur für Releases verwendet?
 
-| » *Dazu kommen wir gleich. Wir verwenden Tags auch um fertig
-  implementierte Features zu “markieren”. Am besten wir versuchen das
-  einfach mal.*
-| *Wir sind immer noch auf dem Feature-Branch für das Feature 4711,
-  richtig?*
+[Lars]» *Dazu kommen wir gleich. Wir verwenden Tags auch um fertig implementierte Features zu “markieren”. Am besten wir versuchen das einfach mal.*
+[Lars]*Wir sind immer noch auf dem Feature-Branch für das Feature 4711, richtig?*
 
-git branch
+.. code-block:: bash
 
-\* fb-4711-single-sign-on-customer-login
+  git branch
+  * fb-4711-single-sign-on-customer-login
+  master
 
-master
+[Lars]» *Dieses Feature ist fertig implementiert, also taggen die Implementierung.*
+[Lars]*Ein Tag in Git referenziert immer einen Commit, oder besser gesagt den Hashwert eines Commits. Git bietet leichtgewichtige und annotierte Tags. Über annotierte Tags sprechen wir später, für das Markieren von Features verwenden wir leichtgewichtige Tags, weil sie viel einfacher sind und eigentlich alles bieten was wir brauchen.*
 
-| » *Dieses Feature ist fertig implementiert, also taggen die
-  Implementierung.*
-| *Ein Tag in Git referenziert immer einen Commit, oder besser gesagt
-  den Hashwert eines Commits. Git bietet leichtgewichtige und annotierte
-  Tags. Über annotierte Tags sprechen wir später, für das Markieren von
-  Features verwenden wir leichtgewichtige Tags, weil sie viel einfacher
-  sind und eigentlich alles bieten was wir brauchen.*
-| *Ein leichtgewichtiger Tag ist nichts anderes als eine Referenz auf
-  den Hashwert eines Commits mit einem frei wählbaren Namen.*
-| *Einen Tag erzeugst du einfach mit* **git tag <tag-name>**\ *. Damit
-  taggst du den aktuell obersten Commit auf deinem Branch.*
+[Lars]*Ein leichtgewichtiger Tag ist nichts anderes als eine Referenz auf den Hashwert eines Commits mit einem frei wählbaren Namen.*
+[Lars]*Einen Tag erzeugst du einfach mit* **git tag <tag-name>** *. Damit taggst du den aktuell obersten Commit auf deinem Branch.*
 
-git tag fb-4711
+.. code-block:: bash
 
-» Nichts passiert?
+  git tag fb-4711
 
-» *Doch, am besten du öffnest kurz dein .git-Verzeichnis unter*
-**refs/heads/** *sollte es jetzt ein neues Verzeichnis* **tags**
-*geben.*
+[Karl]» Nichts passiert?
 
-ls .git/refs/
 
-heads remotes tags
+[Lars]» *Doch, am besten du öffnest kurz dein .git-Verzeichnis unter* **refs/heads/** *sollte es jetzt ein neues Verzeichnis* **tags** *geben.*
 
-#inhalt von refs/tags
+.. code-block:: bash
 
-ls .git/refs/tags/
+  ls .git/refs/
+  heads remotes tags
+  #inhalt von refs/tags
+  ls .git/refs/tags/
+  fb-4711
 
-fb-4711
+[Lars]» *Siehst du, Git hat eine neue Datei erzeugt mit dem Namen deines Tags. Schau dir bitte den Inhalt der Datei an.*
 
-» *Siehst du, Git hat eine neue Datei erzeugt mit dem Namen deines Tags.
-Schau dir bitte den Inhalt der Datei an.*
+.. code-block:: bash
 
-cat .git/refs/tags/fb-4711
+  cat .git/refs/tags/fb-4711
+  730eac42835edcce3a431cca4dafc0ad275994c5
 
-730eac42835edcce3a431cca4dafc0ad275994c5
 
-» *Fällt dir etwas auf?*
+[Lars]» *Fällt dir etwas auf?*
 
-git log --oneline -n 1 <b>(1)</b>
+.. code-block:: bash
 
-730eac4 committing file 3 <b>(2)</b>
+  git log --oneline -n 1 <b>(1)</b>
+  730eac4 committing file 3 <b>(2)</b>
 
-1. Zeige letzten Commit auf dem Branch
+  1. Zeige letzten Commit auf dem Branch
+  2. Der letzte Commit ist 730eac4
 
-2. Der letzte Commit ist 730eac4
 
-Übung
+.. admonition:: Übung
 
-Das Konzept von leichtgewichtigen Tags sollten Ihnen bereits unter
-anderem Namen bekannt sein. Leichtgewichtige Tags sind identisch mit …?
+  Das Konzept von leichtgewichtigen Tags sollten Ihnen bereits unter anderem Namen bekannt sein. Leichtgewichtige Tags sind identisch mit …?
 
-» Warte mal, das kommt mir bekannt vor. Kann es sein, dass ein Tag
-nichts anderes ist als ein Branch?
+[Karl]» Warte mal, das kommt mir bekannt vor. Kann es sein, dass ein Tag nichts anderes ist als ein Branch?
 
-| » *Hervorragend, Karl! Ich hatte gehofft, dass dir das auffällt. Das
-  Konzept von Tags ist identisch mit Branches. Nur das Verzeichnis, in
-  dem sie abgelegt werden ist eben nicht* **.git/refs/heads** *sondern*
+[Lars]» *Hervorragend, Karl! Ich hatte gehofft, dass dir das auffällt. Das Konzept von Tags ist identisch mit Branches. Nur das Verzeichnis, in dem sie abgelegt werden ist eben nicht* **.git/refs/heads** *sondern*
   **.git/refs/tags**\ *.*
-| *Du kannst dir das auch in der Historie betrachten. Die meisten
-  grafischen Tools zeigen Tags an.*
+
+[Lars]*Du kannst dir das auch in der Historie betrachten. Die meisten grafischen Tools zeigen Tags an.*
 
 |image18|
 
-» *Jetzt lässt sich sehr einfach überprüfen, ob ein bestimmtes Feature
-fertig implementiert ist, indem einfach nach dem Tag für die Task-Nummer
-gesucht wird.*
+[Lars]» *Jetzt lässt sich sehr einfach überprüfen, ob ein bestimmtes Feature fertig implementiert ist, indem einfach nach dem Tag für die Task-Nummer gesucht wird.*
 
-git tag -l '\*4711' <b>(1)</b>
+.. code-block:: bash
 
-fb-4711
+  git tag -l '*4711' <b>(1)</b>
+  fb-4711
 
-1. git tag -l erwartet eine Regular Expression
+  1. git tag -l erwartet eine Regular Expression
 
-» *Es gibt allerdings ein Problem mit diesem Ansatz.*
 
-» Ich glaube ich weiß, worauf du hinauswillst. Der Tag referenziert
-einen Hashwert, richtig? Wir haben gestern bereits besprochen, dass wir
-nach Möglichkeit eine lineare Historie behalten möchten. Bevor ich also
-einen Feature-Branch zurückführe kann es passieren, dass ein Entwickler
-einen **rebase** gegen den master macht, richtig?
+[Lars]» *Es gibt allerdings ein Problem mit diesem Ansatz.*
 
-| » *Sehr gut Karl, genau darauf wollte ich hinaus. Es ist kein Problem,
-  wenn ein fertiges Feature getaggt und anschließend direkt
-  zurückgeführt wird. Normalerweise machen wir unmittelbar bevor wir ein
-  Feature zurückführen einen* **rebase** *gegen den master.*
-| *Was aber passiert, wenn der Entwickler das Feature abschließt, taggt
-  und dann nicht direkt zurückführen kann?*
-| *Nehmen wir an, in der Zwischenzeit sind auf dem master einige Commits
-  gemacht worden.*
+[Karl]» Ich glaube ich weiß, worauf du hinauswillst. Der Tag referenziert einen Hashwert, richtig? Wir haben gestern bereits besprochen, dass wir nach Möglichkeit eine lineare Historie behalten möchten. Bevor ich also einen Feature-Branch zurückführe kann es passieren, dass ein Entwickler einen **rebase** gegen den master macht, richtig?
 
-git checkout master
+[Lars]» *Sehr gut Karl, genau darauf wollte ich hinaus. Es ist kein Problem, wenn ein fertiges Feature getaggt und anschließend direkt zurückgeführt wird. Normalerweise machen wir unmittelbar bevor wir ein Feature zurückführen einen* **rebase** *gegen den master.*
+[Lars]*Was aber passiert, wenn der Entwickler das Feature abschließt, taggt und dann nicht direkt zurückführen kann?*
+[Lars]*Nehmen wir an, in der Zwischenzeit sind auf dem master einige Commits gemacht worden.*
 
-Switched to branch 'master'
+.. code-block:: bash
 
-#in der Zwischenzeit gab es neue Commits auf dem master
+  git checkout master
+  Switched to branch 'master'
+  #in der Zwischenzeit gab es neue Commits auf dem master
+  git makeCommits 3
+  [master d9e44e8] committing file 1
+  1 file changed, 1 insertion(+)
+  [master 292e21f] committing file 2
+  1 file changed, 1 insertion(+)
+  [master 60ceee4] committing file 3
+  1 file changed, 1 insertion(+)
 
-git makeCommits 3
+[Lars]» *Spulen wir in Gedanken einige Tage nach vorne. Der Enwickler hat endlich Zeit und möchte sein bereits getaggtes Feature zurückführen. Was macht er zunächst?*
 
-[master d9e44e8] committing file 1
+[Karl]» Er wird ein **rebase** gegen den master machen, damit der Feature-Branch auf einem aktuellen Stand ist.
 
-1 file changed, 1 insertion(+)
+[Lars]» *Genau.*
 
-[master 292e21f] committing file 2
+.. code-block:: bash
 
-1 file changed, 1 insertion(+)
+  # einige Tage später
+  git checkout fb-4711-single-sign-on-customer-login
+  Switched to branch 'fb-4711-single-sign-on-customer-login'
+  #Zeige alle Tags, die den obersten Commit referenzieren
+  git tag --points-at HEAD <b>(1)</b>
+  fb-4711
 
-[master 60ceee4] committing file 3
+  #update Feature Branch
+  git rebase master
+  First, rewinding head to replay your work on top of it...
+  
+  #Finde Tags
+  git tag --points-at HEAD
+  #keine Ausgabe
 
-1 file changed, 1 insertion(+)
+  1. git tag –points-at HEAD zeigt den Tag an, der auf den aktuell obersten Commit zeigt. Es zeigt nichts an,
+     wenn es keinen Tag gibt, der diesen Commit referenziert.
 
-» *Spulen wir in Gedanken einige Tage nach vorne. Der Enwickler hat
-endlich Zeit und möchte sein bereits getaggtes Feature zurückführen. Was
-macht er zunächst?*
 
-» Er wird ein **rebase** gegen den master machen, damit der
-Feature-Branch auf einem aktuellen Stand ist.
+.. admonition:: Übung
 
-» *Genau.*
+  Wieso ist der Tag verschwunden, der auf den letzten Commit auf dem Feature-Branch referenziert?
 
-# einige Tage später
+[Karl]» Ich glaube, das kann ich erklären. Durch den rebase hat sich der Hashwert des Commits geändert, oder?
 
-git checkout fb-4711-single-sign-on-customer-login
+[Lars]» *Hervorragend, genau.*
 
-Switched to branch 'fb-4711-single-sign-on-customer-login'
+.. code-block:: bash
 
-#Zeige alle Tags, die den obersten Commit referenzieren
+  git log --oneline -n 1
+  60ceee4 committing file 3 <b>(1)</b>
 
-git tag --points-at HEAD <b>(1)</b>
+  1. Der Hashwert **730eac4** hat sich geändert in **60ceee4**
 
-fb-4711
+[Kar]» *Der Tag selbst ist aber immer noch da und referenziert den alten Commit.*
 
-#update Feature Branch
+.. code-block:: bash
 
-git rebase master
+  #zeige alle Tags
+  git tag
+  fb-4711
+  #betrachte Tag
+  git show fb-4711 <b>(1)</b>
+  Commit: 730eac42835edcce3a431cca4dafc0ad275994c5 <b>(2)</b>
+  Author: Markus <Markus@effectivetrainings.de>
+  Date: (20 hours ago) 2014-02-08 17:18:24 +0100
+  Subject: committing file 3
+  diff --git a/file3.txt b/file3.txt
+  index 68d1ef3..3720c95 100644
+  --- a/file3.txt
+  +++ b/file3.txt
+  @@ -1 +1,2 @@
+  commit 3
+  +commit 3
 
-First, rewinding head to replay your work on top of it...
+  1. fb-4711 ist der Name des Tags
+  2. Der Tag referenziert nach wie vor den alten Commit mit dem Hashwert 730eac
 
-#Finde Tags
+.. Tip  
 
-git tag --points-at HEAD
+  Sind auf dem master neue Commits vorhanden kann nach dem rebase der Stand des Feature-Branches nicht mehr gepusht werden (non-fast-forward push Problem) Der Rebase kann / darf nur direkt vor dem Zurückführen durchgeführt werden. Eine sichere Alternative ist ein Merge, mit dem Nachteil der nicht-linearen Historie. Wird ein Rebase gemacht, muss in diesem Fall auch der Tag aktualisiert werden. **Achtung**, diese Operation sollte im Idealfall nur in absoluten Ausnahmefällen notwendig sein.   |
 
-#keine Ausgabe
+.. code-block:: bash
 
-1. git tag –points-at HEAD zeigt den Tag an, der auf den aktuell
-       obersten Commit zeigt. Es zeigt nichts an, wenn es keinen Tag
-       gibt, der diesen Commit referenziert.
+  #remote Tag löschen
+  git push origin :refs/tags/fb-4711 <b>(1)</b>
+  #Tag aktualisieren
+  git tag -f fb-4711 <b>(2)</b>
 
-Übung
+  Updated tag 'fb-4711' (was 730eac4)
 
-Wieso ist der Tag verschwunden, der auf den letzten Commit auf dem
-Feature-Branch referenziert?
+  1. Bevor ein Tag aktualisiert werden kann muss er im Remote-Repository gelöscht werden, da ansonsten ein 
+     **Push** nicht möglich ist.
 
-» Ich glaube, das kann ich erklären. Durch den rebase hat sich der
-Hashwert des Commits geändert, oder?
+  2. **git tag -f** aktualisiert einen bereits bestehenden Tag.
 
-» *Hervorragend, genau.*
 
-git log --oneline -n 1
+[Lars]» *Jetzt können wir den Feature-Branch zurückführen.*
 
-60ceee4 committing file 3 <b>(1)</b>
+.. code-block:: bash
 
-1. Der Hashwert **730eac4** hat sich geändert in **60ceee4**
+  git checkout master
+  Switched to branch 'master'
+  #Feature abschliessen
+  git merge fb-4711-single-sign-on-customer-login
+  Updating ad261f2..60ceee4
+  Fast-forward
+  15 files changed, 18 insertions(+)
 
-» *Der Tag selbst ist aber immer noch da und referenziert den alten
-Commit.*
 
-#zeige alle Tags
+[Lars]» *Sehr gut Karl, damit haben wir das Feature abgeschlossen und der Tag ist auf dem master verfügbar. Es ist jetzt für jeden in der Historie sehr einfach zu sehen, wann das Feature zurückgeführt wurde.*
 
-git tag
+[Karl]» Ok, werden die Tags automatisch mit übertragen, wenn wir einen **push** machen?
 
-fb-4711
+[Lars]» Nein, das müssen wir explizit mit dem Parameter **–tags** angeben.
 
-#betrachte Tag
+.. code-block:: bash
 
-git show fb-4711 <b>(1)</b>
+  git push --tags origin master
+  * [new tag] fb-4711 -> fb-4711
 
-Commit: 730eac42835edcce3a431cca4dafc0ad275994c5 <b>(2)</b>
+[Lars]» *Es ist wichtig zu verstehen, dass wir hier nur mit einem leichtgewichtigen Tag arbeiten. Diese Art von Tag bietet im Gegensatz zu annotierten Tags keinerlei kryptografische Sicherheit und könnten jederzeit verändert werden. Wir verwenden diese Art von Tags hier nur aus praktischen Gründen. Für Releases sind leichtgewichtige Tags eigentlich ungeeignet. Das werden wir aber später sehen.*
 
-Author: Markus <Markus@effectivetrainings.de>
+[Karl]» Lars, ich habe mir jetzt folgendes aufgeschrieben um ein Feature zu implementieren.
 
-Date: (20 hours ago) 2014-02-08 17:18:24 +0100
+.. code-block::
 
-Subject: committing file 3
+  #Feature Branch erzeugen
+  git checkout -b "feature-4711"
+  #hack hack hack
+  #update gegen master
+  git rebase master
+  #Feature taggen
+  git tag feature-4711
+  #branch zurückführen
+  git checkout master
+  git merge feature-4711
+  #Stand inkl. Tags pushen
+  git push --tags origin master
 
-diff --git a/file3.txt b/file3.txt
 
-index 68d1ef3..3720c95 100644
-
---- a/file3.txt
-
-+++ b/file3.txt
-
-@@ -1 +1,2 @@
-
-commit 3
-
-+commit 3
-
-1. fb-4711 ist der Name des Tags
-
-2. Der Tag referenziert nach wie vor den alten Commit mit dem Hashwert
-       730eac
-
-+-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Tip   | Sind auf dem master neue Commits vorhanden kann nach dem rebase der Stand des Feature-Branches nicht mehr gepusht werden (non-fast-forward push Problem) Der Rebase kann / darf nur direkt vor dem Zurückführen durchgeführt werden. Eine sichere Alternative ist ein Merge, mit dem Nachteil der nicht-linearen Historie. Wird ein Rebase gemacht, muss in diesem Fall auch der Tag aktualisiert werden. **Achtung**, diese Operation sollte im Idealfall nur in absoluten Ausnahmefällen notwendig sein.   |
-+-------+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
-#remote Tag löschen
-
-git push origin :refs/tags/fb-4711 <b>(1)</b>
-
-#Tag aktualisieren
-
-git tag -f fb-4711 <b>(2)</b>
-
-Updated tag 'fb-4711' (was 730eac4)
-
-1. Bevor ein Tag aktualisiert werden kann muss er im Remote-Repository
-       gelöscht werden, da ansonsten ein **Push** nicht möglich ist.
-
-2. **git tag -f** aktualisiert einen bereits bestehenden Tag.
-
-» *Jetzt können wir den Feature-Branch zurückführen.*
-
-git checkout master
-
-Switched to branch 'master'
-
-#Feature abschliessen
-
-git merge fb-4711-single-sign-on-customer-login
-
-Updating ad261f2..60ceee4
-
-Fast-forward
-
-15 files changed, 18 insertions(+)
-
-» *Sehr gut Karl, damit haben wir das Feature abgeschlossen und der Tag
-ist auf dem master verfügbar. Es ist jetzt für jeden in der Historie
-sehr einfach
-zu sehen, wann das Feature zurückgeführt wurde.*
-
-» Ok, werden die Tags automatisch mit übertragen, wenn wir einen
-**push** machen?
-
-» Nein, das müssen wir explizit mit dem Parameter **–tags** angeben.
-
-git push --tags origin master
-
-\* [new tag] fb-4711 -> fb-4711
-
-» *Es ist wichtig zu verstehen, dass wir hier nur mit einem
-leichtgewichtigen Tag arbeiten. Diese Art von Tag bietet im Gegensatz zu
-annotierten Tags keinerlei kryptografische Sicherheit und könnten
-jederzeit verändert werden. Wir verwenden diese Art von Tags hier nur
-aus praktischen Gründen. Für Releases sind leichtgewichtige Tags
-eigentlich ungeeignet. Das werden wir aber später sehen.*
-
-» Lars, ich habe mir jetzt folgendes aufgeschrieben um ein Feature zu
-implementieren.
-
-#Feature Branch erzeugen
-
-git checkout -b "feature-4711"
-
-#hack hack hack
-
-#update gegen master
-
-git rebase master
-
-#Feature taggen
-
-git tag feature-4711
-
-#branch zurückführen
-
-git checkout master
-
-git merge feature-4711
-
-#Stand inkl. Tags pushen
-
-git push --tags origin master
-
-» *Genau, sehr gut Karl. Damit schauen wir uns an, wie wir* **Releases**
+[Lars]» *Genau, sehr gut Karl. Damit schauen wir uns an, wie wir* **Releases**
 *machen.*
 
 Release it!
-^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^
 
-» *Releases werden bei uns auf einem eigenen Branch vorbereitet. Wenn es
-an der Zeit für eine neue Release-Version ist wird ein neuer Branch für
-die Stabilisierung des Releases vom master gezogen. Vielleicht gehen wir
-kurz nochmal am Whiteboard durch, wie wir vom master zu einem fertigen
-Release in Produktion kommen.*
+[Lars]» *Releases werden bei uns auf einem eigenen Branch vorbereitet. Wenn es an der Zeit für eine neue Release-Version ist wird ein neuer Branch für die Stabilisierung des Releases vom master gezogen. Vielleicht gehen wir kurz nochmal am Whiteboard durch, wie wir vom master zu einem fertigen Release in Produktion kommen.*
 
 |image19|
 
-git checkout -b 'release-1.0'
+.. code-block:: 
 
-Switched to a new branch 'release-1.0'
+  git checkout -b 'release-1.0'
+  Switched to a new branch 'release-1.0'
+  #deploy nach QA
 
-#deploy nach QA
-
-» *Vom Release-Branch wird ein Build direkt auf eine eigene QA-Umgebung
-installiert. Auf dieser Umgebung wird nochmal verifiziert, dass alles
-funktioniert und korrekt ist. Diese Verifikation nehmen sowohl unsere
+[Lars]» *Vom Release-Branch wird ein Build direkt auf eine eigene QA-Umgebung installiert. Auf dieser Umgebung wird nochmal verifiziert, dass alles funktioniert und korrekt ist. Diese Verifikation nehmen sowohl unsere
 Enwickler selbst als auch die QA Abteilung vor.*
 
 |image20|
 
-| » *Soweit ich mich erinnere ist es bisher noch niemals vorgekommen,
-  dass wir während der Vorbereitung auf ein Release keine Bugfixes oder
-  Improvements umzusetzen hatten. Üblicherweise wird von der QA
-  Abteilung ein Bug- oder Improvement-Ticket eingestellt, das von uns
-  bearbeitet wird.*
-| *Bugfixes und Improvements werden direkt auf dem Release-Branch
-  gefixt. Sobald der Bugfix auf den Release-Branch gepusht worden ist,
-  müssen wir sicherstellen, dass der Commit auch vom Release-Branch auf
-  den master gebracht wird. Auch auf dem master möchten die Entwickler
-  natürlich von den Bugfixes vom Release-Branch profitieren.*
+[Lars]» *Soweit ich mich erinnere ist es bisher noch niemals vorgekommen, dass wir während der Vorbereitung auf ein Release keine Bugfixes oder Improvements umzusetzen hatten. Üblicherweise wird von der QA Abteilung ein Bug- oder Improvement-Ticket eingestellt, das von uns bearbeitet wird.*
+
+[Lars]*Bugfixes und Improvements werden direkt auf dem Release-Branch gefixt. Sobald der Bugfix auf den Release-Branch gepusht worden ist, müssen wir sicherstellen, dass der Commit auch vom Release-Branch auf den master gebracht wird. Auch auf dem master möchten die Entwickler natürlich von den Bugfixes vom Release-Branch profitieren.*
 
 |image21|
 
-#bugfix
+.. code-block:: bash
 
-git makeCommits 1
+  #bugfix
+  git makeCommits 1
+  [release-1.0 1cea586] committing file 1
+  1 file changed, 1 insertion(+)
+  #bugfix commit
+  git log --oneline -n 1
+  8708402 bugfix 4711
+  #deploy nach Prod
 
-[release-1.0 1cea586] committing file 1
-
-1 file changed, 1 insertion(+)
-
-#bugfix commit
-
-git log --oneline -n 1
-
-8708402 bugfix 4711
-
-#deploy nach Prod
-
-» *Üblicherweise versuchen wir, Bugfixes in einem Commit zu machen,
-damit problemlos mit* **Cherry-Pick** *gearbeitet werden kann. Der
-Bugfix wird direkt nach dem Push vom Release-Branch mit einem*
-**Cherry-Pick** *oder einem* **Merge** *auf den master gebracht.
-Natürlich gibt es auch Bugfixes, die ein wenig größer sind. Dann macht
-es natürlich Sinn, nicht direkt auf dem Release-Branch zu arbeiten,
-sondern einen eigenen Hotfix-Branch zu ziehen.*
+[Lars]» *Üblicherweise versuchen wir, Bugfixes in einem Commit zu machen, damit problemlos mit* **Cherry-Pick** *gearbeitet werden kann. Der Bugfix wird direkt nach dem Push vom Release-Branch mit einem* **Cherry-Pick** *oder einem* **Merge** *auf den master gebracht. Natürlich gibt es auch Bugfixes, die ein wenig größer sind. Dann macht es natürlich Sinn, nicht direkt auf dem Release-Branch zu arbeiten, sondern einen eigenen Hotfix-Branch zu ziehen.*
 
 |image22|
 
-git checkout master
+.. code-block:: bash
 
-Switched to branch 'master'
+  git checkout master
+  Switched to branch 'master'
+  #cherry pick bugfix
+  git cherry-pick 8708402
+  [master 31d841b] bugfix 4711
+  1 file changed, 1 insertion(+)
+  On branch master
 
-#cherry pick bugfix
 
-git cherry-pick 8708402
-
-[master 31d841b] bugfix 4711
-
-1 file changed, 1 insertion(+)
-
-On branch master
-
-» *Diese Prozedur wiederholt sich für alle Tickets, die während der
-Stabilisierung des Releases auftreten.*
+[Lars]» *Diese Prozedur wiederholt sich für alle Tickets, die während der Stabilisierung des Releases auftreten.*
 
 |image23|
 
-» *Geben alle grünes Licht für das Release wird ein annotierter Tag
-erstellt und die Version live gestellt.*
+[Lars]» *Geben alle grünes Licht für das Release wird ein annotierter Tag erstellt und die Version live gestellt.*
 
 |image24|
 
-git checkout release-1.0
+.. code-block:: bash
 
-Switched to branch 'release-1.0'
+  git checkout release-1.0
+  Switched to branch 'release-1.0'
+  #Tag für Deployment
+  git tag -a -m "release-1.0" release-1.0 <b>(1)</b>
+  #Push Tag
+  git push --tags origin release-1.0
+  Counting objects: 6, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (3/3), 388 bytes \| 0 bytes/s, done.
+  Total 3 (delta 1), reused 0 (delta 0)
+  To ../Projekt.git
+  * [new tag] release-1.0 -> release-1.0
 
-#Tag für Deployment
+  1. Erstellung des annotierten Tags – git tag -a -m <message> <tag name>
 
-git tag -a -m "release-1.0" release-1.0 <b>(1)</b>
-
-#Push Tag
-
-git push --tags origin release-1.0
-
-Counting objects: 6, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (3/3), done.
-
-Writing objects: 100% (3/3), 388 bytes \| 0 bytes/s, done.
-
-Total 3 (delta 1), reused 0 (delta 0)
-
-To ../Projekt.git
-
-\* [new tag] release-1.0 -> release-1.0
-
-1. Erstellung des annotierten Tags – git tag -a -m <message> <tag name>
-
-» *Der Release-Branch lebt genauso lange wie das Release selbst. Auch im
-laufenden Betrieb können natürlich Bugs auftreten, die bisher unentdeckt
-waren. Das passiert bei uns glücklicherweise sehr selten. Passiert es
-jedoch trotzdem einmal, gehen wir genauso wie in der
-Stabilisierungsphase vor.*
+[Lars]» *Der Release-Branch lebt genauso lange wie das Release selbst. Auch im laufenden Betrieb können natürlich Bugs auftreten, die bisher unentdeckt waren. Das passiert bei uns glücklicherweise sehr selten. Passiert es jedoch trotzdem einmal, gehen wir genauso wie in der Stabilisierungsphase vor.*
 
 Annotierte Tags
 '''''''''''''''
 
-| » *Wir taggen Releases nicht leichtgewichtig, sondern mit annotierten
-  Tags. Ein leichtgewichtiger Tag ist nur ein Zeiger auf einen Hashwert
-  bzw. einen Commit. Das haben wir bereits beim Taggen von
-  abgeschlossenen Features gesehen. Ein annotierter Tag hingegen ist ein
-  eigener Objekt-Typ, der erstellt und in* **.git/objects** *abgelegt
-  wird.*
-| *Karl, lass uns mal genauer untersuchen, was jetzt passiert ist.*
+[Lars]» *Wir taggen Releases nicht leichtgewichtig, sondern mit annotierten Tags. Ein leichtgewichtiger Tag ist nur ein Zeiger auf einen Hashwert bzw. einen Commit. Das haben wir bereits beim Taggen von abgeschlossenen Features gesehen. Ein annotierter Tag hingegen ist ein eigener Objekt-Typ, der erstellt und in* **.git/objects** *abgelegt wird.*
 
-#tag datei wurde erstellt
+[Lars]*Karl, lass uns mal genauer untersuchen, was jetzt passiert ist.*
 
-ls .git/refs/tags/
+.. code-block:: bash
 
-fb-4711
+  #tag datei wurde erstellt
+  ls .git/refs/tags/
+  fb-4711
+  release-1.0
+  #tag details
+  git show release-1.0 <b>(1)</b>
+  tag release-1.0 <b>(2)</b>
+  Tagger: Markus <Markus@effectivetrainings.de> <b>(3)</b>
+  release-1.0
+  Commit: 8708402f583612dea23cef5d8d32711da93a26cb <b>(4)</b>
+  Author: Markus <Markus@effectivetrainings.de>
+  Date: (13 minutes ago) 2014-02-09 15:09:54 +0100
+  Subject: bugfix 4711
 
-release-1.0
-
-#tag details
-
-git show release-1.0 <b>(1)</b>
-
-tag release-1.0 <b>(2)</b>
-
-Tagger: Markus <Markus@effectivetrainings.de> <b>(3)</b>
-
-release-1.0
-
-Commit: 8708402f583612dea23cef5d8d32711da93a26cb <b>(4)</b>
-
-Author: Markus <Markus@effectivetrainings.de>
-
-Date: (13 minutes ago) 2014-02-09 15:09:54 +0100
-
-Subject: bugfix 4711
-
-1. git show <tag-name>
-
-2. Tag Information
-
-3. Entwickler der den Tag erstellt hat
-
-4. Commit auf den sich der Tag referenziert.
+  1. git show <tag-name>
+  2. Tag Information
+  3. Entwickler der den Tag erstellt hat
+  4. Commit auf den sich der Tag referenziert.
 
 Fehler gibt es immer – Bugfixes
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-» Für mich klingt das alles ziemlich logisch.
+[Karl]» Für mich klingt das alles ziemlich logisch.
 
-| » *Genau, das habe ich dir ja bereits gesagt, Git-Flow ist keine
-  Magie. Wenn man genau darüber nachdenkt ist es ganz natürlich so zu
-  arbeiten.*
-| *Wir haben jetzt unser Release ausgerollt. Wie würdest du jetzt
-  vorgehen, wenn ein kritischer Bug im Live-Betrieb auftritt?*
+[Lars]» *Genau, das habe ich dir ja bereits gesagt, Git-Flow ist keine Magie. Wenn man genau darüber nachdenkt ist es ganz natürlich so zu arbeiten.*
+[Lars]*Wir haben jetzt unser Release ausgerollt. Wie würdest du jetzt vorgehen, wenn ein kritischer Bug im Live-Betrieb auftritt?*
 
-» Du hast ja vorhin bereits erwähnt, dass das Vorgehen für Bugfixes
-immer gleich ist. Ich gehe also davon aus, dass wir den Bug wieder auf
-dem aktuellen Release-Branch fixen?
+[Karl]» Du hast ja vorhin bereits erwähnt, dass das Vorgehen für Bugfixes immer gleich ist. Ich gehe also davon aus, dass wir den Bug wieder auf dem aktuellen Release-Branch fixen?
 
-| » *Genau, stellen wir uns vor, es tritt ein klassischer*
-  **NullPointer** *in Produktion auf. Sehr hässlich.*
-| *Die QA Abteilung stellt uns natürlich hierfür sofort das Ticket*
-  **0815** *ein. Mir fällt leider gerade keine bessere Nummer ein.*
+[Lars]» *Genau, stellen wir uns vor, es tritt ein klassischer* **NullPointer** *in Produktion auf. Sehr hässlich.*
+
+[Lars]*Die QA Abteilung stellt uns natürlich hierfür sofort das Ticket* **0815** *ein. Mir fällt leider gerade keine bessere Nummer ein.*
 
 |image25|
 
-» *Ein Entwickler nimmt sich natürlich sofort der Sache an. Der Bug wird
-direkt auf dem Release-Branch gefixt und getaggt.*
+[Lars]» *Ein Entwickler nimmt sich natürlich sofort der Sache an. Der Bug wird direkt auf dem Release-Branch gefixt und getaggt.*
+
 
 |image26|
 
-#Checkout Release Branch
+.. code-block:: bash
 
-git checkout release-1.0
+  #Checkout Release Branch
+  git checkout release-1.0
+  Switched to branch 'release-1.0'
+  #Bugfix
+  git makeCommits 1
+  [release-1.0 eeef873] committing file 1
+  1 file changed, 1 insertion(+)
+  #Bugfix verifizieren und taggen
+  git tag -a -m "Bugfix - Ticket 0815" fix-0815
+  #Pushen
+  git push --tags origin release-1.0
+  Counting objects: 11, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (3/3), done.
+  Writing objects: 100% (4/4), 417 bytes \| 0 bytes/s, done.
+  Total 4 (delta 1), reused 0 (delta 0)
+  To https://github.com/dilgerma/effective-git-workshop
+  8708402..eeef873 release-1.0 -> release-1.0
+  * [new tag] fix-0815 -> fix-0815
 
-Switched to branch 'release-1.0'
 
-#Bugfix
+.. admonition:: Übung
 
-git makeCommits 1
+  Ist damit der Bugfix komplett? Welcher Schritt fehlt?
 
-[release-1.0 eeef873] committing file 1
-
-1 file changed, 1 insertion(+)
-
-#Bugfix verifizieren und taggen
-
-git tag -a -m "Bugfix - Ticket 0815" fix-0815
-
-#Pushen
-
-git push --tags origin release-1.0
-
-Counting objects: 11, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (3/3), done.
-
-Writing objects: 100% (4/4), 417 bytes \| 0 bytes/s, done.
-
-Total 4 (delta 1), reused 0 (delta 0)
-
-To https://github.com/dilgerma/effective-git-workshop
-
-8708402..eeef873 release-1.0 -> release-1.0
-
-\* [new tag] fix-0815 -> fix-0815
-
-Übung
-
-Ist damit der Bugfix komplett? Welcher Schritt fehlt?
-
-» Der Bugfix muss natürlich direkt auch zurück auf den **master**
-gebracht werden.
+  [Karl]» Der Bugfix muss natürlich direkt auch zurück auf den **master** gebracht werden.
 
 |image27|
 
-git checkout master
+.. code-block:: bash
 
-Switched to branch 'master'
-
-#cherry pick bugfix
-
-git cherry-pick fix-0815 <b>(1)</b>
-
-[master abceefb] committing file 1
-
-1 file changed, 1 insertion(+)
-
-1. Cherry-Pick funktioniert auch direkt mit Tag-Referenzen.
+  git checkout master
+  Switched to branch 'master'
+  #cherry pick bugfix
+  git cherry-pick fix-0815 <b>(1)</b>
+  [master abceefb] committing file 1
+  1 file changed, 1 insertion(+)
+  
+  1. Cherry-Pick funktioniert auch direkt mit Tag-Referenzen.
 
 Next-Features – wir denken bereits an morgen
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-» *Eine Sache fehlt noch. Manchmal gibt es Features, die “vorsorglich”
-entwickelt werden. Das sollte nicht die Regel sein, denn meistens haben
-wir genug mit den aktuellen Features zu tun. Manchmal haben wir aber
-Zeit, um an der Zukunft unseres Produktes zu arbeiten. Das können wir
-natürlich nicht direkt auf dem* **master** *machen, denn diese Features
-sollen ja eben gerade nicht mit dem nächsten Release ausgerollt werden.*
+[Lars]» *Eine Sache fehlt noch. Manchmal gibt es Features, die “vorsorglich” entwickelt werden. Das sollte nicht die Regel sein, denn meistens haben wir genug mit den aktuellen Features zu tun. Manchmal haben wir aber Zeit, um an der Zukunft unseres Produktes zu arbeiten. Das können wir natürlich nicht direkt auf dem* **master** *machen, denn diese Features sollen ja eben gerade nicht mit dem nächsten Release ausgerollt werden.*
 
-» Wenn ich jetzt logisch denke, dann würde ich sagen, wir brauchen dafür
-noch einen Branch, auf dem parallel zum master entwickelt wird, richtig?
+[Karl]» Wenn ich jetzt logisch denke, dann würde ich sagen, wir brauchen dafür noch einen Branch, auf dem parallel zum master entwickelt wird, richtig?
 
-» *Genau, wir nennen diesen Branch* **next**\ *. Wir ziehen den Branch
-direkt vom master, also von der aktuellen Entwicklung.*
+[Lars]» *Genau, wir nennen diesen Branch* **next** *. Wir ziehen den Branch direkt vom master, also von der aktuellen Entwicklung.*
 
 |image28|
 
-git checkout -b "next"
+.. code-block:: bash
 
-Switched to a new branch 'next'
+  git checkout -b "next"
+  Switched to a new branch 'next'
 
-» *Wir entwickeln auf beiden Branches parallel. Auf dem* **master**
-*werden die Features für das nächste, auf dem* **next**\ *-Branch
-Features für das übernächste Release.*
+[Lars]» *Wir entwickeln auf beiden Branches parallel. Auf dem* **master** *werden die Features für das nächste, auf dem* **next** *-Branch Features für das übernächste Release.*
 
 |image29|
 
-» *Hierbei ist nur enorm wichtig, dass in regelmäßigen Abständen vom*
-**master** *auf den* **next**\ *-Branch gemerged wird. Für die Version
-vom* **next**\ *-Branch haben wir eine eigene Integrations-Umgebung, die
-wir nur für Developer-Smoke-Tests verwenden. Wir wollen natürlich auch
-auf diesem Branch alle Entwicklungen, die in der Zwischenzeit auf dem*
-**master** *gemacht worden sind.*
+» *Hierbei ist nur enorm wichtig, dass in regelmäßigen Abständen vom* **master** *auf den* **next**\ *-Branch gemerged wird. Für die Version vom* **next** *-Branch haben wir eine eigene Integrations-Umgebung, die wir nur für Developer-Smoke-Tests verwenden. Wir wollen natürlich auch auf diesem Branch alle Entwicklungen, die in der Zwischenzeit auf dem* **master** *gemacht worden sind.*
 
-» Wer macht diese Merges?
+[Karl]» Wer macht diese Merges?
 
-» *Die werden automatisiert von unserem Repository-Management-System
-durchgeführt. Das zeige ich dir morgen. Hätten wir dieses System nicht
-würde ich wahrscheinlich jeden Entwickler diese Arbeit gelegentlich
-machen lassen. Jeder Entwickler sollte die Prozesse kennen, wir wollen
-keine Wissensinseln.*
+[Lars]» *Die werden automatisiert von unserem Repository-Management-System durchgeführt. Das zeige ich dir morgen. Hätten wir dieses System nicht würde ich wahrscheinlich jeden Entwickler diese Arbeit gelegentlich machen lassen. Jeder Entwickler sollte die Prozesse kennen, wir wollen keine Wissensinseln.*
 
 |image30|
 
-» Ok, das habe ich verstanden. Irgendwann werden aber die Features vom
-**next**-Branch für das nächste Release relevant. Wie wird das gemacht?
+[Karl]» Ok, das habe ich verstanden. Irgendwann werden aber die Features vom **next**-Branch für das nächste Release relevant. Wie wird das gemacht?
 
-| » *Das ist dann sehr einfach. Dadurch das wir den* **next**\ *-Branch
-  mit dem* **master** *synchron halten muss nur noch ein Merge vom*
-  **next** *zurück auf den* **master** *gemacht werden.*
-| *Dieser merge kann nur ein* **fast-forward-merge** *sein.*
+[Lars]» *Das ist dann sehr einfach. Dadurch das wir den* **next** *-Branch mit dem* **master** *synchron halten muss nur noch ein Merge vom* **next** *zurück auf den* **master** *gemacht werden.*
+[Lars]*Dieser merge kann nur ein* **fast-forward-merge** *sein.*
 
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------+
-| Tip   | Treten beim Merge vom **next**-Branch zurück auf den **master** Mergekonflikte auf liegt ein Problem vor, das untersucht werden muss.   |
-+-------+-----------------------------------------------------------------------------------------------------------------------------------------+
+.. Tip:: 
+  
+  Treten beim Merge vom **next**-Branch zurück auf den **master** Mergekonflikte auf liegt ein Problem vor, das untersucht werden muss.   |
 
 |image31|
 
-» *Nach diesem Merge kann der* **next**\ *-Branch einfach gelöscht und
-wenn nötig neu gezogen werden.*
 
-» Danke für die Erklärung Lars. Das war sehr aufschlussreich.
+[Lars]» *Nach diesem Merge kann der* **next** *-Branch einfach gelöscht und wenn nötig neu gezogen werden.*
 
-| » *Ich würde dir gerne noch das Tooling für das Git-Flow-Modell
-  zeigen. Wir verwenden es derzeit nicht, trotzdem kann es nicht
-  schaden, dass ich es dir mal zeige.*
-| *Das Problem ist, dieses Tooling funktioniert nur auf der Konsole. Wir
-  haben aber einige Entwickler, die mit grafischen Tools arbeiten. Mit
-  grafischen Tools beschäftigen wir uns später noch. Wir haben im Team
-  beschlossen, dass wir einheitlich arbeiten möchten, deswegen verwenden
-  wir Git-Flow manuell.*
+[Karl]» Danke für die Erklärung Lars. Das war sehr aufschlussreich.
+
+[Lars]» *Ich würde dir gerne noch das Tooling für das Git-Flow-Modell zeigen. Wir verwenden es derzeit nicht, trotzdem kann es nicht schaden, dass ich es dir mal zeige.*
+[Lars]*Das Problem ist, dieses Tooling funktioniert nur auf der Konsole. Wir haben aber einige Entwickler, die mit grafischen Tools arbeiten. Mit grafischen Tools beschäftigen wir uns später noch. Wir haben im Team beschlossen, dass wir einheitlich arbeiten möchten, deswegen verwenden wir Git-Flow manuell.*
 
 Git Flow Tooling
-^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^
 
-| » *Das Tooling haben wir nicht selbst entwickelt, sondern es ist*
-  `*hier* <https://github.com/nvie/gitflow>`__ *ausführlich beschrieben.
-  Im Prinzip handelt es sich um eine kleine Anzahl Shell-Skripte, die
-  auf der Konsole verwendet werden können.*
-| *Am besten ich erkläre dir das in einem leeren Repository, dann siehst
-  du am besten was passiert.*
+[Lars]» *Das Tooling haben wir nicht selbst entwickelt, sondern es ist* `*hier* <https://github.com/nvie/gitflow>`__ *ausführlich beschrieben. Im Prinzip handelt es sich um eine kleine Anzahl Shell-Skripte, die auf der Konsole verwendet werden können.*
+[Lars]*Am besten ich erkläre dir das in einem leeren Repository, dann siehst du am besten was passiert.*
 
-#neues repository
+.. code-block:: bash
 
-mkdir git-flow-example
+  #neues repository
+  mkdir git-flow-example
+  cd git-flow-example
+  git init
 
-cd git-flow-example
-
-git init
-
-» *Damit haben wir ein leeres Repository und können anfangen. Was wir
-ausserdem brauchen werden ist das Git-Flow-Tooling. Am besten du lädst
-es dir schnell von* `*hier* <https://github.com/nvie/gitflow>`__
-*herunter und befolgst die Installationsanleitung.*
+[Lars]» *Damit haben wir ein leeres Repository und können anfangen. Was wir ausserdem brauchen werden ist das Git-Flow-Tooling. Am besten du lädst es dir schnell von* `*hier* <https://github.com/nvie/gitflow>`__ *herunter und befolgst die Installationsanleitung.*
 
 Git Fow Tooling
 
