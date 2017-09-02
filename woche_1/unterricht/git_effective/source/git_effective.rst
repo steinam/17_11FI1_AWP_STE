@@ -3685,7 +3685,7 @@ Now, start committing on your feature. When done, use:
 
 git flow feature finish 4711
 
-» Das ist wirklich praktisch! Sehe ich das richtig, dass Git-Flow gerade
+[Karl]» Das ist wirklich praktisch! Sehe ich das richtig, dass Git-Flow gerade
 automatisch den Feature-Branch für mein Feature erzeugt hat?
 
 [Lars]» *Genau, so ist es. Schau dir doch mal die Liste an Branches an.*
@@ -3724,7 +3724,7 @@ Was muss passieren, nachdem ein Feature abgeschlossen ist?
 
 Zeichnen Sie ein Diagram!
 
-» Natürlich erinnere ich mich, wir führen den Feature-Branch zurück. Ich
+[Karl]» Natürlich erinnere ich mich, wir führen den Feature-Branch zurück. Ich
 schätze, auch dafür gibt es ein passendes Kommando?
 
 [Lars]» *Genau. Es ist ganz einfach.*
@@ -3753,7 +3753,7 @@ Summary of actions:
 
 - You are now on branch 'master'
 
-» Ok, ich glaube ich verstehe. Wir schliessen das Feature ab, d.h.
+[Karl]» Ok, ich glaube ich verstehe. Wir schliessen das Feature ab, d.h.
 Git-Flow wechselt auf den **master**, unseren aktuellen
 Entwicklungs-Branch. Git-Flow macht automatisch einen Merge des Features
 und entfernt anschließend den Feature-Branch. Der Branch wird nach der
@@ -3811,7 +3811,7 @@ create mode 100644 4911.txt
 
 git flow feature finish 4911
 
-» Wir haben schon viel über **Rebase** und **Merge** gesprochen. Was
+[Karl]» Wir haben schon viel über **Rebase** und **Merge** gesprochen. Was
 macht Git-Flow?
 
 [Lars]» *Gute Frage, Karl. Git-Flow arbeitet standardmäßig mit* **Merges**\ *.
@@ -3820,7 +3820,7 @@ sinnvoll sein kann, bevor ein Feature zurückgeführt wird. Dafür bietet
 Git-Flow aber keine Unterstützung. Es ist Aufgabe des jeweiligen
 Entwicklers bevor er das Feature abschliesst.*
 
-» Ich verstehe, ich hätte also vor dem **git flow feature finish**
+[Karl]» Ich verstehe, ich hätte also vor dem **git flow feature finish**
 einfach ein **Rebase** gegen den **master** machen müssen?
 
 [Lars]» *Ja genau.* Bereiten wir ein Release vor?*
@@ -3833,7 +3833,7 @@ Was ist zu tun?
 
 Zeichnen Sie ein Diagramm!
 
-» Ich versuche das mal zusammenzufassen. Um jetzt ein Release
+[Karl]» Ich versuche das mal zusammenzufassen. Um jetzt ein Release
 vorzubereiten würden wir einen Release-Branch vom **master** ziehen. Ab
 diesem Zeitpunkt wird auf dem **master** dann für das nächste Release
 entwickelt. Alles für das aktuelle Release wird auf dem neuen
@@ -3865,7 +3865,7 @@ version Shows version information.
 
 Try 'git flow <subcommand> help' for details.
 
-» Ok, ich vergesse immer, die Hilfe zu verwenden. Git-Flow bietet also
+[Karl]» Ok, ich vergesse immer, die Hilfe zu verwenden. Git-Flow bietet also
 separate Kommandos für die einzelnen Branch-Typen?
 
 [Lars]» Ja genau, jetzt interessieren wir uns hauptsächlich für **Releases**.
@@ -3884,7 +3884,7 @@ git flow release start <name> [<base>]
 Können Sie mit den Informationen, die Sie jetzt haben ein Release
 vorbereiten?
 
-» Ich denke, das schaffe ich. Wie nennen wir das Release?
+[Karl]» Ich denke, das schaffe ich. Wie nennen wir das Release?
 
 [Lars]» *Das wird eine 1.0!*
 
@@ -3908,7 +3908,7 @@ Follow-up actions:
 
 git flow release finish '1.0'
 
-» Ok, das habe ich erwartet. Git-Flow hat einen neuen Branch erzeugt,
+[Karl]» Ok, das habe ich erwartet. Git-Flow hat einen neuen Branch erzeugt,
 den wir für die Release-Stabilisierung verwenden können.
 
 git branch
@@ -3919,12 +3919,12 @@ release
 
 \* release-1.0
 
-» Wie geht es jetzt weiter?
+[Karl]» Wie geht es jetzt weiter?
 
 [Lars]» *Am besten wir machen einige Commits auf dem Branch und machen das
 Release dann fertig, oder?*
 
-» Ich versuche das.
+[Karl]» Ich versuche das.
 
 git makeCommits 4
 
@@ -3970,7 +3970,7 @@ fd75f84 4911 - finished
 
 acafbbc Initial commit
 
-» Ok, und jetzt machen wir das Release fertig.
+[Karl]» Ok, und jetzt machen wir das Release fertig.
 
 git flow release finish 1.0
 
@@ -3990,7 +3990,7 @@ Merge made by the 'recursive' strategy.
 
 #Tag release, Message eingeben
 
-» Ok, jetzt ist aber einiges passiert. Ich versuche das nochmal
+[Karl]» Ok, jetzt ist aber einiges passiert. Ich versuche das nochmal
 zusammenzufassen.
 
 Übung
@@ -3998,7 +3998,7 @@ zusammenzufassen.
 Können Sie anhand des obigen Listings erklären, was passiert ist und
 warum?
 
-| » Wir sind auf dem **Release-Stabilisierungs-Branch** und weisen
+[Karl]» Wir sind auf dem **Release-Stabilisierungs-Branch** und weisen
   Git-Flow an, das Release fertig zu machen. Zuerst wechselt Git-Flow
   also auf den **Release**-Branch und merged den Stabilisierungsbranch
   hierher. Damit bringen wir quasi einen neuen Stand auf den bereits
@@ -4012,7 +4012,7 @@ warum?
 [Lars]» *Genau, denn jetzt ist klar, welcher Stand für das nächste Release
 final ist. Das hält Git-Flow mit Hilfe eines Tags fest.*
 
-» Weiter, der nächste Schritt besteht nun darin, den Stand vom
+[Karl]» Weiter, der nächste Schritt besteht nun darin, den Stand vom
 **Stabilisierungs-Branch** auch auf den master, also die aktuelle
 Entwicklung zu bringen. Ganz einfach deswegen, weil vielleicht für die
 Stabilisierung wichtige Bugfixes oder beispielsweise
@@ -4035,13 +4035,13 @@ Summary of actions:
 
 - Release branch 'release-1.0' has been deleted
 
-» Ok, sind wir damit dann fertig?
+[Karl]» Ok, sind wir damit dann fertig?
 
 [Lars] » *Noch nicht ganz, das Release ist jetzt draussen, unsere Kunden sind glücklich bis zum Tag* **X** *. Wir haben einen kritischen Bug
  übersehen, der jetzt natürlich gefixt werden muss.*
 [Lars]*Wie würdest du jetzt vorgehen?*
 
-» Zunächst mal würde ich mir wieder die Hilfe von Git-Flow anschauen.
+[Karl]» Zunächst mal würde ich mir wieder die Hilfe von Git-Flow anschauen.
 
 [Lars]» *Na das ist doch zumindest ein Anfang.*
 
@@ -4065,7 +4065,7 @@ version Shows version information.
 
 Try 'git flow <subcommand> help' for details.
 
-» Da der Bug kritisch zu sein schein würde ich auf das *Hotfix*-Kommando
+[Karl]» Da der Bug kritisch zu sein schein würde ich auf das *Hotfix*-Kommando
 tippen, richtig?
 
 [Lars]» *Exakt, Fehler in Produktion werden immer als Hotfixes behandelt.*
@@ -4078,7 +4078,7 @@ You can start a new hotfix branch:
 
 git flow hotfix start <version> [<base>]
 
-» Habt ihr eine Versionierungstrategie für Hotfix-Branches?
+[Karl]» Habt ihr eine Versionierungstrategie für Hotfix-Branches?
 
 [Lars]» *Hotfixes verhalten sich genauso wie Features. Die Version ist immer
 die Tasknummer aus der QA-Abteilung.*
@@ -4111,7 +4111,7 @@ git flow hotfix finish '5011'
   behandelt werden.
 | Können Sie erklären, was jetzt passiert ist?
 
-» Ich versuche es mal zu erklären. Git-Flow erstellt einen neuen Branch
+[Karl]» Ich versuche es mal zu erklären. Git-Flow erstellt einen neuen Branch
 vom **release**-Branch weg, denn der Bug ist in Produktion aufgetreten.
 
 git branch
@@ -4122,7 +4122,7 @@ master
 
 release
 
-» Auf diesem Hotfix-Branch lösen wir das Problem.
+[Karl]» Auf diesem Hotfix-Branch lösen wir das Problem.
 
 echo "hotfix" >> hotfix.txt
 
@@ -4155,7 +4155,7 @@ Summary of actions:
 
 - Hotfix branch 'hotfix-5011' has been deleted
 
-» Git-Flow verhält sich hier ähnlich wie der Beendigung des
+[Karl]» Git-Flow verhält sich hier ähnlich wie der Beendigung des
 Release-Stabilisierungs-Branches. Der Hotfix-Branch wird zunächst in den
 **Release**-Branch gemerged, damit die Release-Version stabil wird.
 Anschließend setzt Git-Flow einen Tag auf dem Release-Branch. Zu guter
@@ -4169,7 +4169,7 @@ git branch
 
 release
 
-» Lars, kannst du mir erklären, wie genau sich das mit
+[Karl]» Lars, kannst du mir erklären, wie genau sich das mit
 **Support**-Branches verhält, was genau ist das?
 
 [Lars]» *Erklärt ist das sehr schnell. Stell dir vor, einige Kunden kaufen
@@ -4199,14 +4199,14 @@ You can start a new support branch:
 
 git flow support start <name> <base>
 
-» Kann ich das einfach mal schnell ausprobieren?
+[Karl]» Kann ich das einfach mal schnell ausprobieren?
 
 [Lars]» *Klar, um einen Support-Branch zu starten brauchst du einen Namen, das
 wird meistens die Release-Version sein, die du supporten möchtest und
 eine Basis. Die Basis ist der Tag des Releases, das du supporten
 möchtest.*
 
-» Ok, wenn ich dich richtig verstehe müsste der Befehl folgender sein.
+[Karl]» Ok, wenn ich dich richtig verstehe müsste der Befehl folgender sein.
 
 git flow support start 1.0 1.0
 
@@ -4222,7 +4222,7 @@ Summary of actions:
 
 - You are now on branch 'support-1.0'
 
-» Sehr schön, genau wie ich vermutet habe. Git-Flow checkt nicht einen
+[Karl]» Sehr schön, genau wie ich vermutet habe. Git-Flow checkt nicht einen
 bestimmten Branch aus, sondern den **Tag** den ich als **Basis**
 angegeben habe.
 
@@ -4237,7 +4237,7 @@ Tag 2 endet
 [Lars]» *Genug für heute, Karl. Ich hoffe du hast einiges zum Thema Workflows
 gelernt.*
 
-» Danke Lars, mir raucht zwar der Kopf aber ich denke, das meiste habe
+[Karl]» Danke Lars, mir raucht zwar der Kopf aber ich denke, das meiste habe
 ich verstanden. Ich denke, für die meisten Projekte ist **Git-Flow**
 tatsächlich das richtige Modell. Ich werde mir auf dem Weg nach München
 nochmal genau anschauen, wie sich die Modelle unterscheiden.
@@ -4249,7 +4249,7 @@ kannst, wenn du möchtest. Beispielsweise hat*
 GitHub-Flow ist im Prinzip ein vereinfachtes Modell von Git-Flow. Lies
 dir das gerne mal durch.*
 
-» Das werde ich, danke Lars. Was ist für morgen geplant?
+[Karl]» Das werde ich, danke Lars. Was ist für morgen geplant?
 
 [Lars]» *Morgen werden wir endlich ein wenig produktiv arbeiten. Wir haben ein
 Legacy-Projekt hier, das derzeit noch mit Subversion arbeitet. Da wir
@@ -4257,11 +4257,11 @@ jetzt das erste Mal seit längerer Zeit an diesem Projekt wieder
 Änderungen vornehmen möchten wir die Gelegenheit nutzen und das Projekt
 von Subversion nach* **Git** *migrieren.*
 
-» Sieht aus als hätten wir noch viel zu tun?
+»[Karl] Sieht aus als hätten wir noch viel zu tun?
 
 [Lars]» *Natürlich! Glaub mir, die Arbeit wird uns nicht ausgehen.*
 
-» Danke Lars, bis morgen!
+[Karl]» Danke Lars, bis morgen!
 
 Tag 3 – Die Migration nach Git
 ---------------------------------
@@ -4288,7 +4288,7 @@ Tag 3 – Die Migration nach Git
 [Lars]» *Hallo Karl! Ich hoffe, Du hast die Informationen von gestern gut
 verdaut?*
 
-» Guten Morgen, Lars. Ja danke, ich habe mir unterwegs noch sehr viele
+[Karl]» Guten Morgen, Lars. Ja danke, ich habe mir unterwegs noch sehr viele
 Gedanken gemacht und je länger ich über die Art und Weise zu arbeiten
 nachdenke, desto mehr ärgere ich mich, dass ich mich nicht schon viel
 früher mit dem Thema befasst habe.
@@ -4296,7 +4296,7 @@ früher mit dem Thema befasst habe.
 [Lars]» *Siehst du, ich hatte dich ja vorgewarnt, wenn Du einmal angefangen
 hast,* **wirklich** *mit Git zu arbeiten kannst du nicht mehr zurück.*
 
-» Ich frage mich tatsächlich, warum nicht mehr Unternehmen bereits auf
+[Karl]» Ich frage mich tatsächlich, warum nicht mehr Unternehmen bereits auf
 den fahrenden Zug aufgesprungen sind und die Migration nach Git nicht
 schon längst erledigt haben. Ist es so kompliziert?
 
@@ -4364,7 +4364,7 @@ apply-svn-ignore.sh <b>(4)</b>
 
 4. Überführt die svn-ignores in eine äquivalente .gitignore-Datei
 
-» Lars, das verstehe ich nicht, wieso brauchen wir ein Mapping der User
+[Karl]» Lars, das verstehe ich nicht, wieso brauchen wir ein Mapping der User
 von Subversion hin zu Git?
 
 [Lars]» *Gute Frage, Karl. Die Lösung kennst du aber eigentlich bereits,
@@ -4376,10 +4376,9 @@ Es gibt einen fundamentalen Unterschied zwischen dem UserManagement in
 Subversion und Git. Kennen Sie ihn und können ihn in wenigen Sätzen
 erklären?
 
-| » Ich bin mir nicht ganz sicher. Wenn ich mich an meine letzten
+[Karl]» Ich bin mir nicht ganz sicher. Wenn ich mich an meine letzten
   Projekte erinnere, dann sieht man in Subversion eigentlich immer nur
-  das Benutzerkürzel. In Git haben wir
-| den Benutzernamen und eine E-Mailadresse, korrekt? Ist das Usermapping
+  das Benutzerkürzel. In Git haben wir den Benutzernamen und eine E-Mailadresse, korrekt? Ist das Usermapping
   dafür gedacht? Um aus dem Benutzerkürzel die korrekten Git-Daten zu
   bekommen?
 
@@ -4438,17 +4437,15 @@ A svn/tags/release-v1/test-file.txt
 Branches, einen Tag und natürlich den* **Trunk**\ *, den wir migrieren
 möchten.*
 
-| » Ist es tatsächlich notwendig, dass wir alles migrieren? Du meintest,
+[Karl]» Ist es tatsächlich notwendig, dass wir alles migrieren? Du meintest,
   das Projekt wäre jetzt schon eine ganze Weile nicht mehr angepasst
-  worden. Die Chancen sind also
-| groß, dass zumindes die Feature-Branches mittlerweile hoffnungslos
+  worden. Die Chancen sind also groß, dass zumindes die Feature-Branches mittlerweile hoffnungslos
   veraltet sind?
 
 [Lars]» *Du hast völlig recht, mit großer Wahrscheinlichkeit ist das der Fall.
 Würden wir die Subversion-Repositories weiterhin behalten wäre es auch
 eine valide Option, beispielsweise nur den* **Trunk** *zu migrieren. Wir
-sind allerdings
-bestrebt, in naher Zukunft überhaupt keine Subversion-Repositories mehr
+sind allerdings bestrebt, in naher Zukunft überhaupt keine Subversion-Repositories mehr
 vorzuhalten. Wir migrieren also normalerweise zunächst alles aus dem
 Subversion-Repository nach Git und löschen
 anschließend das Subversion-Repository komplett. Es schadet also nicht,
@@ -4538,7 +4535,7 @@ fundamental anders ist als die eines Git-Repositories
 muss Git-SVN einiges an Arbeit erledigen. Git-Svn geht die SVN-Historie
 Commit für Commit durch und überführt jeden Commit einzeln nach Git.*
 
-» Jeden Commit einzeln? Üblicherweise haben Subversion-Repositories in
+[Karl]» Jeden Commit einzeln? Üblicherweise haben Subversion-Repositories in
 Projekten tausende wenn nicht hunderttausende von Commits!
 
 [Lars]» *Ja, da hast du völlig Recht, deswegen macht es gerade für sehr große
@@ -4560,7 +4557,7 @@ ls
 
 branches tags trunk wiki
 
-» Das ist allerdings nicht was ich erwartet hätte. Die Struktur des
+[Karl]» Das ist allerdings nicht was ich erwartet hätte. Die Struktur des
 Subversion Repositories spiegelt sich direkt in der Verzeichnisstruktur
 wider.
 
@@ -4605,7 +4602,7 @@ Subject: committing file 66
 git-svn-id: https://git-subversion-migration.googlecode.com/svn@74
 e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
-» *Du siehst hier gleich mehrere Seltsamkeiten. Beispielsweise der
+[Lars]» *Du siehst hier gleich mehrere Seltsamkeiten. Beispielsweise der
 Autor.*
 
 martin.dilger@gmail.com
@@ -4638,10 +4635,10 @@ bedeutet, sobald das Subversion-Repository einmal sauber nach* **Git**
 die Historie nur schwerer lesbar. Das werden wir uns auch gleich im
 Anschluss betrachten.*
 
-» Ich sehe schon, Git-SVN scheint ein wirklich mächtiges Tool zu sein.
+[Karl]» Ich sehe schon, Git-SVN scheint ein wirklich mächtiges Tool zu sein.
 
 [Lars]» *Ja, und die relativ einfache Migration von Subversion hin zu Git hat
-entscheident zur schnellen Verbreitung des Systems beigetragen. Jetzt
+entscheidend zur schnellen Verbreitung des Systems beigetragen. Jetzt
 vergessen wir erstmal, dass Repository das wir uns soeben geklont haben
 und fangen nochmal von vorne bei Schritt 1 an. Das erste Problem das wir
 haben ist, dass Git-SVN die komplette Repository-Struktur in das
@@ -4651,7 +4648,7 @@ der Git-Welt gibt es diese Zuordnung von Branches zu Verzeichnissen
 nicht. Wir brauchen eigentlich ein sauberes Mapping vom
 Subversion-Verzeichnis “/branches” auf einen Git-Branch, korrekt?*
 
-» Naja, das wäre schön, aber ist das so ohne weiteres möglich?
+[Karl]» Naja, das wäre schön, aber ist das so ohne weiteres möglich?
 
 Der bessere Weg
 ~~~~~~~~~~~~~~~~~~~~
@@ -4749,10 +4746,9 @@ tags/release-v1
 
 trunk
 
-| » Ach, so einfach ist das? Das sieht jetzt doch genauso aus, wie ich
+[Karl]» Ach, so einfach ist das? Das sieht jetzt doch genauso aus, wie ich
   das erwarten würde. Jeder Subversion-Branch wurde in einen korrekten
-  Git-Branch überführt. Aber Moment,
-| auch die Subversion-Tags wurden in eigene Git-Branches überführt. Das
+  Git-Branch überführt. Aber Moment, auch die Subversion-Tags wurden in eigene Git-Branches überführt. Das
   ist doch eigentlich nicht, was wir wollen, oder?
 
 SVN / Git Tags
@@ -4790,7 +4786,7 @@ feature-1
 
 trunk
 
-» Interessant! Der Branch für die Tags ist verschwunden?
+[Karl]» Interessant! Der Branch für die Tags ist verschwunden?
 
 [Lars]» *Genau. Und noch viel besser wird es, wenn Du dir die Tags im
 Repository anschaust.*
@@ -4812,7 +4808,7 @@ Date: (76 minutes ago) 2014-06-21 14:47:20 +0000
 
 Subject: tagging release 1
 
-» Ich bin beeindruckt, der Tag scheint korrekt angelegt worden zu sein.
+[Karl]» Ich bin beeindruckt, der Tag scheint korrekt angelegt worden zu sein.
 Kannst Du mir erklären, was das Skript genau macht?
 
 [Lars]» *Das Skript sieht komplizierter aus, als es eigentlich ist.*
@@ -4915,7 +4911,7 @@ Tag, setzen diesen auf den richtigen Commit mittels* **$REF**\ *,
 übernehmen die Commit-Message aus* **$BODY** *und den
 Tag-Namen aus* **$TAG\_NAME**\ *.*
 
-» Toll, Lars. Ich bin ehrlich beeindruckt. Das ist relativ simpel, wenn
+[Karl]» Toll, Lars. Ich bin ehrlich beeindruckt. Das ist relativ simpel, wenn
 man sich einmal die Mühe macht, sich genauer einzulesen.
 
 SVN / Git User Mapping
@@ -4983,7 +4979,7 @@ directory name>
 git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
 https://git-subversion-migration.googlecode.com/svn svn.git
 
-» Es scheint zu funktionieren, Lars, sehr schön. Wir haben hier jetzt
+[Karl]» Es scheint zu funktionieren, Lars, sehr schön. Wir haben hier jetzt
 aber noch zusätzlich das Flag **–prefix** verwendet. Kannst Du mir
 erklären, was es damit auf sich hat?
 
@@ -4991,7 +4987,7 @@ erklären, was es damit auf sich hat?
 Subversion-Repository mit allen Branches, die darin enthalten sind. Das
 können unter Umständen hunderte sein, korrekt?*
 
-» Ich habe schon solche Projekte gesehen, ja.
+[Karl]» Ich habe schon solche Projekte gesehen, ja.
 
 [Lars]» *Genau, jetzt stell dir vor, wir arbeiten in diesem Repository weiter.
 Du hättest keine Chance zu sehen, welche Branches jetzt aus Subversion
@@ -5060,7 +5056,7 @@ Subject: committing file 68
 git-svn-id: https://git-subversion-migration.googlecode.com/svn/trunk@76
 e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
-» Das Usermapping scheint geklappt zu haben, das ist schonmal gut. Damit
+[Karl]» Das Usermapping scheint geklappt zu haben, das ist schonmal gut. Damit
 sind wir eigentlich fertig, oder?
 
 SVN Ignores
@@ -5071,7 +5067,7 @@ noch die svn-ignores in das Git-Repository überführen.
 Wir möchten ja nicht plötzlich in Git irgendwelche kompilierten Sourcen
 einchecken.*
 
-» Natürlich, du hast ja völlig recht! Git hat ja einen eigenen
+[Karl]» Natürlich, du hast ja völlig recht! Git hat ja einen eigenen
 Mechanismus um Dateien und Änderungen zu ignorieren.
 
 Übung
@@ -5092,7 +5088,7 @@ less .gitignore
 
 /target
 
-» Anscheinend wird im Projekt lediglich das Verzeichnis **/target**
+[Karl]» Anscheinend wird im Projekt lediglich das Verzeichnis **/target**
 exkludiert. Git-SVN hat diese Änderung aber korrekt in die .gitignore
 Datei überführt.
 
@@ -5176,7 +5172,7 @@ ab, aber ich habe kürzlich einen recht* `*interessanten
 Artikel* <http://www.effectivetrainings.de/blog/2013/12/26/enterprise-git-enterprise-workflows-branch-per-feature/>`__
 *gelesen, der noch einen Schritt weiter geht.*
 
-» Was fehlt dir denn bei Git-Flow?
+[Karl]» Was fehlt dir denn bei Git-Flow?
 
 Unterschied zu Git-Flow
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -5189,7 +5185,7 @@ interessant. Soll ich es dir kurz erklären? Für unsere tägliche Arbeit
 spielt es derzeit keine Rolle, aber ich spreche immer gerne mit
 Teamkollegen über neue Themen und höre mir andere Meinungen an.*
 
-» Unbedingt, ich bin gespannt, was es an Git-Flow noch zu verbessern
+[Karl]» Unbedingt, ich bin gespannt, was es an Git-Flow noch zu verbessern
 gibt.
 
 [Lars]» *Die Grundidee von BPF ist schnell erklärt. Git-Flow zwingt uns
@@ -5201,7 +5197,7 @@ gibt.
 | *Git-Flow sieht es außerdem nicht vor, Features, die einmal
   zurückgeführt wurden wieder zu entfernen.*
 
-» Kommt das tatsächlich vor? Zurückgeführte Features wieder zu
+[Karl]» Kommt das tatsächlich vor? Zurückgeführte Features wieder zu
 entfernen?
 
 [Lars]» *Zugegegen, selten. Es treten natürlich gelegentlich Bugs auf, die
@@ -5230,7 +5226,7 @@ if(newFeatureActive) {
 
 }
 
-» Ich muss gestehen, ich bin wirklich kein großer Fan von Feature-Flags.
+[Karl]» Ich muss gestehen, ich bin wirklich kein großer Fan von Feature-Flags.
 Sie machen den Code fragil und wenn man es übertreibt, hat man überall
 *if / else* – Kaskaden, die nur schwer zu warten sind. Ich hatte das mal
 in einem Projekt, wo eigentlich in jeder Klasse diese Abfragen gemacht
@@ -5250,7 +5246,7 @@ insgesamt einfach relativ gefährlich.
   wurden sondern dynamisch auf Knopfdruck aus den vorhandenen
   Feature-Branches.*
 
-» Ganz ehrlich, das klingt für mich ein wenig abstrakt. Ist das
+[Karl]» Ganz ehrlich, das klingt für mich ein wenig abstrakt. Ist das
 überhaupt praktikabel? Macht es Sinn, dass wir uns das kurz zusammen am
 Whiteboard anschauen?
 
@@ -5271,13 +5267,13 @@ einen eigenen* **Feature-Branch** *für jedes Feature.*
 
 |image34|
 
-» Das sehe ich ein und macht Sinn. Normalerweise wäre das Release
+[Karl]» Das sehe ich ein und macht Sinn. Normalerweise wäre das Release
 blockiert, bis entweder der Bug gefixt oder das Feature über einen
 Feature-Flag ausgeschaltet ist.
 
 [Lars]» *Was erfahrungsgemäß ziemlich lange dauern kann, nicht wahr?*
 
-» Genau.
+[Karl]» Genau.
 
 [Lars]» *Karl, wenn du dir dieses Bild auf dem Whiteboard jetzt anschaust. Ich
 als Product-Owner möchte gerne mit einem Fingerschnippen entscheiden,
@@ -5285,7 +5281,7 @@ dass beispielsweise* **Feature-4711** *nicht deployt werden soll.*
 
 |image35|
 
-» Ja klar willst du das, ich würde auch gerne fliegen können. Manches
+[Karl]» Ja klar willst du das, ich würde auch gerne fliegen können. Manches
 geht einfach nicht.
 
 [Lars]» *Das mit dem Fliegen machen wir später. Das mit dem Fingerschnippen
@@ -5328,7 +5324,7 @@ gemerged worden.*
 
 |image38|
 
-» Lars, warte. Jetzt startet das Ganze wieder von vorne, richtig? Jetzt
+[Karl]» Lars, warte. Jetzt startet das Ganze wieder von vorne, richtig? Jetzt
 könnte ich das **Feature-4911** wieder in den master mergen, ohne aber
 vorher **Feature-4711** auch zu mergen oder?
 
@@ -5340,13 +5336,13 @@ eigentlich recht einfach und genial, nicht wahr? Dadurch, dass wir*
 wäre es niemals zurückgeführt worden. Ich kann also tatsächlich mit
 Hilfe eines “Fingerschnippens” ein komplettes Feature entfernen.*
 
-» Aber das klingt wirklich ein wenig zu einfach. Lass mich nachdenken.
+[Karl]» Aber das klingt wirklich ein wenig zu einfach. Lass mich nachdenken.
 Was passiert mit Merge-Konflikten?
 
 [Lars]» *Ach, du hast direkt die Schwachstelle dieses Systems erkannt. Kannst
 du vielleicht schon erklären, wo wir wirklich Probleme haben werden?*
 
-» Moment, ich überlege. Am besten wir versuchen das direkt im
+[Karl]» Moment, ich überlege. Am besten wir versuchen das direkt im
 Repository, das wir zuvor für Git-Flow verwendet haben. Ich lerne
 besser, wenn ich die Dinge praktisch anwende.
 
@@ -5371,10 +5367,10 @@ git tag
 
 release-1.0
 
-» Ok, wir entwickeln also die Features **4711**, **4811** und **4911**.
+[Karl]» Ok, wir entwickeln also die Features **4711**, **4811** und **4911**.
 Wieder mal…
 
-» *Ja, tut mir leid, für meine Kreativität bin ich nicht gerade bekannt.
+[Lars]» *Ja, tut mir leid, für meine Kreativität bin ich nicht gerade bekannt.
 Aber ja, mach bitte weiter.*
 
 #vom master
@@ -5480,7 +5476,7 @@ support-1.0
 1. Erzeuge den Branch mit Namen *qa* direkt vom Tag mit dem Namen
        *release-1.0*
 
-» Spielt die Reihenfolge dabei eine Rolle? Ich meine, welches Feature
+[Karl]» Spielt die Reihenfolge dabei eine Rolle? Ich meine, welches Feature
 zuerst gemerged wird.
 
 [Lars]» *Prinzipiell ja, das werden wir aber gleich sehen. Wir fangen zunächst
@@ -5489,7 +5485,7 @@ an mit* **4711**\ *, mergen dann* **4811** *und zuletzt* **4911**\ *.*
 ReReRe-Cache
 ^^^^^^^^^^^^^^^^^^^
 
-» Ich glaube ich sehe schon das Problem. Wir erzeugen den **qa**-Branch
+[Karl]» Ich glaube ich sehe schon das Problem. Wir erzeugen den **qa**-Branch
 von wir die Version bauen immer wieder neu, richtig? Und mergen die
 Features jedesmal wieder zusammen. Müssen wir dann nicht die gleichen
 Merge-Konflikte immer und immer wieder lösen?
@@ -5498,14 +5494,14 @@ Merge-Konflikte immer und immer wieder lösen?
 Entwickler löst einen* **Merge-Konflikt** *gerne zweimal. Das wäre auch
 ziemlich ineffizient.*
 
-» Aber wie verhindern wir das?
+[Karl]» Aber wie verhindern wir das?
 
 [Lars]» *Das die Merge-Konflikte auftreten gar nicht. Aber wir können* **Git**
 *sagen, dass es sich merken soll, wie ein Merge-Konflikt, der bereits
 einmal aufgetreten ist gelöst wurde. Tritt derselbe Merge-Konflikt
 erneut auf, kann Git den Konflikt automatisch lösen.*
 
-» Wirklich, das funktioniert? Klingt ein wenig wie Magie.
+[Karl]» Wirklich, das funktioniert? Klingt ein wenig wie Magie.
 
 [Lars]» *Naja, das Wort hierfür ist* **ReReRe** *und steht für*
 **Reuse-Recorded-Resolutions**\ *. Das Feature ist wirklich sehr gut,
@@ -5517,7 +5513,7 @@ git config rerere.enabled true
 
 git config rerere.autoupdate true
 
-» Das ist alles?
+[Karl]» Das ist alles?
 
 [Lars]» *Das ist alles. Mit der Konfiguration* **rerere.enabled** *aktivierst
 du generell den* **ReReRe-Cache**\ *. Mit* **rerere.autoupdate** *sorgst
@@ -5526,7 +5522,7 @@ Merge-Konflikt automatisch dem Index hinzufügt, quasi ein automatisches*
 **git add**\ *. Du sparst dir jedesmal ein* **git add**\ *. Und jetzt
 arbeiten wir ganz normal weiter, als wäre nichts gewesen.*
 
-» Ok, wir mergen als die Features auf den **qa**-Branch.
+[Karl]» Ok, wir mergen als die Features auf den **qa**-Branch.
 
 git merge fb-4711
 
@@ -5552,7 +5548,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 
 1. ReReRe speichert den Merge Konflikt
 
-» Ok, wie erwartet haben wir einen Merge-Konflikt. Soll ich den
+[Karl]» Ok, wie erwartet haben wir einen Merge-Konflikt. Soll ich den
 auflösen?
 
 [Lars]» *Ja, sofort. Schau dir aber bitte vorher nochmal genau die Ausgabe an.
@@ -5740,7 +5736,7 @@ modified: feature.txt
 [Lars]» *Karl, wir haben die gleiche Version wie zuvor, nur dass das*
 **Feature-4911** *nie zurückgeführt wurde. Soweit verstanden?*
 
-» Ja das Prinzip habe ich verstanden. Ist denn dieser **ReReRe-Cache**
+[Karl]» Ja das Prinzip habe ich verstanden. Ist denn dieser **ReReRe-Cache**
 im ganzen Team verfügbar?
 
 Shared ReReRe-Cache
@@ -5750,7 +5746,7 @@ Shared ReReRe-Cache
 Merge-Hilfe gedacht. Git bietet von Haus aus keine Möglichkeit, den*
 **ReReRe-Cache** *zu teilen.*
 
-» Ist das nicht problematisch? Was ist, wenn ich die Lösung für alle
+[Karl]» Ist das nicht problematisch? Was ist, wenn ich die Lösung für alle
 Merge-Konflikte bei mir lokale am Rechner habe und in Urlaub fahre? Was
 ist, wenn beispielsweise Felix den **qa-Branch** neu erzeugen möchte?
 Muss er dann die ganzen bereits gelösten Merge-Konflikte erneut lösen?
@@ -5760,7 +5756,7 @@ Muss er dann die ganzen bereits gelösten Merge-Konflikte erneut lösen?
 perfekt. Er arbeitet mit einem Hook und funktioniert bisher nur auf der
 Konsole richtig gut. Ich habe kürzlich ein wenig damit experimentiert.*
 
-» Über Hooks haben wir uns ja bereits unterhalten. Wie genau arbeitest
+[Karl]» Über Hooks haben wir uns ja bereits unterhalten. Wie genau arbeitest
 du funktioniert das Sharing des Caches?
 
 [Lars]» *Eigentlich ist die Idee ganz einfach. Ich würde den* **ReReRe-Cache**
@@ -5782,7 +5778,7 @@ Initialized empty Git repository
 **rr-cache** *machen wir einfach zu einem “lokalen” Repository im
 Repository.*
 
-» Bitte? Ein Repository im Repository?
+[Karl]» Bitte? Ein Repository im Repository?
 
 [Lars]» *Denk daran, ein Git-Repository ist prinzipiell nichts anderes als
 eine vorgegebene Verzeichnisstruktur und einige Shell-Skripte. Es
@@ -5850,7 +5846,7 @@ und teilen die Inhalte so. Ein Entwickler kann sich alle
 Merge-Konflikt-Lösungen dann über ein einfaches* **git pull
 origin/master** *holen.*
 
-» Genial. Aber jeder Entwickler muss sich selbst darum kümmern, dass die
+[Karl]» Genial. Aber jeder Entwickler muss sich selbst darum kümmern, dass die
 neuen Inhalte *committed* und *gepusht* werden? Was ist, wenn ich zum
 Beispiel einen Merge-Konflikt lokal löse, aber vergesse die Lösung
 einzuchecken und zu pushen?
@@ -5958,7 +5954,7 @@ wenn lokal ein neuer Merge-Konflikt gelöst wird landen die* **Pre-**
 *und* **Post-Images** *im* **rr-cache** *Verzeichnis und wir teilen
 diese neuen Inhalte mit allen Teammitgliedern.*
 
-» Es ist tatsächlich einfach! Ich hätte gar nicht daran gedacht, dass es
+[Karl]» Es ist tatsächlich einfach! Ich hätte gar nicht daran gedacht, dass es
 so einfach sein kann. Hast du das bereits ausprobiert?
 
 [Lars]» *Naja, wir arbeiten derzeit noch nicht mit* **BPF**\ *. Aber ich sehe
@@ -5976,7 +5972,7 @@ Update im anderen Repository und erzeugen den* **qa-Branch** *erneut,
 wobei wir wieder ein Feature entfernen. Eigentlich sollte das
 funktionieren, ohne dass ein Merge-Konflikt gelöst werden muss.*
 
-» Ich bin gespannt, ob das tatsächlich so funktioniert.
+[Karl]» Ich bin gespannt, ob das tatsächlich so funktioniert.
 
 #Im Repository 1
 
@@ -6155,7 +6151,7 @@ To ../../../rerere-cache/
 
 3. PostImage
 
-» Soweit so gut. Was jetzt, Lars? Spielen wir das gleiche Szenario
+[Karl]» Soweit so gut. Was jetzt, Lars? Spielen wir das gleiche Szenario
 nochmal im zweiten Repository durch und tun so, als würde einfach ein
 zweiter Entwickler den **qa-Branch** einige Tage später erneut erzeugen?
 
@@ -6236,7 +6232,7 @@ Automatic merge failed; fix conflicts and then commit the result.
 3. Der Merge-Konflikt wurde automatisch gelöst und der ReReRe-Cache
        geteilt.
 
-» Sehr schön, Lars. Siehst du, es hat funktioniert! Der Merge-Konflikt
+[Karl]» Sehr schön, Lars. Siehst du, es hat funktioniert! Der Merge-Konflikt
 wurde auch im zweiten Repository automatisch gelöst!
 
 Die Reihenfolge
@@ -6302,20 +6298,20 @@ den Konflikt 4711/4811. Stell dir jetzt vor, wir entfernen das Feature
 Konstellation 5011/4811 für die bisher keine Lösung im* **ReReRe-Cache**
 *hinterlegt ist.*
 
-[Lars]» *Das ist doch total kompliziert, kann das in der Praxis überhaupt
-funktionieren?*
+[Karl]» Das ist doch total kompliziert, kann das in der Praxis überhaupt
+funktionieren?
 
-» Das ist der schwierige Teil. In der Praxis muss sichergestellt werden,
+[Lars]» *Das ist der schwierige Teil. In der Praxis muss sichergestellt werden,
 dass die Branches möglichst immer in der gleichen Reihenfolge gemerged
 werden. Das ganze Modell macht nur unter der Annahme Sinn, dass Features
 nur selten entfernt werden. Es kann also durchaus passieren, dass
 plötzlich beim Erzeugen des **qa-Branches** Merge-Konflikte auftreten,
-das sollte allerdings nicht allzu oft vorkommen.
+das sollte allerdings nicht allzu oft vorkommen.*
 
 BPF Use Cases
 ^^^^^^^^^^^^^^^^^^^^
 
-» Ok, technisch ist mir jetzt schon klar, wofür wir BPF verwenden
+[Karl]» Ok, technisch ist mir jetzt schon klar, wofür wir BPF verwenden
 können. Was aber wäre ein mögliches Szenario in der Praxis?
 
 [Lars]» *Da fallen mir einige ein. Du weißt ja zum Beispiel, dass wir hier mit
