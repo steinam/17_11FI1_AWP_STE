@@ -2,6 +2,10 @@
 
     <style> .red {color:red} </style>
 
+raw::html 
+
+  <div class="clearer"></div>
+
 Vorwort
 -------
 
@@ -519,10 +523,9 @@ Karl kann sich auch den Vergleich mit dem Remote-Tracking-Branch explizit anzeig
 Der typische Entwickler-Flow sieht also folgendermaßen aus.
 
 |image3|
+  :align: left
 
-| Diesen Flow durchläuft jeder Entwickler im Team jeden Tag dutzende Male.
-| Je länger ein Entwickler mit Git arbeitet, desto kleiner und feingranularer werden üblicherweise   
-  die Commits im Repository.
+Diesen Flow durchläuft jeder Entwickler im Team jeden Tag dutzende Male. Je länger ein Entwickler mit Git arbeitet, desto kleiner und feingranularer werden üblicherweise die Commits im Repository.
 
 .. admonition:: **Übung**
 
@@ -571,7 +574,10 @@ speziell in das /objects-Verzeichis.*
 | *Wenn Du in dein objects-Verzeichnis schaust solltest Du etwas in der
   Art sehen.*
 
-|image4|
+.. image:: media/image5.png
+   :width: 3.92708in
+   :height: 2.86458in
+   :align: left
 
 » [Karl] Wow, das sieht aber kompliziert aus.
 
@@ -872,7 +878,8 @@ Wie hat sich das .git/refs/heads-Verzeichnis verändert?
   ls .git/refs/heads/
   feature-4711
   master
-  #Da wir den Branch vom master branch gezogen haben stehen sowohl master als auch feature-4711 aktuell auf dem gleichen Commit.
+  # Da wir den Branch vom master branch gezogen haben stehen sowohl master 
+  # als auch feature-4711 aktuell auf dem gleichen Commit.
   cat .git/refs/heads/master
   ad261f23894095de696ffd43a0d01af1e7249a02
 
@@ -1209,10 +1216,16 @@ Beispiel mit folgendem Kommando.*
   
 [Lars] » *Ein Merge-Commit entsteht immer dann, wenn wir zwei oder mehr Branches zusammenführen und kein sogenannter Fast-Forward-Merge möglich ist.*
 
+.. image:: media/image7.png
+  :align: left
+  :width: 2.39583in
+  :height: 3.64583in
+
 [Karl] » Was bitte ist ein Fast-Forward-Merge?
 
 [Lars] » *Ein Fast-Forward-Merge, beispielsweise vom Feature-Branch auf den master, ist dann möglich, wenn auf dem master nichts passiert ist seit wir den Branch gezogen haben. Der komplette master-Branch ist also bereits in unserem Feature-Branch enthalten. In diesem Fall ändert Git
 beim Merge auf den master einfach den Inhalt der Datei* **master** *in* **/refs/heads** *auf den Hash-Wert des obersten Commits unseres Feature-Branches. Es kann kein Konflikt auftreten und es muss auch kein* **Merge-Commit** *erzeugt werden. Damit ist der Merge bereits abgeschlossen und der Branch vollständig zurückgeführt. Das ist der einfachste Fall eines Merges.*
+
 
 
 [Karl]» Hm, Lars, ich bin mir nicht sicher, ob ich das richtig verstehe.
@@ -1221,13 +1234,23 @@ Können wir das kurz am Whiteboard durchsprechen?
 [Lars] » *Gute Idee, wir verwenden das sowieso viel zu selten.*
 [Lars] *Also pass auf. Nehmen wir einfach mal an, wir hätten den Merge noch nicht gemacht. Das sah ja ungefähr so aus, richtig?*
 
-|image6|
+
+
+.. |image6|
 
 [Lars] » *Jetzt nehmen wir weiterhin an, wir hätten keinen Commit auf dem master gemacht und hätten folglich auch keinen Merge-Konflikt beim Merge gehabt.*
 
+
+.. image:: media/image8.png
+  :align: left
+  :width: 2.39583in
+  :height: 3.64583in
+
 [Lars] *Alles was Git jetzt machen muss ist den Branch-Zeiger auf den neuesten Commit in meinem Branch zu setzen. Damit sind alle Commits aus dem Branch auch auf dem master verfügbar.*
 
-|image7|
+|clearer|
+
+.. |image7|
 
 Rebase
 ^^^^^^
@@ -3671,87 +3694,73 @@ initialisieren führst du auf der Konsole einfach folgendes aus.*
 [Lars]» *Ganz einfach, gehen wir davon aus, du möchtest ein neues Feature
 entwickeln.*
 
-git flow feature start 4711 <b>(1)</b>
+.. code-block:: bash
 
-Switched to a new branch 'fb-4711'
-
-Summary of actions:
-
-- A new branch 'fb-4711' was created, based on 'next'
-
-- You are now on branch 'fb-4711'
-
-Now, start committing on your feature. When done, use:
-
-git flow feature finish 4711
+  git flow feature start 4711 <b>(1)</b>
+  Switched to a new branch 'fb-4711'
+  Summary of actions:
+  
+  - A new branch 'fb-4711' was created, based on 'next'
+  - You are now on branch 'fb-4711'
+  
+  Now, start committing on your feature. When done, use:
+  
+  git flow feature finish 4711
 
 [Karl]» Das ist wirklich praktisch! Sehe ich das richtig, dass Git-Flow gerade
 automatisch den Feature-Branch für mein Feature erzeugt hat?
 
 [Lars]» *Genau, so ist es. Schau dir doch mal die Liste an Branches an.*
 
-git branch
+.. code-block:: bash
 
-\* fb-4711
-
-master
-
-release
+  git branch
+  * fb-4711
+  master
+  release
 
 [Lars]» *Git-Flow hat den Branch erzeugt und direkt ausgecheckt. Du kannst also direkt anfangen zu arbeiten.*
 [Lars]*Am besten, du machst einen Commit und wir simulieren, dass wir damit das Feature abgeschlossen haben.*
 
-echo "working with git flow is so easy" >> feature.txt
+.. code-block:: bash
 
-git add feature.txt
-
-git commit -m "4711 - finished"
-
-[fb-4711 18cf53e] 4711 - finished
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 feature.txt
+  echo "working with git flow is so easy" >> feature.txt
+  git add feature.txt
+  git commit -m "4711 - finished"
+  [fb-4711 18cf53e] 4711 - finished
+  1 file changed, 1 insertion(+)
+  create mode 100644 feature.txt
 
 [Lars]» *Wunderbar, damit haben wir das Feature abgeschlossen. Was wäre jetzt
 der nächste Schritt, erinnerst du dich noch?*
 
-Übung
+.. admonition:: Übung
 
-Erinnern Sie sich noch an die einzelnen Schritte im Workflow?
+  Erinnern Sie sich noch an die einzelnen Schritte im Workflow?
+  
+  Was muss passieren, nachdem ein Feature abgeschlossen ist?
 
-Was muss passieren, nachdem ein Feature abgeschlossen ist?
-
-Zeichnen Sie ein Diagram!
+  Zeichnen Sie ein Diagram!
 
 [Karl]» Natürlich erinnere ich mich, wir führen den Feature-Branch zurück. Ich
 schätze, auch dafür gibt es ein passendes Kommando?
 
 [Lars]» *Genau. Es ist ganz einfach.*
 
-git flow feature finish 4711
+.. code-block:: bash
 
-Switched to branch 'master'
-
-Updating acafbbc..61c0b63
-
-Fast-forward
-
-feature.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 feature.txt
-
-Deleted branch fb-4711 (was 61c0b63).
-
-Summary of actions:
-
-- The feature branch 'fb-4711' was merged into 'master'
-
-- Feature branch 'fb-4711' has been removed
-
-- You are now on branch 'master'
+  git flow feature finish 4711
+  Switched to branch 'master'
+  Updating acafbbc..61c0b63
+  Fast-forward
+  feature.txt \| 1 +
+  1 file changed, 1 insertion(+)
+  create mode 100644 feature.txt
+  Deleted branch fb-4711 (was 61c0b63).
+  Summary of actions:
+  - The feature branch 'fb-4711' was merged into 'master'
+  - Feature branch 'fb-4711' has been removed
+  - You are now on branch 'master'
 
 [Karl]» Ok, ich glaube ich verstehe. Wir schliessen das Feature ab, d.h.
 Git-Flow wechselt auf den **master**, unseren aktuellen
@@ -3759,57 +3768,43 @@ Entwicklungs-Branch. Git-Flow macht automatisch einen Merge des Features
 und entfernt anschließend den Feature-Branch. Der Branch wird nach der
 Rückführung nicht mehr gebraucht.
 
-git branch
+.. code-block:: bash
 
-\* master
+  git branch
+  * master
+  release
+  #log
+  git log
+  Commit: 61c0b63830ddefaee7cdf7c7c224b7ba171f69da
+  Author: dilgerm <martin@effectivetrainings.de>
+  Date: (5 minutes ago) 2014-02-13 18:11:50 +0100 
+  Subject: 4711 - finished
+  Commit: acafbbce40cdc602b74879135a1ac8e8e239532c
+  Author: dilgerm <martin@effectivetrainings.de>
+  Date: (10 minutes ago) 2014-02-13 18:05:54 +0100
+  Subject: Initial commit
 
-release
-
-#log
-
-git log
-
-Commit: 61c0b63830ddefaee7cdf7c7c224b7ba171f69da
-
-Author: dilgerm <martin@effectivetrainings.de>
-
-Date: (5 minutes ago) 2014-02-13 18:11:50 +0100
-
-Subject: 4711 - finished
-
-Commit: acafbbce40cdc602b74879135a1ac8e8e239532c
-
-Author: dilgerm <martin@effectivetrainings.de>
-
-Date: (10 minutes ago) 2014-02-13 18:05:54 +0100
-
-Subject: Initial commit
 
 [Lars]» *Versuchen wir das Ganze nochmal?*
 
-Übung
+.. admonition:: Übung
 
-Implementieren Sie ein zweiten Feature 4911.
+  Implementieren Sie ein zweiten Feature 4911.
+  
+  Schliessen Sie das Feature mit Hilfe von Git-Flow ab.
 
-Schliessen Sie das Feature mit Hilfe von Git-Flow ab.
+  .. code-block:: bash
 
-git flow feature start 4911
+    git flow feature start 4911
+    echo "feature-4911 - finished" >> 4911.txt
+    git add 4911.txt
+    git commit -m "4911 - finished"
+    [fb-4911 fd75f84] 4911 - finished
+    1 file changed, 1 insertion(+)
+    create mode 100644 4911.txt
+    #Feature abschliessen
+    git flow feature finish 4911
 
-echo "feature-4911 - finished" >> 4911.txt
-
-git add 4911.txt
-
-git commit -m "4911 - finished"
-
-[fb-4911 fd75f84] 4911 - finished
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 4911.txt
-
-#Feature abschliessen
-
-git flow feature finish 4911
 
 [Karl]» Wir haben schon viel über **Rebase** und **Merge** gesprochen. Was
 macht Git-Flow?
@@ -3825,13 +3820,13 @@ einfach ein **Rebase** gegen den **master** machen müssen?
 
 [Lars]» *Ja genau.* Bereiten wir ein Release vor?*
 
-Übung
+.. admonition:: Übung
 
-Kennen Sie noch die Schritte um ein Release vorzubereiten?
+  Kennen Sie noch die Schritte um ein Release vorzubereiten?
+  
+  Was ist zu tun?
 
-Was ist zu tun?
-
-Zeichnen Sie ein Diagramm!
+  Zeichnen Sie ein Diagramm!
 
 [Karl]» Ich versuche das mal zusammenzufassen. Um jetzt ein Release
 vorzubereiten würden wir einen Release-Branch vom **master** ziehen. Ab
@@ -3845,25 +3840,19 @@ wie mache ich das jetzt mit **Git-Flow**?
 [Lars]» *Am besten du findest es selbst heraus. Schau dir am besten mal die
 Hilfe von Git-Flow an.*
 
-git flow
+.. code-block:: bash
 
-usage: git flow <subcommand>
+  git flow
+  usage: git flow <subcommand>
+  Available subcommands are:
+  init Initialize a new git repo with support for the branching model.
+  feature Manage your feature branches.
+  release Manage your release branches.
+  hotfix Manage your hotfix branches.
+  support Manage your support branches.
+  version Shows version information.
 
-Available subcommands are:
-
-init Initialize a new git repo with support for the branching model.
-
-feature Manage your feature branches.
-
-release Manage your release branches.
-
-hotfix Manage your hotfix branches.
-
-support Manage your support branches.
-
-version Shows version information.
-
-Try 'git flow <subcommand> help' for details.
+  Try 'git flow <subcommand> help' for details.
 
 [Karl]» Ok, ich vergesse immer, die Hilfe zu verwenden. Git-Flow bietet also
 separate Kommandos für die einzelnen Branch-Typen?
@@ -3871,53 +3860,43 @@ separate Kommandos für die einzelnen Branch-Typen?
 [Lars]» Ja genau, jetzt interessieren wir uns hauptsächlich für **Releases**.
 Am besten du lässt dir die Hilfe für Releases anzeigen.
 
-git flow release
+.. code-block:: bash
 
-No release branches exist.
+  git flow release
+  No release branches exist.
+  You can start a new release branch:
+  git flow release start <name> [<base>]
 
-You can start a new release branch:
+.. admonition:: Übung
 
-git flow release start <name> [<base>]
-
-Übung
-
-Können Sie mit den Informationen, die Sie jetzt haben ein Release
-vorbereiten?
+  Können Sie mit den Informationen, die Sie jetzt haben ein Release vorbereiten?
 
 [Karl]» Ich denke, das schaffe ich. Wie nennen wir das Release?
 
 [Lars]» *Das wird eine 1.0!*
 
-git flow release start 1.0
+.. code-block:: bash
 
-Switched to a new branch 'release-1.0'
-
-Summary of actions:
-
-- A new branch 'release-1.0' was created, based on 'master'
-
-- You are now on branch 'release-1.0'
-
-Follow-up actions:
-
-- Bump the version number now!
-
-- Start committing last-minute fixes in preparing your release
-
-- When done, run:
-
-git flow release finish '1.0'
+  git flow release start 1.0
+  Switched to a new branch 'release-1.0'  
+  Summary of actions:
+  - A new branch 'release-1.0' was created, based on 'master'
+  - You are now on branch 'release-1.0'
+  Follow-up actions:
+  - Bump the version number now!
+  - Start committing last-minute fixes in preparing your release
+  - When done, run:
+  git flow release finish '1.0'
 
 [Karl]» Ok, das habe ich erwartet. Git-Flow hat einen neuen Branch erzeugt,
 den wir für die Release-Stabilisierung verwenden können.
 
-git branch
+.. code-block:: bash
 
-master
-
-release
-
-\* release-1.0
+  git branch
+  master
+  release
+  * release-1.0
 
 [Karl]» Wie geht es jetzt weiter?
 
@@ -3926,77 +3905,50 @@ Release dann fertig, oder?*
 
 [Karl]» Ich versuche das.
 
-git makeCommits 4
+.. code-block:: bash
 
-[release-1.0 13bdbd1] committing file 1
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 file1.txt
-
-[release-1.0 683cc21] committing file 2
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 file2.txt
-
-[release-1.0 5461a94] committing file 3
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 file3.txt
-
-[release-1.0 e30ac56] committing file 4
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 file4.txt
-
-#log
-
-git log --oneline
-
-e30ac56 committing file 4
-
-5461a94 committing file 3
-
-683cc21 committing file 2
-
-13bdbd1 committing file 1
-
-fd75f84 4911 - finished
-
-61c0b63 4711 - finished
-
-acafbbc Initial commit
+  git makeCommits 4
+  [release-1.0 13bdbd1] committing file 1
+  1 file changed, 1 insertion(+)
+  create mode 100644 file1.txt
+  [release-1.0 683cc21] committing file 2
+  1 file changed, 1 insertion(+)
+  create mode 100644 file2.txt
+  [release-1.0 5461a94] committing file 3
+  1 file changed, 1 insertion(+)
+  create mode 100644 file3.txt
+  [release-1.0 e30ac56] committing file 4
+  1 file changed, 1 insertion(+)
+  create mode 100644 file4.txt
+  #log
+  git log --oneline
+  e30ac56 committing file 4
+  5461a94 committing file 3
+  683cc21 committing file 2
+  13bdbd1 committing file 1
+  fd75f84 4911 - finished
+  61c0b63 4711 - finished
+  acafbbc Initial commit
 
 [Karl]» Ok, und jetzt machen wir das Release fertig.
 
-git flow release finish 1.0
+.. code-block:: bash
 
-#wechsel auf release branch
+  git flow release finish 1.0
+  #wechsel auf release branch
+  Switched to branch 'release'
+  Merge made by the 'recursive' strategy.
+  [...] 
+  Switched to branch 'master'
+  Merge made by the 'recursive' strategy.
+  [...]
+  #Tag release, Message eingeben
 
-Switched to branch 'release'
+[Karl]» Ok, jetzt ist aber einiges passiert. Ich versuche das nochmal zusammenzufassen.
 
-Merge made by the 'recursive' strategy.
+.. ad,onition:: Übung
 
-[...]
-
-Switched to branch 'master'
-
-Merge made by the 'recursive' strategy.
-
-[...]
-
-#Tag release, Message eingeben
-
-[Karl]» Ok, jetzt ist aber einiges passiert. Ich versuche das nochmal
-zusammenzufassen.
-
-Übung
-
-Können Sie anhand des obigen Listings erklären, was passiert ist und
-warum?
+Können Sie anhand des obigen Listings erklären, was passiert ist und warum?
 
 [Karl]» Wir sind auf dem **Release-Stabilisierungs-Branch** und weisen
   Git-Flow an, das Release fertig zu machen. Zuerst wechselt Git-Flow
@@ -4004,8 +3956,7 @@ warum?
   hierher. Damit bringen wir quasi einen neuen Stand auf den bereits
   bestehenden **Release**-Branch. Der **Release**-Branch ist nicht für
   Stabilisierung gedacht, sondern hier ist der echte Release-Stand für
-  unsere Kunden.
-| Anschließend setzt Git-Flow einen Tag auf dem Release-Branch, richtig?
+  unsere Kunden. Anschließend setzt Git-Flow einen Tag auf dem Release-Branch, richtig?
 
 |image32|
 
@@ -4023,17 +3974,15 @@ anschließend nicht mehr und er wird von Git-Flow gelöscht.
 [Lars] » *Perfekt Karl, genauso funktioniert ein Release mit Git-Flow.  Einfach oder?*
 [Lars] *Du siehst übrigens auch an der Ausgabe in der Konsole, was Git-Flow jeweils gemacht hat.*
 
-Summary of actions:
+.. code-block:: bash
 
-- Latest objects have been fetched from 'origin'
+  Summary of actions:
 
-- Release branch has been merged into 'release'
-
-- The release was tagged '1.0'
-
-- Release branch has been back-merged into 'master'
-
-- Release branch 'release-1.0' has been deleted
+  - Latest objects have been fetched from 'origin'
+  - Release branch has been merged into 'release'
+  - The release was tagged '1.0'
+  - Release branch has been back-merged into 'master'
+  - Release branch 'release-1.0' has been deleted
 
 [Karl]» Ok, sind wir damit dann fertig?
 
@@ -4045,115 +3994,94 @@ Summary of actions:
 
 [Lars]» *Na das ist doch zumindest ein Anfang.*
 
-git flow
+.. code-block:: bash
 
-usage: git flow <subcommand>
-
-Available subcommands are:
-
-init Initialize a new git repo with support for the branching model.
-
-feature Manage your feature branches.
-
-release Manage your release branches.
-
-hotfix Manage your hotfix branches.
-
-support Manage your support branches.
-
-version Shows version information.
-
-Try 'git flow <subcommand> help' for details.
+  git flow
+  usage: git flow <subcommand>
+  Available subcommands are:
+  init Initialize a new git repo with support for the branching model.
+  feature Manage your feature branches.
+  release Manage your release branches.
+  hotfix Manage your hotfix branches.
+  support Manage your support branches.
+  version Shows version information.
+  
+  Try 'git flow <subcommand> help' for details.
 
 [Karl]» Da der Bug kritisch zu sein schein würde ich auf das *Hotfix*-Kommando
 tippen, richtig?
 
 [Lars]» *Exakt, Fehler in Produktion werden immer als Hotfixes behandelt.*
 
-git flow hotfix
+.. code-block:: bash
 
-No hotfix branches exist.
-
-You can start a new hotfix branch:
-
-git flow hotfix start <version> [<base>]
+  git flow hotfix
+  No hotfix branches exist.
+  You can start a new hotfix branch:
+  git flow hotfix start <version> [<base>]
 
 [Karl]» Habt ihr eine Versionierungstrategie für Hotfix-Branches?
 
 [Lars]» *Hotfixes verhalten sich genauso wie Features. Die Version ist immer
 die Tasknummer aus der QA-Abteilung.*
 
-git flow hotfix start 5011
+.. code-block:: bash
 
-Switched to a new branch 'hotfix-5011'
+  git flow hotfix start 5011
+  Switched to a new branch 'hotfix-5011'
 
-Summary of actions:
-
-- A new branch 'hotfix-5011' was created, based on 'release'
-
-- You are now on branch 'hotfix-5011'
-
-Follow-up actions:
-
-- Bump the version number now!
-
-- Start committing your hot fixes
-
-- When done, run:
-
-git flow hotfix finish '5011'
+  Summary of actions:
+  - A new branch 'hotfix-5011' was created, based on 'release'
+  - You are now on branch 'hotfix-5011'
+  Follow-up actions:
+  - Bump the version number now!
+  - Start committing your hot fixes
+  - When done, run:
+  git flow hotfix finish '5011'
 
 [Lars]» *Karl, das ist extrem wichtig, versteht du was Git-Flow hier macht?*
 
-Übung
+.. admonition:: Übung
 
-| Lars hat recht. Es ist sehr wichtig zu verstehen wie **Hotfixes**
-  behandelt werden.
-| Können Sie erklären, was jetzt passiert ist?
+  Lars hat recht. Es ist sehr wichtig zu verstehen wie **Hotfixes** behandelt werden.
+  Können Sie erklären, was jetzt passiert ist?
 
 [Karl]» Ich versuche es mal zu erklären. Git-Flow erstellt einen neuen Branch
 vom **release**-Branch weg, denn der Bug ist in Produktion aufgetreten.
 
-git branch
+.. code-block:: bash
 
-\* hotfix-5011
+  git branch
+  * hotfix-5011
 
-master
-
-release
+  master
+  release
 
 [Karl]» Auf diesem Hotfix-Branch lösen wir das Problem.
 
-echo "hotfix" >> hotfix.txt
+.. code-block:: bash
 
-git add hotfix.txt
-
-git commit -m "5011 - Hotfix"
-
-[hotfix-5011 9a1f5f0] 5011 - Hotfix
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 hotfix.txt
+  echo "hotfix" >> hotfix.txt
+  git add hotfix.txt
+  git commit -m "5011 - Hotfix"
+  [hotfix-5011 9a1f5f0] 5011 - Hotfix
+  1 file changed, 1 insertion(+)
+  create mode 100644 hotfix.txt
 
 [Lars]» *Sehr gut, ich würde sagen, das Problem ist behoben und wir versuchen
 schnellstmöglich, den Fix in Produktion zu bringen.*
 
-git flow hotfix finish 5011
+.. code-block:: bash
 
-[...]
+  git flow hotfix finish 5011
+  [...]
+  Summary of actions:
 
-Summary of actions:
-
-- Latest objects have been fetched from 'origin'
-
-- Hotfix branch has been merged into 'release'
-
-- The hotfix was tagged '5011'
-
-- Hotfix branch has been back-merged into 'master'
-
-- Hotfix branch 'hotfix-5011' has been deleted
+  - Latest objects have been fetched from 'origin'
+  - Hotfix branch has been merged into 'release'
+  - The hotfix was tagged '5011'
+  - Hotfix branch has been back-merged into 'master'
+  - Hotfix branch 'hotfix-5011' has been deleted
 
 [Karl]» Git-Flow verhält sich hier ähnlich wie der Beendigung des
 Release-Stabilisierungs-Branches. Der Hotfix-Branch wird zunächst in den
@@ -4163,11 +4091,11 @@ Letzt wird der Stand wieder zurück in den **master** gemerged, damit
 auch die Entwickler etwas davon haben. Alles vollautomatisch, ich bin
 wirklich begeistert. Der Hotfix-Branch wird automatisch gelöscht.
 
-git branch
+.. code-block:: bash
 
-\* master
-
-release
+  git branch
+  * master
+  release
 
 [Karl]» Lars, kannst du mir erklären, wie genau sich das mit
 **Support**-Branches verhält, was genau ist das?
@@ -4187,17 +4115,15 @@ möchten wir diese trotzdem auch für alte Versionen fixen können. Einen*
   Unterstützung in Git-Flow ist hier, naja, rudimentär.*
 | *Aber du kannst dir gerne mal die Hilfe dazu anschauen.*
 
-git flow support
+.. code-block:: bash
 
-note: The support subcommand is still very EXPERIMENTAL!
+  git flow support
+  note: The support subcommand is still very EXPERIMENTAL!  
+  note: DO NOT use it in a production situation.
+  No support branches exist.
 
-note: DO NOT use it in a production situation.
-
-No support branches exist.
-
-You can start a new support branch:
-
-git flow support start <name> <base>
+  You can start a new support branch:
+  git flow support start <name> <base>
 
 [Karl]» Kann ich das einfach mal schnell ausprobieren?
 
@@ -4208,19 +4134,15 @@ möchtest.*
 
 [Karl]» Ok, wenn ich dich richtig verstehe müsste der Befehl folgender sein.
 
-git flow support start 1.0 1.0
+.. code-block:: bash
 
-note: The support subcommand is still very EXPERIMENTAL!
-
-note: DO NOT use it in a production situation.
-
-Switched to a new branch 'support-1.0'
-
-Summary of actions:
-
-- A new branch 'support-1.0' was created, based on '1.0'
-
-- You are now on branch 'support-1.0'
+  git flow support start 1.0 1.0
+  note: The support subcommand is still very EXPERIMENTAL!
+  note: DO NOT use it in a production situation.
+  Switched to a new branch 'support-1.0'
+  Summary of actions:
+  - A new branch 'support-1.0' was created, based on '1.0'
+  - You are now on branch 'support-1.0'
 
 [Karl]» Sehr schön, genau wie ich vermutet habe. Git-Flow checkt nicht einen
 bestimmten Branch aus, sondern den **Tag** den ich als **Basis**
@@ -4326,43 +4248,31 @@ enthalten überhaupt keine Magie und sind sehr, sehr einfach. Man kann
 die Migration auch problemlos ohne
 diese Skripte machen.*
 
-Übung
+.. admonition:: Übung
 
 Klonen Sie sich das Repository unter
 `*https://github.com/dilgerma/git-migrations* <https://github.com/dilgerma/git-migrations>`__
 
-git clone https://github.com/dilgerma/git-migrations
+.. code-block:: bash
 
-Cloning into 'git-migrations'...
+  git clone https://github.com/dilgerma/git-migrations
+  Cloning into 'git-migrations'...
+  remote: Counting objects: 7, done.
+  remote: Compressing objects: 100% (6/6), done.
+  remote: Total 7 (delta 0), reused 7 (delta 0)
+  Unpacking objects: 100% (7/7), done.
+  Checking connectivity... done.
+  #
+  svn-user-map.sh <b>(1)</b>
+  show-svn-revisions.sh <b>(2)</b>
+  svn-clone-repository.sh <b>(3)</b>
+  apply-svn-ignore.sh <b>(4)</b>
 
-remote: Counting objects: 7, done.
-
-remote: Compressing objects: 100% (6/6), done.
-
-remote: Total 7 (delta 0), reused 7 (delta 0)
-
-Unpacking objects: 100% (7/7), done.
-
-Checking connectivity... done.
-
-#
-
-svn-user-map.sh <b>(1)</b>
-
-show-svn-revisions.sh <b>(2)</b>
-
-svn-clone-repository.sh <b>(3)</b>
-
-apply-svn-ignore.sh <b>(4)</b>
-
-1. Skript zum Erstellen des User-Mappings von Subversion hin zu Git
-
-2. Zeigt die letzten **n** – Revisions aus dem Subversion-Repository.
-
-3. Klont das Subversion-Repository und überführt es in ein äquivalentes
-       Git-Repository.
-
-4. Überführt die svn-ignores in eine äquivalente .gitignore-Datei
+  1. Skript zum Erstellen des User-Mappings von Subversion hin zu Git
+  2. Zeigt die letzten **n** – Revisions aus dem Subversion-Repository.
+  3. Klont das Subversion-Repository und überführt es in ein äquivalentes
+       Git-Repository.  
+  4. Überführt die svn-ignores in eine äquivalente .gitignore-Datei
 
 [Karl]» Lars, das verstehe ich nicht, wieso brauchen wir ein Mapping der User
 von Subversion hin zu Git?
@@ -4370,11 +4280,9 @@ von Subversion hin zu Git?
 [Lars]» *Gute Frage, Karl. Die Lösung kennst du aber eigentlich bereits,
 überleg nochmal genau.*
 
-Übung
+.. admonition:: Übung
 
-Es gibt einen fundamentalen Unterschied zwischen dem UserManagement in
-Subversion und Git. Kennen Sie ihn und können ihn in wenigen Sätzen
-erklären?
+  Es gibt einen fundamentalen Unterschied zwischen dem UserManagement in Subversion und Git. Kennen Sie ihn und können ihn in wenigen Sätzen erklären?
 
 [Karl]» Ich bin mir nicht ganz sicher. Wenn ich mich an meine letzten
   Projekte erinnere, dann sieht man in Subversion eigentlich immer nur
@@ -4387,7 +4295,7 @@ betrachten uns einmal die originalen Sourcen im Subversion-Repository.
 Ich hoffe, ich habe noch irgendwo
 meinen mittlerweile angestaubten Subversion-Client installiert.*
 
-Übung
+.. admonition:: Übung
 
 Auch wenn es weh tut, installieren Sie sich einen *aktuellen*
 (**hüstel**) Subversion-Client auf Ihrem Rechner.
@@ -4395,43 +4303,27 @@ Auch wenn es weh tut, installieren Sie sich einen *aktuellen*
 [Lars]» *Wir checken uns zunächst das Subversion-Repository aus, um schnell zu
 prüfen, was überhaupt zu migrieren ist.*
 
-svn checkout https://git-subversion-migration.googlecode.com/svn/
+.. code-block:: bash
 
-A svn/wiki
-
-A svn/trunk
-
-[...]
-
-A svn/branches
-
-A svn/branches/feature-1
-
-A svn/branches/feature-1/branch-file.txt
-
-A svn/branches/feature-1/another-test-file.txt
-
-A svn/branches/feature-1/test-file.txt
-
-A svn/branches/another-branch
-
-A svn/branches/another-branch/another-test-file.txt
-
-A svn/branches/another-branch/test-file.txt
-
-A svn/branches/another-branch/another-file-on-another-branch.txt
-
-A svn/tags
-
-A svn/tags/release-v1
-
-A svn/tags/release-v1/another-test-file.txt
-
-A svn/tags/release-v1/release-1.0.txt
-
-A svn/tags/release-v1/test-file.txt
-
-[...]
+  svn checkout https://git-subversion-migration.googlecode.com/svn/
+  A svn/wiki
+  A svn/trunk
+  [...]
+  A svn/branches
+  A svn/branches/feature-1
+  A svn/branches/feature-1/branch-file.txt
+  A svn/branches/feature-1/another-test-file.txt
+  A svn/branches/feature-1/test-file.txt
+  A svn/branches/another-branch
+  A svn/branches/another-branch/another-test-file.txt
+  A svn/branches/another-branch/test-file.txt
+  A svn/branches/another-branch/another-file-on-another-branch.txt
+  A svn/tags
+  A svn/tags/release-v1
+  A svn/tags/release-v1/another-test-file.txt
+  A svn/tags/release-v1/release-1.0.txt
+  A svn/tags/release-v1/test-file.txt
+  [...]
 
 [Lars]» *Ok, wir sehen hier schon, es ist alles dabei. Wir haben mehrere
 Branches, einen Tag und natürlich den* **Trunk**\ *, den wir migrieren
@@ -4439,8 +4331,7 @@ möchten.*
 
 [Karl]» Ist es tatsächlich notwendig, dass wir alles migrieren? Du meintest,
   das Projekt wäre jetzt schon eine ganze Weile nicht mehr angepasst
-  worden. Die Chancen sind also groß, dass zumindes die Feature-Branches mittlerweile hoffnungslos
-  veraltet sind?
+  worden. Die Chancen sind also groß, dass zumindes die Feature-Branches mittlerweile hoffnungslos veraltet sind?
 
 [Lars]» *Du hast völlig recht, mit großer Wahrscheinlichkeit ist das der Fall.
 Würden wir die Subversion-Repositories weiterhin behalten wäre es auch
@@ -4455,30 +4346,19 @@ migrieren haben und welche User als Committer im Repository aktiv waren.
 Wenn ich mich richtig erinnere, war in diesem Projekt
 nur ein Entwickler aktiv, und der ist schon lange nicht mehr bei uns.*
 
-At revision 76.
+.. code-block:: bash
 
-~/development/.../svn/trunk$ svn log
-
-------------------------------------------------------------------------
-
-r76 \| martin.dilger@gmail.com \| 2014-06-21 17:05:22 +0200 (Sa, 21 Jun
-2014) \| 1 line
-
-committing file 68
-
-------------------------------------------------------------------------
-
-r75 \| martin.dilger@gmail.com \| 2014-06-21 17:05:16 +0200 (Sa, 21 Jun
-2014) \| 1 line
-
-committing file 67
-
-------------------------------------------------------------------------
-
-r74 \| martin.dilger@gmail.com \| 2014-06-21 17:05:10 +0200 (Sa, 21 Jun
-2014) \| 1 line
-
-[...]
+  At revision 76.
+  ~/development/.../svn/trunk$ svn log
+  ------------------------------------------------------------------------  
+  r76 \| martin.dilger@gmail.com \| 2014-06-21 17:05:22 +0200 (Sa, 21 Jun 2014) \| 1 line
+  committing file 68  
+  ------------------------------------------------------------------------
+  r75 \| martin.dilger@gmail.com \| 2014-06-21 17:05:16 +0200 (Sa, 21 Jun 2014) \| 1 line
+  committing file 67
+  ------------------------------------------------------------------------
+  r74 \| martin.dilger@gmail.com \| 2014-06-21 17:05:10 +0200 (Sa, 21 Jun 2014) \| 1 line
+  [...]
 
 [Lars]» *Ich hätte gerne, dass Du tatsächlich verstehst, was Git beim Klonen
 des Repositories macht, deswegen spielen wir jetzt verschiedene
@@ -4488,46 +4368,32 @@ das Repository so wie es ist, ohne jegliche Einstellungen.*
 Eine erste Migration
 ~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Übung
+.. admonition:: Übung
 
 | Der Befehl zum Klonen eines Repositories lautet **git svn clone**.
   Versuchen Sie, das Repository unter
   `*https://git-subversion-migration.googlecode.com/svn* <https://git-subversion-migration.googlecode.com/svn>`__
 | zu klonen.
 
-git svn clone https://git-subversion-migration.googlecode.com/svn
+.. code-block:: bash
 
-#
-
-Initialized empty Git repository in ../migrations/svn/.git/
-
-W: +empty\_dir: branches
-
-W: +empty\_dir: tags
-
-W: +empty\_dir: trunk
-
-W: +empty\_dir: wiki
-
-r1 = 5b24dc003b91a109b54b0bd8f4b72484ac6b97a4 (refs/remotes/git-svn)
-
-A trunk/test-file.txt
-
-r2 = 346ae0f3d5168455ad79a7dd93871759d7dd8b9b (refs/remotes/git-svn)
-
-A trunk/another-test-file.txt
-
-r3 = c18222217842af253cbcf01632fb637a95679db2 (refs/remotes/git-svn)
-
-M trunk/test-file.txt
-
-r4 = 06a9f2509994376b7b43bab66ea78f5ae894f941 (refs/remotes/git-svn)
-
-A branches/feature-1/branch-file.txt
-
-A branches/feature-1/another-test-file.txt
-
-A branches/feature-1/test-file.txt
+  git svn clone https://git-subversion-migration.googlecode.com/svn
+  #
+  Initialized empty Git repository in ../migrations/svn/.git/
+  W: +empty\_dir: branches
+  W: +empty\_dir: tags
+  W: +empty\_dir: trunk
+  W: +empty\_dir: wiki
+  r1 = 5b24dc003b91a109b54b0bd8f4b72484ac6b97a4 (refs/remotes/git-svn)
+  A trunk/test-file.txt
+  r2 = 346ae0f3d5168455ad79a7dd93871759d7dd8b9b (refs/remotes/git-svn)
+  A trunk/another-test-file.txt
+  r3 = c18222217842af253cbcf01632fb637a95679db2 (refs/remotes/git-svn)
+  M trunk/test-file.txt
+  r4 = 06a9f2509994376b7b43bab66ea78f5ae894f941 (refs/remotes/git-svn)
+  A branches/feature-1/branch-file.txt
+  A branches/feature-1/another-test-file.txt
+  A branches/feature-1/test-file.txt
 
 [Lars]» *Karl, du siehst hier eigentlich schon ganz gut, was* **Git-SVN**
 *eigentlich macht. Da die Struktur eines Subversion-Repositories
@@ -4549,13 +4415,12 @@ trotzdem sind große Migrationen nervenaufreibend.
 Unser Projekt ist glücklicherweise relativ klein, die Migration ist
 bereits abgeschlossen, siehst du?*
 
-cd svn/
+.. code-block:: bash
 
-ls
-
-ls
-
-branches tags trunk wiki
+  cd svn/
+  ls
+  ls
+  branches tags trunk wiki
 
 [Karl]» Das ist allerdings nicht was ich erwartet hätte. Die Struktur des
 Subversion Repositories spiegelt sich direkt in der Verzeichnisstruktur
@@ -4564,49 +4429,40 @@ wider.
 [Lars]» *Das war genau, was ich Dir gerne zeigen wollte. Betrachte doch mal
 die letzten Commits in der Historie mit* **git log**\ *.*
 
-git log -n 3
+.. code-block:: bash
 
-Commit: c4c4b8f6bf29619b508e04b76ef358266d62bc7c
+  git log -n 3
+  Commit: c4c4b8f6bf29619b508e04b76ef358266d62bc7c
+  Author: martin.dilger@gmail.com
+  <martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+  Date: (29 minutes ago) 2014-06-21 15:05:22 +0000  
+  Subject: committing file 68
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn@76
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
-Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+  Commit: 6fa61a2a746e5e9523970654ee434a5189232ff4
+  Author: martin.dilger@gmail.com
+  <martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+  Date: (30 minutes ago) 2014-06-21 15:05:16 +0000
+  Subject: committing file 67
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn@75
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
-Date: (29 minutes ago) 2014-06-21 15:05:22 +0000
-
-Subject: committing file 68
-
-git-svn-id: https://git-subversion-migration.googlecode.com/svn@76
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
-
-Commit: 6fa61a2a746e5e9523970654ee434a5189232ff4
-
-Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
-
-Date: (30 minutes ago) 2014-06-21 15:05:16 +0000
-
-Subject: committing file 67
-
-git-svn-id: https://git-subversion-migration.googlecode.com/svn@75
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
-
-Commit: e27e81137830a32df78801e7d2fe85ced6cf002c
-
-Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
-
-Date: (30 minutes ago) 2014-06-21 15:05:10 +0000
-
-Subject: committing file 66
-
-git-svn-id: https://git-subversion-migration.googlecode.com/svn@74
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
+  Commit: e27e81137830a32df78801e7d2fe85ced6cf002c
+  Author: martin.dilger@gmail.com
+  <martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+  Date: (30 minutes ago) 2014-06-21 15:05:10 +0000
+  Subject: committing file 66
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn@74
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
 [Lars]» *Du siehst hier gleich mehrere Seltsamkeiten. Beispielsweise der
 Autor.*
 
-martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+.. code-block:: bash
+
+  martin.dilger@gmail.com
+  <martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
 
 [Lars]» *Git-SVN berechnet für jedes Subversion Repository eine eindeutige
 UUID. Da Git eine Kombination aus Benutzername und E-Mailadresse
@@ -4617,8 +4473,10 @@ Genau hierfür brauchen wir das Usermapping, aber dazu kommen wir gleich.
 Die nächste Auffälligkeit ist folgnde Meta-Information in der
 Commit-Message.*
 
-git-svn-id: https://git-subversion-migration.googlecode.com/svn@74
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
+.. code-block:: bash
+
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn@74
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
 [Lars]» *Über diese Meta-Information schafft es Git, eine Brücke zwischen Git
 und Subversion zu schlagen, so dass eine eindeutige Zuordnung von Commit
@@ -4659,69 +4517,51 @@ unser Subversion-Repository dem Standard-Layout entspricht Am besten wir
 versuchen das Klonen nochmal und lösen das erste Problem in diesem
 Schritt.*
 
-git svn clone --stdlayout
-https://git-subversion-migration.googlecode.com/svn
+.. code-block:: bash
 
-#
+  git svn clone --stdlayout
+  https://git-subversion-migration.googlecode.com/svn
+  #
+  WARNING: --prefix is not given, defaulting to empty prefix.
+  This is probably not what you want! In order to stay compatible
+  with regular remote-tracking refs, provide a prefix like
+  --prefix=origin/ (remember the trailing slash), which will cause
+  the SVN-tracking refs to be placed at refs/remotes/origin/\*.
+  NOTE: In Git v2.0, the default prefix will change from empty to
+  'origin/'.
 
-WARNING: --prefix is not given, defaulting to empty prefix.
-
-This is probably not what you want! In order to stay compatible
-
-with regular remote-tracking refs, provide a prefix like
-
---prefix=origin/ (remember the trailing slash), which will cause
-
-the SVN-tracking refs to be placed at refs/remotes/origin/\*.
-
-NOTE: In Git v2.0, the default prefix will change from empty to
-'origin/'.
-
-Initialized empty Git repository in
-/Users/martindilger/development/git/workshops/migrations/svn/.git/
-
-#
-
-r1 = dd97f592342a1e869b40e48266b6bc839e30074c (refs/remotes/trunk)
-
-A test-file.txt
-
-r2 = f41c9a451bc24bd90b53b30397636ab5d7b26e00 (refs/remotes/trunk)
-
-A another-test-file.txt
-
-r3 = d9d4266375f9e4b640f1e190c7133b5eeaf94d49 (refs/remotes/trunk)
-
-M test-file.txt
-
-[...]
+  Initialized empty Git repository in
+  /Users/martindilger/development/git/workshops/migrations/svn/.git/
+  #
+  r1 = dd97f592342a1e869b40e48266b6bc839e30074c (refs/remotes/trunk)
+  A test-file.txt
+  r2 = f41c9a451bc24bd90b53b30397636ab5d7b26e00 (refs/remotes/trunk)
+  A another-test-file.txt
+  r3 = d9d4266375f9e4b640f1e190c7133b5eeaf94d49 (refs/remotes/trunk)
+  M test-file.txt
+  [...]
 
 [Lars]» *Git-SVN gibt uns hier schon einen wichtigen Hinweis, den wir gleich
 noch brauchen werden. Aber zunächst betrachten wir uns, wie das geklonte
 Repository aktuell aussieht.*
 
-ls
+.. code-block:: bash
 
-file1.txt file16.txt file22.txt file29.txt file35.txt file41.txt
-file48.txt file54.txt file60.txt file67.txt
-
-file10.txt file17.txt file23.txt file3.txt file36.txt file42.txt
-file49.txt file55.txt file61.txt file68.txt
-
-file11.txt file18.txt file24.txt file30.txt file37.txt file43.txt
-file5.txt file56.txt file62.txt file7.txt
-
-file12.txt file19.txt file25.txt file31.txt file38.txt file44.txt
-file50.txt file57.txt file63.txt file8.txt
-
-file13.txt file2.txt file26.txt file32.txt file39.txt file45.txt
-file51.txt file58.txt file64.txt file9.txt
-
-file14.txt file20.txt file27.txt file33.txt file4.txt file46.txt
-file52.txt file59.txt file65.txt
-
-file15.txt file21.txt file28.txt file34.txt file40.txt file47.txt
-file53.txt file6.txt file66.txt
+  ls
+  file1.txt file16.txt file22.txt file29.txt file35.txt file41.txt
+  file48.txt file54.txt file60.txt file67.txt
+  file10.txt file17.txt file23.txt file3.txt file36.txt file42.txt  
+  file49.txt file55.txt file61.txt file68.txt
+  file11.txt file18.txt file24.txt file30.txt file37.txt file43.txt
+  file5.txt file56.txt file62.txt file7.txt
+  file12.txt file19.txt file25.txt file31.txt file38.txt file44.txt
+  file50.txt file57.txt file63.txt file8.txt
+  file13.txt file2.txt file26.txt file32.txt file39.txt file45.txt
+  file51.txt file58.txt file64.txt file9.txt
+  file14.txt file20.txt file27.txt file33.txt file4.txt file46.txt
+  file52.txt file59.txt file65.txt
+  file15.txt file21.txt file28.txt file34.txt file40.txt file47.txt
+  file53.txt file6.txt file66.txt
 
 [Lars]» *Du siehst, das Repository sieht mittlerweile schon viel besser aus.
 Dadurch das wir für den Klon des Repositories die Option* **–stdlayout**
@@ -4730,21 +4570,16 @@ Git-SVN, dass es die Strukturen des Repositories korrekt in Git-Branches
 überführen kann. Du siehst das auch, wenn Du dir die aktuellen Branches
 im Repository betrachtest.*
 
-git branch
+.. code-block:: bash
 
-\* master
-
-# remote branches
-
-git branch -r
-
-another-branch
-
-feature-1
-
-tags/release-v1
-
-trunk
+  git branch
+  * master
+  # remote branches
+  git branch -r
+  another-branch
+  feature-1
+  tags/release-v1
+  trunk
 
 [Karl]» Ach, so einfach ist das? Das sieht jetzt doch genauso aus, wie ich
   das erwarten würde. Jeder Subversion-Branch wurde in einen korrekten
@@ -4764,49 +4599,45 @@ brauchen wir ein wenig Skript-Arbeit. Das ist allerdings genau das, was
 eines unserer Skripte (*\ **svn-to-git-tags.sh**\ *) für uns erledigt.
 Am besten führen wir das direkt aus, damit Du siehst, was passiert.*
 
-./../git-migrations/svn-to-git-tags.sh
+.. code-block:: bash
 
-ref=767d62bb3975fd6d878b77d6a48842f070838186
-parent=cc79ad67b3947d027b06166076939dd9823194d4 tagname=release-v1
-body=committing file 1
+  ./../git-migrations/svn-to-git-tags.sh
 
-git-svn-id:
-https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
+  ref=767d62bb3975fd6d878b77d6a48842f070838186
+  parent=cc79ad67b3947d027b06166076939dd9823194d4 tagname=release-v1
+  body=committing file 1
 
-Deleted remote branch tags/release-v1 (was 767d62b).
+  git-svn-id:
+  https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
+
+  Deleted remote branch tags/release-v1 (was 767d62b).
 
 [Lars]» *Schau dir mal jetzt die Liste an Branches an.*
 
-git branch -r
+.. code-block:: bash
 
-another-branch
-
-feature-1
-
-trunk
+  git branch -r
+  another-branch
+  feature-1
+  trunk
 
 [Karl]» Interessant! Der Branch für die Tags ist verschwunden?
 
 [Lars]» *Genau. Und noch viel besser wird es, wenn Du dir die Tags im
 Repository anschaust.*
 
-git tag
+.. code-block:: bash
 
-release-v1
-
-#
-
-git log -n 1 release-v1
-
-Commit: cc79ad67b3947d027b06166076939dd9823194d4
-
-Author: martin.dilger@gmail.com
-<martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
-
-Date: (76 minutes ago) 2014-06-21 14:47:20 +0000
-
-Subject: tagging release 1
+  git tag
+  release-v1
+  #
+  git log -n 1 release-v1
+  Commit: cc79ad67b3947d027b06166076939dd9823194d4
+  Author: martin.dilger@gmail.com
+  <martin.dilger@gmail.com@e7ff270f-ff10-540e-3a92-2a19eadc0c21>
+  Date: (76 minutes ago) 2014-06-21 14:47:20 +0000
+  Subject: tagging release 1
 
 [Karl]» Ich bin beeindruckt, der Tag scheint korrekt angelegt worden zu sein.
 Kannst Du mir erklären, was das Skript genau macht?
@@ -4820,145 +4651,128 @@ Kannst Du mir erklären, was das Skript genau macht?
   Es ist nicht schwer zu lesen.
 | Entziffern Sie das Skript und beschreiben Sie die Funktionalität.
 
-git for-each-ref \\
+.. code-block:: bash
 
---format="%(refname:short) %(objectname)" refs/remotes/tags
-
-\| while read BRANCH REF
-
-do
-
-TAG\_NAME=${BRANCH#\*/}
-
-BODY="$(git log -1 --format=format:%B $REF)"
-
-echo "ref=$REF parent=$(git rev-parse $REF^) tagname=$TAG\_NAME
-body=$BODY" >&amp;2
-
-git tag -a -m "$BODY" $TAG\_NAME $REF^ &amp;&amp;\\
-
-git branch -r -d $BRANCH
-
-done
+  git for-each-ref \\
+  --format="%(refname:short) %(objectname)" refs/remotes/tags
+  | while read BRANCH REF
+  do
+    TAG_NAME=${BRANCH#*/}
+    BODY="$(git log -1 --format=format:%B $REF)"
+    echo "ref=$REF parent=$(git rev-parse $REF^) tagname=$TAG_NAME
+    body=$BODY" >&amp;2
+    git tag -a -m "$BODY" $TAG_NAME $REF^ &amp;&amp;\\
+    git branch -r -d $BRANCH
+  done
 
 [Lars]» *Zunächst iterieren wir mit Hilfe von* **for-each-ref** *über alle
 Branches und lassen uns den Hashwert des jeweils obersten Commits im
 Branch ausgeben. Ich zeige dir das einfach mal im aktuellen Repository.*
 
-git for-each-ref --format="%(refname:short) %(objectname)"
+.. code-block:: bash
 
-master f52c3d082c2812937abd68050790f09549bf61fd
-
-another-branch f44ade7c7dabea8cfa9ff31d4f392d7c08062ee0
-
-feature-1 9ee327c3005ae0bb39583da170417509ee5112be
-
-tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
-
-trunk f52c3d082c2812937abd68050790f09549bf61fd
+  git for-each-ref --format="%(refname:short) %(objectname)"
+  master f52c3d082c2812937abd68050790f09549bf61fd
+  another-branch f44ade7c7dabea8cfa9ff31d4f392d7c08062ee0
+  feature-1 9ee327c3005ae0bb39583da170417509ee5112be
+  tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
+  trunk f52c3d082c2812937abd68050790f09549bf61fd
 
 [Lars]» *Wir beschränken die Auswahl anschließend nur auf die Tags.*
 
-git for-each-ref --format="%(refname:short) %(objectname)"
-"refs/remotes/tags"
+.. code-block:: bash
 
-#
-
-tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
+  git for-each-ref --format="%(refname:short) %(objectname)"
+  "refs/remotes/tags"
+  #
+  tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
 
 [Lars]» *Damit bekommen wir den Hashwert, des Commits bzw. der Revision, die
 ursprünglich in Subversion getaggt wurde. Denk daran, jede Revision in
 Subversion entspricht einem Commit-Hashwert in Git. Im nächsten Schritt
 iterieren wir über diese Liste und lassen uns mit Hilfe von* **while
 read BRANCH REF** *den jeweils ausgewählten Branch und den ausgewählten
-Hashwert als lokale
-Variable speichern.*
+Hashwert als lokale Variable speichern.*
+.. code-block:: bash
 
-git for-each-ref --format="%(refname:short) %(objectname)"
-refs/remotes/tags
-
-\| while read BRANCH REF
-
-do
-
-echo "$BRANCH $REF"
-
-done
-
-#
-
-tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
+  git for-each-ref --format="%(refname:short) %(objectname)"
+  refs/remotes/tags
+  while read BRANCH REF
+    do
+    echo "$BRANCH $REF"
+    done
+  #
+  tags/release-v1 767d62bb3975fd6d878b77d6a48842f070838186
 
 [Lars]» *Jetzt holen wir uns den Tagnamen, indem wir den Refnamen
-(*\ **tags/release-v1**\ *) parsen und alles nach dem* **/** *nehmen.
-Wir bekommen also* **release-v1**\ *.*
+(* **tags/release-v1** *) parsen und alles nach dem* **/** *nehmen.
+Wir bekommen also* **release-v1** *.*
 
-TAG\_NAME=${BRANCH#\*/}
+.. code-block:: bash
+
+  TAG_NAME=${BRANCH#*/}
 
 [Lars]» *Im nächsten Schritt lassen wir uns die eigentliche Commit-Message des
 Tag-Commits ausgeben.*
 
-BODY="$(git log -1 --format=format:%B $REF)"
+.. code-block:: bash
 
-#
-
-committing file 1 git-svn-id:
-https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
+  BODY="$(git log -1 --format=format:%B $REF)"
+  #
+  committing file 1 git-svn-id:
+  https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
 [Lars]» *Jetzt haben wir alles, was wir brauchen. Wir erzeugen einen neuen
-Tag, setzen diesen auf den richtigen Commit mittels* **$REF**\ *,
+Tag, setzen diesen auf den richtigen Commit mittels* **$REF** *,
 übernehmen die Commit-Message aus* **$BODY** *und den
-Tag-Namen aus* **$TAG\_NAME**\ *.*
+Tag-Namen aus* **$TAG\_NAME** *.*
 
 [Karl]» Toll, Lars. Ich bin ehrlich beeindruckt. Das ist relativ simpel, wenn
 man sich einmal die Mühe macht, sich genauer einzulesen.
 
 SVN / Git User Mapping
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^
 
-[Lars]» *Genau, es ist so wie fast immer in Git, wenn man sich die Mühe macht
-und versucht, zu verstehen wie es tatsächlich funktioniert wird alles
-plötzlich ganz einfach. Wir haben aber noch einige Aufgaben, die wir für
-eine erfolgreiche Migration erfüllen müssen. Zunächst sollten wir
-sicherstellen, dass wir die richtigen Commiter in der Historie haben.
-Hierfür verwenden wir das Skript* **svn-user-map.sh** *noch im
-Subversion-Repository. Im Prinzip lassen wir uns den kompletten SVN-Log
-ausgeben und parsen für jede Revision den Autor und
-werfen am Ende die Duplikate raus.*
+[Lars]» *Genau, es ist so wie fast immer in Git, wenn man sich die Mühe macht und versucht, zu verstehen wie es tatsächlich funktioniert wird alles plötzlich ganz einfach. Wir haben aber noch einige Aufgaben, die wir für eine erfolgreiche Migration erfüllen müssen. Zunächst sollten wir sicherstellen, dass wir die richtigen Commiter in der Historie haben.
+Hierfür verwenden wir das Skript* **svn-user-map.sh** *noch im Subversion-Repository. Im Prinzip lassen wir uns den kompletten SVN-Log ausgeben und parsen für jede Revision den Autor und werfen am Ende die Duplikate raus.*
 
 
 .. Tip::
 
   Das Skript muss für die meisten Fälle leicht angepasst werden. Für die aktuelle Migration beispielsweise ist der Benutzername bereits eine E-Mailadresse. Das Skript im Repository erwartet die Übergabe eine Domain, die in den Benutzer übernommen wird (z.B. myName@<domain>). 
 
-# svn-user-map.sh <url> <filename>
+.. code-block:: bash
 
-svn log $1 \| sed -ne "s/^r[^\|]\*\| \\([^ ]\*\\) \|.\*$/\\1 = \\1
-<\\10>/p" \| sort -u > $2
+  # svn-user-map.sh <url> <filename>
+  svn log $1 | sed -ne "s/^r[^|]*| \\([^ ]*\\) |.*$/\\1 = \\1
+  <\\10>/p" \| sort -u > $2
 
 [Lars]» *Der Skriptaufruf sieht also so aus.*
 
-./svn-user-map.sh https://git-subversion-migration.googlecode.com/svn
-usermap.map
+.. code-block:: bash
+
+  ./svn-user-map.sh https://git-subversion-migration.googlecode.com/svn usermap.map
 
 Was hierbei entsteht ist eine Datei usermap.map mit folgendem Inhalt.
+.. code-block:: bash
 
-martin.d@gmail.com = martin.d@gmail.com <martin.d@gmail.com>
+  martin.d@gmail.com = martin.d@gmail.com <martin.d@gmail.com>
 
 [Lars]» *Für jeden User, der jemals etwas in diesem Projekt committed hat
 entsteht eine Zeile in der Usermap. Der nächste Schritt besteht jetzt
 darin, das Repository zu klonen.*
 
-# <authors-file> <prefix> <svn url> <git repository
-directory name>
+.. code-block:: bash
 
-git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
-https://git-subversion-migration.googlecode.com/svn svn.git
+  # <authors-file> <prefix> <svn url> <git repository
+  directory name>
 
-#
+  git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
+  https://git-subversion-migration.googlecode.com/svn svn.git
 
-Author: (no author) not defined in usermap.map file
+  #
+  Author: (no author) not defined in usermap.map file
 
 [Lars]» *Hier haben wir einen interessanten Fall. Anscheinend wurde ein Commit
 im Repository ohne Usernamen gemacht. Die Migration bricht ab, weil kein
@@ -4969,15 +4783,17 @@ manuell anpassen, damit die Migration durchgeführt werden kann.*
 
 .. Tip::
 
-  Bevor Sie mit der Miratino starten sollten Sie die Usermap nochmal ganz genau studieren, ob sie korrekt ist. Fehler können zwar auch noch später korrigiert werden aber nur  sehr umständlich und non-invasiv.
+  Bevor Sie mit der Migration starten sollten Sie die Usermap nochmal ganz genau studieren, ob sie korrekt ist. Fehler können zwar auch noch später korrigiert werden aber nur  sehr umständlich und non-invasiv.
 
 [Lars]» *Wir fügen einfach diese Zeile* **(no author) = no author <unknown>** *in die Datei ein. Damit sollte für die Migration alles fertig sein.*
 
-# <authors-file> <prefix> <svn url> <git repository
-directory name>
+.. code-block:: bash
 
-git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
-https://git-subversion-migration.googlecode.com/svn svn.git
+  # <authors-file> <prefix> <svn url> <git repository
+  directory name>
+
+  git svn clone --stdlayout --authors-file usermap.map --prefix=svn/
+  https://git-subversion-migration.googlecode.com/svn svn.git
 
 [Karl]» Es scheint zu funktionieren, Lars, sehr schön. Wir haben hier jetzt
 aber noch zusätzlich das Flag **–prefix** verwendet. Kannst Du mir
@@ -4998,63 +4814,53 @@ wird erhält ein Prefix, so dass sie später
 einfach auseinanderzuhalten sind. Das siehst du auch ziemlich gut, wenn
 Du dir im konvertierten Repository die Branches anschaust.*
 
-git branch -r
+.. code-block:: bash
 
-svn/another-branch
-
-svn/feature-1
-
-svn/tags/release-v1
-
-svn/trunk
+  git branch -r
+  svn/another-branch
+  svn/feature-1
+  svn/tags/release-v1
+  svn/trunk
 
 [Lars]» *Siehst Du? Jeder konvertierte Branch hat das Prefix “svn/”.*
 [Lars]» *Zuletzt führen wir nochmals die Migration der Tags durch. Da alle
   Branches und Referenzen jetzt ein Prefix haben müssen wir das Skript
   leicht anpassen.*
 
-git for-each-ref --format="%(refname:short) %(objectname)"
-refs/remotes/svn/tag ...
+.. code-block:: bash
 
-#
+  git for-each-ref --format="%(refname:short) %(objectname)"
+  refs/remotes/svn/tag ...
+  #
+  ref=de5f2219344b941d330f077c67c34ea54711ea45
+  parent=97c74c5ffe439f93c937c62bd0313fb55b95a410 tagname=tags/release-v1
+  body=committing file 1
 
-ref=de5f2219344b941d330f077c67c34ea54711ea45
-parent=97c74c5ffe439f93c937c62bd0313fb55b95a410 tagname=tags/release-v1
-body=committing file 1
+  git-svn-id:
+  https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
-git-svn-id:
-https://git-subversion-migration.googlecode.com/svn/tags/release-v1@9
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
-
-Deleted remote branch svn/tags/release-v1 (was de5f221).
+  Deleted remote branch svn/tags/release-v1 (was de5f221).
 
 [Lars]» *Karl, betrachte die Historie mit* **git log**\ *, was fällt dir auf?*
 
-git log -n 2
+.. code-block:: bash
 
-#
+  git log -n 2
+  #
+  Commit: c8d7cbdd124f2376b74248408358eea6a86f99f9
+  Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
+  Date: (69 minutes ago) 2014-06-22 09:09:39 +0000
 
-Commit: c8d7cbdd124f2376b74248408358eea6a86f99f9
-
-Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
-
-Date: (69 minutes ago) 2014-06-22 09:09:39 +0000
-
-Subject: change by Martin
-
-git-svn-id: https://git-subversion-migration.googlecode.com/svn/trunk@77
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
-
-Commit: e5a240072483638676d88d43d585b205c8ec432a
-
-Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
-
-Date: (19 hours ago) 2014-06-21 15:05:22 +0000
-
-Subject: committing file 68
-
-git-svn-id: https://git-subversion-migration.googlecode.com/svn/trunk@76
-e7ff270f-ff10-540e-3a92-2a19eadc0c21
+  Subject: change by Martin
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn/trunk@77
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
+  Commit: e5a240072483638676d88d43d585b205c8ec432a
+  Author: martin.dilger@gmail.com <martin.dilger@gmail.com>
+  Date: (19 hours ago) 2014-06-21 15:05:22 +0000
+  Subject: committing file 68
+  git-svn-id: https://git-subversion-migration.googlecode.com/svn/trunk@76
+  e7ff270f-ff10-540e-3a92-2a19eadc0c21
 
 [Karl]» Das Usermapping scheint geklappt zu haben, das ist schonmal gut. Damit
 sind wir eigentlich fertig, oder?
@@ -5070,9 +4876,9 @@ einchecken.*
 [Karl]» Natürlich, du hast ja völlig recht! Git hat ja einen eigenen
 Mechanismus um Dateien und Änderungen zu ignorieren.
 
-Übung
+.. admonition:: Übung
 
-Erinnern Sie sich wie Ignores in Git funktionieren?
+  Erinnern Sie sich wie Ignores in Git funktionieren?
 
 [Lars]» *Git arbeitet mit einer .gitignore Datei in der einfach alles
 definiert wird, was von Git nicht getrackt werden soll. Wir müssen als
@@ -5080,13 +4886,12 @@ letzten Schritt noch die SVN-Ignores
 in eine .gitignore-Datei überführen. Natürlich bietet Git-SVN hierfür
 bereits ein passendes Tool.*
 
-git svn show-ignore >> .gitignore
+.. code-block:: bash
 
-less .gitignore
-
-# /
-
-/target
+  git svn show-ignore >> .gitignore
+  less .gitignore
+  # /
+  /target
 
 [Karl]» Anscheinend wird im Projekt lediglich das Verzeichnis **/target**
 exkludiert. Git-SVN hat diese Änderung aber korrekt in die .gitignore
@@ -5095,24 +4900,19 @@ Datei überführt.
 [Lars]» *Genau, damit ist die Migration abgeschlossen und wir können ein
 weiteres Subversion-Reposiotry löschen.*
 
-Übung
+.. admonition:: Übung
 
-| Es ist heutzutage (leider?) bereits schwierig Projekte zu finden, die
+  Es ist heutzutage (leider?) bereits schwierig Projekte zu finden, die
   überhaupt noch auf Subversion gehostet sind. Suchen Sie sich einige
-  Test-Repositories von
-| Open-Source Projekten und migrieren Sie diese nach Git. Dies ist eine
-  sehr gute Übung, bevor Sie sich an die Migration Ihrer eigenen
-  Projekte machen, um
-| ein Gefühl dafür zu bekommen, welche Schritte in welcher Reihenfolge
-  am meisten Sinn ergeben und wie lange eine Migration für etwas größere
+  Test-Repositories von Open-Source Projekten und migrieren Sie diese nach Git. Dies ist eine sehr gute Übung, bevor Sie sich an die Migration Ihrer eigenen
+  Projekte machen, um ein Gefühl dafür zu bekommen, welche Schritte in welcher Reihenfolge am meisten Sinn ergeben und wie lange eine Migration für etwas größere
   Repositories dauern kann.
 
-Beispielprojekte die aktuell noch auf Subversion gehostet sind sind
-beispielsweise:
+  Beispielprojekte die aktuell noch auf Subversion gehostet sind sind beispielsweise:
 
-| `*https://svn.apache.org/repos/asf/oltu/trunk/* <https://svn.apache.org/repos/asf/oltu/trunk/>`__
-| `*http://primefaces.googlecode.com/svn/primefaces/* <http://primefaces.googlecode.com/svn/primefaces/>`__
-| `*http://jmockit.googlecode.com/svn/* <http://jmockit.googlecode.com/svn/>`__
+  | `*https://svn.apache.org/repos/asf/oltu/trunk/* <https://svn.apache.org/repos/asf/oltu/trunk/>`__
+  | `*http://primefaces.googlecode.com/svn/primefaces/* <http://primefaces.googlecode.com/svn/primefaces/>`__
+  | `*http://jmockit.googlecode.com/svn/* <http://jmockit.googlecode.com/svn/>`__
 
 Links
 ~~~~~~~~~~
@@ -5136,24 +4936,6 @@ dass er die Zeit im Zug abrechnen darf, wenn er sie produktiv nutzt.
 Karl kann mit Hilfe von Git problemlos unterwegs im Zug arbeiten.
 Hierfür nimmt er sich regelmässig einige Tickets und Bugs mit auf den
 Weg.
-
-| Ich bin der Ansicht, dass Git für uns Softwareentwickler die
-  wichtigste Neuerung der letzten 10 Jahre ist. Kein anderes Tool hat
-  mich persönlich produktiver gemacht.
-| Ich arbeite jetzt seit nunmehr fast 6 Jahren ausschließlich mit Git
-  und unterstütze Firmen bei der Einführung, Migration von anderen
-  Systemen und bei der Schulung von Mitarbeitern.
-
-Die Inhalte in diesem Buch werden alle bei Bedarf auch in der
-`*Effective Trainings
-Schulung* <http://effectivetrainings.de/html/workshops/effective_git_workshop.php>`__
-behandelt. Wenn Sie Bedarf an einer Schulung zu diesem Thema haben würde
-ich mich freuen, wenn Sie mich kontaktieren und wir uns darüber
-unterhalten.
-
-Ich hoffe, die Art und Weise wie dieses Buch geschrieben ist hat dazu
-beigetragen, dass Sie ein Verständnis dafür entwickeln konnten, wie Git
-arbeitet und wie die Arbeit mit Git gedacht ist.
 
 Appendix A
 -------------
@@ -5220,11 +5002,11 @@ Möglichkeit, Features programmatisch oder über Konfigurationen,
 sogenannte Feature-Flags wieder zu entfernen. Im Prinzip bauen wir etwas
 in dieser Art ein.*
 
-if(newFeatureActive) {
+.. code-block:: bash
 
-#do something fancy with the feature
-
-}
+  if(newFeatureActive) {
+  #do something fancy with the feature
+  }
 
 [Karl]» Ich muss gestehen, ich bin wirklich kein großer Fan von Feature-Flags.
 Sie machen den Code fragil und wenn man es übertreibt, hat man überall
@@ -5299,20 +5081,15 @@ ist und lieber nicht deployt werden soll.
 Erinnerst du dich noch an das Konzept von* **Reset** *und was es
 bedeutet einen Branch zurückzusetzen?*
 
-Übung
+.. admonition:: Übung
 
-Zeit für eine kurze Wiederholung.
+  Zeit für eine kurze Wiederholung.
+  Lesen Sie nochmals kurz nach, was mit Hilfe von **git reset** möglich ist.
 
-Lesen Sie nochmals kurz nach, was mit Hilfe von **git reset** möglich
-ist.
-
-Erzeugen Sie ein neues leeres Repository
-
-Erzeugen Sie 5 beliebige Commits
-
-Springen Sie im Repository zum zweiten Commit
-
-Springen Sie jetzt zum vierten Commit (Stichwort **Reflog**)
+  Erzeugen Sie ein neues leeres Repository
+  Erzeugen Sie 5 beliebige Commits
+  Springen Sie im Repository zum zweiten Commit
+  Springen Sie jetzt zum vierten Commit (Stichwort **Reflog**)
 
 |image37|
 
@@ -5346,26 +5123,23 @@ du vielleicht schon erklären, wo wir wirklich Probleme haben werden?*
 Repository, das wir zuvor für Git-Flow verwendet haben. Ich lerne
 besser, wenn ich die Dinge praktisch anwende.
 
-git branch
+.. code-block:: bash
 
-\* master
+  git branch
+  * master
+  release
+  support-1.0
 
-release
-
-support-1.0
-
-» Zunächst taggen wir den **master**, wir tun also so, als hätten wir
+[Karl]» Zunächst taggen wir den **master**, wir tun also so, als hätten wir
 kürzlich ein Release gemacht.
 
-git tag -a -m "release-1.0" release-1.0
+.. code-block:: bash
 
-git tag
-
-1.0
-
-5011
-
-release-1.0
+  git tag -a -m "release-1.0" release-1.0
+  git tag
+  1.0
+  5011
+  release-1.0
 
 [Karl]» Ok, wir entwickeln also die Features **4711**, **4811** und **4911**.
 Wieder mal…
@@ -5373,78 +5147,54 @@ Wieder mal…
 [Lars]» *Ja, tut mir leid, für meine Kreativität bin ich nicht gerade bekannt.
 Aber ja, mach bitte weiter.*
 
-#vom master
+.. code-block:: bash
 
-git checkout master
-
-Switched to branch 'master'
-
-#branch
-
-git checkout -b "fb-4711"
-
-Switched to a new branch 'fb-4711'
-
-echo "feature 4711 - Implementierung" >> feature.txt
-
-git add feature.txt
-
-git commit -m "feature-4711"
-
-[fb-4711 b132dbb] feature-4711
-
-1 file changed, 1 insertion(+)
+  #vom master
+  git checkout master
+  Switched to branch 'master'
+  #branch
+  git checkout -b "fb-4711"
+  Switched to a new branch 'fb-4711'
+  echo "feature 4711 - Implementierung" >> feature.txt
+  git add feature.txt
+  git commit -m "feature-4711"
+  [fb-4711 b132dbb] feature-4711
+  1 file changed, 1 insertion(+)
 
 [Lars]» *Dasselbe machen wir für* **4811**\ *. Aber bitte so, dass ein
 Merge-Konflikt zwischen den beiden Features besteht.*
 
-#wieder vom master
+.. code-block:: bash
 
-git checkout master
+  #wieder vom master
+  git checkout master
+  Switched to branch 'master'
+  #branch
+  git checkout -b "fb-4811"
+  Switched to a new branch 'fb-4811'
+  echo "feature 4811 - Implementierung" >> feature.txt
+  git add feature.txt
+  git commit -m "feature-4811"
+  [fb-4811 72d335a] feature-4811
+  1 file changed, 1 insertion(+)
 
-Switched to branch 'master'
+[Lars]» *Und ein letztes Mal für* **4911**\ *.*
 
-#branch
-
-git checkout -b "fb-4811"
-
-Switched to a new branch 'fb-4811'
-
-echo "feature 4811 - Implementierung" >> feature.txt
-
-git add feature.txt
-
-git commit -m "feature-4811"
-
-[fb-4811 72d335a] feature-4811
-
-1 file changed, 1 insertion(+)
-
-» *Und ein letztes Mal für* **4911**\ *.*
+.. code-block:: bash
 
 #und wieder vom master
 
-git checkout master
-
-Switched to branch 'master'
-
-#branch
-
-git checkout -b "fb-4911"
-
-Switched to a new branch 'fb-4911'
-
-echo "feature 4911 - Implementierung" >> feature-4911.txt
-
-git add feature-4911.txt
-
-git commit -m "feature-4911"
-
-[fb-4911 5f66eaa] feature-4911
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 feature-4911.txt
+  git checkout master
+  Switched to branch 'master'
+  #branch
+  git checkout -b "fb-4911"
+  Switched to a new branch 'fb-4911'
+  echo "feature 4911 - Implementierung" >> feature-4911.txt
+  git add feature-4911.txt
+  git commit -m "feature-4911"
+  [fb-4911 5f66eaa] feature-4911
+  1 file changed, 1 insertion(+)
+  create mode 100644 feature-4911.txt
 
 [Lars]» *Wir gehen jetzt zurück auf den* **master** *und mergen die Features.
 Ich habe mir schon einige Gedanken zu diesem Modell gemacht. Ich denke,
@@ -5453,28 +5203,21 @@ wir sollten das Zusammenführen der Features auf einem eigenen Branch*
 letzte Release gemacht haben. Auf diesen Branch mergen wir alle
 Features, die wir der QA-Abteilung zur Verfügung stellen möchten.*
 
-git checkout -b qa 'release-1.0' <b>(1)</b>
+.. code-block:: bash
 
-#branches
+  git checkout -b qa 'release-1.0' <b>(1)</b>
+  #branches
+  git branch
+  fb-4711
+  fb-4811
+  fb-4911
+  master
+  * qa
+  release
+  support-1.0
 
-git branch
-
-fb-4711
-
-fb-4811
-
-fb-4911
-
-master
-
-\* qa
-
-release
-
-support-1.0
-
-1. Erzeuge den Branch mit Namen *qa* direkt vom Tag mit dem Namen
-       *release-1.0*
+  1. Erzeuge den Branch mit Namen *qa* direkt vom Tag mit dem Namen
+     *release-1.0*
 
 [Karl]» Spielt die Reihenfolge dabei eine Rolle? Ich meine, welches Feature
 zuerst gemerged wird.
@@ -5509,9 +5252,10 @@ leider kennen es die wenigsten Entwickler und es ist per Default
 inaktiv. Ich würde empfehlen,* **ReReRe** *generell zu aktivieren, das
 machen wir jetzt direkt.*
 
-git config rerere.enabled true
+.. code-block:: bash
 
-git config rerere.autoupdate true
+  git config rerere.enabled true
+  git config rerere.autoupdate true
 
 [Karl]» Das ist alles?
 
@@ -5524,111 +5268,89 @@ arbeiten wir ganz normal weiter, als wäre nichts gewesen.*
 
 [Karl]» Ok, wir mergen als die Features auf den **qa**-Branch.
 
-git merge fb-4711
+.. code-block:: bash
 
-Updating 1f4d632..f0150b9
+  git merge fb-4711
+  Updating 1f4d632..f0150b9
+  Fast-forward  
+  feature.txt \| 1 +
+  1 file changed, 1 insertion(+)
+  #und jetzt 4811
+  git merge fb-4811
+  Auto-merging feature.txt
+  CONFLICT (content): Merge conflict in feature.txt
+  Recorded preimage for 'feature.txt' <b>(1)</b>
+  Automatic merge failed; fix conflicts and then commit the result.
 
-Fast-forward
+  1. ReReRe speichert den Merge Konflikt
 
-feature.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-#und jetzt 4811
-
-git merge fb-4811
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt
-
-Recorded preimage for 'feature.txt' <b>(1)</b>
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-1. ReReRe speichert den Merge Konflikt
-
-[Karl]» Ok, wie erwartet haben wir einen Merge-Konflikt. Soll ich den
-auflösen?
+[Karl]» Ok, wie erwartet haben wir einen Merge-Konflikt. Soll ich den auflösen?
 
 [Lars]» *Ja, sofort. Schau dir aber bitte vorher nochmal genau die Ausgabe an.
 Du hast etwas übersehen.*
 
-» Warte mal, du hast Recht! Da steht **Recorded preimage for**
+[Karl]» Warte mal, du hast Recht! Da steht **Recorded preimage for**
 *feature.txt*. Ist das der **ReReRe**-Cache?
 
 [Lars]» *Genau, du siehst genau was passiert, wenn du dir anschaust, wo*
 **ReReRe** *seine Daten speichert. Schau am besten mal in dein*
 **.git**\ *-Verzeichnis.*
 
-ls .git/rr-cache/
+.. code-block:: bash
 
-925cd9b95c7a5b830701d56480b9530de341afc8
+  ls .git/rr-cache/
+  925cd9b95c7a5b830701d56480b9530de341afc8
 
 [Lars]» *Es ist ein neues Verzeichnis* **rr-cache** *entstanden. Dieses
 Verzeichnis verhält sich ganz ähnlich zum* **objects**\ *-Verzeichnis
 das du ja bereits kennst.*
 
-less .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/preimage
+.. code-block:: bash
 
-#Merge Konflikt
-
-working with git flow is so easy
-
-<<<<<<<
-
-feature 4711 - Implementierung
-
-=======
-
-feature 4811 - Implementierung
-
->>>>>>>
+  less .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/preimage
+  #Merge Konflikt
+  working with git flow is so easy
+  <<<<<<<
+  feature 4711 - Implementierung
+  =======
+  feature 4811 - Implementierung
+  >>>>>>>
 
 [Lars]» *Du siehst Karl, in der Datei* **preimage** *hat Git den
 Merge-Konflitk abgelegt, so wie er ist bevor du ihn aufgelöst hast.
 Jetzt lösen wir den Konflikt.*
 
-Übung
+.. admonition:: Übung
 
-| Lösen Sie den Merge-Konflikt auf. Verwenden Sie der Übung halber ein
-  anderes Merge-Tool als zuvor.
-| Kennen Sie noch den Befehl um das Git-Mergetool zu starten?
+  Lösen Sie den Merge-Konflikt auf. Verwenden Sie der Übung halber ein anderes Merge-Tool als zuvor.
+  Kennen Sie noch den Befehl um das Git-Mergetool zu starten?
 
-git commit -m "merged features"
+  .. code-block:: bash
 
-Recorded resolution for 'feature.txt'. <b>(1)</b>
+    git commit -m "merged features"
+    Recorded resolution for 'feature.txt'. <b>(1)</b>
+    [qa 55767ed] merged features
 
-[qa 55767ed] merged features
-
-1. Git merkt sich die Lösung des Konfliktes
+    1. Git merkt sich die Lösung des Konfliktes
 
 [Lars]» *Karl du siehst, dass* **ReReRe** *sich scheinbar auf die Lösung des
 Konfliktes merkt.*
 
-ls .git/rr-cache/
+.. code-block:: bash
 
-925cd9b95c7a5b830701d56480b9530de341afc8
+  ls .git/rr-cache/
+  925cd9b95c7a5b830701d56480b9530de341afc8
+  #Konflikt Lösung
+  ls .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/
+  postimage <b>(1)</b>
+  preimage
+  #Postimage
+  less .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/postimage
+  working with git flow is so easy
+  feature 4711 - Implementierung
+  feature 4811 - Implementierung
 
-#Konflikt Lösung
-
-ls .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/
-
-postimage <b>(1)</b>
-
-preimage
-
-#Postimage
-
-less .git/rr-cache/925cd9b95c7a5b830701d56480b9530de341afc8/postimage
-
-working with git flow is so easy
-
-feature 4711 - Implementierung
-
-feature 4811 - Implementierung
-
-1. Ein neues Verzeichnis **postimage** ist entstanden.
+  1. Ein neues Verzeichnis **postimage** ist entstanden.
 
 [Lars]» *In der neu entstandenen Datei* **postimage** *steht ganz genau, wie
 die betroffenen Dateien nach der Lösung des Konfliktes auszusehen haben.
@@ -5639,20 +5361,17 @@ Lösung auszusehen hat.*
 Testabteilung schließlich alle Features zur Verfügung stellen, von denen
 wir glauben, dass sie fertig sind.*
 
-Übung
+.. admonition:: Übung
 
-Mergen Sie das Feature 4911 in den master. Es sollte hierbei kein
-Merge-Konflikt auftreten.
+  Mergen Sie das Feature 4911 in den master. Es sollte hierbei kein Merge-Konflikt auftreten.
 
-git merge fb-4911
+  .. code-block:: bash
 
-Merge made by the 'recursive' strategy.
-
-feature-4911.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 feature-4911.txt
+    git merge fb-4911
+    Merge made by the 'recursive' strategy.
+    feature-4911.txt | 1 +
+    1 file changed, 1 insertion(+)
+    create mode 100644 feature-4911.txt
 
 [Lars]» *Ok, Karl, wir spulen in Gedanken jetzt mal einige Tage vorwärts. Die
 Testabteilung hat die neue Version ausgiebig getestet und hat einige
@@ -5673,65 +5392,43 @@ und eine neue Version deployen.*
   können ihn problemlos komplett neu erstellen mit den Features, die wir
   brauchen.*
 
-#zurück zum master
+.. code-block:: bash
 
-git checkout master
+  #zurück zum master
+  git checkout master
+  Switched to branch 'master'
+  #branch löschen
+  git branch -D qa
+  Deleted branch qa (was d0adf7b).
+  #branch neu erzeugen
+  git checkout -b qa 'release-1.0'
+  Switched to a new branch 'qa'
+  #merge 4711 und 4811
+  git merge fb-4711
+  Updating 1f4d632..f0150b9
+  Fast-forward
+  feature.txt | 1 +
 
-Switched to branch 'master'
+  1 file changed, 1 insertion(+)
+  
+  git merge fb-4811
+  Auto-merging feature.txt
+  CONFLICT (content): Merge conflict in feature.txt <b>(1)</b>
+  Staged 'feature.txt' using previous resolution. <b>(2)</b>
+  Automatic merge failed; fix conflicts and then commit the result.
 
-#branch löschen
+  #status
+  git status
 
-git branch -D qa
+  On branch qa
+  All conflicts fixed but you are still merging.
+  (use "git commit" to conclude merge)
+  Changes to be committed: <b>(3)</b>
+  modified: feature.txt
 
-Deleted branch qa (was d0adf7b).
-
-#branch neu erzeugen
-
-git checkout -b qa 'release-1.0'
-
-Switched to a new branch 'qa'
-
-#merge 4711 und 4811
-
-git merge fb-4711
-
-Updating 1f4d632..f0150b9
-
-Fast-forward
-
-feature.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-git merge fb-4811
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt <b>(1)</b>
-
-Staged 'feature.txt' using previous resolution. <b>(2)</b>
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-#statsu
-
-git status
-
-On branch qa
-
-All conflicts fixed but you are still merging.
-
-(use "git commit" to conclude merge)
-
-Changes to be committed: <b>(3)</b>
-
-modified: feature.txt
-
-1. Der Konflitk tritt erneut auf
-
-2. ReReRe löst den Konflitk automatisch
-
-3. Der Konflikt ist gelöst, es muss nur noch Comitted werden.
+  1. Der Konflitk tritt erneut auf
+  2. ReReRe löst den Konflitk automatisch
+  3. Der Konflikt ist gelöst, es muss nur noch Comitted werden.
 
 [Lars]» *Karl, wir haben die gleiche Version wie zuvor, nur dass das*
 **Feature-4911** *nie zurückgeführt wurde. Soweit verstanden?*
@@ -5765,13 +5462,12 @@ das Szenario direkt durch, dann versteht du, was ich meine. Leg doch
 bitte einfach im gleichen Verzeichnis, wo unser Test-Repository aktuell
 liegt ein neues leeres Repository an.*
 
-mkdir rerere-cache
+.. code-block:: bash
 
-#initialize repository
-
-git init --bare
-
-Initialized empty Git repository
+  mkdir rerere-cache
+  #initialize repository
+  git init --bare
+  Initialized empty Git repository
 
 [Lars]» *Ich hatte dir schon erklärt, dass der* **ReReRe-Cache** *in deinem
 .git-Verzeichnis im Ordner* **rr-cache** *liegt. Diesen Ordner*
@@ -5786,58 +5482,40 @@ spricht überhaupt nichts dagegen, irgendwo .git-Verzeichnis ein weiteres
 Repository zu initialisieren. Alles im .git-Verzeichnis wird von Git
 standardmäßig nicht getrackt. Wir versuchen das einfach.*
 
-cd .git/rr-cache
+.. code-block:: bash
 
-ls
+  cd .git/rr-cache
+  ls
+  925cd9b95c7a5b830701d56480b9530de341afc8
+  #initialize repository
+  git init
+  Initialized empty Git repository in
+  ./git-flow-example/.git/rr-cache/.git/
 
-925cd9b95c7a5b830701d56480b9530de341afc8
+  #Repository verbinden
+  git remote add origin ../../../rerere-cache/
+  git fetch origin
 
-#initialize repository
+  #bereits existierende Lösungen teilen
+  git add .
+  git commit -m "new cache"
+  [master (root-commit) 5383293] new cache
+  3 files changed, 15 insertions(+)
+  create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/postimage
+  create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/preimage
+  create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/thisimage
 
-git init
+  git push origin master
+  git push origin master
 
-Initialized empty Git repository in
-./git-flow-example/.git/rr-cache/.git/
+  Counting objects: 5, done.
+  Delta compression using up to 4 threads.
+  Compressing objects: 100% (5/5), done.
+  Writing objects: 100% (5/5), 481 bytes \| 0 bytes/s, done.
+  Total 5 (delta 0), reused 0 (delta 0)
+  To ../../../rerere-cache/
 
-#Repository verbinden
-
-git remote add origin ../../../rerere-cache/
-
-git fetch origin
-
-#bereits existierende Lösungen teilen
-
-git add .
-
-git commit -m "new cache"
-
-[master (root-commit) 5383293] new cache
-
-3 files changed, 15 insertions(+)
-
-create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/postimage
-
-create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/preimage
-
-create mode 100644 925cd9b95c7a5b830701d56480b9530de341afc8/thisimage
-
-git push origin master
-
-git push origin master
-
-Counting objects: 5, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (5/5), done.
-
-Writing objects: 100% (5/5), 481 bytes \| 0 bytes/s, done.
-
-Total 5 (delta 0), reused 0 (delta 0)
-
-To ../../../rerere-cache/
-
-\* [new branch] master -> master
+  * [new branch] master -> master
 
 [Lars]» *Die Idee ist ganz einfach. Alles was Git braucht, um mit* **ReReRe**
 *zu arbeiten ist der Inhalt des* **rr-cache** *Verzeichnisses. Wir
@@ -5857,11 +5535,11 @@ sicherstellen, dass unser bisheriger Workflow tatsächlich funktioniert.
 Wir* **klonen** *uns das Repository und initialisieren auch hier den*
 **ReReRe-Cache**\ *.*
 
-git clone git-flow-example/ git-flow-example-2
+.. code-block:: bash
 
-Cloning into 'git-flow-example-2'...
-
-done.
+  git clone git-flow-example/ git-flow-example-2
+  Cloning into 'git-flow-example-2'...
+  done.
 
 [Lars]» *Wir müssen* **ReReRe** *für jedes Repository neu initialisieren. Auch
 in unserem geklonten Repository ist* **ReReRe** *nicht aktiv.*
@@ -5869,50 +5547,35 @@ in unserem geklonten Repository ist* **ReReRe** *nicht aktiv.*
 die wir vorher besprochen haben oder aber indem wir manuell das*
 **rr-cache** *Verzeichnis im* **.git**\ *-Verzeichnis anlegen.*
 
-mkdir .git/rr-cache/
+.. code-block:: bash
 
-cd .git/rr-cache
+  mkdir .git/rr-cache/
+  cd .git/rr-cache
+  #initialisiere Repository
+  git init
+  Initialized empty Git repository in
+  ./git-flow-example-2/.git/rr-cache/.git/
+  
+  #verbinde mit Repository
+  git remote add origin ../../../rerere-cache/
+  git fetch origin
+  remote: Counting objects: 5, done.
+  remote: Compressing objects: 100% (5/5), done.
+  remote: Total 5 (delta 0), reused 0 (delta 0)
+  Unpacking objects: 100% (5/5), done.
+  From ../../../rerere-cache
+  * [new branch] master -> origin/master
 
-#initialisiere Repository
+  git pull --rebase origin master
+  From ../../../rerere-cache
+  * branch master -> FETCH\_HEAD
 
-git init
-
-Initialized empty Git repository in
-./git-flow-example-2/.git/rr-cache/.git/
-
-#verbinde mit Repository
-
-git remote add origin ../../../rerere-cache/
-
-git fetch origin
-
-remote: Counting objects: 5, done.
-
-remote: Compressing objects: 100% (5/5), done.
-
-remote: Total 5 (delta 0), reused 0 (delta 0)
-
-Unpacking objects: 100% (5/5), done.
-
-From ../../../rerere-cache
-
-\* [new branch] master -> origin/master
-
-git pull --rebase origin master
-
-From ../../../rerere-cache
-
-\* branch master -> FETCH\_HEAD
-
-Current branch HEAD is up to date.
-
-#Inhalte prüfen
-
-ls
-
-925cd9b95c7a5b830701d56480b9530de341afc8 <b>(1)</b>
-
-1. Die Inhalte sind identisch
+  Current branch HEAD is up to date.
+  #Inhalte prüfen
+  ls
+  925cd9b95c7a5b830701d56480b9530de341afc8 <b>(1)</b>
+  
+  1. Die Inhalte sind identisch
 
 [Lars]» *Bevor wir jetzt wirklich mit* **ReReRe** *arbeiten stellen wir
 sicher, dass der Cache nach jedem Merge automatisch mit allen
@@ -5922,29 +5585,23 @@ Teammitgliedern geteilt werden. Idealerweise teilen wir den*
 für unsere Zwecke. Hierfür passen wir die Datei*
 **.git/hooks/post-commit.sample** *an.*
 
-Übung
+.. admonition:: Übung
 
-Editieren Sie die Datei .git/hooks/post-commit.sample und entfernen Sie
-alle Inhalte
+  - Editieren Sie die Datei .git/hooks/post-commit.sample und entfernen Sie alle Inhalte
+  - Fügen Sie folgendes Skript ein.
 
-Fügen Sie folgendes Skript ein.
+    .. code-block:: bash
 
-#!/bin/bash
+      #!/bin/bash
+      cd .git/rr-cache
+      git pull --rebase origin master
+      git add .
+      git commit -m "new cache"
+      git push origin master
 
-cd .git/rr-cache
-
-git pull --rebase origin master
-
-git add .
-
-git commit -m "new cache"
-
-git push origin master
-
-Benennen Sie die Datei von **post-commit.sample** um in **post-commit**.
-Ist die Datei nicht vorhanden legen Sie sie bitte einfach an.
-
-Machen Sie diese Änderung in beiden lokalen Repositories.
+  - Benennen Sie die Datei von **post-commit.sample** um in **post-commit**. Ist die
+    Datei nicht vorhanden legen Sie sie bitte einfach an.
+  - Machen Sie diese Änderung in beiden lokalen Repositories.
 
 [Lars]» *Im Prinzip machen wir nach jedem Commit ein Update unseres geteilten*
 **rr-Caches** *(“git pull –rebase”), fügen alle neuen Inhalte hinzu,
@@ -5974,182 +5631,111 @@ funktionieren, ohne dass ein Merge-Konflikt gelöst werden muss.*
 
 [Karl]» Ich bin gespannt, ob das tatsächlich so funktioniert.
 
-#Im Repository 1
+.. code-block:: bash
 
-git checkout master
-
-Switched to branch 'master'
-
-#Lösche qa Branch
-
-git branch -D qa
-
-Deleted branch qa (was f0150b9).
-
-#Feature 5011
-
-git checkout -b fb-5011
-
-Switched to a new branch 'fb-5011'
-
-#Commit / Update + Share RR-Cache
-
-git commit -m "Feature in Konflikt mit 4711 und 4811"
-
-From ../../../rerere-cache
-
-\* branch master -> FETCH\_HEAD
-
-Current branch master is up to date.
-
-On branch master
-
-nothing to commit, working directory clean
-
-Everything up-to-date
-
-[fb-5011 7fb64ab] Feature in Konflikt mit 4711 und 4811
-
-1 file changed, 1 insertion(+)
-
-#erzeuge qa Branch
-
-git checkout qa
-
-Switched to branch 'qa'
+  #Im Repository 1
+  git checkout master
+  Switched to branch 'master'
+  #Lösche qa Branch
+  git branch -D qa
+  Deleted branch qa (was f0150b9).
+  #Feature 5011
+  git checkout -b fb-5011
+  Switched to a new branch 'fb-5011'
+  #Commit / Update + Share RR-Cache
+  git commit -m "Feature in Konflikt mit 4711 und 4811"
+  From ../../../rerere-cache
+  * branch master -> FETCH\_HEAD  
+  Current branch master is up to date.
+  On branch master
+  nothing to commit, working directory clean
+  Everything up-to-date
+  [fb-5011 7fb64ab] Feature in Konflikt mit 4711 und 4811
+  1 file changed, 1 insertion(+)
+  #erzeuge qa Branch
+  git checkout qa
+  Switched to branch 'qa'
 
 [Lars]» *Ok, der nächste Schritt besteht jetzt darin, alle Features nach und
 nach auf den neuen “leeren”* **qa-Branch** *zu mergen.*
 
-#4711
+.. code-block:: bash
 
-git merge fb-4711
+  #4711
+  git merge fb-4711
+  Updating 1f4d632..f0150b9
+  Fast-forward
+  feature.txt \| 1 +
+  1 file changed, 1 insertion(+)
+  #4811
+  git merge fb-4811
+  Auto-merging feature.txt
+  CONFLICT (content): Merge conflict in feature.txt <b>(1)</b>
+  Staged 'feature.txt' using previous resolution.
+  Automatic merge failed; fix conflicts and then commit the result.
+  #commit merge
+  git commit -m "merged features"
+  From ../../../rerere-cache
+  * branch master -> FETCH\_HEAD
+  Current branch master is up to date.
+  On branch master
+  nothing to commit, working directory clean
+  Everything up-to-date
+  [qa dd3a949] merged features
+  #4911
+  git merge fb-4911
+  Merge made by the 'recursive' strategy.
+  feature-4911.txt | 1 +
+  1 file changed, 1 insertion(+)
+  create mode 100644 feature-4911.txt
+  #5011 mit Konflikt
+  git merge fb-5011
+  Auto-merging feature.txt
+  CONFLICT (content): Merge conflict in feature.txt
+  Recorded preimage for 'feature.txt' <b>(2)</b>
+  Automatic merge failed; fix conflicts and then commit the result.
+  #check ReReRe
+  ls .git/rr-cache
+  925cd9b95c7a5b830701d56480b9530de341afc8
+  f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3 <b>(3)</b>
 
-Updating 1f4d632..f0150b9
-
-Fast-forward
-
-feature.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-#4811
-
-git merge fb-4811
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt <b>(1)</b>
-
-Staged 'feature.txt' using previous resolution.
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-#commit merge
-
-git commit -m "merged features"
-
-From ../../../rerere-cache
-
-\* branch master -> FETCH\_HEAD
-
-Current branch master is up to date.
-
-On branch master
-
-nothing to commit, working directory clean
-
-Everything up-to-date
-
-[qa dd3a949] merged features
-
-#4911
-
-git merge fb-4911
-
-Merge made by the 'recursive' strategy.
-
-feature-4911.txt \| 1 +
-
-1 file changed, 1 insertion(+)
-
-create mode 100644 feature-4911.txt
-
-#5011 mit Konflikt
-
-git merge fb-5011
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt
-
-Recorded preimage for 'feature.txt' <b>(2)</b>
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-#check ReReRe
-
-ls .git/rr-cache
-
-925cd9b95c7a5b830701d56480b9530de341afc8
-
-f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3 <b>(3)</b>
-
-1. Automatische Lösung mit ReReRe
-
-2. Neues Pre-Image
-
-3. Neuer Eintrag in rr-cache
+  1. Automatische Lösung mit ReReRe
+  2. Neues Pre-Image
+  3. Neuer Eintrag in rr-cache
 
 [Lars]» *Den Merge-Konflikt haben wir ja erwartet. Karl, schaffst du es, den
 Konflikt zu lösen?*
 
-Übung
+.. admonition:: Übung
 
-Lösen Sie den Merge-Konflikt so auf, dass alle Änderungen erhalten
-bleiben und machen Sie anschließend den Commit.
+  Lösen Sie den Merge-Konflikt so auf, dass alle Änderungen erhalten bleiben und machen Sie anschließend den Commit.
 
-git commit -m "merged features"
+  .. code-block:: bash
 
-Recorded resolution for 'feature.txt'.
+    git commit -m "merged features" 
+    Recorded resolution for 'feature.txt'.
+    From ../../../rerere-cache
+    * branch master -> FETCH\_HEAD
+    
+    Current branch master is up to date.
+    [master ef6a683] new cache <b>(1)</b>
+    2 files changed, 11 insertions(+)
 
-From ../../../rerere-cache
+    create mode 100644 f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3/postimage <b>(2)</b>
+    create mode 100644 f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3/preimage<b>(3)</b>
 
-\* branch master -> FETCH\_HEAD
+    Counting objects: 6, done.
+    Delta compression using up to 4 threads.
+    Compressing objects: 100% (5/5), done.
+    Writing objects: 100% (5/5), 531 bytes \| 0 bytes/s, done.
+    Total 5 (delta 1), reused 0 (delta 0)
+    To ../../../rerere-cache/
+    5383293..ef6a683 master -> master
+    [qa 6d66c4f] merged features
 
-Current branch master is up to date.
-
-[master ef6a683] new cache <b>(1)</b>
-
-2 files changed, 11 insertions(+)
-
-create mode 100644 f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3/postimage
-<b>(2)</b>
-
-create mode 100644 f810bb4c35a6bafb4f5d48179b66a4bcc27dd2b3/preimage
-<b>(3)</b>
-
-Counting objects: 6, done.
-
-Delta compression using up to 4 threads.
-
-Compressing objects: 100% (5/5), done.
-
-Writing objects: 100% (5/5), 531 bytes \| 0 bytes/s, done.
-
-Total 5 (delta 1), reused 0 (delta 0)
-
-To ../../../rerere-cache/
-
-5383293..ef6a683 master -> master
-
-[qa 6d66c4f] merged features
-
-1. Der ReReRe-Cache wird automatisch geteilt.
-
-2. PreImage
-
-3. PostImage
+    1. Der ReReRe-Cache wird automatisch geteilt.
+    2. PreImage
+    3. PostImage
 
 [Karl]» Soweit so gut. Was jetzt, Lars? Spielen wir das gleiche Szenario
 nochmal im zweiten Repository durch und tun so, als würde einfach ein
@@ -6161,76 +5747,51 @@ Lass uns den* **qa-Branch** *wieder ohne das Feature* **4911**
 bisher noch nichts vom Feature* **5011** *wissen, machst ein Update und
 erzeugst den* **qa-Branch** *neu.*
 
-#Wechsel in Repository #2
+.. code-block:: bash
 
-#Wechse auf master
+  #Wechsel in Repository #2
+  #Wechse auf master
+  git checkout master
+  Switched to a new branch 'master'
+  #Update
+  git fetch origin
+  remote: Counting objects: 18, done.
+  remote: Compressing objects: 100% (10/10), done.
+  remote: Total 11 (delta 5), reused 0 (delta 0)
+  Unpacking objects: 100% (11/11), done.
+  From /Users/martindilger/development/git/playground/git-flow-example
+  * [new branch] fb-5011 -> origin/fb-5011 <b>(1)</b>
+  f0150b9..6d66c4f qa -> origin/qa
 
-git checkout master
-
-Switched to a new branch 'master'
-
-#Update
-
-git fetch origin
-
-remote: Counting objects: 18, done.
-
-remote: Compressing objects: 100% (10/10), done.
-
-remote: Total 11 (delta 5), reused 0 (delta 0)
-
-Unpacking objects: 100% (11/11), done.
-
-From /Users/martindilger/development/git/playground/git-flow-example
-
-\* [new branch] fb-5011 -> origin/fb-5011 <b>(1)</b>
-
-f0150b9..6d66c4f qa -> origin/qa
-
-1. Feature 5011 ist verfügbar
+  1. Feature 5011 ist verfügbar
 
 [Lars]» *Ok, Karl, bereit? Dann löschen wir jetzt den* **qa-Branch**\ *,
 erzeugen ihn neu und mergen dann die Features* **4711**\ *,* **4811**
 *und* **5011**\ *.*
 
-git branch -D qa
+.. code-block:: bash
 
-Deleted branch qa (was f0150b9).
+  git branch -D qa
+  Deleted branch qa (was f0150b9).
+  #erzeuge qa Branch neu
+  git checkout -b qa
+  Switched to a new branch 'qa'
+  #merge features
+  git merge origin/fb-4711 <b>(1)</b>
+  [...]
+  git merge origin/fb-4811 <b>(2)</b>
+  [...]
+  git merge origin/fb-5011 <b>(3)</b>
+  Auto-merging feature.txt
+  CONFLICT (content): Merge conflict in feature.txt
+  Resolved 'feature.txt' using previous resolution. <b>(3)</b>
+  Automatic merge failed; fix conflicts and then commit the result.
 
-#erzeuge qa Branch neu
-
-git checkout -b qa
-
-Switched to a new branch 'qa'
-
-#merge features
-
-git merge origin/fb-4711 <b>(1)</b>
-
-[...]
-
-git merge origin/fb-4811 <b>(2)</b>
-
-[...]
-
-git merge origin/fb-5011 <b>(3)</b>
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt
-
-Resolved 'feature.txt' using previous resolution. <b>(3)</b>
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-1. Syntax “origin/4711″, da fb-4711 lokal nicht verfügbar, da bisher
-       kein **checkout** gemacht wurde.
-
-2. Syntax “origin/4811″, da fb-4811 lokal nicht verfügbar, da bisher
-       kein **checkout** gemacht wurde.
-
-3. Der Merge-Konflikt wurde automatisch gelöst und der ReReRe-Cache
-       geteilt.
+  1. Syntax “origin/4711″, da fb-4711 lokal nicht verfügbar, da bisher kein  
+     **checkout** gemacht wurde.
+  2. Syntax “origin/4811″, da fb-4811 lokal nicht verfügbar, da bisher
+     kein **checkout** gemacht wurde.
+  3. Der Merge-Konflikt wurde automatisch gelöst und der ReReRe-Cache geteilt.
 
 [Karl]» Sehr schön, Lars. Siehst du, es hat funktioniert! Der Merge-Konflikt
 wurde auch im zweiten Repository automatisch gelöst!
@@ -6243,44 +5804,30 @@ ob die Reihenfolge der Merges eine Rolle spielt. Ich würde sagen,
 teilweise. Fangen wir doch nochmal von vorne an, ich zeige dir was ich
 meine.*
 
-Übung
+.. admonition:: Übung
 
-Spielen Sie das Szenario erneut durch.
+  - Spielen Sie das Szenario erneut durch.
+  - Löschen Sie den qa-Branch und erzeugen Sie ihn neu.
+  - Mergen Sie die Features in der Reihenfolge 5011, 4711, 4911, 4811.
+  - Prüfen Sie, ob immer noch alle Konflikte automatisch gelöst werden können.
 
-Löschen Sie den qa-Branch und erzeugen Sie ihn neu.
+  .. code-block:: bash
 
-Mergen Sie die Features in der Reihenfolge 5011, 4711, 4911, 4811.
-
-Prüfen Sie, ob immer noch alle Konflikte automatisch gelöst werden
-können.
-
-git checkout master
-
-git branch -D qa
-
-Deleted branch qa (was 6d66c4f).
-
-git checkout -b qa
-
-Switched to a new branch 'qa'
-
-#merge features
-
-git merge fb-5011
-
-[...]
-
-git merge fb-4711
-
-Auto-merging feature.txt
-
-CONFLICT (content): Merge conflict in feature.txt
-
-Recorded preimage for 'feature.txt' <b>(1)</b>
-
-Automatic merge failed; fix conflicts and then commit the result.
-
-1. Merge-Konflikt
+    git checkout master
+    git branch -D qa
+    Deleted branch qa (was 6d66c4f).
+    git checkout -b qa
+    Switched to a new branch 'qa'
+    #merge features
+    git merge fb-5011
+    [...]
+    git merge fb-4711
+    Auto-merging feature.txt
+    CONFLICT (content): Merge conflict in feature.txt
+    Recorded preimage for 'feature.txt' <b>(1)</b>
+    Automatic merge failed; fix conflicts and then commit the result.
+    
+    1. Merge-Konflikt
 
 [Lars]» *Du siehst, Karl, ganz so einfach ist es leider nicht. Je nachdem, in
 welcher Reihenfolge die Branches gemerged werden können unterschiedliche
@@ -6322,32 +5869,26 @@ möglich, dass Jira dir alle Tasks in einem bestimmten Status gibt. Ich
 denke beispielsweise an eine Liste von Tasks im Status “Ready for QA”.
 Du könntest dann beispielsweise eine Liste in dieser Form bekommen.*
 
-4711
+.. code-block:: bash
 
-4811
-
-4911
-
-5011
-
-[...]
+  4711
+  4811
+  4911
+  5011
+  [...]
 
 [Lars]» *Jetzt musst du eigentlich nur noch über diese Liste iterieren und
 alle Branches automatisch mergen. Etwa so etwas in Pseudo-Code.*
 
-git branch -D qa
+.. code-block:: bash
 
-git checkout -b qa
-
-Jira-Task-List = getTaskListFromJira()
-
-for(String taskNummer in Jira-Task-List)
-
-git merge taskNummer\_to\_BranchName(taskNummer)
-
-git push origin qa
-
-`*git* <http://www.effectivetrainings.de/blog/category/git/>`__ on .
+  git branch -D qa
+  git checkout -b qa
+  Jira-Task-List = getTaskListFromJira()
+  for(String taskNummer in Jira-Task-List)
+    git merge taskNummer_to_BranchName(taskNummer)
+    git push origin qa
+    `*git* <http://www.effectivetrainings.de/blog/category/git/>`__ on .
 
 
 
